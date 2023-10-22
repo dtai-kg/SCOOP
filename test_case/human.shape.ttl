@@ -5,11 +5,10 @@
 
 <NodeShape/address> a sh:NodeShape ;
     sh:name "address" ;
-    sh:node <http://example.com/NodeShape/USAddress> ;
     sh:nodeKind sh:IRI ;
-    sh:property <http://example.com/PropertyShape/address> ,
-      <http://example.com/PropertyShape/USAddress/country>,
-      <http://example.com/PropertyShape/USAddress/street> ;
+    sh:property <PropertyShape/address> ,
+      <PropertyShape/USAddress/country>,
+      <PropertyShape/USAddress/street> ;
     sh:targetClass ex:address .
 
 <PropertyShape/USAddress/country> a sh:PropertyShape ;
@@ -30,5 +29,6 @@
     sh:maxCount 7 ;
     sh:minCount 3 ;
     sh:name "address" ;
-    sh:path ex:address .
+    sh:path ex:address ;
+    sh:targetSubjectsOf ex:address.
 
