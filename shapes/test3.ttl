@@ -3,11 +3,22 @@
 @prefix sh: <http://www.w3.org/ns/shacl#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
+<file:///D:/xueminduan/PhD/projects/Shapes-Integration/test_case/NodeShape/test> a sh:NodeShape ;
+    sh:name "test" ;
+    sh:nodeKind sh:IRI ;
+    sh:property <file:///D:/xueminduan/PhD/projects/Shapes-Integration/test_case/PropertyShape/test> ;
+    sh:targetClass ex:Test .
+
 <http://example.com/NodeShape/address> a sh:NodeShape ;
     sh:name "address" ;
     sh:node <http://example.com/NodeShape/USAddress> ;
+    sh:nodeKind sh:IRI ;
     sh:property <http://example.com/PropertyShape/address> ;
     sh:targetClass ex:address .
+
+<file:///D:/xueminduan/PhD/projects/Shapes-Integration/test_case/PropertyShape/test> a sh:PropertyShape ;
+    sh:name "test" ;
+    sh:path ex:test .
 
 <http://example.com/NodeShape/USAddress> a sh:NodeShape ;
     sh:name "USAddress" ;
@@ -16,21 +27,25 @@
 
 <http://example.com/PropertyShape/USAddress/country> a sh:PropertyShape ;
     sh:datatype xsd:NMTOKEN ;
-    sh:in ( "US" ) ;
+    sh:in ( "US" ),
+        [ ] ;
     sh:name "country" ;
     sh:path ex:country .
 
-
-
 <http://example.com/PropertyShape/USAddress/street> a sh:PropertyShape ;
     sh:datatype xsd:string ;
-    sh:maxCount 1 ;
-    sh:minCount 1 ;
+    sh:maxCount 1,
+        5 ;
+    sh:minCount 1,
+        2 ;
+    sh:minLength 5 ;
     sh:name "street" ;
     sh:path ex:street .
 
 <http://example.com/PropertyShape/address> a sh:PropertyShape ;
-    sh:maxCount 1 ;
+    sh:maxCount 1,
+        7 ;
+    sh:minCount 3 ;
     sh:name "address" ;
     sh:path ex:address .
 

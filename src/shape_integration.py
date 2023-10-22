@@ -26,8 +26,6 @@ class shapeIntegration:
 
             common_targets = set(target_current.keys()).intersection(set(target_add.keys()))
             differ_targets = set(target_add.keys()).difference(set(target_current.keys()))
-            # print("common_targets", common_targets)
-            # print("differ_targets", differ_targets)
 
             for target, target_value in common_targets:
                 identifiers_current =  list(target_current[(target, target_value)].keys())
@@ -44,13 +42,11 @@ class shapeIntegration:
                             if constraint_add_value == constraints_current.get(constraint_add, None):
                                 continue
                             else:
-                                self.addConstraint(identifier_current, constraints_current, constraint_add, constraint_add_value)
+                                self.addConstraints(identifier_current, constraints_current, constraint_add, constraint_add_value)
                         
                         path_add = target_add[(target, target_value)][identifier_add]
                         common_paths = set(path_current.keys()).intersection(set(path_add.keys()))
                         differ_paths = set(path_add.keys()).difference(set(path_current.keys()))
-                        # print("common_paths", common_paths)
-                        # print("differ_paths", differ_paths)
 
                         for path, path_value in common_paths:
 
@@ -67,13 +63,26 @@ class shapeIntegration:
                                         if constraint_add_value == constraints_current.get(constraint_add, None):
                                             continue
                                         else:
-                                            self.addConstraint(identifier_path_current, constraints_current, constraint_add, constraint_add_value)
+                                            self.addConstraints(identifier_path_current, constraints_current, constraint_add, constraint_add_value)
+                        
+                        for path, path_value in differ_paths:
+                            identifiers_path_add =  path_add[(path, path_value)]
+                            for identifier_path_add in identifiers_path_add:
+                                self.addShape(shape_add, identifier_path_add)
+                                self.SHACL.add((identifier_current, self.shaclNS["property"], identifier_path_add))
                                             
-            
             for target, target_value in differ_targets:
-                pass
-            
-            self.writeShapeToFile("test2.ttl")
+                identifiers_add =  list(target_add[(target, target_value)].keys())
+
+                if target == self.shaclNS.targetClass or target == self.shaclNS.targetNode:
+                    for identifier_add in identifiers_add:
+                        self.addShape(shape_add, identifier_add)
+                elif target == self.shaclNS.targetSubjectsOf:
+                    pass # TODO NS+PS conflict checking
+                elif target == self.shaclNS.targetObjectsOf:
+                    pass # TODO PS conflict checking
+
+            self.writeShapeToFile("test3.ttl")
 
     def getTargetDeclaration(self, shape: Graph):
         targetDict = {}
@@ -101,17 +110,33 @@ class shapeIntegration:
         constraints = {}
         for s, p, o in shape:
             if s == identifier: 
-                if (p not in [self.shaclNS.node, self.rdfSyntax.type]) and (p not in self.targetDeclarationNS) and (p not in self.propertyPathNS):
+                if (p not in [self.shaclNS.node, self.rdfSyntax.type, self.shaclNS["property"]]) and (p not in self.targetDeclarationNS) and (p not in self.propertyPathNS):
                     constraints[p] = o
         return constraints
 
-    def addConstraint(self, identifier_path_current, constraints_current, constraint_add, constraint_add_value):
+    def addConstraints(self, identifier_path_current, constraints_current, constraint_add, constraint_add_value):
         if self.conflictChecking(constraints_current, constraint_add, constraint_add_value):
             self.SHACL.add((identifier_path_current, constraint_add, constraint_add_value))
 
     def conflictChecking(self, constraints_current, constraint_add, constraint_add_value):
-        return True
+        return True # TODO conflict checking
 
+    def addShape(self, shape_add, identifier_add):
+        self.SHACL += self.extractSubgraph(shape_add, identifier_add)
+
+    def extractSubgraph(self, shape: Graph, identifier, visited_nodes=None):
+        # Extract the subgraph starting from the given identifier
+        if visited_nodes is None:
+            visited_nodes = set()
+        subgraph = Graph()
+        for s, p, o in shape.triples((identifier, None, None)):
+            subgraph += shape.triples((s,p,o))
+            if o not in visited_nodes:
+                visited_nodes.add(o)
+                subgraph += shape.triples((o, None, None))
+                subgraph += self.extractSubgraph(shape, o, visited_nodes)
+        return subgraph
+    
     def writeShapeToFile(self, file_name, shape_dir="shapes/"):
 
         parent_folder = os.path.dirname(file_name)

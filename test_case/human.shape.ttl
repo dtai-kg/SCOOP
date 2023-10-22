@@ -8,8 +8,14 @@
     sh:nodeKind sh:IRI ;
     sh:property <PropertyShape/address> ,
       <PropertyShape/USAddress/country>,
-      <PropertyShape/USAddress/street> ;
+      <PropertyShape/USAddress/street> ,
+      <http://example.com/PropertyShape/USAddress/country2>;
     sh:targetClass ex:address .
+
+<http://example.com/PropertyShape/USAddress/country2> a sh:PropertyShape ;
+    sh:name "test" ;
+    sh:path ex:country2 ;
+    sh:targetSubjectsOf ex:country2.
 
 <PropertyShape/USAddress/country> a sh:PropertyShape ;
     sh:datatype xsd:NMTOKEN ;
@@ -32,3 +38,13 @@
     sh:path ex:address ;
     sh:targetSubjectsOf ex:address.
 
+
+<NodeShape/test> a sh:NodeShape ;
+    sh:name "test" ;
+    sh:nodeKind sh:IRI ;
+    sh:property <PropertyShape/test> ;
+    sh:targetClass ex:Test .
+
+<PropertyShape/test> a sh:PropertyShape ;
+    sh:name "test" ;
+    sh:path ex:test .
