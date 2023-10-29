@@ -1,0 +1,11 @@
+@prefix ex: <http://example.com/> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+
+ex:PatternExampleShape a sh:NodeShape ;
+    sh:property [ sh:flags "i" ;
+            sh:path ex:bCode ;
+            sh:pattern "^B" ] ;
+    sh:targetNode ex:Alice,
+        ex:Bob,
+        ex:Carol .
+

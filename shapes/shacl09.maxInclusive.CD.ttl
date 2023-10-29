@@ -1,0 +1,9 @@
+@prefix ex: <http://example.com/> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+ex:PersonShape a sh:NodeShape ;
+    sh:property [ sh:maxInclusive 60 ;
+            sh:path ex:age ] ;
+    sh:targetClass ex:Person .
+

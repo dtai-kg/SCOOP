@@ -16,7 +16,7 @@
 
 <http://example.com/PropertyShape/USAddress/country> a sh:PropertyShape ;
     sh:datatype xsd:NMTOKEN ;
-    sh:in ( "US" ) ;
+    sh:in ( "BE" ) ;
     sh:name "country" ;
     sh:path ex:country .
 

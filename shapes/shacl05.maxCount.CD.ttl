@@ -1,0 +1,19 @@
+@prefix ex: <http://example.com/> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+ex:PersonShape a sh:NodeShape ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:maxCount 5 ;
+            sh:minCount 3 ;
+            sh:path ex:ssn ;
+            sh:pattern "^\\d{3}-\\d{2}-\\d{4}$" ],
+        [ sh:class ex:Company ;
+            sh:datatype xsd:string ;
+            sh:path ex:worksFor2 ],
+        [ sh:class ex:Company ;
+            sh:datatype xsd:string ;
+            sh:minCount 3 ;
+            sh:path ex:worksFor ] ;
+    sh:targetClass ex:Person .
+

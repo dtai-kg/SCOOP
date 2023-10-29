@@ -6,7 +6,7 @@ import uuid
 import time
 import datetime
 from rdflib import Graph
-from src.shape_integration import shapeIntegration
+from src.shape_integration import ShapeIntegration
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description='Shape Integration')
@@ -31,8 +31,6 @@ if __name__ == "__main__":
 
     # Shape integration
     start_time = time.time()
-    shIn = shapeIntegration(shapes)
+    shIn = ShapeIntegration(shapes, args.output)
     shIn.integration()
     logging.info('Shape integration took %s seconds', time.time() - start_time)
-
-    # Write output

@@ -1,0 +1,10 @@
+@prefix ex: <http://example.com/> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+
+ex:NewZealandLanguagesShape a sh:NodeShape ;
+    sh:property [ sh:languageIn ( "mi" "en" "de" "fr" ) ;
+            sh:path ex:prefLabel ] ;
+    sh:targetNode ex:Berg,
+        ex:Mountain .
+
