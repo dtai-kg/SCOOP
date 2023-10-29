@@ -20,7 +20,7 @@
 
 <file:///D:/xueminduan/PhD/projects/Shapes-Integration/test_case/PropertyShape/USAddress/country> a sh:PropertyShape ;
     sh:datatype xsd:NMTOKEN ;
-    sh:in ( "US" "DK" ) ;
+    sh:in ( "US" "DK" "BE" ) ;
     sh:name "country" ;
     sh:path ex:country .
 

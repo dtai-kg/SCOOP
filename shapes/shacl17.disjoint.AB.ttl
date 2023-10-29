@@ -1,0 +1,9 @@
+@prefix ex: <http://example.com/> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+
+ex:DisjointExampleShape a sh:NodeShape ;
+    sh:property [ sh:disjoint ex:altLabel ;
+            sh:path ex:prefLabel ] ;
+    sh:targetNode ex:Germany,
+        ex:USA .
+

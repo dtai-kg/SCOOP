@@ -1,0 +1,8 @@
+@prefix ex: <http://example.com/> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+
+ex:StanfordGraduate a sh:NodeShape ;
+    sh:property [ sh:hasValue ex:Stanford ;
+            sh:path ex:alumniOf ] ;
+    sh:targetNode ex:Alice .
+

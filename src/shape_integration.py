@@ -22,9 +22,13 @@ class ShapeIntegration:
         Integrating a set of shapes into a single shape
         """
         for shape_add in self.shapes:
+
+            NodeShapes_current = self.getNodeShapes(self.SHACL)
+            NodeShapes_add = self.getNodeShapes(shape_add)
+
             # Get target declaration for a given shape, return a dictionary with target term and object value as key, identifier with involved property paths as value
-            target_current = self.getTargetDeclaration(self.SHACL)
-            target_add = self.getTargetDeclaration(shape_add)
+            target_current = self.getTargetDeclaration(self.SHACL, NodeShapes_current)
+            target_add = self.getTargetDeclaration(shape_add, NodeShapes_add)
 
             if len(target_current) == 0:
                 self.SHACL = shape_add
@@ -40,11 +44,11 @@ class ShapeIntegration:
                 identifiers_add =  list(target_add[(target, target_value)].keys())
                 
                 for identifier_current in identifiers_current:
-                    constraints_current = self.getConstraints(self.SHACL, identifier_current)
+                    constraints_current = self.getConstraints(self.SHACL, identifier_current, NodeShapes_current)
                     path_current = target_current[(target, target_value)][identifier_current]
                     
                     for identifier_add in identifiers_add:
-                        constraints_add = self.getConstraints(shape_add, identifier_add)
+                        constraints_add = self.getConstraints(shape_add, identifier_add, NodeShapes_add)
                         # Add constraints in the shape that has target declaration
                         for constraint_add, constraint_add_value in constraints_add.items():
                             if constraint_add_value == constraints_current.get(constraint_add, None):
@@ -62,11 +66,11 @@ class ShapeIntegration:
                             identifiers_path_add =  path_add[(path, path_value)]
 
                             for identifier_path_current in identifiers_path_current:
-                                constraints_current = self.getConstraints(self.SHACL, identifier_path_current)
+                                constraints_current = self.getConstraints(self.SHACL, identifier_path_current, NodeShapes_current)
                                 
                                 for identifier_path_add in identifiers_path_add:
                                     
-                                    constraints_add = self.getConstraints(shape_add, identifier_path_add)
+                                    constraints_add = self.getConstraints(shape_add, identifier_path_add, NodeShapes_add)
                                     # Add constraints in the shape that has property path
                                     for constraint_add, constraint_add_value in constraints_add.items():
                                         if constraint_add_value == constraints_current.get(constraint_add, None):
@@ -94,16 +98,16 @@ class ShapeIntegration:
 
             self.writeShapeToFile()
 
-    def getTargetDeclaration(self, shape: Graph):
+    def getTargetDeclaration(self, shape: Graph, NodeShapes: List):
         targetDict = {}
         for identifier, p, o in shape:
             if p in self.targetDeclarationNS:
                 l = targetDict.get((p,o),{})
-                l[identifier] = self.getPropertyPath(l.get(identifier,{}),shape,identifier)
+                l[identifier] = self.getPropertyPath(l.get(identifier,{}),shape,identifier, NodeShapes)
                 targetDict[(p,o)] = l
         return targetDict
 
-    def getPropertyPath(self, propertyPaths: Dict, shape: Graph, identifier):
+    def getPropertyPath(self, propertyPaths: Dict, shape: Graph, identifier, NodeShapes: List):
         for s, p, o in shape:
             if s == identifier:
                 if p in self.propertyPathNS:
@@ -111,16 +115,26 @@ class ShapeIntegration:
                     l.append(s)
                     propertyPaths[(p,o)] = l
                 elif p == self.shaclNS["property"]:
-                    propertyPaths = self.getPropertyPath(propertyPaths, shape, o)
-                elif p == self.shaclNS.node:
-                    propertyPaths = self.getPropertyPath(propertyPaths, shape, o)
+                    propertyPaths = self.getPropertyPath(propertyPaths, shape, o, NodeShapes)
+                elif (s in NodeShapes) and (p == self.shaclNS.node):
+                    propertyPaths = self.getPropertyPath(propertyPaths, shape, o, NodeShapes)
         return propertyPaths
 
-    def getConstraints(self, shape: Graph, identifier):
+    def getNodeShapes(self, shape: Graph):
+        NodeShapes = []
+        for s, p, o in shape:
+            if p == self.rdfSyntax.type and o == self.shaclNS.NodeShape:
+                NodeShapes.append(s)
+        return NodeShapes
+
+    def getConstraints(self, shape: Graph, identifier, NodeShapes: List):
         constraints = {}
         for s, p, o in shape:
             if s == identifier: 
-                if (p not in [self.shaclNS.node, self.rdfSyntax.type, self.shaclNS["property"]]) and (p not in self.targetDeclarationNS) and (p not in self.propertyPathNS):
+                if p == self.shaclNS.node:
+                    if s not in NodeShapes:
+                        constraints[p] = o
+                elif (p not in [self.rdfSyntax.type, self.shaclNS["property"]]) and (p not in self.targetDeclarationNS) and (p not in self.propertyPathNS):
                     constraints[p] = o
         return constraints
 
@@ -262,30 +276,59 @@ class ShapeIntegration:
             self.transformList(node_current, languageIn_merge)
 
         elif constraint_add == self.shaclNS.uniqueLang:
-            pass # TODO Double check
+            if constraints_current.get(self.shaclNS.uniqueLang, None) != None:
+                pass
+            else:
+                self.SHACL.add((identifier_path_current, constraint_add, constraint_add_value))
+
         elif constraint_add == self.shaclNS.equals:
-            pass
+            self.SHACL.add((identifier_path_current, constraint_add, constraint_add_value))
+
         elif constraint_add == self.shaclNS.disjoint:
-            pass
+            self.SHACL.add((identifier_path_current, constraint_add, constraint_add_value))
+
         elif constraint_add == self.shaclNS.lessThan:
-            pass
+            self.SHACL.add((identifier_path_current, constraint_add, constraint_add_value))
+
         elif constraint_add == self.shaclNS.lessThanOrEquals:
-            pass
+            self.SHACL.add((identifier_path_current, constraint_add, constraint_add_value))
+
         elif constraint_add == self.shaclNS["not"]:
             pass
-        elif constraint_add == self.shaclNS.and_:
+        elif constraint_add == self.shaclNS["and"]:
             pass
-        elif constraint_add == self.shaclNS.or_:
+        elif constraint_add == self.shaclNS["or"]:
             pass
         elif constraint_add == self.shaclNS.xone:
             pass
-        elif constraint_add == self.shaclNS.node:
-            pass
+
+        elif constraint_add == self.shaclNS["node"]:
+            self.SHACL.add((identifier_path_current, constraint_add, constraint_add_value))
+            self.SHACL += self.extractSubgraph(shape_add, constraint_add_value)
+        
         elif constraint_add == self.shaclNS.hasValue:
-            pass
-        elif constraint_add == self.shaclNS.in_:
-            pass
-        return True # TODO conflict checking
+            self.SHACL.add((identifier_path_current, constraint_add, constraint_add_value))
+
+        elif constraint_add == self.shaclNS["in"]:
+            _, In_add = self.findList(shape_add, constraint_add_value, [])
+            if In_add == []:
+                return None
+
+            if constraints_current.get(self.shaclNS["in"], None) != None:
+                for s, p, o in self.SHACL:
+                    if s == identifier_path_current and p == self.shaclNS["in"]:
+                        node_current = o
+                        break
+                _, In_current = self.findList(self.SHACL, node_current, [])
+            else:
+                node_current = BNode()
+                self.SHACL.add((identifier_path_current, constraint_add, node_current))
+                In_current = []
+            In_merge = list(set(In_current+In_add))
+
+            self.transformList(node_current, In_merge)
+
+        return True
 
     def findList(self, g, node_current, rdflist):
         for s, p, o in g:

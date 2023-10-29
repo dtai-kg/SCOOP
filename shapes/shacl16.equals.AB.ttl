@@ -1,0 +1,9 @@
+@prefix ex: <http://example.com/> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+
+ex:EqualExampleShape a sh:NodeShape ;
+    sh:property [ sh:equals ex:fullName,
+                ex:givenName ;
+            sh:path ex:firstName ] ;
+    sh:targetNode ex:Bob .
+

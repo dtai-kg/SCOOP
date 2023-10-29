@@ -1,0 +1,9 @@
+@prefix ex: <http://example.com/> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+
+ex:LessThanExampleShape a sh:NodeShape ;
+    sh:property [ sh:lessThan ex:endDate,
+                ex:endDate2 ;
+            sh:path ex:startDate ] ;
+    sh:targetClass ex:Date .
+

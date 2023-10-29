@@ -19,14 +19,16 @@ Confirmed constraint list:
 - [X] maxLength
 - [X] pattern
 - [X] flags
-- [ ] languageIn
-- [ ] uniqueLang
-- [ ] equals
-- [ ] disjoint
-- [ ] lessThan
-- [ ] lessThanOrEquals 
+- [X] languageIn
+- [X] uniqueLang
+- [X] equals
+- [X] disjoint
+- [X] lessThan
+- [X] lessThanOrEquals 
 - [ ] not
 - [ ] and 
 - [ ] or
 - [ ] xone
-- [ ] node 
+- [X] node 
+- [X] hasValue
+- [X] in

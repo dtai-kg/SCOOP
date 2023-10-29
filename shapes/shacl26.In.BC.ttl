@@ -1,0 +1,9 @@
+@prefix ex: <http://example.com/> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+
+ex:InExampleShape a sh:NodeShape ;
+    sh:property [ sh:in ( ex:Pink ex:Purple ) ;
+            sh:path ex:color ] ;
+    sh:targetNode ex:RainbowPony .
+
