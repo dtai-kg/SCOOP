@@ -1,0 +1,147 @@
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+
+<http://mapping.example.com/map_triplesMapActuator_000/shape> a sh:NodeShape ;
+    sh:nodeKind sh:IRI ;
+    sh:pattern "http://.*" ;
+    sh:targetClass "https://saref.etsi.org/saref4envi/Actuator" .
+
+<http://mapping.example.com/map_triplesMapColor_000/shape> a sh:NodeShape ;
+    sh:nodeKind sh:IRI ;
+    sh:pattern "http://.*" ;
+    sh:targetClass "https://saref.etsi.org/saref4envi/Color" .
+
+<http://mapping.example.com/map_triplesMapCommunicationinterface_000/shape> a sh:NodeShape ;
+    sh:nodeKind sh:IRI ;
+    sh:pattern "http://.*" ;
+    sh:targetClass "https://saref.etsi.org/saref4envi/CommunicationInterface" .
+
+<http://mapping.example.com/map_triplesMapCommunicationprotocol_000/shape> a sh:NodeShape ;
+    sh:nodeKind sh:IRI ;
+    sh:pattern "http://.*" ;
+    sh:targetClass "https://saref.etsi.org/saref4envi/CommunicationProtocol" .
+
+<http://mapping.example.com/map_triplesMapCompassdirection_000/shape> a sh:NodeShape ;
+    sh:nodeKind sh:IRI ;
+    sh:pattern "http://.*" ;
+    sh:targetClass "https://saref.etsi.org/saref4envi/CompassDirection" .
+
+<http://mapping.example.com/map_triplesMapDevice_000/shape> a sh:NodeShape ;
+    sh:nodeKind sh:IRI ;
+    sh:pattern "http://.*" ;
+    sh:targetClass "https://saref.etsi.org/saref4envi/Device" .
+
+<http://mapping.example.com/map_triplesMapDigitalrepresentation_000/shape> a sh:NodeShape ;
+    sh:nodeKind sh:IRI ;
+    sh:pattern "http://.*" ;
+    sh:targetClass "https://saref.etsi.org/saref4envi/DigitalRepresentation" .
+
+<http://mapping.example.com/map_triplesMapFrequencymeasurement_000/shape> a sh:NodeShape ;
+    sh:nodeKind sh:IRI ;
+    sh:pattern "http://.*" ;
+    sh:targetClass "https://saref.etsi.org/saref4envi/FrequencyMeasurement" .
+
+<http://mapping.example.com/map_triplesMapFrequencyunit_000/shape> a sh:NodeShape ;
+    sh:nodeKind sh:IRI ;
+    sh:pattern "http://.*" ;
+    sh:targetClass "https://saref.etsi.org/saref4envi/FrequencyUnit" .
+
+<http://mapping.example.com/map_triplesMapGeometry_000/shape> a sh:NodeShape ;
+    sh:nodeKind sh:IRI ;
+    sh:pattern "http://.*" ;
+    sh:targetClass "https://saref.etsi.org/saref4envi/Geometry" .
+
+<http://mapping.example.com/map_triplesMapHeightmeasurement_000/shape> a sh:NodeShape ;
+    sh:nodeKind sh:IRI ;
+    sh:pattern "http://.*" ;
+    sh:targetClass "https://saref.etsi.org/saref4envi/HeightMeasurement" .
+
+<http://mapping.example.com/map_triplesMapLamppost_000/shape> a sh:NodeShape ;
+    sh:nodeKind sh:IRI ;
+    sh:pattern "http://.*" ;
+    sh:targetClass "https://saref.etsi.org/saref4envi/Lamppost" .
+
+<http://mapping.example.com/map_triplesMapLengthunit_000/shape> a sh:NodeShape ;
+    sh:nodeKind sh:IRI ;
+    sh:pattern "http://.*" ;
+    sh:targetClass "https://saref.etsi.org/saref4envi/LengthUnit" .
+
+<http://mapping.example.com/map_triplesMapLight_000/shape> a sh:NodeShape ;
+    sh:nodeKind sh:IRI ;
+    sh:pattern "http://.*" ;
+    sh:targetClass "https://saref.etsi.org/saref4envi/Light" .
+
+<http://mapping.example.com/map_triplesMapLightpoint_000/shape> a sh:NodeShape ;
+    sh:nodeKind sh:IRI ;
+    sh:pattern "http://.*" ;
+    sh:targetClass "https://saref.etsi.org/saref4envi/LightPoint" .
+
+<http://mapping.example.com/map_triplesMapLightproperty_000/shape> a sh:NodeShape ;
+    sh:nodeKind sh:IRI ;
+    sh:pattern "http://.*" ;
+    sh:targetClass "https://saref.etsi.org/saref4envi/LightProperty" .
+
+<http://mapping.example.com/map_triplesMapMeasurement_000/shape> a sh:NodeShape ;
+    sh:nodeKind sh:IRI ;
+    sh:pattern "http://.*" ;
+    sh:targetClass "https://saref.etsi.org/core/Measurement" .
+
+<http://mapping.example.com/map_triplesMapPeriodmeasurement_000/shape> a sh:NodeShape ;
+    sh:nodeKind sh:IRI ;
+    sh:pattern "http://.*" ;
+    sh:targetClass "https://saref.etsi.org/saref4envi/PeriodMeasurement" .
+
+<http://mapping.example.com/map_triplesMapPhotometer_000/shape> a sh:NodeShape ;
+    sh:nodeKind sh:IRI ;
+    sh:pattern "http://.*" ;
+    sh:targetClass "https://saref.etsi.org/saref4envi/Photometer" .
+
+<http://mapping.example.com/map_triplesMapPhysicalobject_000/shape> a sh:NodeShape ;
+    sh:nodeKind sh:IRI ;
+    sh:pattern "http://.*" ;
+    sh:targetClass "https://saref.etsi.org/saref4envi/PhysicalObject" .
+
+<http://mapping.example.com/map_triplesMapPoint_000/shape> a sh:NodeShape ;
+    sh:nodeKind sh:IRI ;
+    sh:pattern "http://.*" ;
+    sh:targetClass "http://www.w3.org/2003/01/geo/wgs84_pos#Point" .
+
+<http://mapping.example.com/map_triplesMapProperty_000/shape> a sh:NodeShape ;
+    sh:nodeKind sh:IRI ;
+    sh:pattern "http://.*" ;
+    sh:targetClass "https://saref.etsi.org/core/Property" .
+
+<http://mapping.example.com/map_triplesMapSensor_000/shape> a sh:NodeShape ;
+    sh:nodeKind sh:IRI ;
+    sh:pattern "http://.*" ;
+    sh:targetClass "https://saref.etsi.org/core/Sensor" .
+
+<http://mapping.example.com/map_triplesMapService_000/shape> a sh:NodeShape ;
+    sh:nodeKind sh:IRI ;
+    sh:pattern "http://.*" ;
+    sh:targetClass "https://saref.etsi.org/core/Service" .
+
+<http://mapping.example.com/map_triplesMapSpatialthing_000/shape> a sh:NodeShape ;
+    sh:nodeKind sh:IRI ;
+    sh:pattern "http://.*" ;
+    sh:targetClass "http://www.w3.org/2003/01/geo/wgs84_pos#SpatialThing" .
+
+<http://mapping.example.com/map_triplesMapSystem_000/shape> a sh:NodeShape ;
+    sh:nodeKind sh:IRI ;
+    sh:pattern "http://.*" ;
+    sh:targetClass "https://saref.etsi.org/saref4envi/System" .
+
+<http://mapping.example.com/map_triplesMapTemporalunit_000/shape> a sh:NodeShape ;
+    sh:nodeKind sh:IRI ;
+    sh:pattern "http://.*" ;
+    sh:targetClass "http://www.w3.org/2006/time#TemporalUnit" .
+
+<http://mapping.example.com/map_triplesMapTess_000/shape> a sh:NodeShape ;
+    sh:nodeKind sh:IRI ;
+    sh:pattern "http://.*" ;
+    sh:targetClass "https://saref.etsi.org/saref4envi/TESS" .
+
+<http://mapping.example.com/map_triplesMapUnitofmeasure_000/shape> a sh:NodeShape ;
+    sh:nodeKind sh:IRI ;
+    sh:pattern "http://.*" ;
+    sh:targetClass "https://saref.etsi.org/core/UnitOfMeasure" .
+

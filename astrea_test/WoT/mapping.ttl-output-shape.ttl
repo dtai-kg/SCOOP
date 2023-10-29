@@ -1,0 +1,72 @@
+@prefix ns: <http://iot.linkeddata.es/def/wot-mappings#> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+
+<http://mapping.example.com/map_triplesMapDatatypeproperty_000/shape> a sh:NodeShape ;
+    sh:nodeKind sh:IRI ;
+    sh:pattern "http://.*" ;
+    sh:targetClass "http://www.w3.org/2002/07/owl#DatatypeProperty" .
+
+<http://mapping.example.com/map_triplesMapDatatypepropertymapping_000/shape> a sh:NodeShape ;
+    sh:nodeKind sh:IRI ;
+    sh:pattern "http://.*" ;
+    sh:property [ sh:node <http://mapping.example.com/map_triplesMapDatatype_000/shape> ;
+            sh:nodeKind sh:IRI ;
+            sh:path ns:targetDatatype ] ;
+    sh:targetClass "http://iot.linkeddata.es/def/wot-mappings#DatatypePropertyMapping" .
+
+<http://mapping.example.com/map_triplesMapObjectproperty_000/shape> a sh:NodeShape ;
+    sh:nodeKind sh:IRI ;
+    sh:pattern "http://.*" ;
+    sh:targetClass "http://www.w3.org/2002/07/owl#ObjectProperty" .
+
+<http://mapping.example.com/map_triplesMapObjectpropertymapping_000/shape> a sh:NodeShape ;
+    sh:nodeKind sh:IRI ;
+    sh:pattern "http://.*" ;
+    sh:property [ sh:node <http://mapping.example.com/map_triplesMapClass_000/shape> ;
+            sh:nodeKind sh:IRI ;
+            sh:path ns:targetClass ] ;
+    sh:targetClass "http://iot.linkeddata.es/def/wot-mappings#ObjectPropertyMapping" .
+
+<http://mapping.example.com/map_triplesMapProperty_000/shape> a sh:NodeShape ;
+    sh:nodeKind sh:IRI ;
+    sh:pattern "http://.*" ;
+    sh:targetClass "http://www.w3.org/1999/02/22-rdf-syntax-ns#Property" .
+
+<http://mapping.example.com/map_triplesMapAccessmapping_000/shape> a sh:NodeShape ;
+    sh:nodeKind sh:IRI ;
+    sh:pattern "http://.*" ;
+    sh:property [ sh:node <http://mapping.example.com/map_triplesMapEndpoint_000/shape> ;
+            sh:nodeKind sh:IRI ;
+            sh:path ns:mapsResourcesFrom ],
+        [ sh:node <http://mapping.example.com/map_triplesMapMapping_000/shape> ;
+            sh:nodeKind sh:IRI ;
+            sh:path ns:hasMapping ],
+        [ sh:node <http://mapping.example.com/map_triplesMapAccessmapping_000/shape> ;
+            sh:nodeKind sh:IRI ;
+            sh:path ns:isExecutedAfter ] ;
+    sh:targetClass "http://iot.linkeddata.es/def/wot-mappings#AccessMapping" .
+
+<http://mapping.example.com/map_triplesMapClass_000/shape> a sh:NodeShape ;
+    sh:nodeKind sh:IRI ;
+    sh:pattern "http://.*" ;
+    sh:targetClass "http://www.w3.org/2002/07/owl#Class" .
+
+<http://mapping.example.com/map_triplesMapDatatype_000/shape> a sh:NodeShape ;
+    sh:nodeKind sh:IRI ;
+    sh:pattern "http://.*" ;
+    sh:targetClass "http://www.w3.org/2000/01/rdf-schema#Datatype" .
+
+<http://mapping.example.com/map_triplesMapEndpoint_000/shape> a sh:NodeShape ;
+    sh:nodeKind sh:IRI ;
+    sh:pattern "http://.*" ;
+    sh:targetClass "http://iot.linkeddata.es/def/wot#Endpoint" .
+
+<http://mapping.example.com/map_triplesMapMapping_000/shape> a sh:NodeShape ;
+    sh:nodeKind sh:IRI ;
+    sh:pattern "http://.*" ;
+    sh:property [ sh:nodeKind sh:Literal ;
+            sh:path ns:jsonPath ],
+        [ sh:nodeKind sh:Literal ;
+            sh:path ns:key ] ;
+    sh:targetClass "http://iot.linkeddata.es/def/wot-mappings#Mapping" .
+

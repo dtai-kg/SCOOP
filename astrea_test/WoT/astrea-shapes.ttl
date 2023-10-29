@@ -1,0 +1,263 @@
+@prefix :      <http://iot.linkeddata.es/def/wot-mappings#> .
+@prefix owl:   <http://www.w3.org/2002/07/owl#> .
+@prefix saref: <https://w3id.org/saref#> .
+@prefix afn:   <http://jena.apache.org/ARQ/function#> .
+@prefix xsd:   <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs:  <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix geo:   <http://www.w3.org/2003/01/geo/wgs84_pos#> .
+@prefix sh:    <http://www.w3.org/ns/shacl#> .
+@prefix rdf:   <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix doap:  <http://usefulinc.com/ns/doap#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix vann:  <http://purl.org/vocab/vann/> .
+@prefix vs:    <http://www.w3.org/2003/06/sw-vocab-status/ns#> .
+@prefix prov:  <http://www.w3.org/ns/prov#> .
+@prefix wot:   <http://xmlns.com/wot/0.1/> .
+@prefix foaf:  <http://xmlns.com/foaf/0.1/> .
+@prefix dc:    <http://purl.org/dc/elements/1.1/> .
+
+<https://astrea.linkeddata.es/shapes#b84ddbe65fa3b3cb3cbefb6a54523869>
+        a                       sh:PropertyShape ;
+        sh:nodeKind             sh:IRIOrLiteral ;
+        sh:path                 :predicate ;
+        sh:qualifiedMinCount    "1"^^xsd:nonNegativeInteger ;
+        sh:qualifiedValueShape  [ sh:class  rdf:Property ] .
+
+<https://astrea.linkeddata.es/shapes#bd65568d6cc2920ce566c6f81d285d3e>
+        a                       sh:PropertyShape ;
+        sh:nodeKind             sh:IRIOrLiteral ;
+        sh:path                 :valuesTransformedBy ;
+        sh:qualifiedMaxCount    "1"^^xsd:nonNegativeInteger ;
+        sh:qualifiedValueShape  [ sh:class  <http://iot.linkeddata.es/def/core#ThingDescription> ] .
+
+<https://astrea.linkeddata.es/shapes#9e953895139fe86cbb944c622406978e>
+        a            sh:PropertyShape ;
+        sh:nodeKind  sh:IRIOrLiteral ;
+        sh:path      :key .
+
+<https://astrea.linkeddata.es/shapes#80029ef2380309dbd92f6d593c9c1f20>
+        a                 sh:NodeShape ;
+        rdfs:isDefinedBy  rdf: ;
+        sh:nodeKind       sh:IRI ;
+        sh:targetClass    rdf:Property .
+
+<https://astrea.linkeddata.es/shapes#e201617693667a130613598c0a4945f2>
+        a            sh:PropertyShape ;
+        sh:class     rdfs:Datatype ;
+        sh:nodeKind  sh:IRIOrLiteral ;
+        sh:path      :targetDatatype .
+
+<https://astrea.linkeddata.es/shapes#92084c4401b0e80527f204a028db9f67>
+        a            sh:PropertyShape ;
+        sh:class     :Mapping ;
+        sh:nodeKind  sh:IRIOrLiteral ;
+        sh:path      :hasMapping .
+
+<https://astrea.linkeddata.es/shapes#96d26eadc0231c008aab4a9898722f4d>
+        a            sh:PropertyShape ;
+        sh:class     owl:DatatypeProperty ;
+        sh:nodeKind  sh:IRIOrLiteral ;
+        sh:path      :predicate .
+
+<https://astrea.linkeddata.es/shapes#4518a5f339f001ecb7772cc6784ccfd2>
+        a               sh:PropertyShape ;
+        rdfs:label      "exposes"@en , "Link from a thing description to the endpoints in which it exposes information"@en ;
+        sh:class        <http://iot.linkeddata.es/def/wot#Endpoint> ;
+        sh:description  "Link from a thing description to the endpoints in which it exposes information"@en ;
+        sh:name         "exposes"@en ;
+        sh:nodeKind     sh:BlankNodeOrIRI ;
+        sh:path         :exposes .
+
+<https://astrea.linkeddata.es/shapes#ce648e785c5399ad935690d5b25d2a2f>
+        a            sh:PropertyShape ;
+        rdfs:label   "target datatype"@en ;
+        sh:class     rdfs:Datatype ;
+        sh:name      "target datatype"@en ;
+        sh:nodeKind  sh:BlankNodeOrIRI ;
+        sh:path      :targetDatatype .
+
+<https://astrea.linkeddata.es/shapes#e70106cf33c4a8d55f7031297af9b64e>
+        a                 sh:NodeShape ;
+        rdfs:isDefinedBy  rdfs: ;
+        sh:nodeKind       sh:IRI ;
+        sh:targetClass    rdfs:Datatype .
+
+<https://astrea.linkeddata.es/shapes#6be100d081a438502013ba4e5fef3db7>
+        a                 sh:NodeShape ;
+        rdfs:isDefinedBy  "http://www.w3.org/2002/07/owl#" ;
+        sh:nodeKind       sh:IRI ;
+        sh:targetClass    owl:Class .
+
+<http://astrea.linkeddata.es/report>
+        a       <https://w3id.org/def/astrea#ShapeReport> ;
+        <https://w3id.org/def/astrea#contains>
+                <https://astrea.linkeddata.es/shapes#bd65568d6cc2920ce566c6f81d285d3e> , <https://astrea.linkeddata.es/shapes#4c4a9837e4d630332d5c9432ebd7b615> , <https://astrea.linkeddata.es/shapes#50935c45244fed4be01cdcbcb4715676> , <https://astrea.linkeddata.es/shapes#472ee8b9e92f00863f1b11929967a7fa> , <https://astrea.linkeddata.es/shapes#70233649d6db91acdd396bf6dd51a50d> , <https://astrea.linkeddata.es/shapes#e70106cf33c4a8d55f7031297af9b64e> , <https://astrea.linkeddata.es/shapes#80029ef2380309dbd92f6d593c9c1f20> , <https://astrea.linkeddata.es/shapes#b84ddbe65fa3b3cb3cbefb6a54523869> , <https://astrea.linkeddata.es/shapes#9e953895139fe86cbb944c622406978e> , <https://astrea.linkeddata.es/shapes#f47eac361078186841e49aff49237dc8> , <https://astrea.linkeddata.es/shapes#ce648e785c5399ad935690d5b25d2a2f> , <https://astrea.linkeddata.es/shapes#b2d2f7838d6a1e6f3108ed4c0b7ee78b> , <https://astrea.linkeddata.es/shapes#4fc492685c3970b5dc4d0c8482660567> , <https://astrea.linkeddata.es/shapes#cb026d016e91dcc602ccdee291f88e2b> , <https://astrea.linkeddata.es/shapes#16c2cf3bc4e397ec5c71bddca9dccd62> , <https://astrea.linkeddata.es/shapes#d59e34cd0ca92bd1d337988007533f0c> , <https://astrea.linkeddata.es/shapes#b324a162772382fb5150a86bea7351b0> , <https://astrea.linkeddata.es/shapes#3813c6eb9fdfe183ee0fe10f89c10211> , <https://astrea.linkeddata.es/shapes#ad161a4eec76bcf85009f1e294474591> , <https://astrea.linkeddata.es/shapes#96d26eadc0231c008aab4a9898722f4d> , <https://astrea.linkeddata.es/shapes#cf6c6098f29af0cf7c456b6058aa0a95> , <https://astrea.linkeddata.es/shapes#4518a5f339f001ecb7772cc6784ccfd2> , <https://astrea.linkeddata.es/shapes#9e6d9eddc19d6811c0a885c828aceb63> , <https://astrea.linkeddata.es/shapes#a380bd28291b77422b26d670fc35c894> , <https://astrea.linkeddata.es/shapes#6be100d081a438502013ba4e5fef3db7> , <https://astrea.linkeddata.es/shapes#dfe4b001509d2e19b67f781db8d7605c> , <https://astrea.linkeddata.es/shapes#77798509c878d6444413ab16efb2df83> , <https://astrea.linkeddata.es/shapes#3b31d92df426035a3f7db142454600f4> , <https://astrea.linkeddata.es/shapes#92084c4401b0e80527f204a028db9f67> , <https://astrea.linkeddata.es/shapes#e201617693667a130613598c0a4945f2> , <https://astrea.linkeddata.es/shapes#24f9b7100e0fee87b0fc250296cea84d> ;
+        <https://w3id.org/def/astrea#generatedShapesFrom>
+                <https://astrea.linkeddata.es/report/01097687329> .
+
+<https://astrea.linkeddata.es/shapes#24f9b7100e0fee87b0fc250296cea84d>
+        a               sh:NodeShape ;
+        sh:property     <https://astrea.linkeddata.es/shapes#4518a5f339f001ecb7772cc6784ccfd2> , <https://astrea.linkeddata.es/shapes#b2d2f7838d6a1e6f3108ed4c0b7ee78b> ;
+        sh:targetClass  <http://iot.linkeddata.es/def/core#ThingDescription> .
+
+<https://astrea.linkeddata.es/shapes#cb026d016e91dcc602ccdee291f88e2b>
+        a            sh:PropertyShape ;
+        sh:class     owl:Class ;
+        sh:nodeKind  sh:IRIOrLiteral ;
+        sh:path      :targetClass .
+
+<https://astrea.linkeddata.es/shapes#b324a162772382fb5150a86bea7351b0>
+        a               sh:NodeShape ;
+        rdfs:label      "Mapping"@en ;
+        sh:description  "An entity that indicates the relation between a given key (provided as structure data in an online resource) and the RDF property to which the values should be mapped and the target type of object. The RDF properties could be OWL object or datatype properties. The target object might be RDFS classes or datatypes."@en ;
+        sh:name         "Mapping"@en ;
+        sh:nodeKind     sh:IRI ;
+        sh:property     <https://astrea.linkeddata.es/shapes#9e953895139fe86cbb944c622406978e> , <https://astrea.linkeddata.es/shapes#50935c45244fed4be01cdcbcb4715676> , <https://astrea.linkeddata.es/shapes#70233649d6db91acdd396bf6dd51a50d> , <https://astrea.linkeddata.es/shapes#b84ddbe65fa3b3cb3cbefb6a54523869> ;
+        sh:targetClass  :ObjectPropertyMapping , :DatatypePropertyMapping , :Mapping .
+
+<https://astrea.linkeddata.es/shapes#70233649d6db91acdd396bf6dd51a50d>
+        a               sh:PropertyShape ;
+        rdfs:label      "key"@en , "Field to be mapped from the endpoint"@en ;
+        sh:datatype     xsd:string ;
+        sh:description  "Field to be mapped from the endpoint"@en ;
+        sh:name         "key"@en ;
+        sh:nodeKind     sh:Literal ;
+        sh:path         :key ;
+        sh:pattern      ".*" .
+
+<https://astrea.linkeddata.es/shapes#ad161a4eec76bcf85009f1e294474591>
+        a               sh:NodeShape ;
+        rdfs:label      "Access mapping"@en ;
+        sh:description  "This class allows the linking between one or more mappings that are executed against a given endpoint." ;
+        sh:name         "Access mapping"@en ;
+        sh:nodeKind     sh:IRI ;
+        sh:property     <https://astrea.linkeddata.es/shapes#d59e34cd0ca92bd1d337988007533f0c> , <https://astrea.linkeddata.es/shapes#92084c4401b0e80527f204a028db9f67> , <https://astrea.linkeddata.es/shapes#16c2cf3bc4e397ec5c71bddca9dccd62> , <https://astrea.linkeddata.es/shapes#3b31d92df426035a3f7db142454600f4> , <https://astrea.linkeddata.es/shapes#4fc492685c3970b5dc4d0c8482660567> ;
+        sh:targetClass  :AccessMapping .
+
+<https://astrea.linkeddata.es/shapes#77798509c878d6444413ab16efb2df83>
+        a            sh:PropertyShape ;
+        sh:class     owl:ObjectProperty ;
+        sh:nodeKind  sh:IRIOrLiteral ;
+        sh:path      :predicate .
+
+<https://astrea.linkeddata.es/shapes#d59e34cd0ca92bd1d337988007533f0c>
+        a               sh:PropertyShape ;
+        rdfs:label      "is executed after"@en , "Indicates which access mappings should be excuted before the one being subject of this property." ;
+        sh:class        :AccessMapping ;
+        sh:description  "Indicates which access mappings should be excuted before the one being subject of this property." ;
+        sh:name         "is executed after"@en ;
+        sh:nodeKind     sh:BlankNodeOrIRI ;
+        sh:path         :isExecutedAfter .
+
+<https://astrea.linkeddata.es/report/01097687329>
+        a       <https://w3id.org/def/astrea#ReportEntry> ;
+        <https://w3id.org/def/astrea#message>
+                "Shapes generated with no errors" ;
+        <https://w3id.org/def/astrea#source>
+                "http://iot.linkeddata.es/def/wot-mappings/ontology.xml" ;
+        <https://w3id.org/def/astrea#statusCode>
+                "200"^^xsd:int .
+
+<https://astrea.linkeddata.es/shapes#4fc492685c3970b5dc4d0c8482660567>
+        a               sh:PropertyShape ;
+        rdfs:label      "maps resources from"@en , "Link from the access mapping to the specific endpoint in which the mappings (see hasMapping) indicated by the access mapping instance can be applied."@en ;
+        sh:class        <http://iot.linkeddata.es/def/wot#Endpoint> ;
+        sh:description  "Link from the access mapping to the specific endpoint in which the mappings (see hasMapping) indicated by the access mapping instance can be applied."@en ;
+        sh:maxCount     1 ;
+        sh:name         "maps resources from"@en ;
+        sh:nodeKind     sh:BlankNodeOrIRI , sh:IRIOrLiteral ;
+        sh:path         :mapsResourcesFrom .
+
+<https://astrea.linkeddata.es/shapes#cf6c6098f29af0cf7c456b6058aa0a95>
+        a               sh:NodeShape ;
+        sh:nodeKind     sh:IRI ;
+        sh:targetClass  <http://iot.linkeddata.es/def/wot#Endpoint> .
+
+<https://astrea.linkeddata.es/shapes#3b31d92df426035a3f7db142454600f4>
+        a               sh:PropertyShape ;
+        rdfs:label      "has mapping"@en , "Link between the access mappings to specific mappings."@en ;
+        sh:class        :Mapping ;
+        sh:description  "Link between the access mappings to specific mappings."@en ;
+        sh:name         "has mapping"@en ;
+        sh:nodeKind     sh:BlankNodeOrIRI ;
+        sh:path         :hasMapping .
+
+<https://astrea.linkeddata.es/shapes#9e6d9eddc19d6811c0a885c828aceb63>
+        a                 sh:NodeShape ;
+        rdfs:isDefinedBy  owl: ;
+        sh:nodeKind       sh:IRI ;
+        sh:targetClass    owl:DatatypeProperty .
+
+<https://astrea.linkeddata.es/shapes#a380bd28291b77422b26d670fc35c894>
+        a               sh:NodeShape ;
+        rdfs:label      "Datatype property mapping"@en ;
+        sh:description  "An entity specialized from Mapping than indicates the relation between a given key (provided as structure data in an online resource) and the OWL datatype property to which the values should be mapped and optionally the rdfs datatype in which the values are expressed."@en ;
+        sh:name         "Datatype property mapping"@en ;
+        sh:nodeKind     sh:IRI ;
+        sh:property     <https://astrea.linkeddata.es/shapes#ce648e785c5399ad935690d5b25d2a2f> , <https://astrea.linkeddata.es/shapes#96d26eadc0231c008aab4a9898722f4d> , <https://astrea.linkeddata.es/shapes#e201617693667a130613598c0a4945f2> ;
+        sh:targetClass  :DatatypePropertyMapping .
+
+<https://astrea.linkeddata.es/shapes#16c2cf3bc4e397ec5c71bddca9dccd62>
+        a                       sh:PropertyShape ;
+        sh:nodeKind             sh:IRIOrLiteral ;
+        sh:path                 :mapsResourcesFrom ;
+        sh:qualifiedMaxCount    "1"^^xsd:nonNegativeInteger ;
+        sh:qualifiedMinCount    "1"^^xsd:nonNegativeInteger ;
+        sh:qualifiedValueShape  [ sh:class  <http://iot.linkeddata.es/def/wot#Endpoint> ] .
+
+<https://astrea.linkeddata.es/shapes#b2d2f7838d6a1e6f3108ed4c0b7ee78b>
+        a               sh:PropertyShape ;
+        rdfs:label      "has access mapping"@en , "Link between a thing description and the access mapping that can be used to access the information provided in the endpoints exposes by such thing description. This class acts as an n-ary pattern linking the enpoints with the spedific mappings."@en ;
+        sh:class        :AccessMapping ;
+        sh:description  "Link between a thing description and the access mapping that can be used to access the information provided in the endpoints exposes by such thing description. This class acts as an n-ary pattern linking the enpoints with the spedific mappings."@en ;
+        sh:name         "has access mapping"@en ;
+        sh:nodeKind     sh:BlankNodeOrIRI ;
+        sh:path         :hasAccessMapping .
+
+<https://astrea.linkeddata.es/shapes#f47eac361078186841e49aff49237dc8>
+        a            sh:PropertyShape ;
+        rdfs:label   "target class"@en ;
+        sh:class     owl:Class ;
+        sh:name      "target class"@en ;
+        sh:nodeKind  sh:BlankNodeOrIRI ;
+        sh:path      :targetClass .
+
+<https://astrea.linkeddata.es/shapes#4c4a9837e4d630332d5c9432ebd7b615>
+        a               sh:NodeShape ;
+        rdfs:label      "Object property mapping"@en ;
+        sh:description  "An entity specialized from Mapping than indicates the relation between a given key (provided as structure data in an online resource) and the OWL object property to which the values should be mapped and optionally the rdfs class or classes that the target instances belong to."@en ;
+        sh:name         "Object property mapping"@en ;
+        sh:nodeKind     sh:IRI ;
+        sh:property     <https://astrea.linkeddata.es/shapes#f47eac361078186841e49aff49237dc8> , <https://astrea.linkeddata.es/shapes#cb026d016e91dcc602ccdee291f88e2b> , <https://astrea.linkeddata.es/shapes#77798509c878d6444413ab16efb2df83> , <https://astrea.linkeddata.es/shapes#bd65568d6cc2920ce566c6f81d285d3e> ;
+        sh:targetClass  :ObjectPropertyMapping .
+
+<https://astrea.linkeddata.es/shapes#472ee8b9e92f00863f1b11929967a7fa>
+        a                 sh:NodeShape ;
+        rdfs:isDefinedBy  owl: ;
+        sh:nodeKind       sh:IRI ;
+        sh:targetClass    owl:ObjectProperty .
+
+<https://astrea.linkeddata.es/shapes#50935c45244fed4be01cdcbcb4715676>
+        a               sh:PropertyShape ;
+        rdfs:label      "JSON path"@en , "Express a pattern to select a set of efements of interest in a JSON document."@en ;
+        sh:datatype     xsd:string ;
+        sh:description  "Express a pattern to select a set of efements of interest in a JSON document."@en ;
+        sh:name         "JSON path"@en ;
+        sh:nodeKind     sh:Literal ;
+        sh:path         :jsonPath ;
+        sh:pattern      ".*" .
+
+<https://astrea.linkeddata.es/shapes#3813c6eb9fdfe183ee0fe10f89c10211>
+        a               sh:PropertyShape ;
+        rdfs:label      "predicate"@en , "Link from a mapping an the property or properties to which the key should be mapped to. The property could be RDF properties or OWL object or datatype properties."@en ;
+        sh:description  "Link from a mapping an the property or properties to which the key should be mapped to. The property could be RDF properties or OWL object or datatype properties."@en ;
+        sh:name         "predicate"@en ;
+        sh:nodeKind     sh:BlankNodeOrIRI ;
+        sh:path         :predicate .
+
+<https://astrea.linkeddata.es/shapes#dfe4b001509d2e19b67f781db8d7605c>
+        a            sh:PropertyShape ;
+        rdfs:label   "values transformed by"@en ;
+        sh:name      "values transformed by"@en ;
+        sh:nodeKind  sh:BlankNodeOrIRI ;
+        sh:path      :valuesTransformedBy .

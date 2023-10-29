@@ -1,0 +1,484 @@
+@prefix ns: <https://w3id.org/def/openadr#> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<http://mapping.example.com/map_triplesMapBidenergysetpointsignal_000/shape> a sh:NodeShape ;
+    sh:nodeKind sh:IRI ;
+    sh:pattern "http://www.example.com/.*" ;
+    sh:targetClass "https://w3id.org/def/openadr#BidEnergySetpointSignal" .
+
+<http://mapping.example.com/map_triplesMapBidenergysignal_000/shape> a sh:NodeShape ;
+    sh:nodeKind sh:IRI ;
+    sh:pattern "http://www.example.com/.*" ;
+    sh:targetClass "https://w3id.org/def/openadr#BidEnergySignal" .
+
+<http://mapping.example.com/map_triplesMapBidloadsetpointsignal_000/shape> a sh:NodeShape ;
+    sh:nodeKind sh:IRI ;
+    sh:pattern "http://www.example.com/.*" ;
+    sh:targetClass "https://w3id.org/def/openadr#BidLoadSetpointSignal" .
+
+<http://mapping.example.com/map_triplesMapBidloadsignal_000/shape> a sh:NodeShape ;
+    sh:nodeKind sh:IRI ;
+    sh:pattern "http://www.example.com/.*" ;
+    sh:targetClass "https://w3id.org/def/openadr#BidLoadSignal" .
+
+<http://mapping.example.com/map_triplesMapBidpriceabsolutesignal_000/shape> a sh:NodeShape ;
+    sh:nodeKind sh:IRI ;
+    sh:pattern "http://www.example.com/.*" ;
+    sh:targetClass "https://w3id.org/def/openadr#BidPriceAbsoluteSignal" .
+
+<http://mapping.example.com/map_triplesMapBidpricesignal_000/shape> a sh:NodeShape ;
+    sh:nodeKind sh:IRI ;
+    sh:pattern "http://www.example.com/.*" ;
+    sh:targetClass "https://w3id.org/def/openadr#BidPricesignal" .
+
+<http://mapping.example.com/map_triplesMapChargestatedeltasignal_000/shape> a sh:NodeShape ;
+    sh:nodeKind sh:IRI ;
+    sh:pattern "http://www.example.com/.*" ;
+    sh:targetClass "https://w3id.org/def/openadr#ChargeStateDeltaSignal" .
+
+<http://mapping.example.com/map_triplesMapChargestatemultipliersignal_000/shape> a sh:NodeShape ;
+    sh:nodeKind sh:IRI ;
+    sh:pattern "http://www.example.com/.*" ;
+    sh:targetClass "https://w3id.org/def/openadr#ChargeStateMultiplierSignal" .
+
+<http://mapping.example.com/map_triplesMapChargestatesetpointsignal_000/shape> a sh:NodeShape ;
+    sh:nodeKind sh:IRI ;
+    sh:pattern "http://www.example.com/.*" ;
+    sh:targetClass "https://w3id.org/def/openadr#ChargeStateSetpointSignal" .
+
+<http://mapping.example.com/map_triplesMapChargestatesignal_000/shape> a sh:NodeShape ;
+    sh:nodeKind sh:IRI ;
+    sh:pattern "http://www.example.com/.*" ;
+    sh:targetClass "https://w3id.org/def/openadr#ChargeStateSignal" .
+
+<http://mapping.example.com/map_triplesMapDatareport_000/shape> a sh:NodeShape ;
+    sh:nodeKind sh:IRI ;
+    sh:pattern "http://www.example.com/.*" ;
+    sh:property [ sh:node <http://mapping.example.com/map_triplesMapMetadatareport_000/shape> ;
+            sh:nodeKind sh:IRI ;
+            sh:path ns:isSpecifiedIn ] ;
+    sh:targetClass "https://w3id.org/def/openadr#DataReport" .
+
+<http://mapping.example.com/map_triplesMapDemandchargepriceabsolutesignal_000/shape> a sh:NodeShape ;
+    sh:nodeKind sh:IRI ;
+    sh:pattern "http://www.example.com/.*" ;
+    sh:targetClass "https://w3id.org/def/openadr#DemandChargePriceAbsoluteSignal" .
+
+<http://mapping.example.com/map_triplesMapDemandchargepricemultipliersignal_000/shape> a sh:NodeShape ;
+    sh:nodeKind sh:IRI ;
+    sh:pattern "http://www.example.com/.*" ;
+    sh:targetClass "https://w3id.org/def/openadr#DemandChargePriceMultiplierSignal" .
+
+<http://mapping.example.com/map_triplesMapDemandchargepricerelativesignal_000/shape> a sh:NodeShape ;
+    sh:nodeKind sh:IRI ;
+    sh:pattern "http://www.example.com/.*" ;
+    sh:targetClass "https://w3id.org/def/openadr#DemandChargePriceRelativeSignal" .
+
+<http://mapping.example.com/map_triplesMapDemandchargesignal_000/shape> a sh:NodeShape ;
+    sh:nodeKind sh:IRI ;
+    sh:pattern "http://www.example.com/.*" ;
+    sh:targetClass "https://w3id.org/def/openadr#DemandChargeSignal" .
+
+<http://mapping.example.com/map_triplesMapDuration_000/shape> a sh:NodeShape ;
+    sh:nodeKind sh:IRI ;
+    sh:pattern "http://www.example.com/.*" ;
+    sh:targetClass "http://www.w3.org/2006/time#Duration" .
+
+<http://mapping.example.com/map_triplesMapElectricitypriceabsolutesignal_000/shape> a sh:NodeShape ;
+    sh:nodeKind sh:IRI ;
+    sh:pattern "http://www.example.com/.*" ;
+    sh:targetClass "https://w3id.org/def/openadr#ElectricityPriceAbsoluteSignal" .
+
+<http://mapping.example.com/map_triplesMapElectricitypricemultipliersignal_000/shape> a sh:NodeShape ;
+    sh:nodeKind sh:IRI ;
+    sh:pattern "http://www.example.com/.*" ;
+    sh:targetClass "https://w3id.org/def/openadr#ElectricityPriceMultiplierSignal" .
+
+<http://mapping.example.com/map_triplesMapElectricitypricerelativesignal_000/shape> a sh:NodeShape ;
+    sh:nodeKind sh:IRI ;
+    sh:pattern "http://www.example.com/.*" ;
+    sh:targetClass "https://w3id.org/def/openadr#ElectricityPriceRelativeSignal" .
+
+<http://mapping.example.com/map_triplesMapElectricitypricesignal_000/shape> a sh:NodeShape ;
+    sh:nodeKind sh:IRI ;
+    sh:pattern "http://www.example.com/.*" ;
+    sh:targetClass "https://w3id.org/def/openadr#ElectricityPriceSignal" .
+
+<http://mapping.example.com/map_triplesMapEnergypriceabsolutepricesignal_000/shape> a sh:NodeShape ;
+    sh:nodeKind sh:IRI ;
+    sh:pattern "http://www.example.com/.*" ;
+    sh:targetClass "https://w3id.org/def/openadr#EnergyPriceAbsolutePriceSignal" .
+
+<http://mapping.example.com/map_triplesMapEnergypricemultipliersignal_000/shape> a sh:NodeShape ;
+    sh:nodeKind sh:IRI ;
+    sh:pattern "http://www.example.com/.*" ;
+    sh:targetClass "https://w3id.org/def/openadr#EnergyPriceMultiplierSignal" .
+
+<http://mapping.example.com/map_triplesMapEnergypricerelativesignal_000/shape> a sh:NodeShape ;
+    sh:nodeKind sh:IRI ;
+    sh:pattern "http://www.example.com/.*" ;
+    sh:targetClass "https://w3id.org/def/openadr#EnergyPriceRelativeSignal" .
+
+<http://mapping.example.com/map_triplesMapEnergypricesignal_000/shape> a sh:NodeShape ;
+    sh:nodeKind sh:IRI ;
+    sh:pattern "http://www.example.com/.*" ;
+    sh:targetClass "https://w3id.org/def/openadr#EnergyPriceSignal" .
+
+<http://mapping.example.com/map_triplesMapFeature_000/shape> a sh:NodeShape ;
+    sh:nodeKind sh:IRI ;
+    sh:pattern "http://www.example.com/.*" ;
+    sh:targetClass "http://www.opengis.net/ont/geosparql#Feature" .
+
+<http://mapping.example.com/map_triplesMapGeometry_000/shape> a sh:NodeShape ;
+    sh:nodeKind sh:IRI ;
+    sh:pattern "http://www.example.com/.*" ;
+    sh:targetClass "http://www.opengis.net/ont/geosparql#Geometry" .
+
+<http://mapping.example.com/map_triplesMapGreenbuttonreport_000/shape> a sh:NodeShape ;
+    sh:nodeKind sh:IRI ;
+    sh:pattern "http://www.example.com/.*" ;
+    sh:targetClass "https://w3id.org/def/openadr#GreenButtonReport" .
+
+<http://mapping.example.com/map_triplesMapHistoryreport_000/shape> a sh:NodeShape ;
+    sh:nodeKind sh:IRI ;
+    sh:pattern "http://www.example.com/.*" ;
+    sh:targetClass "https://w3id.org/def/openadr#HistoryReport" .
+
+<http://mapping.example.com/map_triplesMapHistoryusagereport_000/shape> a sh:NodeShape ;
+    sh:nodeKind sh:IRI ;
+    sh:pattern "http://www.example.com/.*" ;
+    sh:targetClass "https://w3id.org/def/openadr#HistoryUsageReport" .
+
+<http://mapping.example.com/map_triplesMapInstant_000/shape> a sh:NodeShape ;
+    sh:nodeKind sh:IRI ;
+    sh:pattern "http://www.example.com/.*" ;
+    sh:targetClass "http://www.w3.org/2006/time#Instant" .
+
+<http://mapping.example.com/map_triplesMapInterval_000/shape> a sh:NodeShape ;
+    sh:nodeKind sh:IRI ;
+    sh:pattern "http://www.example.com/.*" ;
+    sh:targetClass "http://www.w3.org/2006/time#Interval" .
+
+<http://mapping.example.com/map_triplesMapItem_000/shape> a sh:NodeShape ;
+    sh:nodeKind sh:IRI ;
+    sh:pattern "http://www.example.com/.*" ;
+    sh:property [ sh:nodeKind sh:Literal ;
+            sh:path ns:hasScaleCode ],
+        [ sh:nodeKind sh:Literal ;
+            sh:path ns:hasItemDescription ] ;
+    sh:targetClass "https://w3id.org/def/openadr#Item" .
+
+<http://mapping.example.com/map_triplesMapLoadcontrolcapacitysignal_000/shape> a sh:NodeShape ;
+    sh:nodeKind sh:IRI ;
+    sh:pattern "http://www.example.com/.*" ;
+    sh:targetClass "https://w3id.org/def/openadr#LoadControlCapacitySignal" .
+
+<http://mapping.example.com/map_triplesMapLoadcontrolleveloffsetsignal_000/shape> a sh:NodeShape ;
+    sh:nodeKind sh:IRI ;
+    sh:pattern "http://www.example.com/.*" ;
+    sh:targetClass "https://w3id.org/def/openadr#LoadControlLevelOffsetSignal" .
+
+<http://mapping.example.com/map_triplesMapLoadcontrolpercentoffset_000/shape> a sh:NodeShape ;
+    sh:nodeKind sh:IRI ;
+    sh:pattern "http://www.example.com/.*" ;
+    sh:targetClass "https://w3id.org/def/openadr#LoadControlPercentOffset" .
+
+<http://mapping.example.com/map_triplesMapLoadcontrolsetpointsignal_000/shape> a sh:NodeShape ;
+    sh:nodeKind sh:IRI ;
+    sh:pattern "http://www.example.com/.*" ;
+    sh:targetClass "https://w3id.org/def/openadr#LoadControlSetpointSignal" .
+
+<http://mapping.example.com/map_triplesMapLoadcontrolsignal_000/shape> a sh:NodeShape ;
+    sh:nodeKind sh:IRI ;
+    sh:pattern "http://www.example.com/.*" ;
+    sh:targetClass "https://w3id.org/def/openadr#LoadControlSignal" .
+
+<http://mapping.example.com/map_triplesMapLoaddispatchdeltasignal_000/shape> a sh:NodeShape ;
+    sh:nodeKind sh:IRI ;
+    sh:pattern "http://www.example.com/.*" ;
+    sh:targetClass "https://w3id.org/def/openadr#LoadDispatchDeltaSignal" .
+
+<http://mapping.example.com/map_triplesMapLoaddispatchlevelsignal_000/shape> a sh:NodeShape ;
+    sh:nodeKind sh:IRI ;
+    sh:pattern "http://www.example.com/.*" ;
+    sh:targetClass "https://w3id.org/def/openadr#LoadDispatchLevelSignal" .
+
+<http://mapping.example.com/map_triplesMapLoaddispatchmultiplier_000/shape> a sh:NodeShape ;
+    sh:nodeKind sh:IRI ;
+    sh:pattern "http://www.example.com/.*" ;
+    sh:targetClass "https://w3id.org/def/openadr#LoadDispatchMultiplier" .
+
+<http://mapping.example.com/map_triplesMapLoaddispatchsetpointsignal_000/shape> a sh:NodeShape ;
+    sh:nodeKind sh:IRI ;
+    sh:pattern "http://www.example.com/.*" ;
+    sh:targetClass "https://w3id.org/def/openadr#LoadDispatchSetpointSignal" .
+
+<http://mapping.example.com/map_triplesMapLoaddispatchsignal_000/shape> a sh:NodeShape ;
+    sh:nodeKind sh:IRI ;
+    sh:pattern "http://www.example.com/.*" ;
+    sh:targetClass "https://w3id.org/def/openadr#LoadDispatchSignal" .
+
+<http://mapping.example.com/map_triplesMapNode_000/shape> a sh:NodeShape ;
+    sh:nodeKind sh:IRI ;
+    sh:pattern "http://www.example.com/.*" ;
+    sh:property [ sh:nodeKind sh:Literal ;
+            sh:path ns:hasNodeName ],
+        [ sh:node <http://mapping.example.com/map_triplesMapReport_000/shape> ;
+            sh:nodeKind sh:IRI ;
+            sh:path ns:sendsReport ],
+        [ sh:nodeKind sh:Literal ;
+            sh:path ns:hasProfileName ],
+        [ sh:node <http://mapping.example.com/map_triplesMapOpt_000/shape> ;
+            sh:nodeKind sh:IRI ;
+            sh:path ns:sendsOpt ],
+        [ sh:node <http://mapping.example.com/map_triplesMapEvent_000/shape> ;
+            sh:nodeKind sh:IRI ;
+            sh:path ns:sendsEvent ],
+        [ sh:nodeKind sh:Literal ;
+            sh:path ns:hasRegistrationNumber ],
+        [ sh:nodeKind sh:Literal ;
+            sh:path ns:hasTransportName ] ;
+    sh:targetClass "https://w3id.org/def/openadr#Node" .
+
+<http://mapping.example.com/map_triplesMapOptin_000/shape> a sh:NodeShape ;
+    sh:nodeKind sh:IRI ;
+    sh:pattern "http://www.example.com/.*" ;
+    sh:targetClass "https://w3id.org/def/openadr#OptIn" .
+
+<http://mapping.example.com/map_triplesMapOptout_000/shape> a sh:NodeShape ;
+    sh:nodeKind sh:IRI ;
+    sh:pattern "http://www.example.com/.*" ;
+    sh:targetClass "https://w3id.org/def/openadr#OptOut" .
+
+<http://mapping.example.com/map_triplesMapPoint_000/shape> a sh:NodeShape ;
+    sh:nodeKind sh:IRI ;
+    sh:pattern "http://www.example.com/.*" ;
+    sh:targetClass "http://www.w3.org/2003/01/geo/wgs84_pos#Point" .
+
+<http://mapping.example.com/map_triplesMapReportdatadescriptor_000/shape> a sh:NodeShape ;
+    sh:nodeKind sh:IRI ;
+    sh:pattern "http://www.example.com/.*" ;
+    sh:targetClass "https://w3id.org/def/openadr#ReportDataDescriptor" .
+
+<http://mapping.example.com/map_triplesMapReportdatapayload_000/shape> a sh:NodeShape ;
+    sh:nodeKind sh:IRI ;
+    sh:pattern "http://www.example.com/.*" ;
+    sh:targetClass "https://w3id.org/def/openadr#ReportDataPayload" .
+
+<http://mapping.example.com/map_triplesMapReportstatusdescriptor_000/shape> a sh:NodeShape ;
+    sh:nodeKind sh:IRI ;
+    sh:pattern "http://www.example.com/.*" ;
+    sh:targetClass "https://w3id.org/def/openadr#ReportStatusDescriptor" .
+
+<http://mapping.example.com/map_triplesMapReportstatuspayload_000/shape> a sh:NodeShape ;
+    sh:nodeKind sh:IRI ;
+    sh:pattern "http://www.example.com/.*" ;
+    sh:property [ sh:datatype xsd:boolean ;
+            sh:nodeKind sh:Literal ;
+            sh:path ns:isOnline ],
+        [ sh:datatype xsd:boolean ;
+            sh:nodeKind sh:Literal ;
+            sh:path ns:isManualOverride ] ;
+    sh:targetClass "https://w3id.org/def/openadr#ReportStatusPayload" .
+
+<http://mapping.example.com/map_triplesMapResource_000/shape> a sh:NodeShape ;
+    sh:nodeKind sh:IRI ;
+    sh:pattern "http://www.example.com/.*" ;
+    sh:targetClass "https://w3id.org/def/openadr#Resource" .
+
+<http://mapping.example.com/map_triplesMapSamplingrate_000/shape> a sh:NodeShape ;
+    sh:nodeKind sh:IRI ;
+    sh:pattern "http://www.example.com/.*" ;
+    sh:property [ sh:datatype xsd:boolean ;
+            sh:nodeKind sh:Literal ;
+            sh:path ns:isOnChange ] ;
+    sh:targetClass "https://w3id.org/def/openadr#SamplingRate" .
+
+<http://mapping.example.com/map_triplesMapSchedule_000/shape> a sh:NodeShape ;
+    sh:nodeKind sh:IRI ;
+    sh:pattern "http://www.example.com/.*" ;
+    sh:targetClass "https://w3id.org/def/openadr#Schedule" .
+
+<http://mapping.example.com/map_triplesMapSignal_000/shape> a sh:NodeShape ;
+    sh:nodeKind sh:IRI ;
+    sh:pattern "http://www.example.com/.*" ;
+    sh:property [ sh:nodeKind sh:Literal ;
+            sh:path ns:hasSignalName ] ;
+    sh:targetClass "https://w3id.org/def/openadr#Signal" .
+
+<http://mapping.example.com/map_triplesMapSignalinterval_000/shape> a sh:NodeShape ;
+    sh:nodeKind sh:IRI ;
+    sh:pattern "http://www.example.com/.*" ;
+    sh:targetClass "https://w3id.org/def/openadr#SignalInterval" .
+
+<http://mapping.example.com/map_triplesMapSignaltype_000/shape> a sh:NodeShape ;
+    sh:nodeKind sh:IRI ;
+    sh:pattern "http://www.example.com/.*" ;
+    sh:targetClass "https://w3id.org/def/openadr#SignalType" .
+
+<http://mapping.example.com/map_triplesMapSimplesignal_000/shape> a sh:NodeShape ;
+    sh:nodeKind sh:IRI ;
+    sh:pattern "http://www.example.com/.*" ;
+    sh:targetClass "https://w3id.org/def/openadr#SimpleSignal" .
+
+<http://mapping.example.com/map_triplesMapSpatialthing_000/shape> a sh:NodeShape ;
+    sh:nodeKind sh:IRI ;
+    sh:pattern "http://www.example.com/.*" ;
+    sh:targetClass "http://www.w3.org/2003/01/geo/wgs84_pos#SpatialThing" .
+
+<http://mapping.example.com/map_triplesMapTelemetryreport_000/shape> a sh:NodeShape ;
+    sh:nodeKind sh:IRI ;
+    sh:pattern "http://www.example.com/.*" ;
+    sh:targetClass "https://w3id.org/def/openadr#TelemetryReport" .
+
+<http://mapping.example.com/map_triplesMapTelemetrystatusreport_000/shape> a sh:NodeShape ;
+    sh:nodeKind sh:IRI ;
+    sh:pattern "http://www.example.com/.*" ;
+    sh:targetClass "https://w3id.org/def/openadr#TelemetryStatusReport" .
+
+<http://mapping.example.com/map_triplesMapTelemetryusagereport_000/shape> a sh:NodeShape ;
+    sh:nodeKind sh:IRI ;
+    sh:pattern "http://www.example.com/.*" ;
+    sh:targetClass "https://w3id.org/def/openadr#TelemetryUsageReport" .
+
+<http://mapping.example.com/map_triplesMapTemporalentity_000/shape> a sh:NodeShape ;
+    sh:nodeKind sh:IRI ;
+    sh:pattern "http://www.example.com/.*" ;
+    sh:targetClass "http://www.w3.org/2006/time#TemporalEntity" .
+
+<http://mapping.example.com/map_triplesMapUnit_of_measure_000/shape> a sh:NodeShape ;
+    sh:nodeKind sh:IRI ;
+    sh:pattern "http://www.example.com/.*" ;
+    sh:targetClass "http://www.wurvoc.org/vocabularies/om-1.8/Unit_of_measure" .
+
+<http://mapping.example.com/map_triplesMapVen_000/shape> a sh:NodeShape ;
+    sh:nodeKind sh:IRI ;
+    sh:pattern "http://www.example.com/.*" ;
+    sh:targetClass "https://w3id.org/def/openadr#VEN" .
+
+<http://mapping.example.com/map_triplesMapVtn_000/shape> a sh:NodeShape ;
+    sh:nodeKind sh:IRI ;
+    sh:pattern "http://www.example.com/.*" ;
+    sh:targetClass "https://w3id.org/def/openadr#VTN" .
+
+<http://mapping.example.com/map_triplesMapEvent_000/shape> a sh:NodeShape ;
+    sh:nodeKind sh:IRI ;
+    sh:pattern "http://www.example.com/.*" ;
+    sh:property [ sh:node <http://mapping.example.com/map_triplesMapEventdescriptor_000/shape> ;
+            sh:nodeKind sh:IRI ;
+            sh:path ns:eventDescriptor ],
+        [ sh:nodeKind sh:Literal ;
+            sh:path ns:hasEventName ],
+        [ sh:node <http://mapping.example.com/map_triplesMapEventstatus_000/shape> ;
+            sh:nodeKind sh:IRI ;
+            sh:path ns:hasEventStatus ],
+        [ sh:node <http://mapping.example.com/map_triplesMapServicearea_000/shape> ;
+            sh:nodeKind sh:IRI ;
+            sh:path ns:hasAreaTarget ],
+        [ sh:node <http://mapping.example.com/map_triplesMapGroup_000/shape> ;
+            sh:nodeKind sh:IRI ;
+            sh:path ns:hasGroupTarget ] ;
+    sh:targetClass "https://w3id.org/def/openadr#Event" .
+
+<http://mapping.example.com/map_triplesMapEventdescriptor_000/shape> a sh:NodeShape ;
+    sh:nodeKind sh:IRI ;
+    sh:pattern "http://www.example.com/.*" ;
+    sh:property [ sh:datatype xsd:boolean ;
+            sh:nodeKind sh:Literal ;
+            sh:path ns:isResponseRequired ],
+        [ sh:datatype xsd:boolean ;
+            sh:nodeKind sh:Literal ;
+            sh:path ns:isTestEvent ],
+        [ sh:nodeKind sh:Literal ;
+            sh:path ns:hasRandomization ],
+        [ sh:nodeKind sh:Literal ;
+            sh:path ns:hasModificationDateTime ],
+        [ sh:datatype xsd:integer ;
+            sh:nodeKind sh:Literal ;
+            sh:path ns:hasModificationNumber ],
+        [ sh:datatype xsd:integer ;
+            sh:nodeKind sh:Literal ;
+            sh:path ns:hasPriority ],
+        [ sh:nodeKind sh:Literal ;
+            sh:path ns:hasModificationReason ] ;
+    sh:targetClass "https://w3id.org/def/openadr#EventDescriptor" .
+
+<http://mapping.example.com/map_triplesMapEventstatus_000/shape> a sh:NodeShape ;
+    sh:nodeKind sh:IRI ;
+    sh:pattern "http://www.example.com/.*" ;
+    sh:targetClass "https://w3id.org/def/openadr#EventStatus" .
+
+<http://mapping.example.com/map_triplesMapLoadcontrolstate_000/shape> a sh:NodeShape ;
+    sh:nodeKind sh:IRI ;
+    sh:pattern "http://www.example.com/.*" ;
+    sh:property [ sh:nodeKind sh:Literal ;
+            sh:path ns:hasPercentageOffset ],
+        [ sh:nodeKind sh:Literal ;
+            sh:path ns:hasCapacity ],
+        [ sh:nodeKind sh:Literal ;
+            sh:path ns:hasSetPoint ],
+        [ sh:nodeKind sh:Literal ;
+            sh:path ns:hasLevelOffset ] ;
+    sh:targetClass "https://w3id.org/def/openadr#LoadControlState" .
+
+<http://mapping.example.com/map_triplesMapMetadatareport_000/shape> a sh:NodeShape ;
+    sh:nodeKind sh:IRI ;
+    sh:pattern "http://www.example.com/.*" ;
+    sh:property [ sh:node <http://mapping.example.com/map_triplesMapReportdescriptor_000/shape> ;
+            sh:nodeKind sh:IRI ;
+            sh:path ns:reportDescriptor ] ;
+    sh:targetClass "https://w3id.org/def/openadr#MetadataReport" .
+
+<http://mapping.example.com/map_triplesMapOpt_000/shape> a sh:NodeShape ;
+    sh:nodeKind sh:IRI ;
+    sh:pattern "http://www.example.com/.*" ;
+    sh:targetClass "https://w3id.org/def/openadr#Opt" .
+
+<http://mapping.example.com/map_triplesMapReport_000/shape> a sh:NodeShape ;
+    sh:nodeKind sh:IRI ;
+    sh:pattern "http://www.example.com/.*" ;
+    sh:property [ sh:node <http://mapping.example.com/map_triplesMapLoadcontrolstate_000/shape> ;
+            sh:nodeKind sh:IRI ;
+            sh:path ns:hasLoadControlState ],
+        [ sh:nodeKind sh:Literal ;
+            sh:path ns:hasReportName ],
+        [ sh:node <http://mapping.example.com/map_triplesMapGroup_000/shape> ;
+            sh:nodeKind sh:IRI ;
+            sh:path ns:reportDataSource ],
+        [ sh:node <http://mapping.example.com/map_triplesMapReportpayload_000/shape> ;
+            sh:nodeKind sh:IRI ;
+            sh:path ns:hasReportPayload ] ;
+    sh:targetClass "https://w3id.org/def/openadr#Report" .
+
+<http://mapping.example.com/map_triplesMapReportpayload_000/shape> a sh:NodeShape ;
+    sh:nodeKind sh:IRI ;
+    sh:pattern "http://www.example.com/.*" ;
+    sh:property [ sh:node <http://mapping.example.com/map_triplesMapReportdescriptor_000/shape> ;
+            sh:nodeKind sh:IRI ;
+            sh:path ns:isDescribedIn ] ;
+    sh:targetClass "https://w3id.org/def/openadr#ReportPayload" .
+
+<http://mapping.example.com/map_triplesMapServicearea_000/shape> a sh:NodeShape ;
+    sh:nodeKind sh:IRI ;
+    sh:pattern "http://www.example.com/.*" ;
+    sh:targetClass "https://w3id.org/def/openadr#ServiceArea" .
+
+<http://mapping.example.com/map_triplesMapSpatialobject_000/shape> a sh:NodeShape ;
+    sh:nodeKind sh:IRI ;
+    sh:pattern "http://www.example.com/.*" ;
+    sh:property [ sh:node <http://mapping.example.com/map_triplesMapSpatialobject_000/shape> ;
+            sh:nodeKind sh:IRI ;
+            sh:path <http://www.opengis.net/ont/geosparql#sfContains> ] ;
+    sh:targetClass "http://www.opengis.net/ont/geosparql#SpatialObject" .
+
+<http://mapping.example.com/map_triplesMapGroup_000/shape> a sh:NodeShape ;
+    sh:nodeKind sh:IRI ;
+    sh:pattern "http://www.example.com/.*" ;
+    sh:targetClass "https://w3id.org/def/openadr#Group" .
+
+<http://mapping.example.com/map_triplesMapReportdescriptor_000/shape> a sh:NodeShape ;
+    sh:nodeKind sh:IRI ;
+    sh:pattern "http://www.example.com/.*" ;
+    sh:targetClass "https://w3id.org/def/openadr#ReportDescriptor" .
+

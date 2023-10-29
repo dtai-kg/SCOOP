@@ -5,10 +5,20 @@
 
 ex:PersonShape
 	a sh:NodeShape ;
+	sh:targetNode ex:Person ;  
+	sh:property [
+		sh:path ex:color ;
+	] ;  
+	sh:property [                 
+		sh:path ex:worksFor ;
+		sh:nodeKind sh:IRI ;
+	] .
+
+ex:PersonShape
+	a sh:NodeShape ;
 	sh:targetClass ex:Person ;  
 	sh:property [
 		sh:path ex:color ;
-		sh:in ( ex:Yellow ) ;
 	] ;  
 	sh:property [                 
 		sh:path ex:worksFor ;

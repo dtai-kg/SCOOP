@@ -1,0 +1,458 @@
+@prefix owl:   <http://www.w3.org/2002/07/owl#> .
+@prefix afn:   <http://jena.apache.org/ARQ/function#> .
+@prefix xsd:   <http://www.w3.org/2001/XMLSchema#> .
+@prefix voaf:  <http://purl.org/vocommons/voaf#> .
+@prefix skos:  <http://www.w3.org/2004/02/skos/core#> .
+@prefix rdfs:  <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix ssn:   <http://www.w3.org/ns/ssn/> .
+@prefix sh:    <http://www.w3.org/ns/shacl#> .
+@prefix rdf:   <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix time:  <http://www.w3.org/2006/time#> .
+@prefix vann:  <http://purl.org/vocab/vann/> .
+@prefix foaf:  <http://xmlns.com/foaf/0.1/> .
+@prefix sosa:  <http://www.w3.org/ns/sosa/> .
+
+<https://astrea.linkeddata.es/shapes#fcf319f0451bc10f3362d90ee1f989dd>
+        a            sh:PropertyShape ;
+        sh:class     sosa:Procedure ;
+        sh:nodeKind  sh:IRIOrLiteral ;
+        sh:path      ssn:implements .
+
+<https://astrea.linkeddata.es/shapes#b98badf445b2130625686cb47ae4fbe2>
+        a            sh:PropertyShape ;
+        sh:class     sosa:Actuator ;
+        sh:maxCount  "1"^^xsd:nonNegativeInteger ;
+        sh:minCount  "1"^^xsd:nonNegativeInteger ;
+        sh:nodeKind  sh:IRIOrLiteral ;
+        sh:path      sosa:madeByActuator .
+
+<https://astrea.linkeddata.es/shapes#97d48b7c52c359000cf0e3a3aa0b70d9>
+        a                 sh:PropertyShape ;
+        rdfs:isDefinedBy  ssn: ;
+        rdfs:label        "detects"@en , "A relation from a Sensor to the Stimulus that the Sensor detects. The Stimulus itself will be serving as a proxy for some ObservableProperty."@en ;
+        sh:description    "A relation from a Sensor to the Stimulus that the Sensor detects. The Stimulus itself will be serving as a proxy for some ObservableProperty."@en ;
+        sh:name           "detects"@en ;
+        sh:nodeKind       sh:BlankNodeOrIRI ;
+        sh:path           ssn:detects .
+
+<https://astrea.linkeddata.es/shapes#3f5c6e9ced83b82b7d42b8ba3cb0fffe>
+        a                 sh:PropertyShape ;
+        rdfs:isDefinedBy  ssn: ;
+        rdfs:label        "is proxy for"@en , "A relation from a Stimulus to the Property that the Stimulus is serving as a proxy for."@en ;
+        sh:description    "A relation from a Stimulus to the Property that the Stimulus is serving as a proxy for."@en ;
+        sh:name           "is proxy for"@en ;
+        sh:nodeKind       sh:BlankNodeOrIRI ;
+        sh:path           ssn:isProxyFor .
+
+<https://astrea.linkeddata.es/shapes#ce137a6ae8005973ea185df81f79ee37>
+        a                 sh:PropertyShape ;
+        rdfs:isDefinedBy  ssn: ;
+        rdfs:label        "has deployment"@en , "Relation between a System and a Deployment, recording that the System is deployed in that Deployment."@en ;
+        sh:description    "Relation between a System and a Deployment, recording that the System is deployed in that Deployment."@en ;
+        sh:name           "has deployment"@en ;
+        sh:nodeKind       sh:BlankNodeOrIRI ;
+        sh:path           ssn:hasDeployment .
+
+<https://astrea.linkeddata.es/shapes#e61935f1cc0fbdc80be67c061e1cbf71>
+        a                 sh:NodeShape ;
+        rdfs:isDefinedBy  sosa: ;
+        sh:nodeKind       sh:IRI ;
+        sh:property       <https://astrea.linkeddata.es/shapes#a1a858296e6815cb8542d892a16bee0e> , <https://astrea.linkeddata.es/shapes#a8425b6238b26f4d60044dcb1caf6025> , <https://astrea.linkeddata.es/shapes#396b89e7acb1275050dd0f2621960bff> , <https://astrea.linkeddata.es/shapes#8045c88d72338da87d36eaa2414d9591> , <https://astrea.linkeddata.es/shapes#3bcdff31e167b38099ddb7715769972c> , <https://astrea.linkeddata.es/shapes#f11042142401c552b10dc2bc522d4e6a> , <https://astrea.linkeddata.es/shapes#bed29ccb5723f386d46de92f4acce97b> , <https://astrea.linkeddata.es/shapes#4a7a92454d93287faec5cb6577d97e81> ;
+        sh:targetClass    sosa:Observation .
+
+<https://astrea.linkeddata.es/shapes#1747a03e68342090168eaf0538c06be3>
+        a                 sh:NodeShape ;
+        rdfs:isDefinedBy  ssn: ;
+        rdfs:label        "Property"@en ;
+        sh:description    "A quality of an entity. An aspect of an entity that is intrinsic to and cannot exist without the entity."@en ;
+        sh:name           "Property"@en ;
+        sh:nodeKind       sh:IRI ;
+        sh:property       <https://astrea.linkeddata.es/shapes#ee1e25d05ac997f066419ef1e479566d> ;
+        sh:targetClass    ssn:Property .
+
+<https://astrea.linkeddata.es/shapes#95a321de34ca717324aabf2afab8a80b>
+        a                 sh:NodeShape ;
+        rdfs:isDefinedBy  ssn: ;
+        rdfs:label        "Stimulus"@en ;
+        sh:description    "An event in the real world that 'triggers' the Sensor. The properties associated to the Stimulus may be different to the eventual observed ObservableProperty. It is the event, not the object, that triggers the Sensor."@en ;
+        sh:name           "Stimulus"@en ;
+        sh:nodeKind       sh:IRI ;
+        sh:property       <https://astrea.linkeddata.es/shapes#a814fb83f610bebf6489cc07fe89504f> ;
+        sh:targetClass    ssn:Stimulus .
+
+<https://astrea.linkeddata.es/shapes#60c83dd4552d352d25b92aa351efcc18>
+        a            sh:PropertyShape ;
+        sh:maxCount  "1"^^xsd:nonNegativeInteger ;
+        sh:minCount  "1"^^xsd:nonNegativeInteger ;
+        sh:nodeKind  sh:IRIOrLiteral ;
+        sh:path      sosa:resultTime .
+
+<https://astrea.linkeddata.es/shapes#cd81dab8bce8117c90b05fbcf8d606bb>
+        a            sh:PropertyShape ;
+        sh:class     sosa:Platform ;
+        sh:nodeKind  sh:IRIOrLiteral ;
+        sh:path      sosa:isHostedBy .
+
+<https://astrea.linkeddata.es/shapes#0831e7917a121fbc38cfb267ab2e1ace>
+        a                 sh:NodeShape ;
+        rdfs:isDefinedBy  ssn: ;
+        rdfs:label        "Output"@en ;
+        sh:description    "Any information that is reported from a Procedure."@en ;
+        sh:name           "Output"@en ;
+        sh:nodeKind       sh:IRI ;
+        sh:targetClass    ssn:Output .
+
+<https://astrea.linkeddata.es/shapes#378884c9a8a498df70f2e193093df0af>
+        a                 sh:NodeShape ;
+        rdfs:isDefinedBy  ssn: ;
+        rdfs:label        "System"@en ;
+        sh:description    "System is a unit of abstraction for pieces of infrastructure that implement Procedures. A System may have components, its subsystems, which are other systems."@en ;
+        sh:name           "System"@en ;
+        sh:nodeKind       sh:IRI ;
+        sh:property       <https://astrea.linkeddata.es/shapes#cd81dab8bce8117c90b05fbcf8d606bb> , <https://astrea.linkeddata.es/shapes#42d6396ea70fc1eb0ab385315cd1b78e> , <https://astrea.linkeddata.es/shapes#55c717bc8ac74dd482cacdc961be1ed8> , <https://astrea.linkeddata.es/shapes#fcf319f0451bc10f3362d90ee1f989dd> ;
+        sh:targetClass    ssn:System .
+
+<https://astrea.linkeddata.es/shapes#332db225382194124a73229a23672adb>
+        a            sh:PropertyShape ;
+        sh:class     sosa:Sampler ;
+        sh:maxCount  "1"^^xsd:nonNegativeInteger ;
+        sh:minCount  "1"^^xsd:nonNegativeInteger ;
+        sh:nodeKind  sh:IRIOrLiteral ;
+        sh:path      sosa:madeBySampler .
+
+<https://astrea.linkeddata.es/shapes#c3fb6ea8abe3a615c4212b0c35aadd3c>
+        a                 sh:NodeShape ;
+        rdfs:isDefinedBy  sosa: ;
+        sh:nodeKind       sh:IRI ;
+        sh:property       <https://astrea.linkeddata.es/shapes#60c83dd4552d352d25b92aa351efcc18> , <https://astrea.linkeddata.es/shapes#75378174ae359e688981018a87484c02> , <https://astrea.linkeddata.es/shapes#417f249758906a730650755f57275b72> , <https://astrea.linkeddata.es/shapes#332db225382194124a73229a23672adb> , <https://astrea.linkeddata.es/shapes#890f09d251a34c954da61c6ff7fd186d> ;
+        sh:targetClass    sosa:Sampling .
+
+<https://astrea.linkeddata.es/shapes#42d6396ea70fc1eb0ab385315cd1b78e>
+        a            sh:PropertyShape ;
+        sh:class     ssn:Deployment ;
+        sh:nodeKind  sh:IRIOrLiteral ;
+        sh:path      ssn:hasDeployment .
+
+<https://astrea.linkeddata.es/shapes#75378174ae359e688981018a87484c02>
+        a            sh:PropertyShape ;
+        sh:class     sosa:Sample ;
+        sh:minCount  "1"^^xsd:nonNegativeInteger ;
+        sh:nodeKind  sh:IRIOrLiteral ;
+        sh:path      sosa:hasResult .
+
+<https://astrea.linkeddata.es/shapes#417f249758906a730650755f57275b72>
+        a            sh:PropertyShape ;
+        sh:class     sosa:Procedure ;
+        sh:nodeKind  sh:IRIOrLiteral ;
+        sh:path      sosa:usedProcedure .
+
+<https://astrea.linkeddata.es/shapes#a90e6282ef030f7595c3a9f1a2b8c09f>
+        a               sh:NodeShape ;
+        sh:nodeKind     sh:IRI ;
+        sh:targetClass  voaf:Vocabulary .
+
+<https://astrea.linkeddata.es/shapes#91417360b25051be98a8c2c31e183be0>
+        a            sh:PropertyShape ;
+        sh:class     sosa:Result ;
+        sh:minCount  "1"^^xsd:nonNegativeInteger ;
+        sh:nodeKind  sh:IRIOrLiteral ;
+        sh:path      sosa:hasResult .
+
+<https://astrea.linkeddata.es/shapes#4a0fe07d77e1568c9f6119967b7b3d3a>
+        a                 sh:NodeShape ;
+        rdfs:isDefinedBy  sosa: ;
+        sh:nodeKind       sh:IRI ;
+        sh:property       <https://astrea.linkeddata.es/shapes#91417360b25051be98a8c2c31e183be0> , <https://astrea.linkeddata.es/shapes#2722caeacf7e53936cfb03abd535d679> , <https://astrea.linkeddata.es/shapes#b98badf445b2130625686cb47ae4fbe2> , <https://astrea.linkeddata.es/shapes#9a93ec940b8010ce420ee05593beebf0> , <https://astrea.linkeddata.es/shapes#bf49decb928f5aebb4e0756815a66576> , <https://astrea.linkeddata.es/shapes#d5f731ed5fd0721dbafe43b1997ef916> ;
+        sh:targetClass    sosa:Actuation .
+
+<https://astrea.linkeddata.es/shapes#a1274c09fe1e4f470ebac9c08de6fb6f>
+        a                 sh:PropertyShape ;
+        rdfs:isDefinedBy  ssn: ;
+        rdfs:label        "was originated by"@en , "Relation between an Observation and the Stimulus that originated it."@en ;
+        sh:description    "Relation between an Observation and the Stimulus that originated it."@en ;
+        sh:maxCount       1 ;
+        sh:name           "was originated by"@en ;
+        sh:nodeKind       sh:IRIOrLiteral , sh:BlankNodeOrIRI ;
+        sh:path           ssn:wasOriginatedBy .
+
+<https://astrea.linkeddata.es/shapes#396b89e7acb1275050dd0f2621960bff>
+        a            sh:PropertyShape ;
+        sh:maxCount  "1"^^xsd:nonNegativeInteger ;
+        sh:minCount  "1"^^xsd:nonNegativeInteger ;
+        sh:nodeKind  sh:IRIOrLiteral ;
+        sh:path      sosa:resultTime .
+
+<https://astrea.linkeddata.es/shapes#81f165e1fc40168485d8a79761fe64cd>
+        a            sh:PropertyShape ;
+        sh:class     sosa:Platform ;
+        sh:nodeKind  sh:IRIOrLiteral ;
+        sh:path      ssn:deployedOnPlatform .
+
+<https://astrea.linkeddata.es/shapes#890f09d251a34c954da61c6ff7fd186d>
+        a            sh:PropertyShape ;
+        sh:class     sosa:FeatureOfInterest ;
+        sh:maxCount  "1"^^xsd:nonNegativeInteger ;
+        sh:minCount  "1"^^xsd:nonNegativeInteger ;
+        sh:nodeKind  sh:IRIOrLiteral ;
+        sh:path      sosa:hasFeatureOfInterest .
+
+<https://astrea.linkeddata.es/shapes#fd268784d770a61cc9487f7932e3e9ec>
+        a                 sh:PropertyShape ;
+        rdfs:isDefinedBy  ssn: ;
+        rdfs:label        "has subsystem"@en , "Relation between a System and its component parts."@en ;
+        sh:description    "Relation between a System and its component parts."@en ;
+        sh:name           "has subsystem"@en ;
+        sh:nodeKind       sh:BlankNodeOrIRI ;
+        sh:path           ssn:hasSubSystem .
+
+<https://astrea.linkeddata.es/shapes#9a93ec940b8010ce420ee05593beebf0>
+        a            sh:PropertyShape ;
+        sh:class     sosa:ActuatableProperty ;
+        sh:minCount  "1"^^xsd:nonNegativeInteger ;
+        sh:nodeKind  sh:IRIOrLiteral ;
+        sh:path      sosa:actsOnProperty .
+
+<https://astrea.linkeddata.es/shapes#bed29ccb5723f386d46de92f4acce97b>
+        a            sh:PropertyShape ;
+        sh:class     ssn:Stimulus ;
+        sh:maxCount  "1"^^xsd:nonNegativeInteger ;
+        sh:minCount  "1"^^xsd:nonNegativeInteger ;
+        sh:nodeKind  sh:IRIOrLiteral ;
+        sh:path      ssn:wasOriginatedBy .
+
+<https://astrea.linkeddata.es/shapes#a814fb83f610bebf6489cc07fe89504f>
+        a            sh:PropertyShape ;
+        sh:class     sosa:ObservableProperty ;
+        sh:nodeKind  sh:IRIOrLiteral ;
+        sh:path      ssn:isProxyFor .
+
+<https://astrea.linkeddata.es/shapes#bf60caee997a0dc5e4aa31de8ca04d15>
+        a            sh:PropertyShape ;
+        sh:class     ssn:Property ;
+        sh:nodeKind  sh:IRIOrLiteral ;
+        sh:path      ssn:forProperty .
+
+<https://astrea.linkeddata.es/shapes#a8425b6238b26f4d60044dcb1caf6025>
+        a            sh:PropertyShape ;
+        sh:class     sosa:FeatureOfInterest ;
+        sh:maxCount  "1"^^xsd:nonNegativeInteger ;
+        sh:minCount  "1"^^xsd:nonNegativeInteger ;
+        sh:nodeKind  sh:IRIOrLiteral ;
+        sh:path      sosa:hasFeatureOfInterest .
+
+<https://astrea.linkeddata.es/shapes#bf49decb928f5aebb4e0756815a66576>
+        a            sh:PropertyShape ;
+        sh:class     sosa:FeatureOfInterest ;
+        sh:maxCount  "1"^^xsd:nonNegativeInteger ;
+        sh:minCount  "1"^^xsd:nonNegativeInteger ;
+        sh:nodeKind  sh:IRIOrLiteral ;
+        sh:path      sosa:hasFeatureOfInterest .
+
+<https://astrea.linkeddata.es/shapes#e996a29e0ce6abd80d0b3923eed782c6>
+        a               sh:PropertyShape ;
+        sh:inversePath  sosa:hasSample ;
+        sh:maxCount     1 ;
+        sh:nodeKind     sh:IRIOrLiteral .
+
+<https://astrea.linkeddata.es/shapes#c058a40bb679abdf650145e1bdd5148e>
+        a                 sh:PropertyShape ;
+        rdfs:isDefinedBy  ssn: ;
+        rdfs:label        "deployed system"@en , "Relation between a Deployment and a deployed System."@en ;
+        sh:description    "Relation between a Deployment and a deployed System."@en ;
+        sh:name           "deployed system"@en ;
+        sh:nodeKind       sh:BlankNodeOrIRI ;
+        sh:path           ssn:deployedSystem .
+
+<https://astrea.linkeddata.es/shapes#4a7a92454d93287faec5cb6577d97e81>
+        a            sh:PropertyShape ;
+        sh:class     sosa:Result ;
+        sh:minCount  "1"^^xsd:nonNegativeInteger ;
+        sh:nodeKind  sh:IRIOrLiteral ;
+        sh:path      sosa:hasResult .
+
+<https://astrea.linkeddata.es/shapes#d5f731ed5fd0721dbafe43b1997ef916>
+        a            sh:PropertyShape ;
+        sh:maxCount  "1"^^xsd:nonNegativeInteger ;
+        sh:minCount  "1"^^xsd:nonNegativeInteger ;
+        sh:nodeKind  sh:IRIOrLiteral ;
+        sh:path      sosa:resultTime .
+
+<https://astrea.linkeddata.es/shapes#be0b2262521d62d7cee57a165967ee92>
+        a            sh:PropertyShape ;
+        sh:class     ssn:System ;
+        sh:nodeKind  sh:IRIOrLiteral ;
+        sh:path      ssn:deployedSystem .
+
+<https://astrea.linkeddata.es/shapes#55c717bc8ac74dd482cacdc961be1ed8>
+        a            sh:PropertyShape ;
+        sh:class     ssn:System ;
+        sh:nodeKind  sh:IRIOrLiteral ;
+        sh:path      ssn:hasSubSystem .
+
+<https://astrea.linkeddata.es/shapes#88e0ce552b57c843a13b54bc027e1dd3>
+        a                 sh:PropertyShape ;
+        rdfs:isDefinedBy  ssn: ;
+        rdfs:label        "has output"@en , "Relation between a Procedure and an Output of it."@en ;
+        sh:description    "Relation between a Procedure and an Output of it."@en ;
+        sh:name           "has output"@en ;
+        sh:nodeKind       sh:BlankNodeOrIRI ;
+        sh:path           ssn:hasOutput .
+
+<https://astrea.linkeddata.es/shapes#d2ddc6d900402da26799cab69c4c0b99>
+        a                 sh:NodeShape ;
+        rdfs:isDefinedBy  ssn: ;
+        rdfs:label        "Input"@en ;
+        sh:description    "Any information that is provided to a Procedure for its use."@en ;
+        sh:name           "Input"@en ;
+        sh:nodeKind       sh:IRI ;
+        sh:targetClass    ssn:Input .
+
+<https://astrea.linkeddata.es/shapes#28859dcb6be4a9e21f596c8879fa717a>
+        a                 sh:PropertyShape ;
+        rdfs:isDefinedBy  ssn: ;
+        rdfs:label        "in deployment"@en , "Relation between a Platform and a Deployment, meaning that the deployedSystems of the Deployment are hosted on the Platform."@en ;
+        sh:description    "Relation between a Platform and a Deployment, meaning that the deployedSystems of the Deployment are hosted on the Platform."@en ;
+        sh:name           "in deployment"@en ;
+        sh:nodeKind       sh:BlankNodeOrIRI ;
+        sh:path           ssn:inDeployment .
+
+<https://astrea.linkeddata.es/shapes#090a3f349757c6a335a6955dca2db4d1>
+        a                 sh:PropertyShape ;
+        rdfs:isDefinedBy  ssn: ;
+        rdfs:label        "implements"@en , "Relation between an entity that implements a Procedure in some executable way and the Procedure (an algorithm, procedure or method)."@en ;
+        sh:description    "Relation between an entity that implements a Procedure in some executable way and the Procedure (an algorithm, procedure or method)."@en ;
+        sh:name           "implements"@en ;
+        sh:nodeKind       sh:BlankNodeOrIRI ;
+        sh:path           ssn:implements .
+
+<https://astrea.linkeddata.es/shapes#ee1e25d05ac997f066419ef1e479566d>
+        a            sh:PropertyShape ;
+        sh:class     sosa:FeatureOfInterest ;
+        sh:nodeKind  sh:IRIOrLiteral ;
+        sh:path      ssn:isPropertyOf .
+
+<https://astrea.linkeddata.es/shapes#725d5c8492978ce216666bc233dca1ad>
+        a                 sh:PropertyShape ;
+        rdfs:isDefinedBy  ssn: ;
+        rdfs:label        "implemented by"@en , "Relation between a Procedure (an algorithm, procedure or method) and an entity that implements that Procedure in some executable way."@en ;
+        sh:description    "Relation between a Procedure (an algorithm, procedure or method) and an entity that implements that Procedure in some executable way."@en ;
+        sh:name           "implemented by"@en ;
+        sh:nodeKind       sh:BlankNodeOrIRI ;
+        sh:path           ssn:implementedBy .
+
+<https://astrea.linkeddata.es/shapes#811ef72b6ccea344721cf0bcfa6618ba>
+        a                 sh:PropertyShape ;
+        rdfs:isDefinedBy  ssn: ;
+        rdfs:label        "has property"@en , "Relation between an entity and a Property of that entity."@en ;
+        sh:description    "Relation between an entity and a Property of that entity."@en ;
+        sh:name           "has property"@en ;
+        sh:nodeKind       sh:BlankNodeOrIRI ;
+        sh:path           ssn:hasProperty .
+
+<https://astrea.linkeddata.es/shapes#e7929688d1eb164b8e14b2892279ac15>
+        a                 sh:NodeShape ;
+        rdfs:isDefinedBy  ssn: ;
+        rdfs:label        "Deployment"@en ;
+        sh:description    "Describes the Deployment of one or more Systems for a particular purpose. Deployment may be done on a Platform."@en ;
+        sh:name           "Deployment"@en ;
+        sh:nodeKind       sh:IRI ;
+        sh:property       <https://astrea.linkeddata.es/shapes#81f165e1fc40168485d8a79761fe64cd> , <https://astrea.linkeddata.es/shapes#be0b2262521d62d7cee57a165967ee92> , <https://astrea.linkeddata.es/shapes#bf60caee997a0dc5e4aa31de8ca04d15> ;
+        sh:targetClass    ssn:Deployment .
+
+<https://astrea.linkeddata.es/shapes#8045c88d72338da87d36eaa2414d9591>
+        a            sh:PropertyShape ;
+        sh:class     sosa:Sensor ;
+        sh:maxCount  "1"^^xsd:nonNegativeInteger ;
+        sh:minCount  "1"^^xsd:nonNegativeInteger ;
+        sh:nodeKind  sh:IRIOrLiteral ;
+        sh:path      sosa:madeBySensor .
+
+<http://astrea.linkeddata.es/report>
+        a       <https://w3id.org/def/astrea#ShapeReport> ;
+        <https://w3id.org/def/astrea#contains>
+                <https://astrea.linkeddata.es/shapes#417f249758906a730650755f57275b72> , <https://astrea.linkeddata.es/shapes#ce137a6ae8005973ea185df81f79ee37> , <https://astrea.linkeddata.es/shapes#4a7a92454d93287faec5cb6577d97e81> , <https://astrea.linkeddata.es/shapes#bed29ccb5723f386d46de92f4acce97b> , <https://astrea.linkeddata.es/shapes#88e0ce552b57c843a13b54bc027e1dd3> , <https://astrea.linkeddata.es/shapes#bf49decb928f5aebb4e0756815a66576> , <https://astrea.linkeddata.es/shapes#c28a9bfd3b99f5da1c865b551408b5fe> , <https://astrea.linkeddata.es/shapes#725d5c8492978ce216666bc233dca1ad> , <https://astrea.linkeddata.es/shapes#890f09d251a34c954da61c6ff7fd186d> , <https://astrea.linkeddata.es/shapes#ee1e25d05ac997f066419ef1e479566d> , <https://astrea.linkeddata.es/shapes#f11042142401c552b10dc2bc522d4e6a> , <https://astrea.linkeddata.es/shapes#91417360b25051be98a8c2c31e183be0> , <https://astrea.linkeddata.es/shapes#378884c9a8a498df70f2e193093df0af> , <https://astrea.linkeddata.es/shapes#811ef72b6ccea344721cf0bcfa6618ba> , <https://astrea.linkeddata.es/shapes#2722caeacf7e53936cfb03abd535d679> , <https://astrea.linkeddata.es/shapes#81f165e1fc40168485d8a79761fe64cd> , <https://astrea.linkeddata.es/shapes#f3d47963bf4ea026feba45f9833b8caf> , <https://astrea.linkeddata.es/shapes#97d48b7c52c359000cf0e3a3aa0b70d9> , <https://astrea.linkeddata.es/shapes#090a3f349757c6a335a6955dca2db4d1> , <https://astrea.linkeddata.es/shapes#be0b2262521d62d7cee57a165967ee92> , <https://astrea.linkeddata.es/shapes#4a0fe07d77e1568c9f6119967b7b3d3a> , <https://astrea.linkeddata.es/shapes#fd268784d770a61cc9487f7932e3e9ec> , <https://astrea.linkeddata.es/shapes#55c717bc8ac74dd482cacdc961be1ed8> , <https://astrea.linkeddata.es/shapes#a1274c09fe1e4f470ebac9c08de6fb6f> , <https://astrea.linkeddata.es/shapes#a1a858296e6815cb8542d892a16bee0e> , <https://astrea.linkeddata.es/shapes#d2ddc6d900402da26799cab69c4c0b99> , <https://astrea.linkeddata.es/shapes#0831e7917a121fbc38cfb267ab2e1ace> , <https://astrea.linkeddata.es/shapes#e7929688d1eb164b8e14b2892279ac15> , <https://astrea.linkeddata.es/shapes#a8425b6238b26f4d60044dcb1caf6025> , <https://astrea.linkeddata.es/shapes#c058a40bb679abdf650145e1bdd5148e> , <https://astrea.linkeddata.es/shapes#a90e6282ef030f7595c3a9f1a2b8c09f> , <https://astrea.linkeddata.es/shapes#f8d39a8571f65103be4266433a282cd5> , <https://astrea.linkeddata.es/shapes#95a321de34ca717324aabf2afab8a80b> , <https://astrea.linkeddata.es/shapes#3379a444505260c2b9cfb1c6a60d72a6> , <https://astrea.linkeddata.es/shapes#e996a29e0ce6abd80d0b3923eed782c6> , <https://astrea.linkeddata.es/shapes#3f5c6e9ced83b82b7d42b8ba3cb0fffe> , <https://astrea.linkeddata.es/shapes#b98badf445b2130625686cb47ae4fbe2> , <https://astrea.linkeddata.es/shapes#e61935f1cc0fbdc80be67c061e1cbf71> , <https://astrea.linkeddata.es/shapes#a814fb83f610bebf6489cc07fe89504f> , <https://astrea.linkeddata.es/shapes#c3fb6ea8abe3a615c4212b0c35aadd3c> , <https://astrea.linkeddata.es/shapes#9a93ec940b8010ce420ee05593beebf0> , <https://astrea.linkeddata.es/shapes#75378174ae359e688981018a87484c02> , <https://astrea.linkeddata.es/shapes#1747a03e68342090168eaf0538c06be3> , <https://astrea.linkeddata.es/shapes#3bcdff31e167b38099ddb7715769972c> , <https://astrea.linkeddata.es/shapes#332db225382194124a73229a23672adb> , <https://astrea.linkeddata.es/shapes#bf60caee997a0dc5e4aa31de8ca04d15> , <https://astrea.linkeddata.es/shapes#fcf319f0451bc10f3362d90ee1f989dd> , <https://astrea.linkeddata.es/shapes#cd81dab8bce8117c90b05fbcf8d606bb> , <https://astrea.linkeddata.es/shapes#396b89e7acb1275050dd0f2621960bff> , <https://astrea.linkeddata.es/shapes#dd483516b608e138566e0eb23372bfc3> , <https://astrea.linkeddata.es/shapes#42d6396ea70fc1eb0ab385315cd1b78e> , <https://astrea.linkeddata.es/shapes#d5f731ed5fd0721dbafe43b1997ef916> , <https://astrea.linkeddata.es/shapes#60c83dd4552d352d25b92aa351efcc18> , <https://astrea.linkeddata.es/shapes#28859dcb6be4a9e21f596c8879fa717a> , <https://astrea.linkeddata.es/shapes#8045c88d72338da87d36eaa2414d9591> , <https://astrea.linkeddata.es/shapes#3b1fed4016ea3410e7b39f0cf0331513> ;
+        <https://w3id.org/def/astrea#generatedShapesFrom>
+                <https://astrea.linkeddata.es/report/0674615241> .
+
+<https://astrea.linkeddata.es/shapes#2722caeacf7e53936cfb03abd535d679>
+        a            sh:PropertyShape ;
+        sh:class     sosa:Procedure ;
+        sh:nodeKind  sh:IRIOrLiteral ;
+        sh:path      sosa:usedProcedure .
+
+<https://astrea.linkeddata.es/report/0674615241>
+        a       <https://w3id.org/def/astrea#ReportEntry> ;
+        <https://w3id.org/def/astrea#message>
+                "Shapes generated with no errors" ;
+        <https://w3id.org/def/astrea#source>
+                "http://www.w3.org/ns/ssn/" ;
+        <https://w3id.org/def/astrea#statusCode>
+                "200"^^xsd:int .
+
+<https://astrea.linkeddata.es/shapes#3379a444505260c2b9cfb1c6a60d72a6>
+        a                 sh:PropertyShape ;
+        rdfs:isDefinedBy  ssn: ;
+        rdfs:label        "for property"@en , "A relation between some aspect of an entity and a Property."@en ;
+        sh:description    "A relation between some aspect of an entity and a Property."@en ;
+        sh:name           "for property"@en ;
+        sh:nodeKind       sh:BlankNodeOrIRI ;
+        sh:path           ssn:forProperty .
+
+<https://astrea.linkeddata.es/shapes#c28a9bfd3b99f5da1c865b551408b5fe>
+        a                 sh:PropertyShape ;
+        rdfs:isDefinedBy  ssn: ;
+        rdfs:label        "is property of"@en , "Relation between a Property and the entity it belongs to."@en ;
+        sh:description    "Relation between a Property and the entity it belongs to."@en ;
+        sh:name           "is property of"@en ;
+        sh:nodeKind       sh:BlankNodeOrIRI ;
+        sh:path           ssn:isPropertyOf .
+
+<https://astrea.linkeddata.es/shapes#f8d39a8571f65103be4266433a282cd5>
+        a                 sh:PropertyShape ;
+        rdfs:isDefinedBy  ssn: ;
+        rdfs:label        "deployed on platform"@en , "Relation between a Deployment and the Platform on which the Systems are deployed."@en ;
+        sh:description    "Relation between a Deployment and the Platform on which the Systems are deployed."@en ;
+        sh:name           "deployed on platform"@en ;
+        sh:nodeKind       sh:BlankNodeOrIRI ;
+        sh:path           ssn:deployedOnPlatform .
+
+<https://astrea.linkeddata.es/shapes#a1a858296e6815cb8542d892a16bee0e>
+        a            sh:PropertyShape ;
+        sh:class     sosa:ObservableProperty ;
+        sh:maxCount  "1"^^xsd:nonNegativeInteger ;
+        sh:minCount  "1"^^xsd:nonNegativeInteger ;
+        sh:nodeKind  sh:IRIOrLiteral ;
+        sh:path      sosa:observedProperty .
+
+<https://astrea.linkeddata.es/shapes#f11042142401c552b10dc2bc522d4e6a>
+        a            sh:PropertyShape ;
+        sh:maxCount  "1"^^xsd:nonNegativeInteger ;
+        sh:minCount  "1"^^xsd:nonNegativeInteger ;
+        sh:nodeKind  sh:IRIOrLiteral ;
+        sh:path      sosa:phenomenonTime .
+
+<https://astrea.linkeddata.es/shapes#3bcdff31e167b38099ddb7715769972c>
+        a            sh:PropertyShape ;
+        sh:class     sosa:Procedure ;
+        sh:nodeKind  sh:IRIOrLiteral ;
+        sh:path      sosa:usedProcedure .
+
+<https://astrea.linkeddata.es/shapes#3b1fed4016ea3410e7b39f0cf0331513>
+        a               sh:NodeShape ;
+        sh:nodeKind     sh:IRI ;
+        sh:targetClass  foaf:Agent .
+
+<https://astrea.linkeddata.es/shapes#f3d47963bf4ea026feba45f9833b8caf>
+        a                 sh:PropertyShape ;
+        rdfs:isDefinedBy  ssn: ;
+        rdfs:label        "has input"@en , "Relation between a Procedure and an Input to it."@en ;
+        sh:description    "Relation between a Procedure and an Input to it."@en ;
+        sh:name           "has input"@en ;
+        sh:nodeKind       sh:BlankNodeOrIRI ;
+        sh:path           ssn:hasInput .
+
+<https://astrea.linkeddata.es/shapes#dd483516b608e138566e0eb23372bfc3>
+        a            sh:PropertyShape ;
+        sh:maxCount  1 ;
+        sh:nodeKind  sh:IRIOrLiteral .

@@ -1,0 +1,142 @@
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+
+<http://mapping.example.com/map_triplesMapAggregator_000/shape> a sh:NodeShape ;
+    sh:nodeKind sh:IRI ;
+    sh:pattern "http://.*" ;
+    sh:targetClass "http://delta.linkeddata.es/def/core#Aggregator" .
+
+<http://mapping.example.com/map_triplesMapBid_000/shape> a sh:NodeShape ;
+    sh:nodeKind sh:IRI ;
+    sh:pattern "http://.*" ;
+    sh:targetClass "http://delta.linkeddata.es/def/core#Bid" .
+
+<http://mapping.example.com/map_triplesMapCluster_000/shape> a sh:NodeShape ;
+    sh:nodeKind sh:IRI ;
+    sh:pattern "http://.*" ;
+    sh:targetClass "http://delta.linkeddata.es/def/core#Cluster" .
+
+<http://mapping.example.com/map_triplesMapConsumer_000/shape> a sh:NodeShape ;
+    sh:nodeKind sh:IRI ;
+    sh:pattern "http://.*" ;
+    sh:targetClass "http://delta.linkeddata.es/def/core#Consumer" .
+
+<http://mapping.example.com/map_triplesMapCustomer_000/shape> a sh:NodeShape ;
+    sh:nodeKind sh:IRI ;
+    sh:pattern "http://.*" ;
+    sh:targetClass "http://delta.linkeddata.es/def/core#Customer" .
+
+<http://mapping.example.com/map_triplesMapDevice_000/shape> a sh:NodeShape ;
+    sh:nodeKind sh:IRI ;
+    sh:pattern "http://.*" ;
+    sh:targetClass "https://w3id.org/saref#Device" .
+
+<http://mapping.example.com/map_triplesMapEnergy_000/shape> a sh:NodeShape ;
+    sh:nodeKind sh:IRI ;
+    sh:pattern "http://.*" ;
+    sh:targetClass "http://delta.linkeddata.es/def/core#Energy" .
+
+<http://mapping.example.com/map_triplesMapEnergymarket_000/shape> a sh:NodeShape ;
+    sh:nodeKind sh:IRI ;
+    sh:pattern "http://.*" ;
+    sh:targetClass "http://delta.linkeddata.es/def/core#EnergyMarket" .
+
+<http://mapping.example.com/map_triplesMapFlexibility_000/shape> a sh:NodeShape ;
+    sh:nodeKind sh:IRI ;
+    sh:pattern "http://.*" ;
+    sh:targetClass "http://delta.linkeddata.es/def/core#Flexibility" .
+
+<http://mapping.example.com/map_triplesMapFlexibilitybid_000/shape> a sh:NodeShape ;
+    sh:nodeKind sh:IRI ;
+    sh:pattern "http://.*" ;
+    sh:targetClass "http://delta.linkeddata.es/def/core#FlexibilityBid" .
+
+<http://mapping.example.com/map_triplesMapGeneration_000/shape> a sh:NodeShape ;
+    sh:nodeKind sh:IRI ;
+    sh:pattern "http://.*" ;
+    sh:targetClass "http://delta.linkeddata.es/def/core#Generation" .
+
+<http://mapping.example.com/map_triplesMapIncentive_000/shape> a sh:NodeShape ;
+    sh:nodeKind sh:IRI ;
+    sh:pattern "http://.*" ;
+    sh:targetClass "http://delta.linkeddata.es/def/core#Incentive" .
+
+<http://mapping.example.com/map_triplesMapLoad_000/shape> a sh:NodeShape ;
+    sh:nodeKind sh:IRI ;
+    sh:pattern "http://.*" ;
+    sh:targetClass "http://delta.linkeddata.es/def/core#Load" .
+
+<http://mapping.example.com/map_triplesMapMeasurement_000/shape> a sh:NodeShape ;
+    sh:nodeKind sh:IRI ;
+    sh:pattern "http://.*" ;
+    sh:targetClass "https://w3id.org/saref#Measurement" .
+
+<http://mapping.example.com/map_triplesMapPower_000/shape> a sh:NodeShape ;
+    sh:nodeKind sh:IRI ;
+    sh:pattern "http://.*" ;
+    sh:targetClass "http://delta.linkeddata.es/def/core#Power" .
+
+<http://mapping.example.com/map_triplesMapPrice_000/shape> a sh:NodeShape ;
+    sh:nodeKind sh:IRI ;
+    sh:pattern "http://.*" ;
+    sh:targetClass "https://w3id.org/saref#Price" .
+
+<http://mapping.example.com/map_triplesMapPricebid_000/shape> a sh:NodeShape ;
+    sh:nodeKind sh:IRI ;
+    sh:pattern "http://.*" ;
+    sh:targetClass "http://delta.linkeddata.es/def/core#PriceBid" .
+
+<http://mapping.example.com/map_triplesMapPricebidas_000/shape> a sh:NodeShape ;
+    sh:nodeKind sh:IRI ;
+    sh:pattern "http://.*" ;
+    sh:targetClass "http://delta.linkeddata.es/def/core#PriceBidAS" .
+
+<http://mapping.example.com/map_triplesMapPricebiddayahead_000/shape> a sh:NodeShape ;
+    sh:nodeKind sh:IRI ;
+    sh:pattern "http://.*" ;
+    sh:targetClass "http://delta.linkeddata.es/def/core#PriceBidDayAhead" .
+
+<http://mapping.example.com/map_triplesMapPricebidintraday_000/shape> a sh:NodeShape ;
+    sh:nodeKind sh:IRI ;
+    sh:pattern "http://.*" ;
+    sh:targetClass "http://delta.linkeddata.es/def/core#PriceBidIntraDay" .
+
+<http://mapping.example.com/map_triplesMapProfile_000/shape> a sh:NodeShape ;
+    sh:nodeKind sh:IRI ;
+    sh:pattern "http://.*" ;
+    sh:targetClass "http://delta.linkeddata.es/def/core#Profile" .
+
+<http://mapping.example.com/map_triplesMapProfit_000/shape> a sh:NodeShape ;
+    sh:nodeKind sh:IRI ;
+    sh:pattern "http://.*" ;
+    sh:targetClass "http://delta.linkeddata.es/def/core#Profit" .
+
+<http://mapping.example.com/map_triplesMapProperty_000/shape> a sh:NodeShape ;
+    sh:nodeKind sh:IRI ;
+    sh:pattern "http://.*" ;
+    sh:targetClass "http://delta.linkeddata.es/def/core#Property" .
+
+<http://mapping.example.com/map_triplesMapProsumer_000/shape> a sh:NodeShape ;
+    sh:nodeKind sh:IRI ;
+    sh:pattern "http://.*" ;
+    sh:targetClass "http://delta.linkeddata.es/def/core#Prosumer" .
+
+<http://mapping.example.com/map_triplesMapReward_000/shape> a sh:NodeShape ;
+    sh:nodeKind sh:IRI ;
+    sh:pattern "http://.*" ;
+    sh:targetClass "http://delta.linkeddata.es/def/core#Reward" .
+
+<http://mapping.example.com/map_triplesMapSpatialthing_000/shape> a sh:NodeShape ;
+    sh:nodeKind sh:IRI ;
+    sh:pattern "http://.*" ;
+    sh:targetClass "http://www.w3.org/2003/01/geo/wgs84_pos#SpatialThing" .
+
+<http://mapping.example.com/map_triplesMapTimeinterval_000/shape> a sh:NodeShape ;
+    sh:nodeKind sh:IRI ;
+    sh:pattern "http://.*" ;
+    sh:targetClass "http://delta.linkeddata.es/def/core#TimeInterval" .
+
+<http://mapping.example.com/map_triplesMapVirtualnode_000/shape> a sh:NodeShape ;
+    sh:nodeKind sh:IRI ;
+    sh:pattern "http://.*" ;
+    sh:targetClass "http://delta.linkeddata.es/def/core#VirtualNode" .
+

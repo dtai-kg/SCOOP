@@ -1,0 +1,1098 @@
+@prefix ns: <http://www.w3.org/2006/time#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<http://mapping.example.com/map_triplesMapDatetimedescription_000/shape> a sh:NodeShape ;
+    rdfs:label "descripción de fecha-tiempo"@es ;
+    sh:description "Description of date and time structured with separate values for the various elements of a calendar-clock system. The temporal reference system is fixed to Gregorian Calendar, and the range of year, month, day properties restricted to corresponding XML Schema types xsd:gYear, xsd:gMonth and xsd:gDay, respectively."@en ;
+    sh:name "Date-Time description"@en ;
+    sh:nodeKind sh:IRI ;
+    sh:pattern "http://.*" ;
+    sh:property <https://astrea.linkeddata.es/shapes#1b8b9c358950ec54ad252e3bcb16598f>,
+        <https://astrea.linkeddata.es/shapes#4e56b825e029df5d62357e22399780c7>,
+        <https://astrea.linkeddata.es/shapes#9cbd2170836b1c1f99f1092ae903eaed>,
+        <https://astrea.linkeddata.es/shapes#e00887eb7b2f63ee7d5071cdd765ba12> ;
+    sh:targetClass ns:DateTimeDescription .
+
+<http://mapping.example.com/map_triplesMapDatetimeinterval_000/shape> a sh:NodeShape ;
+    rdfs:label "Date-time interval"@en ;
+    sh:description "DateTimeInterval is a subclass of ProperInterval, defined using the multi-element DateTimeDescription."@en ;
+    sh:name "Date-time interval"@en ;
+    sh:nodeKind sh:IRI ;
+    sh:pattern "http://.*" ;
+    sh:property [ rdfs:label "Valor de 'intervalo de fecha-hora' expresado como un valor compacto."@es ;
+            sh:datatype xsd:dateTime ;
+            sh:description "Valor de 'intervalo de fecha-hora' expresado como un valor compacto."@es ;
+            sh:name "tiene fecha-hora XSD"@es ;
+            sh:nodeKind sh:Literal ;
+            sh:path ns:xsdDateTime ;
+            sh:pattern "-?([1-9][0-9]{3,}|0[0-9]{3})-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])T(([01][0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9](\\.[0-9]+)?|(24:00:00(\\.0+)?))(Z|(\\+|-)((0[0-9]|1[0-3]):[0-5][0-9]|14:00))?" ],
+        [ rdfs:label "Value of DateTimeInterval expressed as a structured value. The beginning and end of the interval coincide with the limits of the shortest element in the description."@en ;
+            sh:class ns:GeneralDateTimeDescription ;
+            sh:description "Value of DateTimeInterval expressed as a structured value. The beginning and end of the interval coincide with the limits of the shortest element in the description."@en ;
+            sh:name "has Date-Time description"@en ;
+            sh:node <http://mapping.example.com/map_triplesMapGeneraldatetimedescription_000/shape> ;
+            sh:nodeKind sh:IRI ;
+            sh:path ns:hasDateTimeDescription ] ;
+    sh:targetClass ns:DateTimeInterval .
+
+<http://mapping.example.com/map_triplesMapDuration_000/shape> a sh:NodeShape ;
+    rdfs:label "duración de tiempo" ;
+    sh:description "Duration of a temporal extent expressed as a number scaled by a temporal unit"@en ;
+    sh:name "duración de tiempo" ;
+    sh:nodeKind sh:IRI ;
+    sh:pattern "http://.*" ;
+    sh:property [ rdfs:label "Valor de una extensión temporal expresada como un número decimal escalado por una unidad de tiempo."@es ;
+            sh:datatype xsd:float ;
+            sh:description "Value of a temporal extent expressed as a decimal number scaled by a temporal unit"@en ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:name "valor numérico de duración temporal"@es ;
+            sh:nodeKind sh:Literal ;
+            sh:path ns:numericDuration ;
+            sh:pattern "(\\+|-)?([0-9]+(\\.[0-9]*)?|\\.[0-9]+)" ],
+        <https://astrea.linkeddata.es/shapes#26cef1edc28009d541e5d025108c8d51>,
+        <https://astrea.linkeddata.es/shapes#acf800bae46ae57c5e5b636dd11e0a64> ;
+    sh:targetClass ns:Duration .
+
+<http://mapping.example.com/map_triplesMapDurationdescription_000/shape> a sh:NodeShape ;
+    rdfs:label "Duration description"@en ;
+    sh:description "Description of temporal extent structured with separate values for the various elements of a calendar-clock system. The temporal reference system is fixed to Gregorian Calendar, and the range of each of the numeric properties is restricted to xsd:decimal"@en ;
+    sh:name "Duration description"@en ;
+    sh:nodeKind sh:IRI ;
+    sh:pattern "http://.*" ;
+    sh:property <https://astrea.linkeddata.es/shapes#0d11c827fe0a2d8cfa5362af73bfde8d>,
+        <https://astrea.linkeddata.es/shapes#2669dc88730551f95939781400a61fd2>,
+        <https://astrea.linkeddata.es/shapes#3d3a2a5399ff93e4975e9d961e641968>,
+        <https://astrea.linkeddata.es/shapes#8522301052690210f2d0f763e693a2bb>,
+        <https://astrea.linkeddata.es/shapes#8c5d7cf264893582483ca9dc3e2cbf11>,
+        <https://astrea.linkeddata.es/shapes#9faee879f5c6fb2805dd49d88da5dd8f>,
+        <https://astrea.linkeddata.es/shapes#ae7e373602e3f5d1f060bf51f0e34319>,
+        <https://astrea.linkeddata.es/shapes#b10af7d7804d7960dee19d3399747b79> ;
+    sh:targetClass ns:DurationDescription .
+
+<http://mapping.example.com/map_triplesMapGeneraldurationdescription_000/shape> a sh:NodeShape ;
+    rdfs:label "Generalized duration description"@en ;
+    sh:description "Description of temporal extent structured with separate values for the various elements of a calendar-clock system."@en ;
+    sh:name "Generalized duration description"@en ;
+    sh:nodeKind sh:IRI ;
+    sh:pattern "http://.*" ;
+    sh:property [ rdfs:label "Longitud de, o elemento de la longitud de, una extensión temporal expresada en segundos."@es ;
+            rdfs:seeAlso <http://www.bipm.org/en/publications/si-brochure/second.html> ;
+            sh:datatype xsd:float ;
+            sh:description "Longitud de, o elemento de la longitud de, una extensión temporal expresada en segundos."@es ;
+            sh:maxCount 1 ;
+            sh:name "duración en segundos"@es ;
+            sh:nodeKind sh:Literal ;
+            sh:path ns:seconds ;
+            sh:pattern "(\\+|-)?([0-9]+(\\.[0-9]*)?|\\.[0-9]+)" ],
+        [ rdfs:label "minutes"@en ;
+            sh:datatype xsd:float ;
+            sh:description "length, or element of, a temporal extent expressed in minutes"@en ;
+            sh:maxCount 1 ;
+            sh:name "minutos"@es ;
+            sh:nodeKind sh:Literal ;
+            sh:path ns:minutes ;
+            sh:pattern "(\\+|-)?([0-9]+(\\.[0-9]*)?|\\.[0-9]+)" ],
+        [ rdfs:label "Longitud de, o elemento de la longitud de, una extensión temporal expresada en horas."@es ;
+            sh:datatype xsd:float ;
+            sh:description "Longitud de, o elemento de la longitud de, una extensión temporal expresada en horas."@es ;
+            sh:maxCount 1 ;
+            sh:name "duración en horas"@es ;
+            sh:nodeKind sh:Literal ;
+            sh:path ns:hours ;
+            sh:pattern "(\\+|-)?([0-9]+(\\.[0-9]*)?|\\.[0-9]+)" ],
+        [ rdfs:label "duración en años"@es ;
+            sh:datatype xsd:float ;
+            sh:description "length of, or element of the length of, a temporal extent expressed in years"@en ;
+            sh:maxCount 1 ;
+            sh:name "duración en años"@es ;
+            sh:nodeKind sh:Literal ;
+            sh:path ns:years ;
+            sh:pattern "(\\+|-)?([0-9]+(\\.[0-9]*)?|\\.[0-9]+)" ],
+        [ rdfs:label "Longitud de, o elemento de la longitud de, una extensión temporal expresada en días."@es ;
+            sh:datatype xsd:float ;
+            sh:description "Longitud de, o elemento de la longitud de, una extensión temporal expresada en días."@es ;
+            sh:maxCount 1 ;
+            sh:name "duración en días"@es ;
+            sh:nodeKind sh:Literal ;
+            sh:path ns:days ;
+            sh:pattern "(\\+|-)?([0-9]+(\\.[0-9]*)?|\\.[0-9]+)" ],
+        [ rdfs:label "length of, or element of the length of, a temporal extent expressed in months"@en ;
+            sh:datatype xsd:float ;
+            sh:description "Longitud de, o elemento de la longitud de, una extensión temporal expresada en meses."@es ;
+            sh:maxCount 1 ;
+            sh:name "duración en meses"@es ;
+            sh:nodeKind sh:Literal ;
+            sh:path ns:months ;
+            sh:pattern "(\\+|-)?([0-9]+(\\.[0-9]*)?|\\.[0-9]+)" ],
+        [ rdfs:label "duración en semanas"@es ;
+            sh:datatype xsd:float ;
+            sh:description "Longitud de, o elemento de la longitud de, una extensión temporal expresada en semanas."@es ;
+            sh:maxCount 1 ;
+            sh:name "weeks duration"@en ;
+            sh:nodeKind sh:Literal ;
+            sh:path ns:weeks ;
+            sh:pattern "(\\+|-)?([0-9]+(\\.[0-9]*)?|\\.[0-9]+)" ],
+        <https://astrea.linkeddata.es/shapes#13a72396636b182446e477a5e336d9b7>,
+        <https://astrea.linkeddata.es/shapes#4c13e0c99639c7be44e125eb171d4cab> ;
+    sh:targetClass ns:GeneralDurationDescription .
+
+<http://mapping.example.com/map_triplesMapInterval_000/shape> a sh:NodeShape ;
+    rdfs:label "intervalo de tiempo"@es ;
+    sh:description "A temporal entity with an extent or duration"@en ;
+    sh:name "Time interval"@en ;
+    sh:nodeKind sh:IRI ;
+    sh:pattern "http://.*" ;
+    sh:property [ rdfs:label "An instant that falls inside the interval. It is not intended to include beginnings and ends of intervals."@en ;
+            sh:class ns:Instant ;
+            sh:description "An instant that falls inside the interval. It is not intended to include beginnings and ends of intervals."@en ;
+            sh:name "tiene instante de tiempo dentro"@es ;
+            sh:node <http://mapping.example.com/map_triplesMapInstant_000/shape> ;
+            sh:nodeKind sh:IRI ;
+            sh:path ns:inside ],
+        <https://astrea.linkeddata.es/shapes#2532894d090d3f1667f7f7b6da65df98>,
+        <https://astrea.linkeddata.es/shapes#2a6076262293386b0f5a33236dd1e1bc>,
+        <https://astrea.linkeddata.es/shapes#75b684fc1c2b1d96cee32ddf1e4e2934>,
+        <https://astrea.linkeddata.es/shapes#8d26f56ec9e75266434f08dc7f5c2047>,
+        <https://astrea.linkeddata.es/shapes#aac0fca4f06adcfd03a59ed4e468ce5d>,
+        <https://astrea.linkeddata.es/shapes#bbd81b2a447a4f83adb7050dd5ef40f9> ;
+    sh:targetClass ns:Interval .
+
+<http://mapping.example.com/map_triplesMapJanuary_000/shape> a sh:NodeShape ;
+    rdfs:label "January" ;
+    sh:name "January" ;
+    sh:nodeKind sh:IRI ;
+    sh:pattern "http://.*" ;
+    sh:property <https://astrea.linkeddata.es/shapes#4867b27706b1ad61e7b534678f3ddb91>,
+        <https://astrea.linkeddata.es/shapes#e3fac37e893a8f3ab5ed7a1eced402c4> ;
+    sh:targetClass ns:January .
+
+<http://mapping.example.com/map_triplesMapTemporalunit_000/shape> a sh:NodeShape ;
+    rdfs:label "Temporal unit"@en ;
+    sh:description "Una duración estándar, que proporciona un factor de escala para una extensión de tiempo, o la granularidad o precisión para una posición de tiempo."@es ;
+    sh:name "unidad de tiempo"@es ;
+    sh:nodeKind sh:IRI ;
+    sh:pattern "http://.*" ;
+    sh:targetClass ns:TemporalUnit .
+
+<http://mapping.example.com/map_triplesMapTrs_000/shape> a sh:NodeShape ;
+    rdfs:label "Temporal Reference System"@en ;
+    sh:description """A temporal reference system, such as a temporal coordinate system (with an origin, direction, and scale), a calendar-clock combination, or a (possibly hierarchical) ordinal system. 
+
+This is a stub class, representing the set of all temporal reference systems."""@en ;
+    sh:name "Temporal Reference System"@en ;
+    sh:nodeKind sh:IRI ;
+    sh:pattern "http://.*" ;
+    sh:targetClass ns:TRS .
+
+<http://mapping.example.com/map_triplesMapYear_000/shape> a sh:NodeShape ;
+    rdfs:label "Year"@en ;
+    sh:description "Year duration" ;
+    sh:name "Year"@en ;
+    sh:nodeKind sh:IRI ;
+    sh:pattern "http://.*" ;
+    sh:property <https://astrea.linkeddata.es/shapes#036cae4cc17fbcc9a288fd37f47658ff>,
+        <https://astrea.linkeddata.es/shapes#2e19851fb7e01cc3986fa0750f44e515>,
+        <https://astrea.linkeddata.es/shapes#3d7bf7e4491cbcd4f3f993650ac311b5>,
+        <https://astrea.linkeddata.es/shapes#66c34eaa519bc79aa0fa03ddfd08ba63>,
+        <https://astrea.linkeddata.es/shapes#6aa373a22d028ce72038972958b41a8d>,
+        <https://astrea.linkeddata.es/shapes#7c50b4631a0dfeb2244f3207f1c00cb6>,
+        <https://astrea.linkeddata.es/shapes#ff90430492959c6fd5085a112ed7184b> ;
+    sh:targetClass ns:Year .
+
+<http://mapping.example.com/map_triplesMapDayofweek_000/shape> a sh:NodeShape ;
+    rdfs:label "día de la semana"@es ;
+    sh:description "The day of week"@en ;
+    sh:name "Day of week"@en ;
+    sh:nodeKind sh:IRI ;
+    sh:pattern "http://.*" ;
+    sh:targetClass ns:DayOfWeek .
+
+<http://mapping.example.com/map_triplesMapMonthofyear_000/shape> a sh:NodeShape ;
+    rdfs:label "mes del año"@es ;
+    sh:description "The month of the year"@en ;
+    sh:name "Month of year"@en ;
+    sh:nodeKind sh:IRI ;
+    sh:pattern "http://.*" ;
+    sh:property <https://astrea.linkeddata.es/shapes#060db9e05fc47e84e224028607232ad4>,
+        <https://astrea.linkeddata.es/shapes#47427181ba878100c93867a4606fafbb>,
+        <https://astrea.linkeddata.es/shapes#587c71ce55da9098db8b3b60e58589a6>,
+        <https://astrea.linkeddata.es/shapes#62b859ca42e1e23bf6a6564d885ac9ed>,
+        <https://astrea.linkeddata.es/shapes#8b82278178b01acfed6d902b883dd791>,
+        <https://astrea.linkeddata.es/shapes#9365c5258bc110ce0005787550ae7292>,
+        <https://astrea.linkeddata.es/shapes#ad361356f94325106c2581448f2ccc15>,
+        <https://astrea.linkeddata.es/shapes#bfb63ae7ffa617b5f22c655e6dda542f> ;
+    sh:targetClass ns:MonthOfYear .
+
+<http://mapping.example.com/map_triplesMapTemporalduration_000/shape> a sh:NodeShape ;
+    rdfs:label "duración temporal"@es ;
+    sh:description "Time extent; duration of a time interval separate from its particular start position"@en ;
+    sh:name "duración temporal"@es ;
+    sh:nodeKind sh:IRI ;
+    sh:pattern "http://.*" ;
+    sh:targetClass ns:TemporalDuration .
+
+<http://mapping.example.com/map_triplesMapTemporalposition_000/shape> a sh:NodeShape ;
+    rdfs:label "posición temporal"@es ;
+    sh:description "Una posición sobre una línea de tiempo."@es ;
+    sh:name "posición temporal"@es ;
+    sh:nodeKind sh:IRI ;
+    sh:pattern "http://.*" ;
+    sh:property <https://astrea.linkeddata.es/shapes#4c13e0c99639c7be44e125eb171d4cab>,
+        <https://astrea.linkeddata.es/shapes#4f4d56e35e5114b5f3bda769dc0d8989> ;
+    sh:targetClass ns:TemporalPosition .
+
+<http://mapping.example.com/map_triplesMapTimeposition_000/shape> a sh:NodeShape ;
+    rdfs:label "posición de tiempo"@es ;
+    sh:description "A temporal position described using either a (nominal) value from an ordinal reference system, or a (numeric) value in a temporal coordinate system. "@en ;
+    sh:name "Time position"@en ;
+    sh:nodeKind sh:IRI ;
+    sh:pattern "http://.*" ;
+    sh:property [ rdfs:label "valor numérico de posición temporal"@es ;
+            sh:datatype xsd:float ;
+            sh:description "El valor (numérico) que indica posición temporal en un sistema de referencia ordinal."@es ;
+            sh:name "valor numérico de posición temporal"@es ;
+            sh:nodeKind sh:Literal ;
+            sh:path ns:numericPosition ;
+            sh:pattern "(\\+|-)?([0-9]+(\\.[0-9]*)?|\\.[0-9]+)" ],
+        [ rdfs:label "El valor (nominal) que indica posición temporal en un sistema de referencia ordinal."@es ;
+            sh:datatype xsd:string ;
+            sh:description "El valor (nominal) que indica posición temporal en un sistema de referencia ordinal."@es ;
+            sh:name "Name of temporal position"@en ;
+            sh:nodeKind sh:Literal ;
+            sh:path ns:nominalPosition ;
+            sh:pattern ".*" ] ;
+    sh:targetClass ns:TimePosition .
+
+<http://mapping.example.com/map_triplesMapTimezone_000/shape> a sh:NodeShape ;
+    rdfs:label "Time Zone"@en ;
+    sh:description """A Time Zone specifies the amount by which the local time is offset from UTC. 
+	A time zone is usually denoted geographically (e.g. Australian Eastern Daylight Time), with a constant value in a given region. 
+The region where it applies and the offset from UTC are specified by a locally recognised governing authority."""@en ;
+    sh:name "Time Zone"@en ;
+    sh:nodeKind sh:IRI ;
+    sh:pattern "http://.*" ;
+    sh:targetClass ns:TimeZone .
+
+<https://astrea.linkeddata.es/shapes#036cae4cc17fbcc9a288fd37f47658ff> a sh:PropertyShape ;
+    sh:maxCount 0 ;
+    sh:minCount 0 ;
+    sh:nodeKind sh:IRIOrLiteral ;
+    sh:path ns:weeks .
+
+<https://astrea.linkeddata.es/shapes#060db9e05fc47e84e224028607232ad4> a sh:PropertyShape ;
+    sh:maxCount 0 ;
+    sh:minCount 0 ;
+    sh:nodeKind sh:IRIOrLiteral ;
+    sh:path ns:second .
+
+<https://astrea.linkeddata.es/shapes#0d11c827fe0a2d8cfa5362af73bfde8d> a sh:PropertyShape ;
+    sh:datatype xsd:decimal ;
+    sh:nodeKind sh:IRIOrLiteral ;
+    sh:path ns:weeks .
+
+<https://astrea.linkeddata.es/shapes#1277b387effe1ea8b7cf6171d6155a1b> a sh:NodeShape ;
+    rdfs:label "Time instant"@en,
+        "instante de tiempo."@es ;
+    sh:description "A temporal entity with zero extent or duration"@en,
+        "Una entidad temporal con una extensión o duración cero."@es ;
+    sh:name "Time instant"@en,
+        "instante de tiempo."@es ;
+    sh:nodeKind sh:IRI ;
+    sh:property <https://astrea.linkeddata.es/shapes#1ee7441db13b9bb9f861a412312baac6>,
+        <https://astrea.linkeddata.es/shapes#2532894d090d3f1667f7f7b6da65df98>,
+        <https://astrea.linkeddata.es/shapes#2a6076262293386b0f5a33236dd1e1bc>,
+        <https://astrea.linkeddata.es/shapes#3f59f1b6c34ba4ed74f02d3eeb279ca7>,
+        <https://astrea.linkeddata.es/shapes#54d31883388335bc143215bf49c965ea>,
+        <https://astrea.linkeddata.es/shapes#5c065fa559ca2ddccc8a10f13b91dbaf>,
+        <https://astrea.linkeddata.es/shapes#6fdcb6fa74959cc52414f19ced544249>,
+        <https://astrea.linkeddata.es/shapes#75b684fc1c2b1d96cee32ddf1e4e2934>,
+        <https://astrea.linkeddata.es/shapes#8d26f56ec9e75266434f08dc7f5c2047>,
+        <https://astrea.linkeddata.es/shapes#90d8aef2f1bd778682f0a2b55286a36d>,
+        <https://astrea.linkeddata.es/shapes#992bd07b229ef8b467c2a8f390d8629e>,
+        <https://astrea.linkeddata.es/shapes#a631c84768ff3e5f04fb1d6567ba75be>,
+        <https://astrea.linkeddata.es/shapes#aac0fca4f06adcfd03a59ed4e468ce5d>,
+        <https://astrea.linkeddata.es/shapes#bbd81b2a447a4f83adb7050dd5ef40f9> ;
+    sh:targetClass ns:Instant .
+
+<https://astrea.linkeddata.es/shapes#1326eb12765a627b277eb7d85bd5ae27> a sh:PropertyShape ;
+    sh:maxCount 1 ;
+    sh:nodeKind sh:IRIOrLiteral ;
+    sh:path ns:day .
+
+<https://astrea.linkeddata.es/shapes#13a72396636b182446e477a5e336d9b7> a sh:PropertyShape ;
+    sh:maxCount 1 ;
+    sh:minCount 1 ;
+    sh:nodeKind sh:IRIOrLiteral ;
+    sh:path ns:hasTRS .
+
+<https://astrea.linkeddata.es/shapes#1b8b9c358950ec54ad252e3bcb16598f> a sh:PropertyShape ;
+    sh:datatype xsd:gMonth ;
+    sh:nodeKind sh:IRIOrLiteral ;
+    sh:path ns:month .
+
+<https://astrea.linkeddata.es/shapes#1ee7441db13b9bb9f861a412312baac6> a sh:PropertyShape ;
+    rdfs:label "Position of a time instant"@en,
+        "Temporal position"@en,
+        "Posición de un instante de tiempo."@es,
+        "posición temporal"@es ;
+    sh:class ns:TemporalPosition ;
+    sh:description "Position of a time instant"@en,
+        "Posición de un instante de tiempo."@es ;
+    sh:name "Temporal position"@en,
+        "posición temporal"@es ;
+    sh:nodeKind sh:BlankNodeOrIRI ;
+    sh:path ns:inTemporalPosition .
+
+<https://astrea.linkeddata.es/shapes#2669dc88730551f95939781400a61fd2> a sh:PropertyShape ;
+    sh:datatype xsd:decimal ;
+    sh:nodeKind sh:IRIOrLiteral ;
+    sh:path ns:years .
+
+<https://astrea.linkeddata.es/shapes#26cef1edc28009d541e5d025108c8d51> a sh:PropertyShape ;
+    sh:maxCount 1 ;
+    sh:minCount 1 ;
+    sh:nodeKind sh:IRIOrLiteral ;
+    sh:path ns:unitType .
+
+<https://astrea.linkeddata.es/shapes#2e19851fb7e01cc3986fa0750f44e515> a sh:PropertyShape ;
+    sh:maxCount 0 ;
+    sh:minCount 0 ;
+    sh:nodeKind sh:IRIOrLiteral ;
+    sh:path ns:minutes .
+
+<https://astrea.linkeddata.es/shapes#3d3a2a5399ff93e4975e9d961e641968> a sh:PropertyShape ;
+    sh:datatype xsd:decimal ;
+    sh:nodeKind sh:IRIOrLiteral ;
+    sh:path ns:minutes .
+
+<https://astrea.linkeddata.es/shapes#3d7bf7e4491cbcd4f3f993650ac311b5> a sh:PropertyShape ;
+    sh:maxCount 0 ;
+    sh:minCount 0 ;
+    sh:nodeKind sh:IRIOrLiteral ;
+    sh:path ns:days .
+
+<https://astrea.linkeddata.es/shapes#3f59f1b6c34ba4ed74f02d3eeb279ca7> a sh:PropertyShape ;
+    rdfs:label "Position of an instant, expressed using xsd:gYear"@en,
+        "in XSD g-Year"@en,
+        "Posición de un instante, expresado utilizando xsd:gYear."@es,
+        "en año gregoriano XSD"@es ;
+    sh:datatype xsd:gYear ;
+    sh:description "Position of an instant, expressed using xsd:gYear"@en,
+        "Posición de un instante, expresado utilizando xsd:gYear."@es ;
+    sh:name "in XSD g-Year"@en,
+        "en año gregoriano XSD"@es ;
+    sh:nodeKind sh:Literal ;
+    sh:path ns:inXSDgYear ;
+    sh:pattern "-?([1-9][0-9]{3,}|0[0-9]{3})(Z|(\\+|-)((0[0-9]|1[0-3]):[0-5][0-9]|14:00))?" .
+
+<https://astrea.linkeddata.es/shapes#41a4abdcd704a84a9e7fbe5496831ccd> a sh:PropertyShape ;
+    sh:class ns:Instant .
+
+<https://astrea.linkeddata.es/shapes#47427181ba878100c93867a4606fafbb> a sh:PropertyShape ;
+    sh:maxCount 0 ;
+    sh:minCount 0 ;
+    sh:nodeKind sh:IRIOrLiteral ;
+    sh:path ns:week .
+
+<https://astrea.linkeddata.es/shapes#4867b27706b1ad61e7b534678f3ddb91> a sh:PropertyShape ;
+    sh:hasValue ns:unitMonth ;
+    sh:nodeKind sh:IRIOrLiteral ;
+    sh:path ns:unitType .
+
+<https://astrea.linkeddata.es/shapes#4e56b825e029df5d62357e22399780c7> a sh:PropertyShape ;
+    sh:hasValue <http://www.opengis.net/def/uom/ISO-8601/0/Gregorian> ;
+    sh:nodeKind sh:IRIOrLiteral ;
+    sh:path ns:hasTRS .
+
+<https://astrea.linkeddata.es/shapes#4f4d56e35e5114b5f3bda769dc0d8989> a sh:PropertyShape ;
+    sh:maxCount 1 ;
+    sh:minCount 1 ;
+    sh:nodeKind sh:IRIOrLiteral ;
+    sh:path ns:hasTRS .
+
+<https://astrea.linkeddata.es/shapes#54d31883388335bc143215bf49c965ea> a sh:PropertyShape ;
+    rdfs:label "Position of an instant, expressed using xsd:dateTime"@en,
+        "in XSD Date-Time"@en,
+        "Posición de un instante, expresado utilizando xsd:dateTime."@es,
+        "en fecha-tiempo XSD"@es ;
+    sh:datatype xsd:dateTime ;
+    sh:description "Position of an instant, expressed using xsd:dateTime"@en,
+        "Posición de un instante, expresado utilizando xsd:dateTime."@es ;
+    sh:name "in XSD Date-Time"@en,
+        "en fecha-tiempo XSD"@es ;
+    sh:nodeKind sh:Literal ;
+    sh:path ns:inXSDDateTime ;
+    sh:pattern "-?([1-9][0-9]{3,}|0[0-9]{3})-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])T(([01][0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9](\\.[0-9]+)?|(24:00:00(\\.0+)?))(Z|(\\+|-)((0[0-9]|1[0-3]):[0-5][0-9]|14:00))?" .
+
+<https://astrea.linkeddata.es/shapes#587c71ce55da9098db8b3b60e58589a6> a sh:PropertyShape ;
+    sh:hasValue ns:unitMonth ;
+    sh:nodeKind sh:IRIOrLiteral ;
+    sh:path ns:unitType .
+
+<https://astrea.linkeddata.es/shapes#5c065fa559ca2ddccc8a10f13b91dbaf> a sh:PropertyShape ;
+    rdfs:label "Position of an instant, expressed as a temporal coordinate or nominal value"@en,
+        "Time position"@en,
+        "Posición de un instante, expresada como una coordenada temporal o un valor nominal."@es,
+        "posición de tiempo"@es ;
+    sh:class ns:TimePosition ;
+    sh:description "Position of an instant, expressed as a temporal coordinate or nominal value"@en,
+        "Posición de un instante, expresada como una coordenada temporal o un valor nominal."@es ;
+    sh:name "Time position"@en,
+        "posición de tiempo"@es ;
+    sh:nodeKind sh:BlankNodeOrIRI ;
+    sh:path ns:inTimePosition .
+
+<https://astrea.linkeddata.es/shapes#62b859ca42e1e23bf6a6564d885ac9ed> a sh:PropertyShape ;
+    sh:maxCount 0 ;
+    sh:minCount 0 ;
+    sh:nodeKind sh:IRIOrLiteral ;
+    sh:path ns:year .
+
+<https://astrea.linkeddata.es/shapes#66c34eaa519bc79aa0fa03ddfd08ba63> a sh:PropertyShape ;
+    sh:maxCount 1 ;
+    sh:minCount 1 ;
+    sh:nodeKind sh:IRIOrLiteral ;
+    sh:path ns:years .
+
+<https://astrea.linkeddata.es/shapes#6aa373a22d028ce72038972958b41a8d> a sh:PropertyShape ;
+    sh:maxCount 0 ;
+    sh:minCount 0 ;
+    sh:nodeKind sh:IRIOrLiteral ;
+    sh:path ns:hours .
+
+<https://astrea.linkeddata.es/shapes#6fdcb6fa74959cc52414f19ced544249> a sh:PropertyShape ;
+    rdfs:label "Position of an instant, expressed using xsd:dateTimeStamp"@en,
+        "in XSD Date-Time-Stamp"@en,
+        "Posición de un instante, expresado utilizando xsd:dateTimeStamp."@es,
+        "en fecha-sello de tiempo XSD"@es ;
+    sh:datatype xsd:dateTimeStamp ;
+    sh:description "Position of an instant, expressed using xsd:dateTimeStamp"@en,
+        "Posición de un instante, expresado utilizando xsd:dateTimeStamp."@es ;
+    sh:name "in XSD Date-Time-Stamp"@en,
+        "en fecha-sello de tiempo XSD"@es ;
+    sh:nodeKind sh:Literal ;
+    sh:path ns:inXSDDateTimeStamp .
+
+<https://astrea.linkeddata.es/shapes#7c50b4631a0dfeb2244f3207f1c00cb6> a sh:PropertyShape ;
+    sh:maxCount 0 ;
+    sh:minCount 0 ;
+    sh:nodeKind sh:IRIOrLiteral ;
+    sh:path ns:months .
+
+<https://astrea.linkeddata.es/shapes#8522301052690210f2d0f763e693a2bb> a sh:PropertyShape ;
+    sh:datatype xsd:decimal ;
+    sh:nodeKind sh:IRIOrLiteral ;
+    sh:path ns:months .
+
+<https://astrea.linkeddata.es/shapes#8b82278178b01acfed6d902b883dd791> a sh:PropertyShape ;
+    sh:maxCount 0 ;
+    sh:minCount 0 ;
+    sh:nodeKind sh:IRIOrLiteral ;
+    sh:path ns:day .
+
+<https://astrea.linkeddata.es/shapes#8c5d7cf264893582483ca9dc3e2cbf11> a sh:PropertyShape ;
+    sh:hasValue <http://www.opengis.net/def/uom/ISO-8601/0/Gregorian> ;
+    sh:nodeKind sh:IRIOrLiteral ;
+    sh:path ns:hasTRS .
+
+<https://astrea.linkeddata.es/shapes#90d8aef2f1bd778682f0a2b55286a36d> a sh:PropertyShape ;
+    rdfs:label "Position of an instant, expressed using a structured description"@en,
+        "in date-time description"@en,
+        "Posición de un instante, expresada utilizando una descripción estructurada."@es,
+        "en descripción de fecha-hora"@es ;
+    sh:class ns:GeneralDateTimeDescription ;
+    sh:description "Position of an instant, expressed using a structured description"@en,
+        "Posición de un instante, expresada utilizando una descripción estructurada."@es ;
+    sh:name "in date-time description"@en,
+        "en descripción de fecha-hora"@es ;
+    sh:nodeKind sh:BlankNodeOrIRI ;
+    sh:path ns:inDateTime .
+
+<https://astrea.linkeddata.es/shapes#9365c5258bc110ce0005787550ae7292> a sh:PropertyShape ;
+    sh:maxCount 0 ;
+    sh:minCount 0 ;
+    sh:nodeKind sh:IRIOrLiteral ;
+    sh:path ns:hour .
+
+<https://astrea.linkeddata.es/shapes#992bd07b229ef8b467c2a8f390d8629e> a sh:PropertyShape ;
+    rdfs:label "Position of an instant, expressed using xsd:date"@en,
+        "in XSD date"@en,
+        "Posición de un instante, expresado utilizando xsd:date."@es,
+        "en fecha XSD"@es ;
+    sh:datatype xsd:date ;
+    sh:description "Position of an instant, expressed using xsd:date"@en,
+        "Posición de un instante, expresado utilizando xsd:date."@es ;
+    sh:name "in XSD date"@en,
+        "en fecha XSD"@es ;
+    sh:nodeKind sh:Literal ;
+    sh:path ns:inXSDDate ;
+    sh:pattern "-?([1-9][0-9]{3,}|0[0-9]{3})-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])(Z|(\\+|-)((0[0-9]|1[0-3]):[0-5][0-9]|14:00))?" .
+
+<https://astrea.linkeddata.es/shapes#9cbd2170836b1c1f99f1092ae903eaed> a sh:PropertyShape ;
+    sh:datatype xsd:gYear ;
+    sh:nodeKind sh:IRIOrLiteral ;
+    sh:path ns:year .
+
+<https://astrea.linkeddata.es/shapes#9faee879f5c6fb2805dd49d88da5dd8f> a sh:PropertyShape ;
+    sh:datatype xsd:decimal ;
+    sh:nodeKind sh:IRIOrLiteral ;
+    sh:path ns:seconds .
+
+<https://astrea.linkeddata.es/shapes#a631c84768ff3e5f04fb1d6567ba75be> a sh:PropertyShape ;
+    rdfs:label "Position of an instant, expressed using xsd:gYearMonth"@en,
+        "in XSD g-YearMonth"@en,
+        "Posición de un instante, expresado utilizando xsd:gYearMonth."@es,
+        "en año-mes gregoriano XSD"@es ;
+    sh:datatype xsd:gYearMonth ;
+    sh:description "Position of an instant, expressed using xsd:gYearMonth"@en,
+        "Posición de un instante, expresado utilizando xsd:gYearMonth."@es ;
+    sh:name "in XSD g-YearMonth"@en,
+        "en año-mes gregoriano XSD"@es ;
+    sh:nodeKind sh:Literal ;
+    sh:path ns:inXSDgYearMonth ;
+    sh:pattern "-?([1-9][0-9]{3,}|0[0-9]{3})-(0[1-9]|1[0-2])(Z|(\\+|-)((0[0-9]|1[0-3]):[0-5][0-9]|14:00))?" .
+
+<https://astrea.linkeddata.es/shapes#aa6f1abc5252d8da44eb07c6883e5572> a sh:PropertyShape ;
+    sh:maxCount 1 ;
+    sh:nodeKind sh:IRIOrLiteral ;
+    sh:path ns:month .
+
+<https://astrea.linkeddata.es/shapes#ad361356f94325106c2581448f2ccc15> a sh:PropertyShape ;
+    sh:maxCount 1 ;
+    sh:minCount 1 ;
+    sh:nodeKind sh:IRIOrLiteral ;
+    sh:path ns:month .
+
+<https://astrea.linkeddata.es/shapes#ae7e373602e3f5d1f060bf51f0e34319> a sh:PropertyShape ;
+    sh:datatype xsd:decimal ;
+    sh:nodeKind sh:IRIOrLiteral ;
+    sh:path ns:days .
+
+<https://astrea.linkeddata.es/shapes#b10af7d7804d7960dee19d3399747b79> a sh:PropertyShape ;
+    sh:datatype xsd:decimal ;
+    sh:nodeKind sh:IRIOrLiteral ;
+    sh:path ns:hours .
+
+<https://astrea.linkeddata.es/shapes#bfb63ae7ffa617b5f22c655e6dda542f> a sh:PropertyShape ;
+    sh:maxCount 0 ;
+    sh:minCount 0 ;
+    sh:nodeKind sh:IRIOrLiteral ;
+    sh:path ns:minute .
+
+<https://astrea.linkeddata.es/shapes#dd2305dc1e7addb5bb7bbea76872a611> a sh:PropertyShape ;
+    sh:maxCount 1 ;
+    sh:nodeKind sh:IRIOrLiteral ;
+    sh:path ns:year .
+
+<https://astrea.linkeddata.es/shapes#e00887eb7b2f63ee7d5071cdd765ba12> a sh:PropertyShape ;
+    sh:datatype xsd:gDay ;
+    sh:nodeKind sh:IRIOrLiteral ;
+    sh:path ns:day .
+
+<https://astrea.linkeddata.es/shapes#e3e2e9a9418db674538a9e91287bc0a7> a sh:PropertyShape ;
+    sh:maxCount 1 ;
+    sh:minCount 1 ;
+    sh:nodeKind sh:IRIOrLiteral ;
+    sh:path ns:unitType .
+
+<https://astrea.linkeddata.es/shapes#e3fac37e893a8f3ab5ed7a1eced402c4> a sh:PropertyShape ;
+    sh:hasValue "--01" ;
+    sh:nodeKind sh:IRIOrLiteral ;
+    sh:path ns:month .
+
+<https://astrea.linkeddata.es/shapes#e9c6ab846bb09b9da8cebb09d5a663a2> a sh:PropertyShape ;
+    rdfs:label "An instant that falls inside the interval. It is not intended to include beginnings and ends of intervals."@en,
+        "has time instant inside"@en,
+        "Un instante que cae dentro del intervalo. Se asume que no es ni el principio ni el final de ningún intervalo."@es,
+        "tiene instante de tiempo dentro"@es ;
+    sh:class ns:Instant ;
+    sh:description "An instant that falls inside the interval. It is not intended to include beginnings and ends of intervals."@en,
+        "Un instante que cae dentro del intervalo. Se asume que no es ni el principio ni el final de ningún intervalo."@es ;
+    sh:name "has time instant inside"@en,
+        "tiene instante de tiempo dentro"@es ;
+    sh:nodeKind sh:BlankNodeOrIRI ;
+    sh:path ns:inside .
+
+<https://astrea.linkeddata.es/shapes#f1ed01ff4ad7e0110c28d4231cd9616c> a sh:NodeShape ;
+    rdfs:label "Time interval"@en,
+        "intervalo de tiempo"@es ;
+    sh:description "A temporal entity with an extent or duration"@en,
+        "Una entidad temporal con una extensión o duración."@es ;
+    sh:name "Time interval"@en,
+        "intervalo de tiempo"@es ;
+    sh:nodeKind sh:IRI ;
+    sh:property <https://astrea.linkeddata.es/shapes#2532894d090d3f1667f7f7b6da65df98>,
+        <https://astrea.linkeddata.es/shapes#2a6076262293386b0f5a33236dd1e1bc>,
+        <https://astrea.linkeddata.es/shapes#75b684fc1c2b1d96cee32ddf1e4e2934>,
+        <https://astrea.linkeddata.es/shapes#8d26f56ec9e75266434f08dc7f5c2047>,
+        <https://astrea.linkeddata.es/shapes#aac0fca4f06adcfd03a59ed4e468ce5d>,
+        <https://astrea.linkeddata.es/shapes#bbd81b2a447a4f83adb7050dd5ef40f9>,
+        <https://astrea.linkeddata.es/shapes#e9c6ab846bb09b9da8cebb09d5a663a2> ;
+    sh:targetClass ns:Interval .
+
+<https://astrea.linkeddata.es/shapes#ff90430492959c6fd5085a112ed7184b> a sh:PropertyShape ;
+    sh:maxCount 0 ;
+    sh:minCount 0 ;
+    sh:nodeKind sh:IRIOrLiteral ;
+    sh:path ns:seconds .
+
+<http://mapping.example.com/map_triplesMapGeneraldatetimedescription_000/shape> a sh:NodeShape ;
+    rdfs:label "descripción de fecha-hora generalizada"@es ;
+    sh:description "Description of date and time structured with separate values for the various elements of a calendar-clock system"@en ;
+    sh:name "Generalized date-time description"@en ;
+    sh:nodeKind sh:IRI ;
+    sh:pattern "http://.*" ;
+    sh:property [ rdfs:label "Hour position in a calendar-clock system."@en ;
+            sh:datatype xsd:integer ;
+            sh:description "Hour position in a calendar-clock system."@en ;
+            sh:maxCount 1 ;
+            sh:minInclusive 0 ;
+            sh:name "hour"@en ;
+            sh:nodeKind sh:Literal ;
+            sh:path ns:hour ;
+            sh:pattern "[\\-+]?[0-9]+" ],
+        [ rdfs:label "minuto"@es ;
+            sh:datatype xsd:integer ;
+            sh:description "Posición de minuto en un sistema calendario-reloj."@es ;
+            sh:maxCount 1 ;
+            sh:minInclusive 0 ;
+            sh:name "minute"@en ;
+            sh:nodeKind sh:Literal ;
+            sh:path ns:minute ;
+            sh:pattern "[\\-+]?[0-9]+" ],
+        [ rdfs:label "El número de día en el año."@es ;
+            sh:datatype xsd:integer ;
+            sh:description "El número de día en el año."@es ;
+            sh:maxCount 1 ;
+            sh:minInclusive 0 ;
+            sh:name "día del año"@es ;
+            sh:nodeKind sh:Literal ;
+            sh:path ns:dayOfYear ;
+            sh:pattern "[\\-+]?[0-9]+" ],
+        [ rdfs:label "día de la semana"@es ;
+            sh:class ns:DayOfWeek ;
+            sh:description "The day of week, whose value is a member of the class time:DayOfWeek"@en ;
+            sh:maxCount 1 ;
+            sh:name "día de la semana"@es ;
+            sh:node <http://mapping.example.com/map_triplesMapDayofweek_000/shape> ;
+            sh:nodeKind sh:IRI ;
+            sh:path ns:dayOfWeek ],
+        [ rdfs:label "Número de semana en el año."@es ;
+            sh:datatype xsd:integer ;
+            sh:description "Número de semana en el año."@es ;
+            sh:maxCount 1 ;
+            sh:minInclusive 0 ;
+            sh:name "week"@en ;
+            sh:nodeKind sh:Literal ;
+            sh:path ns:week ;
+            sh:pattern "[\\-+]?[0-9]+" ],
+        [ rdfs:label "month of year"@en ;
+            sh:class ns:MonthOfYear ;
+            sh:description "El mes del año, cuyo valor es un miembro de la clase 'mes del año'."@es ;
+            sh:maxCount 1 ;
+            sh:name "mes del año"@es ;
+            sh:node <http://mapping.example.com/map_triplesMapMonthofyear_000/shape> ;
+            sh:nodeKind sh:IRI ;
+            sh:path ns:monthOfYear ],
+        [ rdfs:label "segundo"@es ;
+            sh:datatype xsd:float ;
+            sh:description "Posición de segundo en un sistema calendario-reloj."@es ;
+            sh:maxCount 1 ;
+            sh:name "second"@en ;
+            sh:nodeKind sh:Literal ;
+            sh:path ns:second ;
+            sh:pattern "(\\+|-)?([0-9]+(\\.[0-9]*)?|\\.[0-9]+)" ],
+        [ rdfs:label "in time zone"@en ;
+            sh:class ns:TimeZone ;
+            sh:description "The time zone for clock elements in the temporal position"@en ;
+            sh:maxCount 1 ;
+            sh:name "in time zone"@en ;
+            sh:node <http://mapping.example.com/map_triplesMapTimezone_000/shape> ;
+            sh:nodeKind sh:IRI ;
+            sh:path ns:timeZone ],
+        <https://astrea.linkeddata.es/shapes#1326eb12765a627b277eb7d85bd5ae27>,
+        <https://astrea.linkeddata.es/shapes#aa6f1abc5252d8da44eb07c6883e5572>,
+        <https://astrea.linkeddata.es/shapes#acf800bae46ae57c5e5b636dd11e0a64>,
+        <https://astrea.linkeddata.es/shapes#dd2305dc1e7addb5bb7bbea76872a611>,
+        <https://astrea.linkeddata.es/shapes#e3e2e9a9418db674538a9e91287bc0a7> ;
+    sh:targetClass ns:GeneralDateTimeDescription .
+
+<http://mapping.example.com/map_triplesMapTemporalentity_000/shape> a sh:NodeShape ;
+    rdfs:label "Temporal entity"@en ;
+    sh:description "Un intervalo temporal o un instante."@es ;
+    sh:name "Temporal entity"@en ;
+    sh:nodeKind sh:IRI ;
+    sh:or ( _:n715576a822af41159fc289496f409e6fb1 ) ;
+    sh:pattern "http://.*" ;
+    sh:property [ rdfs:label "antes"@es ;
+            sh:class ns:TemporalEntity ;
+            sh:description "Asume una dirección en el tiempo. Si una entidad temporal T1 está antes que otra entidad temporal T2, entonces el final de T1 está antes que el principio de T2. Así, \"antes\" se puede considerar básica para instantes y derivada para intervalos."@es ;
+            sh:name "before"@en ;
+            sh:node <http://mapping.example.com/map_triplesMapTemporalentity_000/shape> ;
+            sh:nodeKind sh:IRI ;
+            sh:or _:n715576a822af41159fc289496f409e6fb12 ;
+            sh:path ns:before ],
+        [ rdfs:label "tiene fin"@es ;
+            sh:class ns:Instant ;
+            sh:description "End of a temporal entity."@en ;
+            sh:name "tiene fin"@es ;
+            sh:node <http://mapping.example.com/map_triplesMapInstant_000/shape> ;
+            sh:nodeKind sh:IRI ;
+            sh:path ns:hasEnd ],
+        [ rdfs:label "tiene duración temporal"@es ;
+            sh:class ns:TemporalDuration ;
+            sh:description "Duración de una entidad temporal."@es ;
+            sh:name "has temporal duration"@en ;
+            sh:node <http://mapping.example.com/map_triplesMapTemporalduration_000/shape> ;
+            sh:nodeKind sh:IRI ;
+            sh:path ns:hasTemporalDuration ],
+        [ rdfs:label "Extent of a temporal entity, expressed using xsd:duration"@en ;
+            sh:datatype xsd:duration ;
+            sh:description "Extent of a temporal entity, expressed using xsd:duration"@en ;
+            sh:name "tiene duración XSD"@es ;
+            sh:nodeKind sh:Literal ;
+            sh:path ns:hasXSDDuration ;
+            sh:pattern "-?P((([0-9]+Y([0-9]+M)?([0-9]+D)?|([0-9]+M)([0-9]+D)?|([0-9]+D))(T(([0-9]+H)([0-9]+M)?([0-9]+(\\.[0-9]+)?S)?|([0-9]+M)([0-9]+(\\.[0-9]+)?S)?|([0-9]+(\\.[0-9]+)?S)))?)|(T(([0-9]+H)([0-9]+M)?([0-9]+(\\.[0-9]+)?S)?|([0-9]+M)([0-9]+(\\.[0-9]+)?S)?|([0-9]+(\\.[0-9]+)?S))))" ],
+        [ rdfs:label "tiene principio"@es ;
+            sh:class ns:Instant ;
+            sh:description "Beginning of a temporal entity"@en ;
+            sh:name "has beginning"@en ;
+            sh:node <http://mapping.example.com/map_triplesMapInstant_000/shape> ;
+            sh:nodeKind sh:IRI ;
+            sh:path ns:hasBeginning ],
+        [ rdfs:label "después"@es ;
+            sh:class ns:TemporalEntity ;
+            sh:description "Asume una dirección en el tiempo. Si una entidad temporal T1 está después de otra entidad temporal T2, entonces el principio de T1 está después del final de T2."@es ;
+            sh:name "after"@en ;
+            sh:node <http://mapping.example.com/map_triplesMapTemporalentity_000/shape> ;
+            sh:nodeKind sh:IRI ;
+            sh:or _:n715576a822af41159fc289496f409e6fb11 ;
+            sh:path ns:after ] ;
+    sh:targetClass ns:TemporalEntity .
+
+<https://astrea.linkeddata.es/shapes#4c13e0c99639c7be44e125eb171d4cab> a sh:PropertyShape ;
+    rdfs:label "Temporal reference system used"@en,
+        "The temporal reference system used by a temporal position or extent description. "@en,
+        "El sistema de referencia temporal utilizado por una posición temporal o descripción de extensión."@es,
+        "sistema de referencia temporal utilizado"@es ;
+    sh:class ns:TRS ;
+    sh:description "The temporal reference system used by a temporal position or extent description. "@en,
+        "El sistema de referencia temporal utilizado por una posición temporal o descripción de extensión."@es ;
+    sh:maxCount 1 ;
+    sh:name "Temporal reference system used"@en,
+        "sistema de referencia temporal utilizado"@es ;
+    sh:path ns:hasTRS .
+
+<https://astrea.linkeddata.es/shapes#acf800bae46ae57c5e5b636dd11e0a64> a sh:PropertyShape ;
+    rdfs:label "The temporal unit which provides the precision of a date-time value or scale of a temporal extent"@en,
+        "temporal unit type"@en,
+        "La unidad de tiempo que proporciona la precisión de un valor fecha-hora o la escala de una extensión temporal."@es,
+        "tipo de unidad temporal"@es ;
+    sh:class ns:TemporalUnit ;
+    sh:description "The temporal unit which provides the precision of a date-time value or scale of a temporal extent"@en,
+        "La unidad de tiempo que proporciona la precisión de un valor fecha-hora o la escala de una extensión temporal."@es ;
+    sh:name "temporal unit type"@en,
+        "tipo de unidad temporal"@es ;
+    sh:nodeKind sh:BlankNodeOrIRI ;
+    sh:path ns:unitType .
+
+<http://mapping.example.com/map_triplesMapInstant_000/shape> a sh:NodeShape ;
+    rdfs:label "instante de tiempo."@es ;
+    sh:description "A temporal entity with zero extent or duration"@en ;
+    sh:name "Time instant"@en ;
+    sh:nodeKind sh:IRI ;
+    sh:pattern "http://.*" ;
+    sh:property [ rdfs:label "en fecha XSD"@es ;
+            sh:datatype xsd:date ;
+            sh:description "Posición de un instante, expresado utilizando xsd:date."@es ;
+            sh:name "en fecha XSD"@es ;
+            sh:nodeKind sh:Literal ;
+            sh:path ns:inXSDDate ;
+            sh:pattern "-?([1-9][0-9]{3,}|0[0-9]{3})-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])(Z|(\\+|-)((0[0-9]|1[0-3]):[0-5][0-9]|14:00))?" ],
+        [ rdfs:label "en fecha-sello de tiempo XSD"@es ;
+            sh:datatype xsd:dateTimeStamp ;
+            sh:description "Position of an instant, expressed using xsd:dateTimeStamp"@en ;
+            sh:name "in XSD Date-Time-Stamp"@en ;
+            sh:nodeKind sh:Literal ;
+            sh:path ns:inXSDDateTimeStamp ],
+        [ rdfs:label "en descripción de fecha-hora"@es ;
+            sh:class ns:GeneralDateTimeDescription ;
+            sh:description "Position of an instant, expressed using a structured description"@en ;
+            sh:name "en descripción de fecha-hora"@es ;
+            sh:node <http://mapping.example.com/map_triplesMapGeneraldatetimedescription_000/shape> ;
+            sh:nodeKind sh:IRI ;
+            sh:path ns:inDateTime ],
+        [ rdfs:label "Position of an instant, expressed using xsd:gYearMonth"@en ;
+            sh:datatype xsd:gYearMonth ;
+            sh:description "Position of an instant, expressed using xsd:gYearMonth"@en ;
+            sh:name "in XSD g-YearMonth"@en ;
+            sh:nodeKind sh:Literal ;
+            sh:path ns:inXSDgYearMonth ;
+            sh:pattern "-?([1-9][0-9]{3,}|0[0-9]{3})-(0[1-9]|1[0-2])(Z|(\\+|-)((0[0-9]|1[0-3]):[0-5][0-9]|14:00))?" ],
+        [ rdfs:label "posición temporal"@es ;
+            sh:class ns:TemporalPosition ;
+            sh:description "Posición de un instante de tiempo."@es ;
+            sh:name "Temporal position"@en ;
+            sh:node <http://mapping.example.com/map_triplesMapTemporalposition_000/shape> ;
+            sh:nodeKind sh:IRI ;
+            sh:path ns:inTemporalPosition ],
+        [ rdfs:label "Position of an instant, expressed using xsd:gYear"@en ;
+            sh:datatype xsd:gYear ;
+            sh:description "Position of an instant, expressed using xsd:gYear"@en ;
+            sh:name "en año gregoriano XSD"@es ;
+            sh:nodeKind sh:Literal ;
+            sh:path ns:inXSDgYear ;
+            sh:pattern "-?([1-9][0-9]{3,}|0[0-9]{3})(Z|(\\+|-)((0[0-9]|1[0-3]):[0-5][0-9]|14:00))?" ],
+        [ rdfs:label "Position of an instant, expressed using xsd:dateTime"@en ;
+            sh:datatype xsd:dateTime ;
+            sh:description "Position of an instant, expressed using xsd:dateTime"@en ;
+            sh:name "en fecha-tiempo XSD"@es ;
+            sh:nodeKind sh:Literal ;
+            sh:path ns:inXSDDateTime ;
+            sh:pattern "-?([1-9][0-9]{3,}|0[0-9]{3})-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])T(([01][0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9](\\.[0-9]+)?|(24:00:00(\\.0+)?))(Z|(\\+|-)((0[0-9]|1[0-3]):[0-5][0-9]|14:00))?" ],
+        [ rdfs:label "Posición de un instante, expresada como una coordenada temporal o un valor nominal."@es ;
+            sh:class ns:TimePosition ;
+            sh:description "Position of an instant, expressed as a temporal coordinate or nominal value"@en ;
+            sh:name "posición de tiempo"@es ;
+            sh:node <http://mapping.example.com/map_triplesMapTimeposition_000/shape> ;
+            sh:nodeKind sh:IRI ;
+            sh:path ns:inTimePosition ],
+        <https://astrea.linkeddata.es/shapes#2532894d090d3f1667f7f7b6da65df98>,
+        <https://astrea.linkeddata.es/shapes#2a6076262293386b0f5a33236dd1e1bc>,
+        <https://astrea.linkeddata.es/shapes#75b684fc1c2b1d96cee32ddf1e4e2934>,
+        <https://astrea.linkeddata.es/shapes#8d26f56ec9e75266434f08dc7f5c2047>,
+        <https://astrea.linkeddata.es/shapes#aac0fca4f06adcfd03a59ed4e468ce5d>,
+        <https://astrea.linkeddata.es/shapes#bbd81b2a447a4f83adb7050dd5ef40f9> ;
+    sh:targetClass ns:Instant .
+
+<https://astrea.linkeddata.es/shapes#2532894d090d3f1667f7f7b6da65df98> a sh:PropertyShape ;
+    rdfs:label "Beginning of a temporal entity"@en,
+        "has beginning"@en,
+        "Comienzo de una entidad temporal."@es,
+        "tiene principio"@es ;
+    sh:class ns:Instant ;
+    sh:description "Beginning of a temporal entity"@en,
+        "Comienzo de una entidad temporal."@es ;
+    sh:name "has beginning"@en,
+        "tiene principio"@es ;
+    sh:nodeKind sh:BlankNodeOrIRI ;
+    sh:path ns:hasBeginning .
+
+<https://astrea.linkeddata.es/shapes#2a6076262293386b0f5a33236dd1e1bc> a sh:PropertyShape ;
+    rdfs:label "Gives directionality to time. If a temporal entity T1 is after another temporal entity T2, then the beginning of T1 is after the end of T2."@en,
+        "after"@en,
+        "Asume una dirección en el tiempo. Si una entidad temporal T1 está después de otra entidad temporal T2, entonces el principio de T1 está después del final de T2."@es,
+        "después"@es ;
+    sh:class ns:TemporalEntity ;
+    sh:description "Gives directionality to time. If a temporal entity T1 is after another temporal entity T2, then the beginning of T1 is after the end of T2."@en,
+        "Asume una dirección en el tiempo. Si una entidad temporal T1 está después de otra entidad temporal T2, entonces el principio de T1 está después del final de T2."@es ;
+    sh:name "after"@en,
+        "después"@es ;
+    sh:nodeKind sh:BlankNodeOrIRI ;
+    sh:or _:n715576a822af41159fc289496f409e6fb11 ;
+    sh:path ns:after .
+
+<https://astrea.linkeddata.es/shapes#75b684fc1c2b1d96cee32ddf1e4e2934> a sh:PropertyShape ;
+    rdfs:label "Extent of a temporal entity, expressed using xsd:duration"@en,
+        "has XSD duration"@en,
+        "Extensión de una entidad temporal, expresada utilizando xsd:duration."@es,
+        "tiene duración XSD"@es ;
+    sh:datatype xsd:duration ;
+    sh:description "Extent of a temporal entity, expressed using xsd:duration"@en,
+        "Extensión de una entidad temporal, expresada utilizando xsd:duration."@es ;
+    sh:name "has XSD duration"@en,
+        "tiene duración XSD"@es ;
+    sh:nodeKind sh:Literal ;
+    sh:path ns:hasXSDDuration ;
+    sh:pattern "-?P((([0-9]+Y([0-9]+M)?([0-9]+D)?|([0-9]+M)([0-9]+D)?|([0-9]+D))(T(([0-9]+H)([0-9]+M)?([0-9]+(\\.[0-9]+)?S)?|([0-9]+M)([0-9]+(\\.[0-9]+)?S)?|([0-9]+(\\.[0-9]+)?S)))?)|(T(([0-9]+H)([0-9]+M)?([0-9]+(\\.[0-9]+)?S)?|([0-9]+M)([0-9]+(\\.[0-9]+)?S)?|([0-9]+(\\.[0-9]+)?S))))" .
+
+<https://astrea.linkeddata.es/shapes#8d26f56ec9e75266434f08dc7f5c2047> a sh:PropertyShape ;
+    rdfs:label "End of a temporal entity."@en,
+        "has end"@en,
+        "Final de una entidad temporal."@es,
+        "tiene fin"@es ;
+    sh:class ns:Instant ;
+    sh:description "End of a temporal entity."@en,
+        "Final de una entidad temporal."@es ;
+    sh:name "has end"@en,
+        "tiene fin"@es ;
+    sh:nodeKind sh:BlankNodeOrIRI ;
+    sh:path ns:hasEnd .
+
+<https://astrea.linkeddata.es/shapes#aac0fca4f06adcfd03a59ed4e468ce5d> a sh:PropertyShape ;
+    rdfs:label "Duration of a temporal entity."@en,
+        "has temporal duration"@en,
+        "Duración de una entidad temporal."@es,
+        "tiene duración temporal"@es ;
+    sh:class ns:TemporalDuration ;
+    sh:description "Duration of a temporal entity."@en,
+        "Duración de una entidad temporal."@es ;
+    sh:name "has temporal duration"@en,
+        "tiene duración temporal"@es ;
+    sh:nodeKind sh:BlankNodeOrIRI ;
+    sh:path ns:hasTemporalDuration .
+
+<https://astrea.linkeddata.es/shapes#bbd81b2a447a4f83adb7050dd5ef40f9> a sh:PropertyShape ;
+    rdfs:label "Gives directionality to time. If a temporal entity T1 is before another temporal entity T2, then the end of T1 is before the beginning of T2. Thus, \"before\" can be considered to be basic to instants and derived for intervals."@en,
+        "before"@en,
+        "Asume una dirección en el tiempo. Si una entidad temporal T1 está antes que otra entidad temporal T2, entonces el final de T1 está antes que el principio de T2. Así, \"antes\" se puede considerar básica para instantes y derivada para intervalos."@es,
+        "antes"@es ;
+    sh:class ns:TemporalEntity ;
+    sh:description "Gives directionality to time. If a temporal entity T1 is before another temporal entity T2, then the end of T1 is before the beginning of T2. Thus, \"before\" can be considered to be basic to instants and derived for intervals."@en,
+        "Asume una dirección en el tiempo. Si una entidad temporal T1 está antes que otra entidad temporal T2, entonces el final de T1 está antes que el principio de T2. Así, \"antes\" se puede considerar básica para instantes y derivada para intervalos."@es ;
+    sh:name "before"@en,
+        "antes"@es ;
+    sh:nodeKind sh:BlankNodeOrIRI ;
+    sh:or _:n715576a822af41159fc289496f409e6fb12 ;
+    sh:path ns:before .
+
+<http://mapping.example.com/map_triplesMapProperinterval_000/shape> a sh:NodeShape ;
+    rdfs:label "intervalo propio"@es ;
+    sh:description "A temporal entity with non-zero extent or duration, i.e. for which the value of the beginning and end are different"@en ;
+    sh:name "intervalo propio"@es ;
+    sh:nodeKind sh:IRI ;
+    sh:not <https://astrea.linkeddata.es/shapes#41a4abdcd704a84a9e7fbe5496831ccd> ;
+    sh:pattern "http://.*" ;
+    sh:property [ rdfs:label "Si un intervalo propio T1 es posterior a otro intervalo propio T2, entonces el principio de T1 está después que el final de T2." ;
+            sh:class ns:ProperInterval ;
+            sh:description "Si un intervalo propio T1 es posterior a otro intervalo propio T2, entonces el principio de T1 está después que el final de T2." ;
+            sh:name "intervalo posterior"@es ;
+            sh:node <http://mapping.example.com/map_triplesMapProperinterval_000/shape> ;
+            sh:nodeKind sh:IRI ;
+            sh:path ns:intervalAfter ],
+        [ rdfs:label "interval starts"@en ;
+            sh:class ns:ProperInterval ;
+            sh:description "Si un intervalo propio T1 empieza otro intervalo propio T2, entonces del principio de T1 con el principio de T2, y el final de T1 es anterior al final de T2."@es ;
+            sh:name "interval starts"@en ;
+            sh:node <http://mapping.example.com/map_triplesMapProperinterval_000/shape> ;
+            sh:nodeKind sh:IRI ;
+            sh:path ns:intervalStarts ],
+        [ rdfs:label "interval before"@en ;
+            sh:class ns:ProperInterval ;
+            sh:description "Si un intervalo propio T1 está antes que otro intervalo propio T2, entonces el final de T1 está antes que el principio de T2."@es ;
+            sh:name "intervalo anterior"@es ;
+            sh:node <http://mapping.example.com/map_triplesMapProperinterval_000/shape> ;
+            sh:nodeKind sh:IRI ;
+            sh:path ns:intervalBefore ],
+        [ rdfs:label "If a proper interval T1 is intervalMeets another proper interval T2, then the end of T1 is coincident with the beginning of T2."@en ;
+            sh:class ns:ProperInterval ;
+            sh:description "If a proper interval T1 is intervalMeets another proper interval T2, then the end of T1 is coincident with the beginning of T2."@en ;
+            sh:name "interval meets"@en ;
+            sh:node <http://mapping.example.com/map_triplesMapProperinterval_000/shape> ;
+            sh:nodeKind sh:IRI ;
+            sh:path ns:intervalMeets ],
+        [ rdfs:label "intervalo interior"@es ;
+            sh:class ns:ProperInterval ;
+            sh:description "If a proper interval T1 is intervalIn another proper interval T2, then the beginning of T1 is after the beginning of T2 or is coincident with the beginning of T2, and the end of T1 is before the end of T2, or is coincident with the end of T2, except that end of T1 may not be coincident with the end of T2 if the beginning of T1 is coincident with the beginning of T2."@en ;
+            sh:disjoint ns:intervalEquals ;
+            sh:name "interval in"@en ;
+            sh:node <http://mapping.example.com/map_triplesMapProperinterval_000/shape> ;
+            sh:nodeKind sh:IRI ;
+            sh:path ns:intervalIn ],
+        [ rdfs:label "If a proper interval T1 is intervalEquals another proper interval T2, then the beginning of T1 is coincident with the beginning of T2, and the end of T1 is coincident with the end of T2."@en ;
+            sh:class ns:ProperInterval ;
+            sh:description "If a proper interval T1 is intervalEquals another proper interval T2, then the beginning of T1 is coincident with the beginning of T2, and the end of T1 is coincident with the end of T2."@en ;
+            sh:disjoint ns:intervalIn ;
+            sh:name "interval equals"@en ;
+            sh:node <http://mapping.example.com/map_triplesMapProperinterval_000/shape> ;
+            sh:nodeKind sh:IRI ;
+            sh:path ns:intervalEquals ],
+        [ rdfs:label "intervalo encontrado por"@es ;
+            sh:class ns:ProperInterval ;
+            sh:description "If a proper interval T1 is intervalMetBy another proper interval T2, then the beginning of T1 is coincident with the end of T2."@en ;
+            sh:name "intervalo encontrado por"@es ;
+            sh:node <http://mapping.example.com/map_triplesMapProperinterval_000/shape> ;
+            sh:nodeKind sh:IRI ;
+            sh:path ns:intervalMetBy ],
+        [ rdfs:label "If a proper interval T1 is intervalOverlappedBy another proper interval T2, then the beginning of T1 is after the beginning of T2, the beginning of T1 is before the end of T2, and the end of T1 is after the end of T2."@en ;
+            sh:class ns:ProperInterval ;
+            sh:description "If a proper interval T1 is intervalOverlappedBy another proper interval T2, then the beginning of T1 is after the beginning of T2, the beginning of T1 is before the end of T2, and the end of T1 is after the end of T2."@en ;
+            sh:name "intervalo solapado por"@es ;
+            sh:node <http://mapping.example.com/map_triplesMapProperinterval_000/shape> ;
+            sh:nodeKind sh:IRI ;
+            sh:path ns:intervalOverlappedBy ],
+        [ rdfs:label "interval finishes"@en ;
+            sh:class ns:ProperInterval ;
+            sh:description "Si un intervalo propio T1 termina otro intervalo propio T2, entonces del principio de T1 está después del principio de T2, y el final de T1 coincide con el final de T2."@es ;
+            sh:name "interval finishes"@en ;
+            sh:node <http://mapping.example.com/map_triplesMapProperinterval_000/shape> ;
+            sh:nodeKind sh:IRI ;
+            sh:path ns:intervalFinishes ],
+        [ rdfs:label "Asume una dirección en el tiempo. Si una entidad temporal T1 está después de otra entidad temporal T2, entonces el principio de T1 está después del final de T2."@es ;
+            sh:class ns:ProperInterval ;
+            sh:description "Si un intervalo propio T1 se solapa con otro intervalo propio T2, entonces el principio de T1 es anterior al principio de T2, el final de T1 es posterior al principio de T2, y el final de T1 es anterior al final de T2."@es ;
+            sh:name "interval overlaps"@en ;
+            sh:node <http://mapping.example.com/map_triplesMapProperinterval_000/shape> ;
+            sh:nodeKind sh:IRI ;
+            sh:path ns:intervalOverlaps ],
+        [ rdfs:label "interval during"@en ;
+            sh:class ns:ProperInterval ;
+            sh:description "Si un intervalo propio T1 está durante otro intervalo propio T2, entonces del principio de T1 está después del principio de T2, y el final de T1 está antes que el final de T2."@es ;
+            sh:name "interval during"@en ;
+            sh:node <http://mapping.example.com/map_triplesMapProperinterval_000/shape> ;
+            sh:nodeKind sh:IRI ;
+            sh:path ns:intervalDuring ],
+        [ rdfs:label "Si un intervalo propio T1 es disjunto con otro intervalo propio T2, entonces el principio de T1 está después del final de T2, o el final de T1 está antes que el principio de T2, es decir, los intervalos no se solapan de ninguna forma, aunque su relación de orden no se conozca."@es ;
+            sh:class ns:ProperInterval ;
+            sh:description "Si un intervalo propio T1 es disjunto con otro intervalo propio T2, entonces el principio de T1 está después del final de T2, o el final de T1 está antes que el principio de T2, es decir, los intervalos no se solapan de ninguna forma, aunque su relación de orden no se conozca."@es ;
+            sh:name "interval disjoint"@en ;
+            sh:node <http://mapping.example.com/map_triplesMapProperinterval_000/shape> ;
+            sh:nodeKind sh:IRI ;
+            sh:path ns:intervalDisjoint ],
+        [ rdfs:label "interval contains"@en ;
+            sh:class ns:ProperInterval ;
+            sh:description "Si un intervalo propio T1 contiene otro intervalo propio T2, entonces el principio de T1 está antes que el principio de T2, y el final de T1 está después del final de T2."@es ;
+            sh:name "interval contains"@en ;
+            sh:node <http://mapping.example.com/map_triplesMapProperinterval_000/shape> ;
+            sh:nodeKind sh:IRI ;
+            sh:path ns:intervalContains ],
+        [ rdfs:label "interval started by"@en ;
+            sh:class ns:ProperInterval ;
+            sh:description "If a proper interval T1 is intervalStarted another proper interval T2, then the beginning of T1 is coincident with the beginning of T2, and the end of T1 is after the end of T2."@en ;
+            sh:name "interval started by"@en ;
+            sh:node <http://mapping.example.com/map_triplesMapProperinterval_000/shape> ;
+            sh:nodeKind sh:IRI ;
+            sh:path ns:intervalStartedBy ],
+        [ rdfs:label "intervalo terminado por"@es ;
+            sh:class ns:ProperInterval ;
+            sh:description "Si un intervalo propio T1 está terminado por otro intervalo propio T2, entonces el principio de T1 está antes que el principio de T2, y el final de T1 coincide con el final de T2."@es ;
+            sh:name "intervalo terminado por"@es ;
+            sh:node <http://mapping.example.com/map_triplesMapProperinterval_000/shape> ;
+            sh:nodeKind sh:IRI ;
+            sh:path ns:intervalFinishedBy ] ;
+    sh:targetClass ns:ProperInterval .
+
+_:n715576a822af41159fc289496f409e6fb3 sh:class ns:Instant ;
+    sh:path ns:hasTime .
+
+_:n715576a822af41159fc289496f409e6fb4 sh:class ns:Instant ;
+    sh:path ns:after .
+
+_:n715576a822af41159fc289496f409e6fb5 sh:class ns:Instant ;
+    sh:path ns:before .
+
+_:n715576a822af41159fc289496f409e6fb6 rdf:first [ sh:class ns:Interval ;
+            sh:path ns:hasTime ],
+        [ sh:class ns:Interval ;
+            sh:path ns:after ],
+        [ sh:class ns:Interval ;
+            sh:path ns:before ],
+        <https://astrea.linkeddata.es/shapes#f1ed01ff4ad7e0110c28d4231cd9616c> ;
+    rdf:rest () .
+
+_:n715576a822af41159fc289496f409e6fb11 rdf:first _:n715576a822af41159fc289496f409e6fb1 ;
+    rdf:rest () .
+
+_:n715576a822af41159fc289496f409e6fb12 rdf:first _:n715576a822af41159fc289496f409e6fb1 ;
+    rdf:rest () .
+
+_:n715576a822af41159fc289496f409e6fb1 rdf:first _:n715576a822af41159fc289496f409e6fb3,
+        _:n715576a822af41159fc289496f409e6fb4,
+        _:n715576a822af41159fc289496f409e6fb5,
+        <https://astrea.linkeddata.es/shapes#1277b387effe1ea8b7cf6171d6155a1b> ;
+    rdf:rest _:n715576a822af41159fc289496f409e6fb6 .
+

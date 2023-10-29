@@ -32,3 +32,10 @@ Confirmed constraint list:
 - [X] node 
 - [X] hasValue
 - [X] in
+
+## OWL2SHACL
+
+- [ ] nodeKind 
+- [ ] or
+- [ ] minCount
+- [ ] axCount

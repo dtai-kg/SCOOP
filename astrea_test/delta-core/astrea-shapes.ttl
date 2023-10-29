@@ -1,0 +1,553 @@
+@prefix :      <http://delta.linkeddata.es/def/core#> .
+@prefix sh:    <http://www.w3.org/ns/shacl#> .
+@prefix rdf:   <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix owl:   <http://www.w3.org/2002/07/owl#> .
+@prefix xml:   <http://www.w3.org/XML/1998/namespace> .
+@prefix afn:   <http://jena.apache.org/ARQ/function#> .
+@prefix xsd:   <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs:  <http://www.w3.org/2000/01/rdf-schema#> .
+
+<https://astrea.linkeddata.es/shapes#af530bb5a28868a442711e7ccf4cf736>
+        a               sh:NodeShape ;
+        rdfs:label      "Entity that interacts in the platform" , "Customer" ;
+        sh:name         "Entity that interacts in the platform" , "Customer" ;
+        sh:nodeKind     sh:IRI ;
+        sh:property     <https://astrea.linkeddata.es/shapes#56c67b00da1145de6273b73a6d80d84b> , <https://astrea.linkeddata.es/shapes#e7f576c6fdcf1d576dbb44fdb37856ae> , <https://astrea.linkeddata.es/shapes#6dabc9a2666b5a1e361c037b3b39fbb2> , <https://astrea.linkeddata.es/shapes#cb6ee0c3f8d94d12c81c725e28bcc0a6> ;
+        sh:targetClass  :Customer .
+
+<https://astrea.linkeddata.es/shapes#bcddbcf89245a445510fa6b85167bd91>
+        a               sh:NodeShape ;
+        rdfs:label      "Profit" ;
+        sh:name         "Profit" ;
+        sh:nodeKind     sh:IRI ;
+        sh:targetClass  :Profit .
+
+<https://astrea.linkeddata.es/shapes#e9b63a5ee77b2128f47adc33a6802758>
+        a            sh:PropertyShape ;
+        rdfs:label   "has currency" ;
+        sh:name      "has currency" ;
+        sh:nodeKind  sh:BlankNodeOrIRI ;
+        sh:path      :hasCurrency .
+
+<https://astrea.linkeddata.es/shapes#e6551db6b19530df67c6f1970aa6c93d>
+        a               sh:NodeShape ;
+        rdfs:label      "Price bid" ;
+        sh:description  "Bid related to price" ;
+        sh:name         "Price bid" ;
+        sh:nodeKind     sh:IRI ;
+        sh:targetClass  :PriceBid .
+
+<https://astrea.linkeddata.es/shapes#541f729d1baedf689e43c07b9cedcf91>
+        a            sh:PropertyShape ;
+        rdfs:label   "manage" ;
+        sh:name      "manage" ;
+        sh:nodeKind  sh:BlankNodeOrIRI ;
+        sh:path      :manage .
+
+<https://astrea.linkeddata.es/shapes#3efc30241700a65a510fd7819282fa19>
+        a            sh:PropertyShape ;
+        rdfs:label   "has price" ;
+        sh:name      "has price" ;
+        sh:nodeKind  sh:BlankNodeOrIRI ;
+        sh:path      :hasPrice .
+
+<https://astrea.linkeddata.es/shapes#725bbb5e075a321c737dde30db7d3a76>
+        a               sh:NodeShape ;
+        sh:nodeKind     sh:IRI ;
+        sh:targetClass  <https://w3id.org/saref#Measurement> .
+
+<https://astrea.linkeddata.es/shapes#3d2ce9fd3493681d8148abc8ffe53369>
+        a            sh:PropertyShape ;
+        rdfs:label   "state of charge" ;
+        sh:datatype  rdfs:Literal ;
+        sh:name      "state of charge" ;
+        sh:nodeKind  sh:Literal ;
+        sh:path      :stateOfCharge .
+
+<https://astrea.linkeddata.es/shapes#98e53448c83848d63859909e822ee662>
+        a            sh:PropertyShape ;
+        rdfs:label   "type" ;
+        sh:datatype  rdfs:Literal ;
+        sh:name      "type" ;
+        sh:nodeKind  sh:Literal ;
+        sh:path      :type .
+
+<https://astrea.linkeddata.es/shapes#56c67b00da1145de6273b73a6d80d84b>
+        a            sh:PropertyShape ;
+        sh:class     :Profile ;
+        sh:nodeKind  sh:IRIOrLiteral ;
+        sh:path      :hasProfile .
+
+<https://astrea.linkeddata.es/shapes#b1568c2bff3d71c66cdce702fd8ff6cb>
+        a            sh:PropertyShape ;
+        sh:datatype  xsd:dateTimeStamp ;
+        sh:nodeKind  sh:IRIOrLiteral ;
+        sh:path      :hasBeginning .
+
+<https://astrea.linkeddata.es/shapes#9c9ef44487764cc70cb49df19fb9cd3e>
+        a               sh:NodeShape ;
+        rdfs:label      "Device" ;
+        sh:description  "Device that is located in a specific place" ;
+        sh:name         "Device" ;
+        sh:nodeKind     sh:IRI ;
+        sh:property     <https://astrea.linkeddata.es/shapes#7655ce658cb4d9ca4a1396be43d5c832> , <https://astrea.linkeddata.es/shapes#5f8ec8cf4a76d909aee06207d4cee133> ;
+        sh:targetClass  :Device .
+
+<https://astrea.linkeddata.es/shapes#165feeb1511eeaaaa25efda98ffbf0ed>
+        a               sh:NodeShape ;
+        rdfs:label      "Incentive" ;
+        sh:description  "Incentive (usually monetary) associated to energy values" ;
+        sh:name         "Incentive" ;
+        sh:nodeKind     sh:IRI ;
+        sh:targetClass  :Incentive .
+
+<https://astrea.linkeddata.es/shapes#e1d72611382749881eb86502f8d8d1a2>
+        a            sh:PropertyShape ;
+        sh:nodeKind  sh:BlankNodeOrIRI ;
+        sh:path      <https://w3id.org/saref#makesMeasurement> .
+
+<https://astrea.linkeddata.es/shapes#81d7b1e0a5121b70e87a5c1b81584ae6>
+        a               sh:NodeShape ;
+        rdfs:label      "Price bid AS" ;
+        sh:description  "Price bid for ancillary services" ;
+        sh:name         "Price bid AS" ;
+        sh:nodeKind     sh:IRI ;
+        sh:targetClass  :PriceBidAS .
+
+<https://astrea.linkeddata.es/shapes#c831d0bae12f8479cae9762be4590fcc>
+        a            sh:PropertyShape ;
+        sh:datatype  xsd:dateTimeStamp ;
+        sh:nodeKind  sh:IRIOrLiteral ;
+        sh:path      :hasEnd .
+
+<https://astrea.linkeddata.es/shapes#9c4b73c41a897980644a601cffead057>
+        a            sh:PropertyShape ;
+        rdfs:label   "send bids" ;
+        sh:name      "send bids" ;
+        sh:nodeKind  sh:BlankNodeOrIRI ;
+        sh:path      :sendBids .
+
+<https://astrea.linkeddata.es/shapes#bcf86847594a0cad7aef350666f27568>
+        a            sh:PropertyShape ;
+        rdfs:label   "estimates" ;
+        sh:name      "estimates" ;
+        sh:nodeKind  sh:BlankNodeOrIRI ;
+        sh:path      :estimates .
+
+<https://astrea.linkeddata.es/shapes#23b1fe1117b1bdc2ef07471cac398b71>
+        a            sh:PropertyShape ;
+        sh:nodeKind  sh:IRIOrLiteral ;
+        sh:path      :estimates .
+
+<https://astrea.linkeddata.es/shapes#69b60efa27218069432ff4b16275b281>
+        a               sh:NodeShape ;
+        rdfs:label      "Aggregator" ;
+        sh:description  "Legal entities that aggregate the load or generation of various demand and/or generation/production units and aim at optimizing energy supply and consumption." ;
+        sh:name         "Aggregator" ;
+        sh:nodeKind     sh:IRI ;
+        sh:property     <https://astrea.linkeddata.es/shapes#f4042050e919519b239e7fda8ba68291> , <https://astrea.linkeddata.es/shapes#23b1fe1117b1bdc2ef07471cac398b71> ;
+        sh:targetClass  :Aggregator .
+
+<https://astrea.linkeddata.es/shapes#8df12fae4043c9a42cf5ec02582d73f7>
+        a            sh:PropertyShape ;
+        rdfs:label   "has beginning" ;
+        sh:name      "has beginning" ;
+        sh:nodeKind  sh:Literal ;
+        sh:path      :hasBeginning .
+
+<https://astrea.linkeddata.es/shapes#690a9bdb948125ca6eee0095ed0192f1>
+        a            sh:PropertyShape ;
+        rdfs:label   "has profile" ;
+        sh:name      "has profile" ;
+        sh:nodeKind  sh:BlankNodeOrIRI ;
+        sh:path      :hasProfile .
+
+<https://astrea.linkeddata.es/shapes#6ace7559c09873d57bb26d2909a563c6>
+        a               sh:NodeShape ;
+        sh:nodeKind     sh:IRI ;
+        sh:targetClass  <http://www.w3.org/2003/01/geo/wgs84_pos#SpatialThing> .
+
+<https://astrea.linkeddata.es/shapes#17df36668c68a2b8ece07442c26e334b>
+        a               sh:NodeShape ;
+        rdfs:label      "Device" ;
+        sh:description  "A tangible object designed to accomplish a particular task in households, common public buildings or offices. In order to accomplish this task, the device performs one or more functions. For example, a washing machine is designed to wash (task) and to accomplish this task it performs a start and stop function. Devices can be structured in categories (subclasses) that reflect the different domain in which a device is used, e.g., smart appliances domain (subclass FunctionRelated) vs. building domain (subclass BuildingRelated) vs. smart grid domain (subclass EnergyRelated). New categories can be defined,if needed, to reflect other differences, for example different points of view, such as the point of view of the device's user vs. the point of view of the device's manufacturer. We propose a list of devices that are relevant for the purpose of SAREF, but this list can be extended." ;
+        sh:name         "Device" ;
+        sh:nodeKind     sh:IRI ;
+        sh:property     <https://astrea.linkeddata.es/shapes#8db5c28465666e686048cf8d0545729c> ;
+        sh:targetClass  <https://w3id.org/saref#Device> .
+
+<https://astrea.linkeddata.es/shapes#8201de84ab7293072ff09fe677636e92>
+        a               sh:NodeShape ;
+        rdfs:label      "Prosumer" ;
+        sh:description  "Entity that consumes or produces energy" ;
+        sh:name         "Prosumer" ;
+        sh:nodeKind     sh:IRI ;
+        sh:targetClass  :Prosumer .
+
+<https://astrea.linkeddata.es/shapes#f4042050e919519b239e7fda8ba68291>
+        a            sh:PropertyShape ;
+        sh:nodeKind  sh:IRIOrLiteral ;
+        sh:path      :sendBids .
+
+<https://astrea.linkeddata.es/shapes#747af5f54bf50d0cdaca3a05c30c57d0>
+        a               sh:NodeShape ;
+        rdfs:label      "Energy" ;
+        sh:description  "A property related to measurements that are characterized  by a value measured in energy units" ;
+        sh:name         "Energy" ;
+        sh:nodeKind     sh:IRI ;
+        sh:property     <https://astrea.linkeddata.es/shapes#53187d3d96b716566ec86f7ce1322ea8> ;
+        sh:targetClass  :Energy .
+
+<https://astrea.linkeddata.es/shapes#80a493235634f257bcd9222144b30db3>
+        a            sh:PropertyShape ;
+        sh:class     :Profile ;
+        sh:nodeKind  sh:IRIOrLiteral ;
+        sh:path      :hasProfile .
+
+<https://astrea.linkeddata.es/shapes#e2931e7b6c2eb60ddface78eccba4bd9>
+        a               sh:NodeShape ;
+        sh:nodeKind     sh:IRI ;
+        sh:property     <https://astrea.linkeddata.es/shapes#e3ef6e7f528125a3f1f059f42e371de3> ;
+        sh:targetClass  <https://w3id.org/saref#Property> .
+
+<https://astrea.linkeddata.es/shapes#3296b5505610ab9b7d061a37b4bfa3b4>
+        a               sh:NodeShape ;
+        rdfs:label      "Virtual node" ;
+        sh:description  "An aggregated, virtual cluster of prosumers which will be perceived and acted upon as a single, large prosumer entity by the Aggregator. Prosumers entailed into each Virtual Node will have common characteristics, defined by their corresponding Aggregator." ;
+        sh:name         "Virtual node" ;
+        sh:nodeKind     sh:IRI ;
+        sh:property     <https://astrea.linkeddata.es/shapes#6dbd0ef304d43c9003685c83d31fa23b> , <https://astrea.linkeddata.es/shapes#239a8bc1b0f260a77ef24fe6a6761a7c> , <https://astrea.linkeddata.es/shapes#95bba5f7b86d74d670892460ac9d6632> , <https://astrea.linkeddata.es/shapes#0b3768624da73d0fb5aeff236b95998c> , <https://astrea.linkeddata.es/shapes#80a493235634f257bcd9222144b30db3> ;
+        sh:targetClass  :VirtualNode .
+
+<https://astrea.linkeddata.es/shapes#2576035720c13064c21cbe1ca6f6effb>
+        a            sh:PropertyShape ;
+        rdfs:label   "belongs to" ;
+        sh:name      "belongs to" ;
+        sh:nodeKind  sh:BlankNodeOrIRI ;
+        sh:path      :belongsTo .
+
+<https://astrea.linkeddata.es/shapes#3c34c9450ffc50184879c686354a19bd>
+        a            sh:PropertyShape ;
+        rdfs:label   "has incentive" ;
+        sh:name      "has incentive" ;
+        sh:nodeKind  sh:BlankNodeOrIRI ;
+        sh:path      :hasIncentive .
+
+<https://astrea.linkeddata.es/shapes#53187d3d96b716566ec86f7ce1322ea8>
+        a            sh:PropertyShape ;
+        sh:class     :Incentive ;
+        sh:nodeKind  sh:IRIOrLiteral ;
+        sh:path      :hasIncentive .
+
+<https://astrea.linkeddata.es/shapes#81e402ed2be6b12621e408dcddf3c4cc>
+        a            sh:PropertyShape ;
+        rdfs:label   "has reward" ;
+        sh:name      "has reward" ;
+        sh:nodeKind  sh:BlankNodeOrIRI ;
+        sh:path      :hasReward .
+
+<https://astrea.linkeddata.es/shapes#cc85afc597cf68625107e49f399a68d7>
+        a            sh:PropertyShape ;
+        sh:nodeKind  sh:BlankNodeOrIRI ;
+        sh:path      <https://w3id.org/saref#isRelatedToMeasurement> .
+
+<https://astrea.linkeddata.es/shapes#5f8ec8cf4a76d909aee06207d4cee133>
+        a            sh:PropertyShape ;
+        sh:nodeKind  sh:IRIOrLiteral ;
+        sh:path      :belongsTo .
+
+<https://astrea.linkeddata.es/shapes#e90d5e11e2f8497630d8c5002ac15c84>
+        a               sh:NodeShape ;
+        rdfs:label      "Price bid intra-day" ;
+        sh:description  "Price bid for the day" ;
+        sh:name         "Price bid intra-day" ;
+        sh:nodeKind     sh:IRI ;
+        sh:targetClass  :PriceBidIntraDay .
+
+<https://astrea.linkeddata.es/shapes#8735fb7510c31c7d783586a59bdbd2c2>
+        a            sh:PropertyShape ;
+        rdfs:label   "has end" ;
+        sh:name      "has end" ;
+        sh:nodeKind  sh:Literal ;
+        sh:path      :hasEnd .
+
+<https://astrea.linkeddata.es/shapes#0424365b6c09226ecad9f526a26d489f>
+        a               sh:NodeShape ;
+        rdfs:label      "Power" ;
+        sh:description  "A property related to measurements that are characterized  by a value measured in power units" ;
+        sh:name         "Power" ;
+        sh:nodeKind     sh:IRI ;
+        sh:targetClass  :Power .
+
+<https://astrea.linkeddata.es/report/0875920299>
+        a       <https://w3id.org/def/astrea#ReportEntry> ;
+        <https://w3id.org/def/astrea#message>
+                "Shapes generated with no errors" ;
+        <https://w3id.org/def/astrea#source>
+                "http://delta.linkeddata.es/def/core/ontology.ttl" ;
+        <https://w3id.org/def/astrea#statusCode>
+                "200"^^xsd:int .
+
+<https://astrea.linkeddata.es/shapes#c9a2e545c29239ee5f21148deeace187>
+        a            sh:PropertyShape ;
+        rdfs:label   "has timestamp" ;
+        sh:name      "has timestamp" ;
+        sh:nodeKind  sh:Literal ;
+        sh:path      :hasTimestamp .
+
+<https://astrea.linkeddata.es/shapes#d94c0e2c1b6ceda90039a71782213ea2>
+        a            sh:PropertyShape ;
+        sh:nodeKind  sh:IRIOrLiteral ;
+        sh:path      :capacitySold .
+
+<https://astrea.linkeddata.es/shapes#1f4b716b8f6628e9c868e13eec22b16a>
+        a            sh:PropertyShape ;
+        sh:nodeKind  sh:BlankNodeOrIRI ;
+        sh:path      <https://w3id.org/saref#measuresProperty> .
+
+<https://astrea.linkeddata.es/shapes#8b8c7ddf45ade3ee44978cc71cba6c05>
+        a            sh:PropertyShape ;
+        sh:nodeKind  sh:IRIOrLiteral ;
+        sh:path      :hasAggregatedProperty .
+
+<https://astrea.linkeddata.es/shapes#70b5227e84b66a911c75c01806cdeb24>
+        a            sh:PropertyShape ;
+        rdfs:label   "uses" ;
+        sh:name      "uses" ;
+        sh:nodeKind  sh:BlankNodeOrIRI ;
+        sh:path      :uses .
+
+<https://astrea.linkeddata.es/shapes#95bba5f7b86d74d670892460ac9d6632>
+        a            sh:PropertyShape ;
+        sh:class     <https://w3id.org/saref#Device> ;
+        sh:nodeKind  sh:IRIOrLiteral ;
+        sh:path      :manage .
+
+<https://astrea.linkeddata.es/shapes#9095f11e562673f4eb650b48121c2c07>
+        a            sh:PropertyShape ;
+        rdfs:label   "has aggregated property" ;
+        sh:name      "has aggregated property" ;
+        sh:nodeKind  sh:BlankNodeOrIRI ;
+        sh:path      :hasAggregatedProperty .
+
+<https://astrea.linkeddata.es/shapes#6dbd0ef304d43c9003685c83d31fa23b>
+        a            sh:PropertyShape ;
+        sh:class     :Cluster ;
+        sh:nodeKind  sh:IRIOrLiteral ;
+        sh:path      :hasCluster .
+
+<https://astrea.linkeddata.es/shapes#e7f576c6fdcf1d576dbb44fdb37856ae>
+        a            sh:PropertyShape ;
+        sh:class     :Reward ;
+        sh:nodeKind  sh:IRIOrLiteral ;
+        sh:path      :hasReward .
+
+<https://astrea.linkeddata.es/shapes#8db5c28465666e686048cf8d0545729c>
+        a            sh:PropertyShape ;
+        sh:nodeKind  sh:IRIOrLiteral ;
+        sh:path      <https://w3id.org/saref#measuresProperty> .
+
+<https://astrea.linkeddata.es/shapes#7eefdcfbd871aadfaba7f6b20716472a>
+        a            sh:PropertyShape ;
+        rdfs:label   "is allocated in" ;
+        sh:name      "is allocated in" ;
+        sh:nodeKind  sh:BlankNodeOrIRI ;
+        sh:path      :isAllocatedIn .
+
+<https://astrea.linkeddata.es/shapes#422c3bc19bde7049ee32621bc9fe56ea>
+        a            sh:PropertyShape ;
+        sh:nodeKind  sh:IRIOrLiteral ;
+        sh:path      :hasDuration .
+
+<https://astrea.linkeddata.es/shapes#bf9052440bc809caa71dfd45f4e67b29>
+        a               sh:NodeShape ;
+        rdfs:label      "Profile" ;
+        sh:description  "A specification associated to a DVN or a device to collect information about properties" ;
+        sh:name         "Profile" ;
+        sh:nodeKind     sh:IRI ;
+        sh:property     <https://astrea.linkeddata.es/shapes#422c3bc19bde7049ee32621bc9fe56ea> ;
+        sh:targetClass  :Profile .
+
+<https://astrea.linkeddata.es/shapes#fd8c4d36069c070047ef34d08b6a70af>
+        a               sh:NodeShape ;
+        rdfs:label      "Consumer" ;
+        sh:description  "Entity that consumes energy" ;
+        sh:name         "Consumer" ;
+        sh:nodeKind     sh:IRI ;
+        sh:targetClass  :Consumer .
+
+<https://astrea.linkeddata.es/shapes#cb6ee0c3f8d94d12c81c725e28bcc0a6>
+        a            sh:PropertyShape ;
+        sh:nodeKind  sh:IRIOrLiteral ;
+        sh:path      :owns .
+
+<https://astrea.linkeddata.es/shapes#3b1652b5eeb4060f7a8d17e25a1b9037>
+        a               sh:NodeShape ;
+        rdfs:label      "Bid" ;
+        sh:description  "Bid that is estimated by the aggregator" ;
+        sh:name         "Bid" ;
+        sh:nodeKind     sh:IRI ;
+        sh:property     <https://astrea.linkeddata.es/shapes#15e8fcd3df8b9536cf460ef6c90b206b> ;
+        sh:targetClass  :Bid .
+
+<http://astrea.linkeddata.es/report>
+        a       <https://w3id.org/def/astrea#ShapeReport> ;
+        <https://w3id.org/def/astrea#contains>
+                <https://astrea.linkeddata.es/shapes#3296b5505610ab9b7d061a37b4bfa3b4> , <https://astrea.linkeddata.es/shapes#747af5f54bf50d0cdaca3a05c30c57d0> , <https://astrea.linkeddata.es/shapes#15e8fcd3df8b9536cf460ef6c90b206b> , <https://astrea.linkeddata.es/shapes#3937c57f876a55d38da05c22b85fdffd> , <https://astrea.linkeddata.es/shapes#9c4b73c41a897980644a601cffead057> , <https://astrea.linkeddata.es/shapes#a71ca5215773a77a9ac1c3b8e87be927> , <https://astrea.linkeddata.es/shapes#541f729d1baedf689e43c07b9cedcf91> , <https://astrea.linkeddata.es/shapes#b1568c2bff3d71c66cdce702fd8ff6cb> , <https://astrea.linkeddata.es/shapes#bcddbcf89245a445510fa6b85167bd91> , <https://astrea.linkeddata.es/shapes#1f4b716b8f6628e9c868e13eec22b16a> , <https://astrea.linkeddata.es/shapes#8db5c28465666e686048cf8d0545729c> , <https://astrea.linkeddata.es/shapes#2482c9f878541d01ce71c79a854f1c8e> , <https://astrea.linkeddata.es/shapes#422c3bc19bde7049ee32621bc9fe56ea> , <https://astrea.linkeddata.es/shapes#6ace7559c09873d57bb26d2909a563c6> , <https://astrea.linkeddata.es/shapes#e2931e7b6c2eb60ddface78eccba4bd9> , <https://astrea.linkeddata.es/shapes#f427fa8c429cbe57fac554322d92c56a> , <https://astrea.linkeddata.es/shapes#cb6ee0c3f8d94d12c81c725e28bcc0a6> , <https://astrea.linkeddata.es/shapes#fe675bd455c346602d8e51291a519f5c> , <https://astrea.linkeddata.es/shapes#690a9bdb948125ca6eee0095ed0192f1> , <https://astrea.linkeddata.es/shapes#0b3768624da73d0fb5aeff236b95998c> , <https://astrea.linkeddata.es/shapes#81d7b1e0a5121b70e87a5c1b81584ae6> , <https://astrea.linkeddata.es/shapes#9095f11e562673f4eb650b48121c2c07> , <https://astrea.linkeddata.es/shapes#2eb40bec10fb3e156483c651734a26e8> , <https://astrea.linkeddata.es/shapes#165feeb1511eeaaaa25efda98ffbf0ed> , <https://astrea.linkeddata.es/shapes#3b1652b5eeb4060f7a8d17e25a1b9037> , <https://astrea.linkeddata.es/shapes#8b8c7ddf45ade3ee44978cc71cba6c05> , <https://astrea.linkeddata.es/shapes#53187d3d96b716566ec86f7ce1322ea8> , <https://astrea.linkeddata.es/shapes#e90d5e11e2f8497630d8c5002ac15c84> , <https://astrea.linkeddata.es/shapes#e9b63a5ee77b2128f47adc33a6802758> , <https://astrea.linkeddata.es/shapes#2c76513ce43bdbce876e88e109939a4a> , <https://astrea.linkeddata.es/shapes#239a8bc1b0f260a77ef24fe6a6761a7c> , <https://astrea.linkeddata.es/shapes#e1d72611382749881eb86502f8d8d1a2> , <https://astrea.linkeddata.es/shapes#01c784d9164088cbf796da9dbdc193ab> , <https://astrea.linkeddata.es/shapes#8fe54aa42ad8d81178ea3cc5b9b5fab0> , <https://astrea.linkeddata.es/shapes#7655ce658cb4d9ca4a1396be43d5c832> , <https://astrea.linkeddata.es/shapes#6c13b69c36550d6e46eee47d07af8d9a> , <https://astrea.linkeddata.es/shapes#95bba5f7b86d74d670892460ac9d6632> , <https://astrea.linkeddata.es/shapes#3c34c9450ffc50184879c686354a19bd> , <https://astrea.linkeddata.es/shapes#e7f576c6fdcf1d576dbb44fdb37856ae> , <https://astrea.linkeddata.es/shapes#bcf86847594a0cad7aef350666f27568> , <https://astrea.linkeddata.es/shapes#cfc2f7ac59d0b076ccff620e45c99fdf> , <https://astrea.linkeddata.es/shapes#3d2ce9fd3493681d8148abc8ffe53369> , <https://astrea.linkeddata.es/shapes#8735fb7510c31c7d783586a59bdbd2c2> , <https://astrea.linkeddata.es/shapes#06c9823513b41aa39fe4fe60e1e85d25> , <https://astrea.linkeddata.es/shapes#9c9ef44487764cc70cb49df19fb9cd3e> , <https://astrea.linkeddata.es/shapes#2ceb390a2f05c66f475f65ddf9dc2189> , <https://astrea.linkeddata.es/shapes#fd8c4d36069c070047ef34d08b6a70af> , <https://astrea.linkeddata.es/shapes#23b1fe1117b1bdc2ef07471cac398b71> , <https://astrea.linkeddata.es/shapes#bf9052440bc809caa71dfd45f4e67b29> , <https://astrea.linkeddata.es/shapes#6dabc9a2666b5a1e361c037b3b39fbb2> , <https://astrea.linkeddata.es/shapes#413146ddc4e151969aedd8b06090d037> , <https://astrea.linkeddata.es/shapes#e6551db6b19530df67c6f1970aa6c93d> , <https://astrea.linkeddata.es/shapes#7444e97fb73a22d41db45eed1383699f> , <https://astrea.linkeddata.es/shapes#98e53448c83848d63859909e822ee662> , <https://astrea.linkeddata.es/shapes#56c67b00da1145de6273b73a6d80d84b> , <https://astrea.linkeddata.es/shapes#3efc30241700a65a510fd7819282fa19> , <https://astrea.linkeddata.es/shapes#81e402ed2be6b12621e408dcddf3c4cc> , <https://astrea.linkeddata.es/shapes#8201de84ab7293072ff09fe677636e92> , <https://astrea.linkeddata.es/shapes#f4042050e919519b239e7fda8ba68291> , <https://astrea.linkeddata.es/shapes#c831d0bae12f8479cae9762be4590fcc> , <https://astrea.linkeddata.es/shapes#80a493235634f257bcd9222144b30db3> , <https://astrea.linkeddata.es/shapes#d94c0e2c1b6ceda90039a71782213ea2> , <https://astrea.linkeddata.es/shapes#69b60efa27218069432ff4b16275b281> , <https://astrea.linkeddata.es/shapes#e3ef6e7f528125a3f1f059f42e371de3> , <https://astrea.linkeddata.es/shapes#f2e6b95f3e405730c1d04aaded5da7cf> , <https://astrea.linkeddata.es/shapes#af530bb5a28868a442711e7ccf4cf736> , <https://astrea.linkeddata.es/shapes#7eefdcfbd871aadfaba7f6b20716472a> , <https://astrea.linkeddata.es/shapes#0424365b6c09226ecad9f526a26d489f> , <https://astrea.linkeddata.es/shapes#17df36668c68a2b8ece07442c26e334b> , <https://astrea.linkeddata.es/shapes#cc85afc597cf68625107e49f399a68d7> , <https://astrea.linkeddata.es/shapes#2576035720c13064c21cbe1ca6f6effb> , <https://astrea.linkeddata.es/shapes#5f8ec8cf4a76d909aee06207d4cee133> , <https://astrea.linkeddata.es/shapes#725bbb5e075a321c737dde30db7d3a76> , <https://astrea.linkeddata.es/shapes#3132020a7b2f6e7d394eb2741be51927> , <https://astrea.linkeddata.es/shapes#8df12fae4043c9a42cf5ec02582d73f7> , <https://astrea.linkeddata.es/shapes#70b5227e84b66a911c75c01806cdeb24> , <https://astrea.linkeddata.es/shapes#c9a2e545c29239ee5f21148deeace187> , <https://astrea.linkeddata.es/shapes#6dbd0ef304d43c9003685c83d31fa23b> ;
+        <https://w3id.org/def/astrea#generatedShapesFrom>
+                <https://astrea.linkeddata.es/report/0875920299> .
+
+<https://astrea.linkeddata.es/shapes#f2e6b95f3e405730c1d04aaded5da7cf>
+        a               sh:NodeShape ;
+        rdfs:label      "Load" ;
+        sh:description  "A property related to measurements that are characterized  by a value measured in energy units. It represents the load needed for a device to init" ;
+        sh:name         "Load" ;
+        sh:nodeKind     sh:IRI ;
+        sh:targetClass  :Load .
+
+<https://astrea.linkeddata.es/shapes#7444e97fb73a22d41db45eed1383699f>
+        a               sh:NodeShape ;
+        rdfs:label      "Generation" ;
+        sh:description  "A property related to measurements that are characterized  by a value measured in generation units. It represents the energy produced." ;
+        sh:name         "Generation" ;
+        sh:nodeKind     sh:IRI ;
+        sh:targetClass  :Generation .
+
+<https://astrea.linkeddata.es/shapes#413146ddc4e151969aedd8b06090d037>
+        a               sh:NodeShape ;
+        rdfs:label      "Time interval" ;
+        sh:description  "Interval of time that indicates the active time of a bid or profile" ;
+        sh:name         "Time interval" ;
+        sh:nodeKind     sh:IRI ;
+        sh:property     <https://astrea.linkeddata.es/shapes#c831d0bae12f8479cae9762be4590fcc> , <https://astrea.linkeddata.es/shapes#b1568c2bff3d71c66cdce702fd8ff6cb> ;
+        sh:targetClass  :TimeInterval .
+
+<https://astrea.linkeddata.es/shapes#3132020a7b2f6e7d394eb2741be51927>
+        a               sh:NodeShape ;
+        sh:nodeKind     sh:IRI ;
+        sh:targetClass  <https://w3id.org/saref#Price> .
+
+<https://astrea.linkeddata.es/shapes#239a8bc1b0f260a77ef24fe6a6761a7c>
+        a            sh:PropertyShape ;
+        sh:nodeKind  sh:IRIOrLiteral ;
+        sh:path      :isAllocatedIn .
+
+<https://astrea.linkeddata.es/shapes#2eb40bec10fb3e156483c651734a26e8>
+        a               sh:NodeShape ;
+        rdfs:label      "Energy market" ;
+        sh:name         "Energy market" ;
+        sh:nodeKind     sh:IRI ;
+        sh:property     <https://astrea.linkeddata.es/shapes#06c9823513b41aa39fe4fe60e1e85d25> ;
+        sh:targetClass  :EnergyMarket .
+
+<https://astrea.linkeddata.es/shapes#3937c57f876a55d38da05c22b85fdffd>
+        a            sh:PropertyShape ;
+        rdfs:label   "activates" ;
+        sh:name      "activates" ;
+        sh:nodeKind  sh:BlankNodeOrIRI ;
+        sh:path      :activates .
+
+<https://astrea.linkeddata.es/shapes#2c76513ce43bdbce876e88e109939a4a>
+        a               sh:NodeShape ;
+        rdfs:label      "Reward" ;
+        sh:description  "Reward associated to the customers that is given after using the engagement tools" ;
+        sh:name         "Reward" ;
+        sh:nodeKind     sh:IRI ;
+        sh:targetClass  :Reward .
+
+<https://astrea.linkeddata.es/shapes#8fe54aa42ad8d81178ea3cc5b9b5fab0>
+        a            sh:PropertyShape ;
+        rdfs:label   "has duration" ;
+        sh:name      "has duration" ;
+        sh:nodeKind  sh:BlankNodeOrIRI ;
+        sh:path      :hasDuration .
+
+<https://astrea.linkeddata.es/shapes#15e8fcd3df8b9536cf460ef6c90b206b>
+        a            sh:PropertyShape ;
+        sh:nodeKind  sh:IRIOrLiteral ;
+        sh:path      :hasDuration .
+
+<https://astrea.linkeddata.es/shapes#fe675bd455c346602d8e51291a519f5c>
+        a               sh:NodeShape ;
+        sh:nodeKind     sh:IRI ;
+        sh:property     <https://astrea.linkeddata.es/shapes#8b8c7ddf45ade3ee44978cc71cba6c05> ;
+        sh:targetClass  :Cluster .
+
+<https://astrea.linkeddata.es/shapes#01c784d9164088cbf796da9dbdc193ab>
+        a               sh:NodeShape ;
+        rdfs:label      "Price bid day ahead" ;
+        sh:description  "Bid price for the next day" ;
+        sh:name         "Price bid day ahead" ;
+        sh:nodeKind     sh:IRI ;
+        sh:targetClass  :PriceBidDayAhead .
+
+<https://astrea.linkeddata.es/shapes#0b3768624da73d0fb5aeff236b95998c>
+        a            sh:PropertyShape ;
+        sh:nodeKind  sh:IRIOrLiteral ;
+        sh:path      :uses .
+
+<https://astrea.linkeddata.es/shapes#cfc2f7ac59d0b076ccff620e45c99fdf>
+        a               sh:NodeShape ;
+        rdfs:label      "Flexibility" ;
+        sh:description  "Flexibility is a property that indicates the ability to increase or reduce the production of power plants or the consumption of demand processes" ;
+        sh:name         "Flexibility" ;
+        sh:nodeKind     sh:IRI ;
+        sh:targetClass  :Flexibility .
+
+<https://astrea.linkeddata.es/shapes#2482c9f878541d01ce71c79a854f1c8e>
+        a            sh:PropertyShape ;
+        rdfs:label   "owns" ;
+        sh:name      "owns" ;
+        sh:nodeKind  sh:BlankNodeOrIRI ;
+        sh:path      :owns .
+
+<https://astrea.linkeddata.es/shapes#6c13b69c36550d6e46eee47d07af8d9a>
+        a               sh:NodeShape ;
+        rdfs:label      "Flexibility bid" ;
+        sh:description  "Bid related to energy  flexibility" ;
+        sh:name         "Flexibility bid" ;
+        sh:nodeKind     sh:IRI ;
+        sh:property     <https://astrea.linkeddata.es/shapes#d94c0e2c1b6ceda90039a71782213ea2> ;
+        sh:targetClass  :FlexibilityBid .
+
+<https://astrea.linkeddata.es/shapes#f427fa8c429cbe57fac554322d92c56a>
+        a               sh:NodeShape ;
+        rdfs:label      "Property" ;
+        sh:name         "Property" ;
+        sh:nodeKind     sh:IRI ;
+        sh:targetClass  :Property .
+
+<https://astrea.linkeddata.es/shapes#2ceb390a2f05c66f475f65ddf9dc2189>
+        a            sh:PropertyShape ;
+        rdfs:label   "has cluster" ;
+        sh:name      "has cluster" ;
+        sh:nodeKind  sh:BlankNodeOrIRI ;
+        sh:path      :hasCluster .
+
+<https://astrea.linkeddata.es/shapes#06c9823513b41aa39fe4fe60e1e85d25>
+        a            sh:PropertyShape ;
+        sh:nodeKind  sh:IRIOrLiteral ;
+        sh:path      :activates .
+
+<https://astrea.linkeddata.es/shapes#a71ca5215773a77a9ac1c3b8e87be927>
+        a            sh:PropertyShape ;
+        rdfs:label   "capacity sold" ;
+        sh:name      "capacity sold" ;
+        sh:nodeKind  sh:Literal ;
+        sh:path      :capacitySold .
+
+<https://astrea.linkeddata.es/shapes#6dabc9a2666b5a1e361c037b3b39fbb2>
+        a            sh:PropertyShape ;
+        sh:nodeKind  sh:IRIOrLiteral ;
+        sh:path      :type .
+
+<https://astrea.linkeddata.es/shapes#e3ef6e7f528125a3f1f059f42e371de3>
+        a            sh:PropertyShape ;
+        sh:class     <https://w3id.org/saref#Measurement> ;
+        sh:nodeKind  sh:IRIOrLiteral ;
+        sh:path      <https://w3id.org/saref#isRelatedToMeasurement> .
+
+<https://astrea.linkeddata.es/shapes#7655ce658cb4d9ca4a1396be43d5c832>
+        a            sh:PropertyShape ;
+        sh:nodeKind  sh:IRIOrLiteral ;
+        sh:path      :stateOfCharge .

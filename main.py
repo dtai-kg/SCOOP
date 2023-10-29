@@ -6,6 +6,7 @@ import uuid
 import time
 import datetime
 from rdflib import Graph
+from pyshacl import validate
 from src.shape_integration import ShapeIntegration
 
 if __name__ == "__main__":
@@ -22,12 +23,20 @@ if __name__ == "__main__":
 
     # Read shapes
     shapes = []
+    validation_shape_graph = Graph().parse("shacl-shacl.ttl", format="turtle")
     for shape in args.shapes:
+        print("Start reading shape %s", shape)
         try:
-            shapes.append(Graph().parse(shape, format='turtle'))
+            g = Graph().parse(shape, format='turtle')
+            r = validate(g, shacl_graph=validation_shape_graph, ont_graph=None,
+                            inference='rdfs', abort_on_first=False, meta_shacl=False, debug=False)
+            if not r[0]:
+                print(r[2])
+                sys.exit(1)
         except:
             logging.error('Error reading shape %s', shape)
             sys.exit(1)
+        shapes.append(g)
 
     # Shape integration
     start_time = time.time()

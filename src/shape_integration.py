@@ -1,4 +1,5 @@
 import os
+import sys
 from pathlib import Path
 from typing import List, Dict
 from rdflib import Graph, Namespace, URIRef, Literal, BNode
@@ -46,11 +47,12 @@ class ShapeIntegration:
                 for identifier_current in identifiers_current:
                     constraints_current = self.getConstraints(self.SHACL, identifier_current, NodeShapes_current)
                     path_current = target_current[(target, target_value)][identifier_current]
-                    
+                    # print("identifier_current: ", identifier_current)                   
                     for identifier_add in identifiers_add:
                         constraints_add = self.getConstraints(shape_add, identifier_add, NodeShapes_add)
                         # Add constraints in the shape that has target declaration
                         for constraint_add, constraint_add_value in constraints_add.items():
+                            # print("constraint_add: ", constraint_add, constraint_add_value)
                             if constraint_add_value == constraints_current.get(constraint_add, None):
                                 continue
                             else:
@@ -91,10 +93,15 @@ class ShapeIntegration:
                 if target == self.shaclNS.targetClass or target == self.shaclNS.targetNode:
                     for identifier_add in identifiers_add:
                         self.addShape(shape_add, identifier_add)
+
                 elif target == self.shaclNS.targetSubjectsOf:
-                    pass # TODO NS+PS conflict checking
+                    # TODO NS+PS conflict checking
+                    for identifier_add in identifiers_add:
+                        self.addShape(shape_add, identifier_add)
                 elif target == self.shaclNS.targetObjectsOf:
-                    pass # TODO PS conflict checking
+                    # TODO PS conflict checking
+                    for identifier_add in identifiers_add:
+                        self.addShape(shape_add, identifier_add)
 
             self.writeShapeToFile()
 
@@ -334,8 +341,8 @@ class ShapeIntegration:
             In_merge = list(set(In_current+In_add))
 
             self.transformList(node_current, In_merge)
-
-        return True
+        else:
+            self.SHACL.add((identifier_path_current, constraint_add, constraint_add_value))
 
     def findList(self, g, node_current, rdflist):
         for s, p, o in g:

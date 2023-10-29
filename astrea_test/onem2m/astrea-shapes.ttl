@@ -1,0 +1,605 @@
+@prefix :      <http://www.w3.org/2002/07/owl#> .
+@prefix sh:    <http://www.w3.org/ns/shacl#> .
+@prefix owl:   <http://www.w3.org/2002/07/owl#> .
+@prefix rdf:   <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix afn:   <http://jena.apache.org/ARQ/function#> .
+@prefix xsd:   <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs:  <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix BO:    <https://git.onem2m.org/MAS/BaseOntology/raw/master/base_ontology.owl#> .
+
+<https://astrea.linkeddata.es/shapes#fecaf9bb005c1235369c7485a3770f56>
+        a                       sh:PropertyShape ;
+        sh:nodeKind             sh:IRIOrLiteral ;
+        sh:path                 BO:hasFunction ;
+        sh:qualifiedMinCount    "1"^^xsd:nonNegativeInteger ;
+        sh:qualifiedValueShape  [ sh:class  BO:Function ] .
+
+<https://astrea.linkeddata.es/shapes#9450301b7cb0e04477dfd1e468c92233>
+        a               sh:PropertyShape ;
+        rdfs:label      "This data property contains a oneM2M CRUD Method through which the oneM2M instantiation of the value of the Variable can be manipulated by the communicating entity.\n - It contains the string \"RETRIEVE\" for retrieving the variable when the oneM2M resource is of type <container> or <flexContainer>. This applies to sub-classes: OperationOutput, OutputDatapoint, ThingProperty and OperationState\n - It contains the string \"CREATE\" for updating the variable when the oneM2M resource is of type <container>. This applies to sub-classes: OperationInput, InputDatapoint, ThingProperty\n - It contains the string \"UPDATE\" for updationg the variable when the oneM2M resource is of type <flexContainer>. This applies to sub-classes: OperationInput, InputDatapoint, ThingProperty" ;
+        sh:datatype     rdf:PlainLiteral ;
+        sh:description  "This data property contains a oneM2M CRUD Method through which the oneM2M instantiation of the value of the Variable can be manipulated by the communicating entity.\n - It contains the string \"RETRIEVE\" for retrieving the variable when the oneM2M resource is of type <container> or <flexContainer>. This applies to sub-classes: OperationOutput, OutputDatapoint, ThingProperty and OperationState\n - It contains the string \"CREATE\" for updating the variable when the oneM2M resource is of type <container>. This applies to sub-classes: OperationInput, InputDatapoint, ThingProperty\n - It contains the string \"UPDATE\" for updationg the variable when the oneM2M resource is of type <flexContainer>. This applies to sub-classes: OperationInput, InputDatapoint, ThingProperty" ;
+        sh:nodeKind     sh:Literal ;
+        sh:path         BO:oneM2MMethod .
+
+<https://astrea.linkeddata.es/shapes#9364600e8b0e179a51ec34f453e8bd77>
+        a                sh:PropertyShape ;
+        rdfs:label       "This Data Property specifies the exact number of characters or list items allowed of the SimpleTypeVariable. Must be equal to or greater than zero.\nit applies to: \n-\txs:string" ;
+        sh:datatype      xsd:nonNegativeInteger ;
+        sh:description   "This Data Property specifies the exact number of characters or list items allowed of the SimpleTypeVariable. Must be equal to or greater than zero.\nit applies to: \n-\txs:string" ;
+        sh:minInclusive  0 ;
+        sh:nodeKind      sh:Literal ;
+        sh:path          BO:hasDataRestriction_length ;
+        sh:pattern       "[\\-+]?[0-9]+" .
+
+<https://astrea.linkeddata.es/shapes#ad427f6f45e2cd6b5619801e24559975>
+        a               sh:PropertyShape ;
+        rdfs:label      "A structured Variable can be composed of (sub-)Variables" ;
+        sh:class        BO:Variable ;
+        sh:description  "A structured Variable can be composed of (sub-)Variables" ;
+        sh:nodeKind     sh:BlankNodeOrIRI ;
+        sh:path         BO:hasSubStructure .
+
+<https://astrea.linkeddata.es/shapes#2f6a3f38532608ac76074fca0cd06714>
+        a               sh:NodeShape ;
+        sh:description  "OperationOutput (Class: OperationOutput) describes an output of an Operation. OperationOutput also describes the output of a Command. \n - An Operation/Command may have multiple OperationInputs and/or OperationOutputs" ;
+        sh:nodeKind     sh:IRI ;
+        sh:targetClass  BO:OperationOutput .
+
+<https://astrea.linkeddata.es/shapes#6c9f74f15558df0d8e89fa00660b964f>
+        a               sh:PropertyShape ;
+        rdfs:label      "Note:\nIf an Operation is mandatory for a Service then \nthe cardinality of hasOperation must be - min 1." , "A Service communicates by means of Operations over the network to transmit data to/from other devices" ;
+        sh:class        BO:Operation ;
+        sh:description  "Note:\nIf an Operation is mandatory for a Service then \nthe cardinality of hasOperation must be - min 1." , "A Service communicates by means of Operations over the network to transmit data to/from other devices" ;
+        sh:nodeKind     sh:BlankNodeOrIRI ;
+        sh:path         BO:hasOperation .
+
+<https://astrea.linkeddata.es/shapes#676e02d819f9c65530e503dcdf6156b4>
+        a               sh:PropertyShape ;
+        rdfs:label      "This Data Property specifies the  upper bounds for numeric values (the value must be less than or equal to this value) allowed for the SimpleTypeVariable. \nIt applies to: \n-\txs:integer \n-\txs:float" ;
+        sh:description  "This Data Property specifies the  upper bounds for numeric values (the value must be less than or equal to this value) allowed for the SimpleTypeVariable. \nIt applies to: \n-\txs:integer \n-\txs:float" ;
+        sh:nodeKind     sh:Literal ;
+        sh:path         BO:hasDataRestriction_maxInclusive .
+
+<https://astrea.linkeddata.es/shapes#b4f5961aa6b9c2a8b6234eaf21fbf8d7>
+        a               sh:PropertyShape ;
+        rdfs:label      "Identification of the physical properties of a Area Network technology (e.g. IEEE_802_15_4_2003_2_4GHz)." ;
+        sh:datatype     rdf:PlainLiteral ;
+        sh:description  "Identification of the physical properties of a Area Network technology (e.g. IEEE_802_15_4_2003_2_4GHz)." ;
+        sh:nodeKind     sh:Literal ;
+        sh:path         BO:netTechnologyPhysicalStandard .
+
+<https://astrea.linkeddata.es/shapes#cbaaf29130ca74176930b88af7b5dfd8>
+        a               sh:NodeShape ;
+        sh:description  "Structured type variables are variables that are not SimpleType Variables" ;
+        sh:nodeKind     sh:IRI ;
+        sh:property     <https://astrea.linkeddata.es/shapes#ad427f6f45e2cd6b5619801e24559975> , <https://astrea.linkeddata.es/shapes#32460bd40b16f2d138aac40bad125294> ;
+        sh:targetClass  BO:StructuredTypeVariable .
+
+<https://astrea.linkeddata.es/shapes#abc7338c37bf9495de6642502aae4f3d>
+        a               sh:PropertyShape ;
+        rdfs:label      "The Functionalities of a Device are exposed in the network as Services of the Device" ;
+        sh:class        BO:Service ;
+        sh:description  "The Functionalities of a Device are exposed in the network as Services of the Device" ;
+        sh:nodeKind     sh:BlankNodeOrIRI ;
+        sh:path         BO:hasService .
+
+<https://astrea.linkeddata.es/shapes#2e832a8d67e441cf7afccf0f0bc50bd6>
+        a            sh:PropertyShape ;
+        sh:datatype  xsd:boolean ;
+        sh:nodeKind  sh:Literal ;
+        sh:path      BO:isDataList ;
+        sh:pattern   "true|false|0|1" .
+
+<https://astrea.linkeddata.es/shapes#25b411da26d9f41b7d1234711762f80b>
+        a               sh:PropertyShape ;
+        rdfs:label      "This data property contains a description of a Thing. \nNote: Data Property: hasThingAnnotation should be used in cases where the annotation data do not change very often and/or where they are usually not the subject of semantic operations  (e.g. semantic discovery). Otherwise Object Propety: hasThingPropery should be used\nE.g. a certain type of Device could have the model (as a numeric description) or the name of the manufacturer (as a textual annotation)" ;
+        sh:datatype     rdfs:Literal ;
+        sh:description  "This data property contains a description of a Thing. \nNote: Data Property: hasThingAnnotation should be used in cases where the annotation data do not change very often and/or where they are usually not the subject of semantic operations  (e.g. semantic discovery). Otherwise Object Propety: hasThingPropery should be used\nE.g. a certain type of Device could have the model (as a numeric description) or the name of the manufacturer (as a textual annotation)" ;
+        sh:nodeKind     sh:Literal ;
+        sh:path         BO:hasThingAnnotation .
+
+<https://astrea.linkeddata.es/shapes#22bd2e6a043e58a2d3644c817895ee26>
+        a               sh:PropertyShape ;
+        rdfs:label      "Identification of a profile (e.g. ZigBee_HA) of a Area Network technology." ;
+        sh:datatype     rdf:PlainLiteral ;
+        sh:description  "Identification of a profile (e.g. ZigBee_HA) of a Area Network technology." ;
+        sh:nodeKind     sh:Literal ;
+        sh:path         BO:netTechnologyProfile .
+
+<https://astrea.linkeddata.es/shapes#7d6a7c535177453791ef41c5d116c6cb>
+        a               sh:PropertyShape ;
+        rdfs:label      "This Data Property specifies the data type  of the SimpleTypeVariable as text string" ;
+        sh:description  "This Data Property specifies the data type  of the SimpleTypeVariable as text string" ;
+        sh:nodeKind     sh:Literal ;
+        sh:path         BO:hasDataType .
+
+<https://astrea.linkeddata.es/report/1154986944>
+        a       <https://w3id.org/def/astrea#ReportEntry> ;
+        <https://w3id.org/def/astrea#message>
+                "Shapes generated with no errors" ;
+        <https://w3id.org/def/astrea#source>
+                "https://git.onem2m.org/MAS/BaseOntology/raw/master/base_ontology.owl" ;
+        <https://w3id.org/def/astrea#statusCode>
+                "200"^^xsd:int .
+
+<https://astrea.linkeddata.es/shapes#517becb9c0c8cdee196b7ef7ced3ed53>
+        a               sh:NodeShape ;
+        sh:description  "SimpleTypeVariable (Class: SimpleTypeVariable) is a sub-class of class:Variable that only consists of Variables of simple xml types like xsd:integer, xsd:string…, potentially including lists and restrictions\n\nThe simple datatypes and –restrictions contained in 'https://www.w3.org/TR/xmlschema11-2' shall be referred to using the prefix: xs" ;
+        sh:nodeKind     sh:IRI ;
+        sh:not          <https://astrea.linkeddata.es/shapes#fd43ba25520c07b7c3a347681420390d> ;
+        sh:property     <https://astrea.linkeddata.es/shapes#2e832a8d67e441cf7afccf0f0bc50bd6> , <https://astrea.linkeddata.es/shapes#f5936fde68a9e5c65f5a8e20797e5521> , <https://astrea.linkeddata.es/shapes#f40db9dee51795f66ada2c65b8c31a72> , <https://astrea.linkeddata.es/shapes#771d860e88e4d8ca0bf8562c2856aed4> , <https://astrea.linkeddata.es/shapes#162e371650827d59000d7c0962078a1a> , <https://astrea.linkeddata.es/shapes#4093934a247f1de5ab9b3aa7a771b74c> , <https://astrea.linkeddata.es/shapes#9c82ed36cfc308aa7efc8dc1e79450b0> , <https://astrea.linkeddata.es/shapes#9b9494883b93ca2e600b1ad59ad445be> , <https://astrea.linkeddata.es/shapes#021704e51e63e70e223e7094d3b70485> , <https://astrea.linkeddata.es/shapes#9364600e8b0e179a51ec34f453e8bd77> ;
+        sh:targetClass  BO:SimpleTypeVariable .
+
+<https://astrea.linkeddata.es/shapes#eef44f2adcf1aaf3365d9db7193bae8a>
+        a            sh:PropertyShape ;
+        sh:class     BO:OutputDataPoint ;
+        sh:nodeKind  sh:IRIOrLiteral ;
+        sh:path      BO:hasOutputDataPoint .
+
+<https://astrea.linkeddata.es/shapes#4f36aecc41baf2eb5c0054e8c9793906>
+        a               sh:PropertyShape ;
+        rdfs:label      "This Data Property specifies the lower bounds for numeric values (the value must be greater than  this value) allowed for the SimpleTypeVariable. \nIt applies to: \n-\txs:integer \n-\txs:float" ;
+        sh:description  "This Data Property specifies the lower bounds for numeric values (the value must be greater than  this value) allowed for the SimpleTypeVariable. \nIt applies to: \n-\txs:integer \n-\txs:float" ;
+        sh:nodeKind     sh:Literal ;
+        sh:path         BO:hasDataRestriction_minExclusive .
+
+<https://astrea.linkeddata.es/shapes#771d860e88e4d8ca0bf8562c2856aed4>
+        a            sh:PropertyShape ;
+        sh:class     rdf:PlainLiteral ;
+        sh:nodeKind  sh:IRIOrLiteral ;
+        sh:path      BO:hasDataRestriction .
+
+<https://astrea.linkeddata.es/shapes#ef15198d9a9f8b4240ab82e365d94edb>
+        a               sh:PropertyShape ;
+        rdfs:label      "A Functionality of a Device can be influenced / observed by a human user through the Commands that this Functionality has and that are offered to the user" ;
+        sh:class        BO:Command ;
+        sh:description  "A Functionality of a Device can be influenced / observed by a human user through the Commands that this Functionality has and that are offered to the user" ;
+        sh:nodeKind     sh:BlankNodeOrIRI ;
+        sh:path         BO:hasCommand .
+
+<https://astrea.linkeddata.es/shapes#fd43ba25520c07b7c3a347681420390d>
+        a         sh:PropertyShape ;
+        sh:class  BO:StructuredTypeVariable .
+
+<https://astrea.linkeddata.es/shapes#f5936fde68a9e5c65f5a8e20797e5521>
+        a               sh:PropertyShape ;
+        rdfs:label      "This data property contains the value of the Variable if that value is part of the semantic description and is not contained in a different resource (identified by the oneM2MTargetURI data property). Storing the value of a Variable in a semantic description (i.e. as part of the RDF description in the semanticDescriptor resource) is useful for values that are relatively static (e.g. the name of the manufacturer).\n - Data properties \"hasValue\" and \"oneM2MTargetURI\" are mutually exclusive. Only one of the two shall be instantiated." ;
+        sh:datatype     rdfs:Literal ;
+        sh:description  "This data property contains the value of the Variable if that value is part of the semantic description and is not contained in a different resource (identified by the oneM2MTargetURI data property). Storing the value of a Variable in a semantic description (i.e. as part of the RDF description in the semanticDescriptor resource) is useful for values that are relatively static (e.g. the name of the manufacturer).\n - Data properties \"hasValue\" and \"oneM2MTargetURI\" are mutually exclusive. Only one of the two shall be instantiated." ;
+        sh:nodeKind     sh:Literal ;
+        sh:path         BO:hasValue .
+
+<https://astrea.linkeddata.es/shapes#6ab12afa5afde1981d9b2a8a2030c306>
+        a               sh:NodeShape ;
+        sh:description  "A Device (Class: Device) is a object designed to accomplish a particular task. A Device contains some logic and is producer and/or consumer of data that are exchanged via its Services with other oneM2M entities (Devices, Things) in the network. A Device may be a physical or non-physical entity.\nIn the context of oneM2M a Device is always assumed to be capable of communicating electronically via a network.\n - In order to accomplish its task, the device performs one or more functionalities \n - These functionalities are exposed in the network as Services of the Device.\n - A Device can be composed of several (sub-) Devices \n - Each Device (including sub-Devices) needs to be individually addressable in the network." ;
+        sh:nodeKind     sh:IRI ;
+        sh:property     <https://astrea.linkeddata.es/shapes#a04538dffd1a4db1247650e8457a2ac0> , <https://astrea.linkeddata.es/shapes#abc7338c37bf9495de6642502aae4f3d> , <https://astrea.linkeddata.es/shapes#b14b3332254f20b5415b2708d8b63794> , <https://astrea.linkeddata.es/shapes#fecaf9bb005c1235369c7485a3770f56> , <https://astrea.linkeddata.es/shapes#01932e3ffe085df67adf927f30ed02f2> ;
+        sh:targetClass  BO:Device .
+
+<https://astrea.linkeddata.es/shapes#cd3cd3bdf4d8f030180d6af7c4ab88d8>
+        a               sh:PropertyShape ;
+        rdfs:label      "An InterworkedDevice constitutes a part of an AreaNetwork" ;
+        sh:class        BO:AreaNetwork ;
+        sh:description  "An InterworkedDevice constitutes a part of an AreaNetwork" ;
+        sh:nodeKind     sh:BlankNodeOrIRI ;
+        sh:path         BO:isPartOf .
+
+<https://astrea.linkeddata.es/shapes#b6656eb9f237422f4a1198435c9b2879>
+        a               sh:PropertyShape ;
+        rdfs:label      "A Thing may have properties that can be described by Values" ;
+        sh:class        BO:ThingProperty ;
+        sh:description  "A Thing may have properties that can be described by Values" ;
+        sh:nodeKind     sh:BlankNodeOrIRI ;
+        sh:path         BO:hasThingProperty .
+
+<https://astrea.linkeddata.es/shapes#cbe5b4a29d63c956c5fbe909817cbf9c>
+        a               sh:PropertyShape ;
+        rdfs:label      "A –machine interpretable- Operation or an Input/OutputDataPoint of a Service exposes a –human understandable- Command to a network" ;
+        sh:class        BO:Command ;
+        sh:description  "A –machine interpretable- Operation or an Input/OutputDataPoint of a Service exposes a –human understandable- Command to a network" ;
+        sh:nodeKind     sh:BlankNodeOrIRI ;
+        sh:path         BO:exposesCommand .
+
+<https://astrea.linkeddata.es/shapes#360e59a775975ed1315e57a566cf6167>
+        a            sh:PropertyShape ;
+        sh:class     BO:InputDataPoint ;
+        sh:nodeKind  sh:IRIOrLiteral ;
+        sh:path      BO:hasInputDataPoint .
+
+<https://astrea.linkeddata.es/shapes#052ccbfd4ab34dac90680b89567b4cb4>
+        a               sh:PropertyShape ;
+        rdfs:label      "A Variable (in the domain of Object Property: hasConversion) can have a conversion rule (the VariableConversion in the range of Object Property: hasConversion) to convert the value range of the Variable into the value range of another Variable" ;
+        sh:class        BO:VariableConversion ;
+        sh:description  "A Variable (in the domain of Object Property: hasConversion) can have a conversion rule (the VariableConversion in the range of Object Property: hasConversion) to convert the value range of the Variable into the value range of another Variable" ;
+        sh:nodeKind     sh:BlankNodeOrIRI ;
+        sh:path         BO:hasConversion .
+
+<https://astrea.linkeddata.es/shapes#f40db9dee51795f66ada2c65b8c31a72>
+        a                sh:PropertyShape ;
+        rdfs:label       "This Data Property specifies the minimum number of characters or list items allowed of the SimpleTypeVariable. Must be equal to or greater than zero.\nit applies to: \n-\txs:string" ;
+        sh:datatype      xsd:nonNegativeInteger ;
+        sh:description   "This Data Property specifies the minimum number of characters or list items allowed of the SimpleTypeVariable. Must be equal to or greater than zero.\nit applies to: \n-\txs:string" ;
+        sh:minInclusive  0 ;
+        sh:nodeKind      sh:Literal ;
+        sh:path          BO:hasDataRestriction_minLength ;
+        sh:pattern       "[\\-+]?[0-9]+" .
+
+<https://astrea.linkeddata.es/shapes#a04538dffd1a4db1247650e8457a2ac0>
+        a               sh:PropertyShape ;
+        rdfs:label      "In order to accomplish its task, a Device performs one or more Functionalities" ;
+        sh:class        BO:Function ;
+        sh:description  "In order to accomplish its task, a Device performs one or more Functionalities" ;
+        sh:nodeKind     sh:BlankNodeOrIRI ;
+        sh:path         BO:hasFunction .
+
+<https://astrea.linkeddata.es/shapes#46e530f81a08e501fd1580c7699d180d>
+        a               sh:PropertyShape ;
+        rdfs:label      "Note:\nIf an InputDataPoint is mandatory for a Service or Operation then \nthe cardinality of hasInputDataPoint must be - min 1." , "A Service or an Operation of a Service of the Device can have InputDataPoints. Communicating entities write data into InputDataPoints and the Device retrieves the data at times according to an internal schedule.\n - An InputDataPoint is a persistent resource" ;
+        sh:class        BO:InputDataPoint ;
+        sh:description  "Note:\nIf an InputDataPoint is mandatory for a Service or Operation then \nthe cardinality of hasInputDataPoint must be - min 1." , "A Service or an Operation of a Service of the Device can have InputDataPoints. Communicating entities write data into InputDataPoints and the Device retrieves the data at times according to an internal schedule.\n - An InputDataPoint is a persistent resource" ;
+        sh:nodeKind     sh:BlankNodeOrIRI ;
+        sh:path         BO:hasInputDataPoint .
+
+<https://astrea.linkeddata.es/shapes#6833278a38375563220af07c9f073c3d>
+        a               sh:NodeShape ;
+        sh:description  "OutputDataPoint (Class: OutputDataPoint) is a Variable of a Service that is set by a RESTful Device in its environment and that the Device updates autonomously (e.g. at periodic times). To enable a third party to instruct the device to update (out of schedule) the current value of a OutputputDataPoint devices often also offer a SET_OutputDataPoint Operation to trigger the device to update the data of the OutputDataPoint" ;
+        sh:nodeKind     sh:IRI ;
+        sh:property     <https://astrea.linkeddata.es/shapes#cbe5b4a29d63c956c5fbe909817cbf9c> ;
+        sh:targetClass  BO:OutputDataPoint .
+
+<https://astrea.linkeddata.es/shapes#01932e3ffe085df67adf927f30ed02f2>
+        a            sh:PropertyShape ;
+        sh:class     BO:Service ;
+        sh:nodeKind  sh:IRIOrLiteral ;
+        sh:path      BO:hasService .
+
+<https://astrea.linkeddata.es/shapes#52555a1badc33266f45480848cca2840>
+        a               sh:NodeShape ;
+        sh:description  "A Variable (Class: Variable) constitutes a super class to the following classes: ThingProperty, OperationInput, OperationOutput, OperationState, InputDataPoint, OutputDataPoint, SimpleTypeVariable. Its members are entities that store some data (e.g. integers, text, or structured data) that can change over time. \nThese data of the Variable usually describe some real-world Aspects (e.g. a temperature) and can have MetaData (e.g. units, precision..)" ;
+        sh:nodeKind     sh:IRI ;
+        sh:property     <https://astrea.linkeddata.es/shapes#052ccbfd4ab34dac90680b89567b4cb4> , <https://astrea.linkeddata.es/shapes#bbd4d7c522225fdcdbd47beea022a708> , <https://astrea.linkeddata.es/shapes#68d2c280a2f612f67a3747003a3d839a> , <https://astrea.linkeddata.es/shapes#3fb0b3b34e3484a65582ed38a555e7d1> , <https://astrea.linkeddata.es/shapes#9450301b7cb0e04477dfd1e468c92233> ;
+        sh:targetClass  BO:Variable .
+
+<https://astrea.linkeddata.es/shapes#fe8af344670ff84d305c350748fa7079>
+        a            sh:PropertyShape ;
+        sh:class     BO:OperationInput ;
+        sh:nodeKind  sh:IRIOrLiteral ;
+        sh:path      BO:hasInput .
+
+<https://astrea.linkeddata.es/shapes#f94b7d305adfad19a44acd23b3608484>
+        a               sh:NodeShape ;
+        sh:description  "An InterworkedDevice (Class: InterworkedDevice) is a Device – e.g. in an Area Network – that does not support oneM2M interfaces and can only be accessed from the oneM2M System by communicating with a \"proxied\" (virtual) device that has been created by an Interworking Proxy Entity" ;
+        sh:nodeKind     sh:IRI ;
+        sh:property     <https://astrea.linkeddata.es/shapes#cd3cd3bdf4d8f030180d6af7c4ab88d8> ;
+        sh:targetClass  BO:InterworkedDevice .
+
+<https://astrea.linkeddata.es/shapes#57047158c9a2432fc2e2a39f40fec2b0>
+        a               sh:NodeShape ;
+        sh:description  "A MeasuringFunctionality (Class: MeasuringFunctionality) represents a functionality that has no impacts on the real world, but only gathers data. In general a MeasuringFunctionality has Commands (and/or Operations of its related Services)  that generate Output data\nE.g. a temperature sensor would have \"temperature-sensing\" as a MeasuringFunctionality" ;
+        sh:nodeKind     sh:IRI ;
+        sh:targetClass  BO:MeasuringFunction .
+
+<https://astrea.linkeddata.es/shapes#277b8818e9762d6922eb4f0a4c0f4524>
+        a               sh:NodeShape ;
+        sh:description  "An Aspect (Class: Aspect) describes the real-world aspect that a functionality relates to. Aspect is also used to describe the quality or kind OperationInput- or OperationOutput variables. \nThe Aspect could be a (physical or non-physical) entity or it could be a quality" ;
+        sh:nodeKind     sh:IRI ;
+        sh:property     <https://astrea.linkeddata.es/shapes#68d2c280a2f612f67a3747003a3d839a> ;
+        sh:targetClass  BO:Aspect .
+
+<https://astrea.linkeddata.es/shapes#56e70d19f76002c8b8537460b7ad1e4e>
+        a               sh:PropertyShape ;
+        rdfs:label      "Identification of a communication protocol (e.g. ZigBee_1_0)" ;
+        sh:datatype     rdf:PlainLiteral ;
+        sh:description  "Identification of a communication protocol (e.g. ZigBee_1_0)" ;
+        sh:nodeKind     sh:Literal ;
+        sh:path         BO:netTechnologyCommunicationProtocol .
+
+<https://astrea.linkeddata.es/shapes#979cef42830aa591a33925482c5d3c9f>
+        a               sh:NodeShape ;
+        sh:description  "An AreaNetwork (Class: AreaNetwork) is a Network that provides data transport services between an Interworked Device and the oneM2M System. Different area Networks can use heterogeneous network technologies that may or may not support IP access." ;
+        sh:nodeKind     sh:IRI ;
+        sh:property     <https://astrea.linkeddata.es/shapes#22bd2e6a043e58a2d3644c817895ee26> , <https://astrea.linkeddata.es/shapes#56e70d19f76002c8b8537460b7ad1e4e> , <https://astrea.linkeddata.es/shapes#b4f5961aa6b9c2a8b6234eaf21fbf8d7> ;
+        sh:targetClass  BO:AreaNetwork .
+
+<https://astrea.linkeddata.es/shapes#021704e51e63e70e223e7094d3b70485>
+        a               sh:PropertyShape ;
+        rdfs:label      "This Data Property contains the name of the attribute of the oneM2M resource of type <flexContainer> or the the child resource of the oneM2M resource of type <container>  that is referenced with the oneM2MTargetURI and  that stores the value of the SimpleTypeVariable\n - if the resource-type of the  oneM2M resource that is referenced with the oneM2MTargetURI is <container> then this Data Property shall contain the text string \"#latest\"" ;
+        sh:datatype     rdf:PlainLiteral ;
+        sh:description  "This Data Property contains the name of the attribute of the oneM2M resource of type <flexContainer> or the the child resource of the oneM2M resource of type <container>  that is referenced with the oneM2MTargetURI and  that stores the value of the SimpleTypeVariable\n - if the resource-type of the  oneM2M resource that is referenced with the oneM2MTargetURI is <container> then this Data Property shall contain the text string \"#latest\"" ;
+        sh:nodeKind     sh:Literal ;
+        sh:path         BO:oneM2MAttribute .
+
+<https://astrea.linkeddata.es/shapes#e1593835a90e351c37bd98b3b2fedff8>
+        a               sh:NodeShape ;
+        sh:description  "A VariableConversion (Class: VariableConversion) represents a conversion rule from the value range of one Variable into the value range of another Variable. The plain text specification of that rule is contained in the annotation property rdfs:comment" ;
+        sh:nodeKind     sh:IRI ;
+        sh:property     <https://astrea.linkeddata.es/shapes#b1a89e7a74e32b83860fd7901c0ea938> ;
+        sh:targetClass  BO:VariableConversion .
+
+<https://astrea.linkeddata.es/shapes#627e85746c3864385676ea590db68d40>
+        a               sh:NodeShape ;
+        sh:description  "InputDataPoint (Class: InputDataPoint) is a Variable of a Service that is accessed by a RESTful Device in its environment and that the Device reads out autonomously (e.g. at periodic times).\nTo enable a third party to instruct the device to retrieve (out of schedule) the current value of a InputputDataPoint devices often also offer a GET_InputDataPoint Operation to trigger the device to retrieve the data from the InputDataPoint" ;
+        sh:nodeKind     sh:IRI ;
+        sh:property     <https://astrea.linkeddata.es/shapes#cbe5b4a29d63c956c5fbe909817cbf9c> ;
+        sh:targetClass  BO:InputDataPoint .
+
+<https://astrea.linkeddata.es/shapes#c7a8bd3e169929e423d373bcfeafcc35>
+        a               sh:NodeShape ;
+        sh:description  "SET_OutputDataPoint (Class: SET_OutputDataPoint) is an Operation that may be offered by a Device to trigger the device to update the data of an OutputDataPoint \n(e.g. outside of the schedule when the device normally updates that DataPoint)" ;
+        sh:nodeKind     sh:IRI ;
+        sh:targetClass  BO:SET_OutputDataPoint .
+
+<https://astrea.linkeddata.es/shapes#7549ba83e58289cd85729c21ca6fc8d2>
+        a               sh:PropertyShape ;
+        rdfs:label      "This Data Property specifies the lower bounds for numeric values (the value must be greater than or equal to this value) allowed for the SimpleTypeVariable. \nIt applies to: \n-\txs:integer \n-\txs:float" ;
+        sh:description  "This Data Property specifies the lower bounds for numeric values (the value must be greater than or equal to this value) allowed for the SimpleTypeVariable. \nIt applies to: \n-\txs:integer \n-\txs:float" ;
+        sh:nodeKind     sh:Literal ;
+        sh:path         BO:hasDataRestriction_minInclusive .
+
+<https://astrea.linkeddata.es/shapes#08080c20444a0abc77ba0e690134d99f>
+        a            sh:PropertyShape ;
+        sh:class     BO:OperationOutput ;
+        sh:nodeKind  sh:IRIOrLiteral ;
+        sh:path      BO:hasOutput .
+
+<https://astrea.linkeddata.es/shapes#f27a3d3661914f1d02774e2397c3a5ab>
+        a               sh:PropertyShape ;
+        rdfs:label      "A Service exposes a Functionality to the network and makes it discoverable, registerable and remotely controllable in the network" ;
+        sh:class        BO:Function ;
+        sh:description  "A Service exposes a Functionality to the network and makes it discoverable, registerable and remotely controllable in the network" ;
+        sh:nodeKind     sh:BlankNodeOrIRI ;
+        sh:path         BO:exposesFunction .
+
+<https://astrea.linkeddata.es/shapes#584be114bb69c2e05a52652c969b38e3>
+        a               sh:NodeShape ;
+        sh:description  "A Thing in oneM2M  (Class: Thing) is an entity that can be identified in the oneM2M System. \nA Thing that is not a Device is not able to conmmunicate electronically with its environment. However, the sub-class of Thing that is able to interact electronically is called a \"Device\".\nA Thing may have ThingProperties (Object Property: hasThingProperty). A Thing can have relations to other things (Object Property: hasThingRelation).\nSince a Thing that is not a Device is not able to conmmunicate electronically it cannot influence the value of its ThingProperties or being influenced by it. Similarly a Thing cannot document its - real-world - relationships (via hasThingRelation) to other Things.\n\nE.g. A room that is modelled in oneM2M would be a Thing that could have a room-temperature as a ThingProperty and could have a relationship \"isAdjacentTo\" to another room" ;
+        sh:nodeKind     sh:IRI ;
+        sh:property     <https://astrea.linkeddata.es/shapes#81c28d425c42a2484dcd62d045f8c99d> , <https://astrea.linkeddata.es/shapes#b6656eb9f237422f4a1198435c9b2879> , <https://astrea.linkeddata.es/shapes#25b411da26d9f41b7d1234711762f80b> , <https://astrea.linkeddata.es/shapes#cfd86a11ab363f803db396d139c67104> ;
+        sh:targetClass  BO:Thing .
+
+<https://astrea.linkeddata.es/shapes#bdb786b30bfaf83f7fbadc3c0ddc583a>
+        a               sh:NodeShape ;
+        sh:description  "A Variable that quantifies a property of a Thing. A ThingProperty can e.g. be observed or influenced by devices, or it constitutes static data about a Thing.\nE.g. the indoor temperature of the room could be a ThingProperty of a Thing \"room\".\nA ThingProperty of a Thing can concern a certain Aspect, e.g. the indoor temperature concerns the Aspect \"Temperature\" that could be measured by a temperature sensor.\nA ThingProperty of a Thing can have meta data" ;
+        sh:nodeKind     sh:IRI ;
+        sh:targetClass  BO:ThingProperty .
+
+<https://astrea.linkeddata.es/shapes#68d2c280a2f612f67a3747003a3d839a>
+        a               sh:PropertyShape ;
+        rdfs:label      "A Value of a Thing can have MetaData (like units, precision-ranges)." ;
+        sh:class        BO:MetaData ;
+        sh:description  "A Value of a Thing can have MetaData (like units, precision-ranges)." ;
+        sh:nodeKind     sh:BlankNodeOrIRI ;
+        sh:path         BO:hasMetaData .
+
+<https://astrea.linkeddata.es/shapes#a404b2fd5f286f4b7291e28a50ecc2db>
+        a            sh:PropertyShape ;
+        sh:class     BO:Operation ;
+        sh:nodeKind  sh:IRIOrLiteral ;
+        sh:path      BO:hasOperation .
+
+<https://astrea.linkeddata.es/shapes#d047bbc39b4b639c00797abc21c3df43>
+        a               sh:PropertyShape ;
+        rdfs:label      "A Functionality of a Device can refer to a certain Aspect (a quality or kind) that is measured or controlled by that Functionality. \ne.g. a temperature sensor would refer to the Aspect \"Temperature\" that it measures" ;
+        sh:class        BO:Aspect ;
+        sh:description  "A Functionality of a Device can refer to a certain Aspect (a quality or kind) that is measured or controlled by that Functionality. \ne.g. a temperature sensor would refer to the Aspect \"Temperature\" that it measures" ;
+        sh:nodeKind     sh:BlankNodeOrIRI ;
+        sh:path         BO:refersTo .
+
+<https://astrea.linkeddata.es/shapes#81070eaa9eb3281e57a2350f9b8c499d>
+        a               sh:PropertyShape ;
+        rdfs:label      "This Data Property specifies the  upper bounds for numeric values (the value must be less than this value) allowed for the SimpleTypeVariable. \nIt applies to: \n-\txs:integer \n-\txs:float" ;
+        sh:description  "This Data Property specifies the  upper bounds for numeric values (the value must be less than this value) allowed for the SimpleTypeVariable. \nIt applies to: \n-\txs:integer \n-\txs:float" ;
+        sh:nodeKind     sh:Literal ;
+        sh:path         BO:hasDataRestriction_maxExclusive .
+
+<https://astrea.linkeddata.es/shapes#8e107c7ea7a6e54f2c8d5eb59329dcdf>
+        a            sh:PropertyShape ;
+        sh:class     BO:Command ;
+        sh:nodeKind  sh:IRIOrLiteral ;
+        sh:path      BO:exposesCommand .
+
+<https://astrea.linkeddata.es/shapes#1264e9967200475ebdb875897ee4394c>
+        a               sh:NodeShape ;
+        sh:description  "MetaData (Class: MetaData) contain data (like units, precision-ranges …) about a Variable or about an Aspect. \nE.g. the indoor temperature could have meta data: \"Degrees Celsius\"" ;
+        sh:nodeKind     sh:IRI ;
+        sh:targetClass  BO:MetaData .
+
+<https://astrea.linkeddata.es/shapes#6032b59dafd4dcf33de0af60625b1b17>
+        a               sh:PropertyShape ;
+        rdfs:label      "An Operation of a Service of the Device or a Command of a Functionality of the Device can have transient OperationOutput data." ;
+        sh:class        BO:OperationOutput ;
+        sh:description  "An Operation of a Service of the Device or a Command of a Functionality of the Device can have transient OperationOutput data." ;
+        sh:nodeKind     sh:BlankNodeOrIRI ;
+        sh:path         BO:hasOutput .
+
+<https://astrea.linkeddata.es/shapes#3fb0b3b34e3484a65582ed38a555e7d1>
+        a               sh:PropertyShape ;
+        rdfs:label      "oneM2MTargetURI (range data type: rdfs: Literal)\nThis data property contains the URI of a oneM2M resource (<container> or <flexContainer>) through which the oneM2M instantiation of the value of the Variable can be manipulated by the communicating entity. It can contain an absolute address or an address relative to the <semanticDescriptor> resource that holds the RDF description of the Variable. \nThat address could be e.g. \n - The value of the parentID for the <container> or <flexContainer> of a Input- or OutputDataPoint which has child-resource of type <semanticDescriptor> that holds the RDF description of the DataPoint" ;
+        sh:datatype     rdfs:Literal ;
+        sh:description  "oneM2MTargetURI (range data type: rdfs: Literal)\nThis data property contains the URI of a oneM2M resource (<container> or <flexContainer>) through which the oneM2M instantiation of the value of the Variable can be manipulated by the communicating entity. It can contain an absolute address or an address relative to the <semanticDescriptor> resource that holds the RDF description of the Variable. \nThat address could be e.g. \n - The value of the parentID for the <container> or <flexContainer> of a Input- or OutputDataPoint which has child-resource of type <semanticDescriptor> that holds the RDF description of the DataPoint" ;
+        sh:nodeKind     sh:Literal ;
+        sh:path         BO:oneM2MTargetURI .
+
+<https://astrea.linkeddata.es/shapes#1a2e6daaddd47545db4bb2fd815be925>
+        a               sh:NodeShape ;
+        sh:description  "A Functionality (Class: Functionality) represents the functionality necessary to accomplish the task for which a Device is designed. A device can be designed to perform more than one functionality.\nThe functionality exhibits the – human understandable – meaning what the device \"does\". \nA Functionality refers to (e.g. observes or influences) some real-world aspect(s), that can be modelled as a Class: Aspect.\nE.g. considering a \"light switch\" then a related Functionality could be \"Controlling_ON_OFF\" or \"Controlling Brightness\". These functionalities would refer to an Aspect \"light-control\".\n\nA Functionality of a Device can be influenced / observed by a human user through the Commands that this Functionality has and that are offered to the user" ;
+        sh:nodeKind     sh:IRI ;
+        sh:property     <https://astrea.linkeddata.es/shapes#d047bbc39b4b639c00797abc21c3df43> , <https://astrea.linkeddata.es/shapes#ef15198d9a9f8b4240ab82e365d94edb> ;
+        sh:targetClass  BO:Function .
+
+<https://astrea.linkeddata.es/shapes#fc276d9def1ddb1cb2e38f5c71b316c5>
+        a               sh:NodeShape ;
+        sh:description  "A Command (Class: Command) represents an action that can be performed to support the Functionality. A Command is the human understandable name of that action that is invoked in a device or is reported by the device. An Operation exposes a Command to the network. OperationInput and OperationOutput of the related Operation can parameterize the command.\ne.g. the Functionality \"dimming-functionality\" of a light switch that remotely controls a light could have a Command \"setLightIntensity\", with a parameter that has values 0 - 100 %.\n - Also InputDataPoints and OutputDataPoints expose Commands to the network. When a Device communicates in a RESTful way then changing (UPDATEing) an InputDataPoint triggers an action in the Device once the Device has read out the data from the InputDataPoint.\n - Similarly, when a Device sets the data of an OutputDataPoint then it provides state information about the Device.\nNote: In RESTful systems the names of Input- and OutputDataPoints are usually chosen in such a way that they express the Command, i.e. the human-understandable meaning (e.g. a binary InputDataPoint of a lightswitch could have a name \"Set_Light_Status\"). In such a case the Command coincides with the DataPoint." ;
+        sh:nodeKind     sh:IRI ;
+        sh:property     <https://astrea.linkeddata.es/shapes#41aafe5c223ab96d27f426a43c286a81> , <https://astrea.linkeddata.es/shapes#08080c20444a0abc77ba0e690134d99f> , <https://astrea.linkeddata.es/shapes#438b15f57cc121b661d60cfb56e89a09> , <https://astrea.linkeddata.es/shapes#6032b59dafd4dcf33de0af60625b1b17> , <https://astrea.linkeddata.es/shapes#edc9b66a829fc075e4d715a659a753f3> , <https://astrea.linkeddata.es/shapes#eef44f2adcf1aaf3365d9db7193bae8a> ;
+        sh:targetClass  BO:Command .
+
+<https://astrea.linkeddata.es/shapes#deedcaf2385ae1ba2b5c2904d96e2d98>
+        a               sh:NodeShape ;
+        sh:description  "A Service (Class: Service) is a electronic representation of a Functionality in a network. The Service exposes the Functionality to the network and makes it discoverable, registerable and remotely controllable in the network. \nA Service is offered by a device that wants (a certain set of) its Functionalities to be discoverable, registerable, remotely controllable by other devices in the network. \nA Service can expose one or more Functionalities and a Functionality can be exposed by one or more Services.\nThe (names of) Input- and Output DataPoints and Operations are only unique within  a Service. The Service to which they belong differentiates how they are addressed in the Device (e.g. via a port specific to the Service).\nNOTE: While a Functionality  describes the – human understandable – meaning of a Service of the device the Service is used to describe how such functionality is represented in a communication network and can be accessed by electronic means. The Service and its Operations is therefore dependent on the technology of the network, hard- and software of the device." ;
+        sh:nodeKind     sh:IRI ;
+        sh:property     <https://astrea.linkeddata.es/shapes#6c9f74f15558df0d8e89fa00660b964f> , <https://astrea.linkeddata.es/shapes#f6a6b9c15a0ba613781cdf94f31ad527> , <https://astrea.linkeddata.es/shapes#a404b2fd5f286f4b7291e28a50ecc2db> , <https://astrea.linkeddata.es/shapes#360e59a775975ed1315e57a566cf6167> , <https://astrea.linkeddata.es/shapes#46e530f81a08e501fd1580c7699d180d> , <https://astrea.linkeddata.es/shapes#d364499ebd10e69f3cb37faf9fa10317> , <https://astrea.linkeddata.es/shapes#f27a3d3661914f1d02774e2397c3a5ab> , <https://astrea.linkeddata.es/shapes#58064b3de1c4b3c7830b681b2e4fe757> , <https://astrea.linkeddata.es/shapes#14032106bc724f3960a4c6f84f74003d> ;
+        sh:targetClass  BO:Service .
+
+<http://astrea.linkeddata.es/report>
+        a       <https://w3id.org/def/astrea#ShapeReport> ;
+        <https://w3id.org/def/astrea#contains>
+                <https://astrea.linkeddata.es/shapes#277b8818e9762d6922eb4f0a4c0f4524> , <https://astrea.linkeddata.es/shapes#676e02d819f9c65530e503dcdf6156b4> , <https://astrea.linkeddata.es/shapes#deedcaf2385ae1ba2b5c2904d96e2d98> , <https://astrea.linkeddata.es/shapes#627e85746c3864385676ea590db68d40> , <https://astrea.linkeddata.es/shapes#b14b3332254f20b5415b2708d8b63794> , <https://astrea.linkeddata.es/shapes#f27a3d3661914f1d02774e2397c3a5ab> , <https://astrea.linkeddata.es/shapes#d047bbc39b4b639c00797abc21c3df43> , <https://astrea.linkeddata.es/shapes#b4f5961aa6b9c2a8b6234eaf21fbf8d7> , <https://astrea.linkeddata.es/shapes#c7a8bd3e169929e423d373bcfeafcc35> , <https://astrea.linkeddata.es/shapes#e1593835a90e351c37bd98b3b2fedff8> , <https://astrea.linkeddata.es/shapes#2e832a8d67e441cf7afccf0f0bc50bd6> , <https://astrea.linkeddata.es/shapes#771d860e88e4d8ca0bf8562c2856aed4> , <https://astrea.linkeddata.es/shapes#f40db9dee51795f66ada2c65b8c31a72> , <https://astrea.linkeddata.es/shapes#517becb9c0c8cdee196b7ef7ced3ed53> , <https://astrea.linkeddata.es/shapes#bbd4d7c522225fdcdbd47beea022a708> , <https://astrea.linkeddata.es/shapes#c1b20a0642d16147f4507dcb7278de82> , <https://astrea.linkeddata.es/shapes#ad427f6f45e2cd6b5619801e24559975> , <https://astrea.linkeddata.es/shapes#6c9f74f15558df0d8e89fa00660b964f> , <https://astrea.linkeddata.es/shapes#56e70d19f76002c8b8537460b7ad1e4e> , <https://astrea.linkeddata.es/shapes#8e107c7ea7a6e54f2c8d5eb59329dcdf> , <https://astrea.linkeddata.es/shapes#6833278a38375563220af07c9f073c3d> , <https://astrea.linkeddata.es/shapes#2f6a3f38532608ac76074fca0cd06714> , <https://astrea.linkeddata.es/shapes#9450301b7cb0e04477dfd1e468c92233> , <https://astrea.linkeddata.es/shapes#ed238f3cccd279c3de3c125d2b21de1e> , <https://astrea.linkeddata.es/shapes#bdb786b30bfaf83f7fbadc3c0ddc583a> , <https://astrea.linkeddata.es/shapes#4f36aecc41baf2eb5c0054e8c9793906> , <https://astrea.linkeddata.es/shapes#b1a89e7a74e32b83860fd7901c0ea938> , <https://astrea.linkeddata.es/shapes#052ccbfd4ab34dac90680b89567b4cb4> , <https://astrea.linkeddata.es/shapes#cfd86a11ab363f803db396d139c67104> , <https://astrea.linkeddata.es/shapes#9b9494883b93ca2e600b1ad59ad445be> , <https://astrea.linkeddata.es/shapes#edc9b66a829fc075e4d715a659a753f3> , <https://astrea.linkeddata.es/shapes#4093934a247f1de5ab9b3aa7a771b74c> , <https://astrea.linkeddata.es/shapes#fecaf9bb005c1235369c7485a3770f56> , <https://astrea.linkeddata.es/shapes#1264e9967200475ebdb875897ee4394c> , <https://astrea.linkeddata.es/shapes#cbaaf29130ca74176930b88af7b5dfd8> , <https://astrea.linkeddata.es/shapes#f94b7d305adfad19a44acd23b3608484> , <https://astrea.linkeddata.es/shapes#9364600e8b0e179a51ec34f453e8bd77> , <https://astrea.linkeddata.es/shapes#f6a6b9c15a0ba613781cdf94f31ad527> , <https://astrea.linkeddata.es/shapes#abc7338c37bf9495de6642502aae4f3d> , <https://astrea.linkeddata.es/shapes#1a2e6daaddd47545db4bb2fd815be925> , <https://astrea.linkeddata.es/shapes#d364499ebd10e69f3cb37faf9fa10317> , <https://astrea.linkeddata.es/shapes#fe8af344670ff84d305c350748fa7079> , <https://astrea.linkeddata.es/shapes#46e530f81a08e501fd1580c7699d180d> , <https://astrea.linkeddata.es/shapes#01932e3ffe085df67adf927f30ed02f2> , <https://astrea.linkeddata.es/shapes#58064b3de1c4b3c7830b681b2e4fe757> , <https://astrea.linkeddata.es/shapes#cbe5b4a29d63c956c5fbe909817cbf9c> , <https://astrea.linkeddata.es/shapes#7549ba83e58289cd85729c21ca6fc8d2> , <https://astrea.linkeddata.es/shapes#52523ae67109b824a9047b1cfbcd5418> , <https://astrea.linkeddata.es/shapes#18b4eaebb6c6ea62725373dd2fb0012d> , <https://astrea.linkeddata.es/shapes#cd3cd3bdf4d8f030180d6af7c4ab88d8> , <https://astrea.linkeddata.es/shapes#7d6a7c535177453791ef41c5d116c6cb> , <https://astrea.linkeddata.es/shapes#fc276d9def1ddb1cb2e38f5c71b316c5> , <https://astrea.linkeddata.es/shapes#f8a34a0e341459f409eebdaf18d1b09c> , <https://astrea.linkeddata.es/shapes#fd43ba25520c07b7c3a347681420390d> , <https://astrea.linkeddata.es/shapes#41aafe5c223ab96d27f426a43c286a81> , <https://astrea.linkeddata.es/shapes#25b411da26d9f41b7d1234711762f80b> , <https://astrea.linkeddata.es/shapes#584be114bb69c2e05a52652c969b38e3> , <https://astrea.linkeddata.es/shapes#52555a1badc33266f45480848cca2840> , <https://astrea.linkeddata.es/shapes#81c28d425c42a2484dcd62d045f8c99d> , <https://astrea.linkeddata.es/shapes#a404b2fd5f286f4b7291e28a50ecc2db> , <https://astrea.linkeddata.es/shapes#08080c20444a0abc77ba0e690134d99f> , <https://astrea.linkeddata.es/shapes#3fb0b3b34e3484a65582ed38a555e7d1> , <https://astrea.linkeddata.es/shapes#6032b59dafd4dcf33de0af60625b1b17> , <https://astrea.linkeddata.es/shapes#eef44f2adcf1aaf3365d9db7193bae8a> , <https://astrea.linkeddata.es/shapes#6ab12afa5afde1981d9b2a8a2030c306> , <https://astrea.linkeddata.es/shapes#360e59a775975ed1315e57a566cf6167> , <https://astrea.linkeddata.es/shapes#22bd2e6a043e58a2d3644c817895ee26> , <https://astrea.linkeddata.es/shapes#979cef42830aa591a33925482c5d3c9f> , <https://astrea.linkeddata.es/shapes#14032106bc724f3960a4c6f84f74003d> , <https://astrea.linkeddata.es/shapes#57047158c9a2432fc2e2a39f40fec2b0> , <https://astrea.linkeddata.es/shapes#32460bd40b16f2d138aac40bad125294> , <https://astrea.linkeddata.es/shapes#68d2c280a2f612f67a3747003a3d839a> , <https://astrea.linkeddata.es/shapes#a04538dffd1a4db1247650e8457a2ac0> , <https://astrea.linkeddata.es/shapes#b6656eb9f237422f4a1198435c9b2879> , <https://astrea.linkeddata.es/shapes#f5936fde68a9e5c65f5a8e20797e5521> , <https://astrea.linkeddata.es/shapes#162e371650827d59000d7c0962078a1a> , <https://astrea.linkeddata.es/shapes#438b15f57cc121b661d60cfb56e89a09> , <https://astrea.linkeddata.es/shapes#021704e51e63e70e223e7094d3b70485> , <https://astrea.linkeddata.es/shapes#81070eaa9eb3281e57a2350f9b8c499d> , <https://astrea.linkeddata.es/shapes#9c82ed36cfc308aa7efc8dc1e79450b0> , <https://astrea.linkeddata.es/shapes#ef15198d9a9f8b4240ab82e365d94edb> ;
+        <https://w3id.org/def/astrea#generatedShapesFrom>
+                <https://astrea.linkeddata.es/report/1154986944> .
+
+<https://astrea.linkeddata.es/shapes#14032106bc724f3960a4c6f84f74003d>
+        a               sh:PropertyShape ;
+        rdfs:label      "Note:\nIf an Service constist of at least one sub-Service then \nthe cardinality of hasSubService must be - min 1." , "A Service may be composed of smaller, independent (sub)Services, e.g. re-usable servicemodules" ;
+        sh:class        BO:Service ;
+        sh:description  "Note:\nIf an Service constist of at least one sub-Service then \nthe cardinality of hasSubService must be - min 1." , "A Service may be composed of smaller, independent (sub)Services, e.g. re-usable servicemodules" ;
+        sh:nodeKind     sh:BlankNodeOrIRI ;
+        sh:path         BO:hasSubService .
+
+<https://astrea.linkeddata.es/shapes#f8a34a0e341459f409eebdaf18d1b09c>
+        a               sh:NodeShape ;
+        sh:description  "OperationInput (Class: OperationInput) describes an input of an Operation of a Service. OperationInput also describes the input of an Command." ;
+        sh:nodeKind     sh:IRI ;
+        sh:targetClass  BO:OperationInput .
+
+<https://astrea.linkeddata.es/shapes#162e371650827d59000d7c0962078a1a>
+        a            sh:PropertyShape ;
+        sh:nodeKind  sh:IRIOrLiteral ;
+        sh:path      BO:hasDataType .
+
+<https://astrea.linkeddata.es/shapes#d364499ebd10e69f3cb37faf9fa10317>
+        a               sh:PropertyShape ;
+        rdfs:label      "Note:\nIf an OutputDataPoint is mandatory for a Service or Operation then \nthe cardinality of hasOutputDataPoint must be - min 1." , "A Service or an Operation of a Service of the Device can have OutputDataPoints. The Device writes data into OutputDataPoints at times according to an internal schedule and the communicating entitis retrieves the data.\n - An OutputDataPoint is a persistent resource" ;
+        sh:class        BO:OutputDataPoint ;
+        sh:description  "Note:\nIf an OutputDataPoint is mandatory for a Service or Operation then \nthe cardinality of hasOutputDataPoint must be - min 1." , "A Service or an Operation of a Service of the Device can have OutputDataPoints. The Device writes data into OutputDataPoints at times according to an internal schedule and the communicating entitis retrieves the data.\n - An OutputDataPoint is a persistent resource" ;
+        sh:nodeKind     sh:BlankNodeOrIRI ;
+        sh:path         BO:hasOutputDataPoint .
+
+<https://astrea.linkeddata.es/shapes#b1a89e7a74e32b83860fd7901c0ea938>
+        a               sh:PropertyShape ;
+        rdfs:label      "The conversion rule (the VariableConversion in the domain of Object Property: hasConversion) converts the value range of a given Variable (see 6.2.22 Object Property: hasConversion) into the value range of another Variable (the Variable in the range of Object Property: convertsTo)" ;
+        sh:class        BO:Variable ;
+        sh:description  "The conversion rule (the VariableConversion in the domain of Object Property: hasConversion) converts the value range of a given Variable (see 6.2.22 Object Property: hasConversion) into the value range of another Variable (the Variable in the range of Object Property: convertsTo)" ;
+        sh:nodeKind     sh:BlankNodeOrIRI ;
+        sh:path         BO:convertsTo .
+
+<https://astrea.linkeddata.es/shapes#ed238f3cccd279c3de3c125d2b21de1e>
+        a               sh:NodeShape ;
+        sh:description  "A ControllingFunctionality (Class: ControllingFunctionality) represents a functionality  that has impacts on the real world, but does not gather data. In general a ControllingFunctionality has Commands (and/or Operations of its related Services) that receives Input data\nE.g. a thermostat would have \"temperature-adjustment\" as a ControllingFunctionality" ;
+        sh:nodeKind     sh:IRI ;
+        sh:targetClass  BO:ControllingFunction .
+
+<https://astrea.linkeddata.es/shapes#52523ae67109b824a9047b1cfbcd5418>
+        a               sh:NodeShape ;
+        sh:description  "GET_InputDataPoint (Class: GET_InputDataPoint) is an Operation that may be offered by a Device to trigger the device to retrieve the data of an InputDataPoint \n(e.g. outside of the schedule when the device normally retrieves data from that DataPoint)" ;
+        sh:nodeKind     sh:IRI ;
+        sh:targetClass  BO:GET_InputDataPoint .
+
+<https://astrea.linkeddata.es/shapes#edc9b66a829fc075e4d715a659a753f3>
+        a            sh:PropertyShape ;
+        sh:class     BO:InputDataPoint ;
+        sh:nodeKind  sh:IRIOrLiteral ;
+        sh:path      BO:hasInputDataPoint .
+
+<https://astrea.linkeddata.es/shapes#9b9494883b93ca2e600b1ad59ad445be>
+        a               sh:PropertyShape ;
+        rdfs:label      "This Data Property specifies the restrictions on the data type of the SimpleTypeVariable.\nThe Data Property \"hasDataRestriction\" shall always be sub-classed" ;
+        sh:datatype     rdf:PlainLiteral ;
+        sh:description  "This Data Property specifies the restrictions on the data type of the SimpleTypeVariable.\nThe Data Property \"hasDataRestriction\" shall always be sub-classed" ;
+        sh:nodeKind     sh:Literal ;
+        sh:path         BO:hasDataRestriction .
+
+<https://astrea.linkeddata.es/shapes#f6a6b9c15a0ba613781cdf94f31ad527>
+        a            sh:PropertyShape ;
+        sh:nodeKind  sh:IRIOrLiteral ;
+        sh:path      BO:exposesFunction .
+
+<https://astrea.linkeddata.es/shapes#58064b3de1c4b3c7830b681b2e4fe757>
+        a            sh:PropertyShape ;
+        sh:class     BO:OutputDataPoint ;
+        sh:nodeKind  sh:IRIOrLiteral ;
+        sh:path      BO:hasOutputDataPoint .
+
+<https://astrea.linkeddata.es/shapes#18b4eaebb6c6ea62725373dd2fb0012d>
+        a               sh:NodeShape ;
+        sh:description  "An Operation (Class: Operation)  is the means of a Service to communicate in a procedure-type manner over the network (i.e. transmit data to/from other devices). It is the –machine interpretable- exposure of a –human understandable- Command to a network.\nAn Operation is transient. I.e. an Operation can be invoked, possibly produces output and is finished.\n - A non-oneM2M Device or a oneM2M entity (e.g. an AE) can invoke an Operation of the Device (oneM2M Device or InterworkedDevice) and that invocation can trigger some action in the Device. If an Operation has input data it may receive input data from \n - InputDataPoints (persistent resources) and/or\n - OperationInput (transient resources, that are deleted when the Operation finished)\nand potentially produce output data into\n - OutputDataPoints (persistent resources) and/or\n - OperationOutput (transient resources, that are deleted when the Operation finished)\nAn Operation correlates the output data of the Operation to the input data that were used at Operation invokation." ;
+        sh:nodeKind     sh:IRI ;
+        sh:property     <https://astrea.linkeddata.es/shapes#41aafe5c223ab96d27f426a43c286a81> , <https://astrea.linkeddata.es/shapes#3fb0b3b34e3484a65582ed38a555e7d1> , <https://astrea.linkeddata.es/shapes#8e107c7ea7a6e54f2c8d5eb59329dcdf> , <https://astrea.linkeddata.es/shapes#cbe5b4a29d63c956c5fbe909817cbf9c> , <https://astrea.linkeddata.es/shapes#fe8af344670ff84d305c350748fa7079> , <https://astrea.linkeddata.es/shapes#9450301b7cb0e04477dfd1e468c92233> , <https://astrea.linkeddata.es/shapes#6032b59dafd4dcf33de0af60625b1b17> , <https://astrea.linkeddata.es/shapes#c1b20a0642d16147f4507dcb7278de82> ;
+        sh:targetClass  BO:Operation .
+
+<https://astrea.linkeddata.es/shapes#bbd4d7c522225fdcdbd47beea022a708>
+        a               sh:PropertyShape ;
+        rdfs:label      "A Variable describes an Aspect (a quality or kind)" ;
+        sh:class        BO:Aspect ;
+        sh:description  "A Variable describes an Aspect (a quality or kind)" ;
+        sh:nodeKind     sh:BlankNodeOrIRI ;
+        sh:path         BO:describes .
+
+<https://astrea.linkeddata.es/shapes#c1b20a0642d16147f4507dcb7278de82>
+        a            sh:PropertyShape ;
+        sh:class     BO:OperationOutput ;
+        sh:nodeKind  sh:IRIOrLiteral ;
+        sh:path      BO:hasOutput .
+
+<https://astrea.linkeddata.es/shapes#81c28d425c42a2484dcd62d045f8c99d>
+        a               sh:PropertyShape ;
+        rdfs:label      "A Thing may have relations to itself or to other Things (e-g. a Thing \"Room\" could have a relation \"has_Door\" with a Thing \"Door\")" ;
+        sh:class        BO:Thing ;
+        sh:description  "A Thing may have relations to itself or to other Things (e-g. a Thing \"Room\" could have a relation \"has_Door\" with a Thing \"Door\")" ;
+        sh:nodeKind     sh:BlankNodeOrIRI ;
+        sh:path         BO:hasThingRelation .
+
+<https://astrea.linkeddata.es/shapes#438b15f57cc121b661d60cfb56e89a09>
+        a            sh:PropertyShape ;
+        sh:class     BO:OperationInput ;
+        sh:nodeKind  sh:IRIOrLiteral ;
+        sh:path      BO:hasInput .
+
+<https://astrea.linkeddata.es/shapes#b14b3332254f20b5415b2708d8b63794>
+        a               sh:PropertyShape ;
+        rdfs:label      "A Device can consist of (i.e. be composed) of several (sub-) Devices" ;
+        sh:class        BO:Device ;
+        sh:description  "A Device can consist of (i.e. be composed) of several (sub-) Devices" ;
+        sh:nodeKind     sh:BlankNodeOrIRI ;
+        sh:path         BO:consistsOf .
+
+<https://astrea.linkeddata.es/shapes#9c82ed36cfc308aa7efc8dc1e79450b0>
+        a               sh:PropertyShape ;
+        rdfs:label      "This Data Property specifies the restrictions of the SimpleTypeVariable to a subset of strings containing the exact sequence of characters that are acceptable\nit applies to: \n-\txs:string" ;
+        sh:datatype     xsd:string ;
+        sh:description  "This Data Property specifies the restrictions of the SimpleTypeVariable to a subset of strings containing the exact sequence of characters that are acceptable\nit applies to: \n-\txs:string" ;
+        sh:nodeKind     sh:Literal ;
+        sh:path         BO:hasDataRestriction_pattern ;
+        sh:pattern      ".*" .
+
+<https://astrea.linkeddata.es/shapes#cfd86a11ab363f803db396d139c67104>
+        a            sh:PropertyShape ;
+        sh:class     BO:ThingProperty ;
+        sh:nodeKind  sh:IRIOrLiteral ;
+        sh:path      BO:hasThingProperty .
+
+<https://astrea.linkeddata.es/shapes#4093934a247f1de5ab9b3aa7a771b74c>
+        a                sh:PropertyShape ;
+        rdfs:label       "This Data Property specifies the maximum number of characters or list items allowed of the SimpleTypeVariable. Must be equal to or greater than zero.\nit applies to: \n-\txs:string" ;
+        sh:datatype      xsd:nonNegativeInteger ;
+        sh:description   "This Data Property specifies the maximum number of characters or list items allowed of the SimpleTypeVariable. Must be equal to or greater than zero.\nit applies to: \n-\txs:string" ;
+        sh:minInclusive  0 ;
+        sh:nodeKind      sh:Literal ;
+        sh:path          BO:hasDataRestriction_maxLength ;
+        sh:pattern       "[\\-+]?[0-9]+" .
+
+<https://astrea.linkeddata.es/shapes#41aafe5c223ab96d27f426a43c286a81>
+        a               sh:PropertyShape ;
+        rdfs:label      "An Operation of a Service of the Device or a Command of a Functionality of the Device can have transient OperationInput data." ;
+        sh:class        BO:OperationInput ;
+        sh:description  "An Operation of a Service of the Device or a Command of a Functionality of the Device can have transient OperationInput data." ;
+        sh:nodeKind     sh:BlankNodeOrIRI ;
+        sh:path         BO:hasInput .
+
+<https://astrea.linkeddata.es/shapes#32460bd40b16f2d138aac40bad125294>
+        a                       sh:PropertyShape ;
+        sh:nodeKind             sh:IRIOrLiteral ;
+        sh:path                 BO:hasSubStructure ;
+        sh:qualifiedMinCount    "1"^^xsd:nonNegativeInteger ;
+        sh:qualifiedValueShape  [ sh:class  BO:Variable ] .
