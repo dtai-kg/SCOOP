@@ -25,10 +25,10 @@ Confirmed constraint list:
 - [X] disjoint
 - [X] lessThan
 - [X] lessThanOrEquals 
-- [ ] not
-- [ ] and 
-- [ ] or
-- [ ] xone
+- [X] not
+- [X] and 
+- [X] or
+- [X] xone
 - [X] node 
 - [X] hasValue
 - [X] in

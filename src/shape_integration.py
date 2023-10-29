@@ -294,13 +294,20 @@ class ShapeIntegration:
             self.SHACL.add((identifier_path_current, constraint_add, constraint_add_value))
 
         elif constraint_add == self.shaclNS["not"]:
-            pass
+            self.SHACL.add((identifier_path_current, constraint_add, constraint_add_value))
+            self.SHACL += self.extractSubgraph(shape_add, constraint_add_value)
+
         elif constraint_add == self.shaclNS["and"]:
-            pass
+            self.SHACL.add((identifier_path_current, constraint_add, constraint_add_value))
+            self.SHACL += self.extractSubgraph(shape_add, constraint_add_value)
+
         elif constraint_add == self.shaclNS["or"]:
-            pass
+            self.SHACL.add((identifier_path_current, constraint_add, constraint_add_value))
+            self.SHACL += self.extractSubgraph(shape_add, constraint_add_value)
+
         elif constraint_add == self.shaclNS.xone:
-            pass
+            self.SHACL.add((identifier_path_current, constraint_add, constraint_add_value))
+            self.SHACL += self.extractSubgraph(shape_add, constraint_add_value)
 
         elif constraint_add == self.shaclNS["node"]:
             self.SHACL.add((identifier_path_current, constraint_add, constraint_add_value))
@@ -342,8 +349,7 @@ class ShapeIntegration:
                     else:
                         g, rdflist = self.findList(g, o, rdflist)
         return g, rdflist
-    
-    
+      
     # Function copied from Thomas's code on GitHub
     # Source: https://github.com/RMLio/RML2SHACL
     def transformList(self, node, arr) -> None:
@@ -397,5 +403,3 @@ class ShapeIntegration:
 
             filenNameShape = "%s%s" % (shape_dir, self.output)
             self.SHACL.serialize(destination=filenNameShape, format='turtle')
-
-        # return filenNameShape

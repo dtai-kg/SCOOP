@@ -1,0 +1,26 @@
+@prefix ex: <http://example.com/> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+
+ex:Product a sh:NodeShape ;
+ sh:targetClass ex:Test ;
+ sh:or (
+  [ sh:not
+     [ sh:path     rdf:type ;
+       sh:hasValue ex:Vehicle
+     ]
+  ]
+  [ sh:and (
+     [ sh:path     ex:vehicleEngine ;
+       sh:minCount 1;
+       sh:maxCount 1
+     ]
+     [ sh:path     ex:fuelType ;
+       sh:minCount 1;
+       sh:maxCount 1
+     ]
+   )
+  ]
+ ).
