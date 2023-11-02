@@ -1,3 +1,7 @@
+# Shape adjustment script that can be used to individually adjust the shape derived from XSD based on RML
+# Input: RML graph, XSD-driven SHACL graph
+# Output: Adjusted SHACL graph
+
 from rdflib import Graph, URIRef, Literal, Namespace, BNode
 from rdflib.namespace import RDF, RDFS, XSD, OWL
 from pyshacl import validate
@@ -34,6 +38,8 @@ class ShapeAdjustment:
         
         self.source_type = None
         self.iterator = None
+        self.findNS = []
+        self.findPS = []
         self.shape_path = {}
         self.adjusted_shape = []
     
@@ -114,8 +120,8 @@ class ShapeAdjustment:
             elif s == pom_identifier and p == self.CONSTANT:
                 return o
             elif s == pom_identifier and p == self.PRED_MAP:
-                o = self.getObjectMap(o)
-        return o
+                o = self.getPredicate(o)
+                return o
 
     def getObjectMap(self, pom_identifier, parent=False):
         """
@@ -164,7 +170,7 @@ class ShapeAdjustment:
         matches = re.findall(pattern, template)
         matches = [self.iterator+"/" + i for i in matches]
 
-        return matches
+        return [matches]
 
     def parseReference_csv(self, reference):
         """
@@ -180,13 +186,13 @@ class ShapeAdjustment:
         matches = re.findall(pattern, template)
         matches = [self.iterator+"/"+i.replace("@","") for i in matches]
 
-        return matches
+        return [matches]
 
     def parseReference_xml(self, reference):
         """
         A function to parse the reference in a triples map and return path list
         """
-        return [self.iterator+"/"+reference.replace("@","")]
+        return [[self.iterator+"/"+reference.replace("@","")]]
 
     def parseTemplate_json(self, template):
         """
@@ -259,18 +265,41 @@ class ShapeAdjustment:
         """
         Adjust target declarations of shape
         """
-        for path in sm_path:
-            for shape_identifier in self.shape_path:
-                if "PropertyShape" in shape_identifier:
-                    continue
-                for initial_path in self.shape_path[shape_identifier]:
-                    if initial_path == path or initial_path == self.iterator:
-                        self.adjusted_shape.append(URIRef(shape_identifier))
-                        self.initial_graph.remove((URIRef(shape_identifier), self.shaclNS.targetClass, None))
-                        self.findNode(URIRef(shape_identifier))
-                        for sm_class in sm_classes:
-                            self.initial_graph.add((URIRef(shape_identifier), self.shaclNS.targetClass, URIRef(sm_class)))
-   
+        for path_list in sm_path:
+            for path in path_list:
+                for shape_identifier in self.shape_path:
+                    if "PropertyShape" in shape_identifier:
+                        continue
+                    for initial_path in self.shape_path[shape_identifier]:
+                        if initial_path == path or initial_path == self.iterator or ("parent:" in path and self.validatePath(path, initial_path)):
+                            if shape_identifier in self.adjusted_shape:
+                                new_shape_identifier = shape_identifier + "/" + "/".join([i.split("/")[-1] for i in sm_classes])
+                                self.updateShape(URIRef(shape_identifier), URIRef(new_shape_identifier))
+                                shape_identifier = new_shape_identifier
+                            self.adjusted_shape.append(URIRef(shape_identifier))
+                            self.initial_graph.remove((URIRef(shape_identifier), self.shaclNS.targetClass, None))
+                            self.findNode(URIRef(shape_identifier))
+                            for sm_class in sm_classes:
+                                self.initial_graph.add((URIRef(shape_identifier), self.shaclNS.targetClass, URIRef(sm_class)))
+                            self.findNS.append(URIRef(shape_identifier))
+        
+        if self.findNS == []:
+            shape_identifier = URIRef("http://example.com/NodeShape/" + "/".join([i.split("/")[-1] for i in sm_classes]))
+            self.initial_graph.add((shape_identifier, RDF.type, self.shaclNS.NodeShape))
+            for sm_class in sm_classes:
+                self.initial_graph.add((shape_identifier, self.shaclNS.targetClass, URIRef(sm_class)))
+            self.initial_graph.add((shape_identifier, self.shaclNS.nodeKind, self.shaclNS.IRI))
+            self.findNS.append(shape_identifier)
+            self.adjusted_shape.append(shape_identifier)
+
+
+    def updateShape(self, shape_identifier, new_shape_identifier):
+        for s, p, o in self.initial_graph:
+            if s == shape_identifier:
+                self.initial_graph.add((new_shape_identifier,p,o))
+            elif o == shape_identifier:
+                self.initial_graph.add((s,p,new_shape_identifier))
+
     def findNode(self, node):
         for s, p, o in self.initial_graph:
             if s == node and p == self.shaclNS.node:
@@ -283,20 +312,95 @@ class ShapeAdjustment:
 
     def adjust_pom(self, pom_list):
         for pom in pom_list:
-            for path in pom["path"]:
-                for shape_identifier in self.shape_path:
-                    if "NodeShape" in shape_identifier:
-                        continue   
-                    for initial_path in self.shape_path[shape_identifier]:           
-                        if initial_path == path:
-                            self.adjusted_shape.append(URIRef(shape_identifier))
-                            self.initial_graph.remove((URIRef(shape_identifier), self.shaclNS.path, None))
-                            self.initial_graph.add((URIRef(shape_identifier), self.shaclNS.path, pom["property"]))
-                            if pom["datatype"] is not None:
-                                self.initial_graph.remove((URIRef(shape_identifier), self.shaclNS.nodeKind, None))
-                                self.initial_graph.remove((URIRef(shape_identifier), self.shaclNS.datatype, None))
-                                self.initial_graph.add((URIRef(shape_identifier), self.shaclNS.datatype, pom["datatype"]))
+            for path_list in pom["path"]:
+                if len(path_list) == 1:
+                    path = path_list[0]
+                    for shape_identifier in self.shape_path:
+                        if "NodeShape" in shape_identifier:
+                            continue   
+                        for initial_path in self.shape_path[shape_identifier]:           
+                            if (initial_path == path) or ("parent:" in path and self.validatePath(path, initial_path)):
+                                if shape_identifier in self.adjusted_shape:
+                                    new_shape_identifier = shape_identifier + "/" + pom["property"].split("/")[-1]
+                                    self.updateShape(URIRef(shape_identifier), URIRef(new_shape_identifier))
+                                    shape_identifier = new_shape_identifier
+                                self.adjusted_shape.append(URIRef(shape_identifier))
+                                self.initial_graph.remove((URIRef(shape_identifier), self.shaclNS.path, None))
+                                self.initial_graph.add((URIRef(shape_identifier), self.shaclNS.path, pom["property"]))
+                                if pom["datatype"] is not None:
+                                    self.initial_graph.remove((URIRef(shape_identifier), self.shaclNS.nodeKind, None))
+                                    self.initial_graph.remove((URIRef(shape_identifier), self.shaclNS.datatype, None))
+                                    self.initial_graph.add((URIRef(shape_identifier), self.shaclNS.datatype, pom["datatype"]))
+                                self.findPS.append(URIRef(shape_identifier))
+
+                else:
+                    constraints = {}
+                    for path in path_list:
+                        for shape_identifier in self.shape_path:
+                            if "NodeShape" in shape_identifier:
+                                continue
+                            for initial_path in self.shape_path[shape_identifier]:
+                                if initial_path == path or ("parent:" in path and self.validatePath(path, initial_path)):
+                                    constraints = self.getConstraints(URIRef(shape_identifier), constraints)
+                    if constraints!={}:
+                        new_shape_identifier = shape_identifier + "/" + pom["property"].split("/")[-1]
+                        self.adjusted_shape.append(URIRef(new_shape_identifier))
+                        self.updateCombinationShape(URIRef(new_shape_identifier), pom["property"], constraints)
+                        self.findPS.append(URIRef(new_shape_identifier))
+            
+            if self.findPS == []:
+                shape_identifier = URIRef("http://example.com/PropertyShape/" + pom["property"].split("/")[-1])
+                self.initial_graph.add((shape_identifier, RDF.type, self.shaclNS.PropertyShape))
+                self.initial_graph.add((shape_identifier, self.shaclNS.path, pom["property"]))
+                for subject in self.findNS:
+                    self.initial_graph.add((subject, self.shaclNS.property, shape_identifier))
+                if pom["datatype"] is not None:
+                    self.initial_graph.add((shape_identifier, self.shaclNS.datatype, pom["datatype"]))
+                self.findPS.append(shape_identifier)
+                self.adjusted_shape.append(shape_identifier)
+            self.findPS = []
+
+    def validatePath(self, path_target, path):
+        result = path_target.split("parent::")
+        final_result = []
+        for item in result:
+            final_result.extend(item.split("*"))
+        final_result = [i for i in final_result if i!=""]
+        if path.endswith(final_result[-1]):
+            for p in final_result[:-1]:
+                if p not in path:
+                    return False
+            return True
+        else:
+            return False
     
+    def generate_regex(self, paths):
+        regex_pattern = ".*".join([re.escape(path) for path in paths])
+        return ".*" + regex_pattern + "$"
+
+    def getConstraints(self, shape_identifier, constraints):
+        for s, p, o in self.initial_graph:
+            if s == shape_identifier and p != RDF.type:
+                l = constraints.get(p,[])
+                l.append(o)
+                constraints[p] = l
+        return constraints
+
+    def updateCombinationShape(self, shape_identifier, property, constraints):
+        self.initial_graph.add((shape_identifier, RDF.type, self.shaclNS.PropertyShape))
+        self.initial_graph.add((shape_identifier, self.shaclNS.nodeKind, self.shaclNS.IRI))
+        self.initial_graph.add((shape_identifier, self.shaclNS.path, property))
+
+        for subject in self.findNS:
+            self.initial_graph.add((subject, self.shaclNS.property, shape_identifier))
+
+        for constraint, constraint_value in constraints.items():
+            if constraint == self.shaclNS.minCount or constraint == self.shaclNS.maxCount:
+                current_number = 1
+                for value in constraint_value:
+                    current_number*=int(value)
+                self.initial_graph.add((shape_identifier, constraint, Literal(current_number)))
+
     def adjust_parentTM(self, parentTM):
         pass                        
     
@@ -331,11 +435,13 @@ class ShapeAdjustment:
     def adjust(self):
         self.parseRML()
         print(self.rml_parsed)
+        print("\n")
         getattr(self, f"parse_{self.source_type}", None)()
         print(self.shape_path)
         for triples_map_identifier in self.rml_parsed:
             self.adjust_sm(self.rml_parsed[triples_map_identifier]["sm"]["path"], self.rml_parsed[triples_map_identifier]["sm"]["classes"])
             self.adjust_pom(self.rml_parsed[triples_map_identifier]["pom"])
+            self.findNS = []
         self.clear_graph()
 
     def writeShapeToFile(self, output_file):
@@ -350,9 +456,11 @@ class ShapeAdjustment:
 
 if __name__ == '__main__':
     g = Graph()
-    g.parse('adjustment_test/rml.ttl', format='ttl')
-    g_xsd = Graph().parse('adjustment_test/xsd.shape.ttl')
+    # g.parse('adjustment_test/rml2.ttl', format='ttl')
+    # g_xsd = Graph().parse('adjustment_test/xsd.shape.ttl')
+    g.parse('adjustment_test/era.rml.ttl', format='ttl')
+    g_xsd = Graph().parse('adjustment_test/RINF-metadata.xsd.shape.ttl')
     
     sa = ShapeAdjustment(g, g_xsd)
     sa.adjust()
-    sa.writeShapeToFile("adjustment_test/adjusted_shacl.ttl")
+    sa.writeShapeToFile("adjustment_test/era_adjusted_shacl.ttl")
