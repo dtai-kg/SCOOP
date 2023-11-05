@@ -5,8 +5,9 @@
 from rdflib import Graph, URIRef, Literal, Namespace, BNode
 from rdflib.namespace import RDF, RDFS, XSD, OWL
 from pyshacl import validate
-from utils import GrapDFS
+from .utils import GrapDFS
 import re
+import random
 
 class ShapeAdjustment:
     def __init__(self, source_type):
@@ -33,9 +34,13 @@ class ShapeAdjustment:
         self.CONSTANT = self.r2rmlNS.constant
         self.OBJECT = self.r2rmlNS.object
         self.PARENTTM = self.rmlNS.parentTriplesMap
+
+        #self.XPathFunction = ["string","codepoints-to-string","string-to-codepoints","codepoint-equal","compare","concat","string-join","substring","string-length","normalize-space","normalize-unicode","upper-case","lower-case","translate","escape-uri","contains","starts-with","ends-with","substring-before","substring-after","matches","replace","tokenize"]
         
         self.source_type = source_type
         self.adjusted_graph = Graph()
+        self.adjusted_identifier = []
+        self.random_number = [random.randint(100, 999) for i in range(100)]
     
     def parseRML(self, rml_graph: Graph):
         """
@@ -58,19 +63,21 @@ class ShapeAdjustment:
             self.rml_parsed[triples_map_identifier] = {'source': source, 'reference_formulation': reference_formulation, 'iterator': iterator}
             
             subject_map_identifier = self.rml_graph.value(triples_map_identifier, self.SUBJECT_MAP)
-            path, classes = self.getSubjectMap(subject_map_identifier)
-            self.rml_parsed[triples_map_identifier]['sm'] = {'path': path, 'classes': classes}
+            path, classes,template_length = self.getSubjectMap(subject_map_identifier)
+            self.rml_parsed[triples_map_identifier]['sm'] = {'path': path, 'classes': classes, 'template_length': template_length}
             
             pom_list = []
             for pom_identifier in self.rml_graph.objects(triples_map_identifier, self.POM):
                 pom_property = self.getPredicate(pom_identifier)
-                pom_object_path, pom_object_datatype, pom_object_parent = self.getObjectMap(pom_identifier)
+                pom_object_path, pom_object_datatype, pom_object_parent, pom_object_template_length = self.getObjectMap(pom_identifier)
                 if pom_property == RDF.type:
                     self.rml_parsed[triples_map_identifier]['sm']['classes'].extend(pom_object_path)
                 else:
-                    pom_list.append({'property': pom_property, 'path': pom_object_path, 'datatype': pom_object_datatype, 'parent': pom_object_parent})
+                    pom_list.append({'property': pom_property, 'path': pom_object_path, 'datatype': pom_object_datatype, 'parent': pom_object_parent, 'template_length': pom_object_template_length})
             self.rml_parsed[triples_map_identifier]['pom'] = pom_list
-        
+        # print(self.rml_parsed)
+        # print("\n")
+        # print(self.shape_path)
     def parseRawDataSchemaShape(self, initial_graph: Graph):
         self.initial_graph = initial_graph
         self.shape_path = {}
@@ -83,11 +90,11 @@ class ShapeAdjustment:
         source, reference_formulation, iterator = None, None, None
         for s, p, o in self.rml_graph:
             if s == source_identifier and p == self.SOURCE:
-                source = str(o)
+                source = re.sub(r'\[.*?\]', '', str(o))
             elif s == source_identifier and p == self.REFERENCE_FORMULATION:
                 reference_formulation = o
             elif s == source_identifier and p == self.ITERATOR:
-                iterator = str(o)
+                iterator = re.sub(r'\[.*?\]', '', str(o))
         return source, reference_formulation, iterator
 
     # def setSourceType(self, reference_formulation, iterator):
@@ -104,15 +111,16 @@ class ShapeAdjustment:
         """
         A function to get the subject map of a triples map
         """
-        path, classes = [], []
+        path, classes, template_length = [], [], None
         for s, p, o in self.rml_graph:
             if s == subject_map_identifier and p == self.TEMPLATE:
                 path.extend(getattr(self, f"parseTemplate_{self.source_type}", None)(o))
+                template_length = len(str(o))
             elif s == subject_map_identifier and p == self.REFERENCE:
                 path.extend(getattr(self, f"parseReference_{self.source_type}", None)(o))
             elif s == subject_map_identifier and p == self.CLASS:
                 classes.append(o)
-        return path, classes
+        return path, classes, template_length
     
     def getPredicate(self, pom_identifier):
         """
@@ -131,16 +139,17 @@ class ShapeAdjustment:
         """
         A function to get the object map of a triples map
         """
-        path, datatype, parent = [], None, False
+        path, datatype, parent, template_length = [], None, False, None
         for s, p, o in self.rml_graph:
             if s == pom_identifier and p == self.OBJECT:
                 path.append(o)
             elif s == pom_identifier and p == self.OBJECT_MAP:
-                path, datatype, parent = self.getObjectMap(o)
+                path, datatype, parent, template_length = self.getObjectMap(o)
             elif s == pom_identifier and p == self.DATATYPE:
                 datatype = o
             elif s == pom_identifier and p == self.TEMPLATE:
                 path.extend(getattr(self, f"parseTemplate_{self.source_type}", None)(o))
+                template_length = len(str(o))
             elif s == pom_identifier and p == self.REFERENCE:
                 path.extend(getattr(self, f"parseReference_{self.source_type}", None)(o))
             elif s == pom_identifier and p == self.CONSTANT:
@@ -149,8 +158,8 @@ class ShapeAdjustment:
                 path.append(o)
             elif s == pom_identifier and p == self.FNMLNS.functionValue:
                 path = self.getFunctionValue(o)
-                return path, datatype, parent
-        return path, datatype, parent
+                return path, datatype, parent, template_length
+        return path, datatype, parent, template_length 
 
     def getFunctionValue(self, function_identifier):
         """
@@ -186,16 +195,45 @@ class ShapeAdjustment:
         """
         A function to parse the template in a triples map and return path list
         """
-        pattern = r'\{([^}]+)\}'
-        matches = re.findall(pattern, template)
+        self.XPathFunction = {"string":'string\((.*?)\)',
+        "substring":'substring\((.*?)\,',
+        "string-length":'string-length\((.*?)\)',
+        "upper-case":'upper-case\((.*?)\)',
+        "lower-case":'lower-case\((.*?)\)',
+        "substring-before":'substring-before\((.*?)\,',
+        "substring-after":'substring-after\((.*?)\,',
+        "replace":'replace\((.*?)\,'}
+        
+        template = re.sub(r'\[.*?\]', '', template)
+        matches = re.findall(r'\{([^}]+)\}', template)
+        for i in range(len(matches)):
+            for function in self.XPathFunction:
+                if function in matches[i]:
+                    m = re.search(self.XPathFunction[function], matches[i])
+                    if m:
+                        matches[i] = m.group(1)
         matches = [self.iterator+"/"+i.replace("@","") for i in matches]
-
         return [matches]
 
     def parseReference_xml(self, reference):
         """
         A function to parse the reference in a triples map and return path list
         """
+        self.XPathFunction = {"string":'string\((.*?)\)',
+        "substring":'substring\((.*?)\,',
+        "string-length":'string-length\((.*?)\)',
+        "upper-case":'upper-case\((.*?)\)',
+        "lower-case":'lower-case\((.*?)\)',
+        "substring-before":'substring-before\((.*?)\,',
+        "substring-after":'substring-after\((.*?)\,',
+        "replace":'replace\((.*?)\,'}
+
+        for function in self.XPathFunction:
+            if function in reference:
+                m = re.search(self.XPathFunction[function], reference)
+                if m:
+                    reference = m.group(1)
+        reference = re.sub(r'\[.*?\]', '', reference)
         return [[self.iterator+"/"+reference.replace("@","")]]
 
     def parseTemplate_json(self, template):
@@ -246,9 +284,29 @@ class ShapeAdjustment:
         for identifier in self.shape_path:  
             for p in range(len(self.shape_path[identifier])):
                 url_list = self.shape_path[identifier][p]
-                paths = [url.split('/')[-1] for url in url_list if url.split('/')[-1] not in complex_type_list][::-1]
+                paths = []
+                for i in range(len(url_list)):
+                    url = url_list[i]
+                    if url.split('/')[-1] not in complex_type_list:
+                        if i != len(url_list)-1:
+                            paths.append(url.split('/')[-1])
+                        elif "NodeShape" in url:
+                            paths.append(url.split('NodeShape/')[-1])
+                        elif "PropertyShape" in url:
+                            paths.append(url.split('PropertyShape/')[-1])
+                paths = paths[::-1]
+                # paths = [url.split('/')[-1] for url in url_list if url.split('/')[-1] not in complex_type_list][::-1]
                 result = '/'.join(paths)
-                result = re.sub(r'([^/]+)/\1', r'\1', result)
+                # result = re.sub(r'([^/]+)/\1', r'\1', result)
+                result = re.sub(r'(/[^/]+)/\1', r'\1', result)
+                # Remove duplicate path
+                path_parts = result.split('/')
+                result = path_parts[0]
+                for i in range(1,len(path_parts)):
+                    part = path_parts[i]
+                    if part != path_parts[i-1]:
+                        result += '/' + part
+
                 if result[0] != '/':
                     result = '/'+result
                 self.shape_path[identifier][p] = result
@@ -275,7 +333,7 @@ class ShapeAdjustment:
                     if "PropertyShape" in shape_identifier:
                         continue
                     for initial_path in self.shape_path[shape_identifier]:
-                        if initial_path == path or initial_path == self.iterator or ("parent:" in path and self.validatePath(path, initial_path)):
+                        if initial_path == path or initial_path == self.iterator or path.endswith(initial_path) or ("parent:" in path and self.validatePath(path, initial_path)):
                             if shape_identifier in self.adjusted_shape:
                                 new_shape_identifier = shape_identifier + "/" + "/".join([i.split("/")[-1] for i in sm_classes])
                                 self.updateShape(URIRef(shape_identifier), URIRef(new_shape_identifier))
@@ -322,9 +380,9 @@ class ShapeAdjustment:
                     for shape_identifier in self.shape_path:
                         if "NodeShape" in shape_identifier:
                             continue   
-                        for initial_path in self.shape_path[shape_identifier]:           
-                            if (initial_path == path) or ("parent:" in path and self.validatePath(path, initial_path)):
-                                if shape_identifier in self.adjusted_shape:
+                        for initial_path in self.shape_path[shape_identifier]:     
+                            if (initial_path == path) or path.endswith(initial_path) or ("parent:" in path and self.validatePath(path, initial_path)):
+                                if URIRef(shape_identifier) in self.adjusted_shape:
                                     new_shape_identifier = shape_identifier + "/" + pom["property"].split("/")[-1]
                                     self.updateShape(URIRef(shape_identifier), URIRef(new_shape_identifier))
                                     shape_identifier = new_shape_identifier
@@ -335,6 +393,16 @@ class ShapeAdjustment:
                                     self.initial_graph.remove((URIRef(shape_identifier), self.shaclNS.nodeKind, None))
                                     self.initial_graph.remove((URIRef(shape_identifier), self.shaclNS.datatype, None))
                                     self.initial_graph.add((URIRef(shape_identifier), self.shaclNS.datatype, pom["datatype"]))
+                                if pom["template_length"] is not None:
+                                    value = self.initial_graph.value(URIRef(shape_identifier), self.shaclNS.minLength)
+                                    if value is not None:
+                                        self.initial_graph.remove((URIRef(shape_identifier), self.shaclNS.minLength, value))
+                                        self.initial_graph.add((URIRef(shape_identifier), self.shaclNS.minLength, Literal(int(pom["template_length"])+int(value))))
+                                    value = self.initial_graph.value(URIRef(shape_identifier), self.shaclNS.maxLength)
+                                    if value is not None:
+                                        self.initial_graph.remove((URIRef(shape_identifier), self.shaclNS.maxLength, value))
+                                        self.initial_graph.add((URIRef(shape_identifier), self.shaclNS.maxLength, Literal(int(pom["template_length"])+int(value))))
+
                                 self.findPS.append(URIRef(shape_identifier))
 
                 else:
@@ -344,12 +412,12 @@ class ShapeAdjustment:
                             if "NodeShape" in shape_identifier:
                                 continue
                             for initial_path in self.shape_path[shape_identifier]:
-                                if initial_path == path or ("parent:" in path and self.validatePath(path, initial_path)):
+                                if initial_path == path or path.endswith(initial_path) or ("parent:" in path and self.validatePath(path, initial_path)):
                                     constraints = self.getConstraints(URIRef(shape_identifier), constraints)
                     if constraints!={}:
                         new_shape_identifier = shape_identifier + "/" + pom["property"].split("/")[-1]
                         self.adjusted_shape.append(URIRef(new_shape_identifier))
-                        self.updateCombinationShape(URIRef(new_shape_identifier), pom["property"], constraints)
+                        self.updateCombinationShape(URIRef(new_shape_identifier), pom["property"], constraints,pom["template_length"])
                         self.findPS.append(URIRef(new_shape_identifier))
             
             if self.findPS == []:
@@ -390,7 +458,7 @@ class ShapeAdjustment:
                 constraints[p] = l
         return constraints
 
-    def updateCombinationShape(self, shape_identifier, property, constraints):
+    def updateCombinationShape(self, shape_identifier, property, constraints, template_length):
         self.initial_graph.add((shape_identifier, RDF.type, self.shaclNS.PropertyShape))
         self.initial_graph.add((shape_identifier, self.shaclNS.nodeKind, self.shaclNS.IRI))
         self.initial_graph.add((shape_identifier, self.shaclNS.path, property))
@@ -403,6 +471,11 @@ class ShapeAdjustment:
                 current_number = 1
                 for value in constraint_value:
                     current_number*=int(value)
+                self.initial_graph.add((shape_identifier, constraint, Literal(current_number)))
+            elif constraint == self.shaclNS.minLength or constraint == self.shaclNS.maxLength:
+                current_number = template_length
+                for value in constraint_value:
+                    current_number+=int(value)
                 self.initial_graph.add((shape_identifier, constraint, Literal(current_number)))
 
     def adjust_parentTM(self, parentTM):
@@ -428,23 +501,23 @@ class ShapeAdjustment:
             elif o in old_subjects:
                 self.initial_graph.remove((s,p,o))
 
-    # def remove_graph(self, old_subjects):
-    #     bnodes = []
-    #     for s,p,o in self.initial_graph:
-    #         if s in old_subjects:
-    #             self.initial_graph.remove((s,p,o))
-    #             if isinstance(o,BNode):
-    #                 bnodes.append(o)
-    #         elif o in old_subjects:
-    #             self.initial_graph.remove((s,p,o))
-    #         if (s in bnodes) or (o in bnodes):
-    #             if isinstance(o,BNode):
-    #                 bnodes.append(o)
-    #             if isinstance(s,BNode):
-    #                 bnodes.append(s)
-    #     for s,p,o in self.initial_graph:
-    #         if (s in bnodes) or (o in bnodes):
-    #             self.initial_graph.remove((s,p,o))
+    def reassign_identifier(self):
+        current_adjusted_identifier = []    
+        for s, p, o in self.initial_graph:
+            if p == RDF.type and (o == self.shaclNS.NodeShape or o == self.shaclNS.PropertyShape):
+                if s not in self.adjusted_identifier:
+                    current_adjusted_identifier.append(s)
+                else:
+                    new_shape_identifier = URIRef(str(s)+str(self.random_number.pop()))
+                    current_adjusted_identifier.append(new_shape_identifier)
+                    for s2, p2, o2 in self.initial_graph:
+                        if s2 == s:
+                            self.initial_graph.remove((s2,p2,o2))
+                            self.initial_graph.add((new_shape_identifier,p2,o2))
+                        elif o2 == s:
+                            self.initial_graph.remove((s2,p2,o2))
+                            self.initial_graph.add((s2,p2,new_shape_identifier))
+        self.adjusted_identifier.extend(current_adjusted_identifier)
 
     def adjust(self, initial_graph):
         self.initial_graph = initial_graph 
@@ -452,7 +525,9 @@ class ShapeAdjustment:
             self.adjust_sm(self.rml_parsed[triples_map_identifier]["sm"]["path"], self.rml_parsed[triples_map_identifier]["sm"]["classes"])
             self.adjust_pom(self.rml_parsed[triples_map_identifier]["pom"])
             self.findNS = []
+        
         self.clear_graph()
+        self.reassign_identifier()
         self.adjusted_graph+=self.initial_graph
 
     def writeShapeToFile(self, output_file):
@@ -463,17 +538,25 @@ class ShapeAdjustment:
             print(r[2])
         else:
             print("Saved to adjusted SHACL shapes to file", output_file)
-            self.adjusted_graph.serialize(destination=output_file, format='turtle')
+        self.adjusted_graph.serialize(destination=output_file, format='turtle')
 
 if __name__ == '__main__':
 
-    # g.parse('adjustment_test/rml2.ttl', format='ttl')
-    # g_xsd = Graph().parse('adjustment_test/xsd.shape.ttl')
-    g_rml = Graph().parse('usecases/RINF/mappings/RINF-etcs-levels_rml.ttl', format='ttl')
-    g_xsd = Graph().parse('adjustment_test/RINF-metadata.xsd.shape.ttl')
+    # g_rml = Graph().parse('usecases/RINF/mappings/RINF-etcs-levels_rml.ttl', format='ttl')
+    # g_rml2 = Graph().parse('usecases/RINF/mappings/RINF-load-capability_rml.ttl', format='ttl')
+    # g_xsd = Graph().parse('adjustment_test/RINF-metadata.xsd.shape.ttl')
     
+    # sa = ShapeAdjustment("xml")
+    # sa.parseRawDataSchemaShape(g_xsd)
+    # sa.parseRML(g_rml)
+    # sa.adjust(Graph()+g_xsd)
+    # sa.parseRML(g_rml2)
+    # sa.adjust(Graph()+g_xsd)
+    # sa.writeShapeToFile("adjustment_test/era_adjusted_shacl.ttl")
+    g_rml = Graph().parse('adjustment_test/rml.ttl', format='ttl')
+    g_xsd = Graph().parse('adjustment_test/xsd.shape.ttl')
     sa = ShapeAdjustment("xml")
     sa.parseRawDataSchemaShape(g_xsd)
     sa.parseRML(g_rml)
-    sa.adjust(g_xsd)
-    sa.writeShapeToFile("adjustment_test/era_adjusted_shacl2.ttl")
+    sa.adjust(Graph()+g_xsd)
+    sa.writeShapeToFile("adjustment_test/test.lenth.ttl")

@@ -805,7 +805,7 @@ class XSDtoSHACL:
         start = time.time()
         self.translate(self.root)
         end = time.time()
-        print("Translation time cost: " + str(end - start), "Seconds")
+        # print("Translation time cost: " + str(end - start), "Seconds")
 
         print("#########Start validating SHACL shapes syntax")
         shaclValidation = Graph()
@@ -820,7 +820,7 @@ class XSDtoSHACL:
         else:
             print("Skip SHACL shape syntax check using pyshacl due to the size of SHACL shapes is too large! ")
 
-        print("#########Start writing to file")
+        # print("#########Start writing to file")
         if shacl_file:
             self.writeShapeToFile(shacl_file)
             print(f"Saved SHACL shapes in {shacl_file}!")

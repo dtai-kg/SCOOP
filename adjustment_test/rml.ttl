@@ -22,8 +22,8 @@
   rr:predicateObjectMap [
     rr:predicate transit:stop;
     rr:objectMap [
-      rml:reference "route/stop/@id";
-      rr:datatype xsd:int
+      rr:template "http://trans.example.com/{route/stop/@id}";
+      rr:datatype xsd:positiveInteger ;
     ]
   ];
 

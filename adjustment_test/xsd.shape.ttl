@@ -34,6 +34,7 @@
     sh:datatype xsd:positiveInteger ;
     sh:maxCount 1 ;
     sh:minCount 1 ;
+    sh:minLength 7 ;
     sh:name "id" ;
     sh:path ex:id .
 
@@ -45,9 +46,10 @@
     sh:property <http://example.com/PropertyShape/transport/bus/route/stop/id> .
 
 <http://example.com/PropertyShape/transport/bus/route/stop/id> a sh:PropertyShape ;
-    sh:datatype xsd:positiveInteger ;
+    
     sh:maxCount 1 ;
     sh:minCount 1 ;
+    sh:minLength 10 ;
     sh:name "id" ;
     sh:path ex:id .
 

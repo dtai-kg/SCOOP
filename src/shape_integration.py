@@ -4,7 +4,7 @@ from pathlib import Path
 from typing import List, Dict
 from rdflib import Graph, Namespace, URIRef, Literal, BNode
 from pyshacl import validate
-import pprint
+import random
 
 
 class ShapeIntegration:
@@ -17,6 +17,9 @@ class ShapeIntegration:
         self.shapes = shapes
         self.output = output
         self.SHACL = Graph()
+
+        self.integrated_identifier = []
+        self.random_number = [random.randint(1000, 9999) for i in range(1000)]
     
     def integration(self):
         """
@@ -24,8 +27,9 @@ class ShapeIntegration:
         """
         for shape_add in self.shapes:
 
-            NodeShapes_current = self.getNodeShapes(self.SHACL)
-            NodeShapes_add = self.getNodeShapes(shape_add)
+            NodeShapes_current, _ = self.getNodeShapes(self.SHACL)
+            NodeShapes_add, shape_add = self.getNodeShapes(shape_add, replace=True)
+            self.integrated_identifier.extend(NodeShapes_add)
 
             # Get target declaration for a given shape, return a dictionary with target term and object value as key, identifier with involved property paths as value
             target_current = self.getTargetDeclaration(self.SHACL, NodeShapes_current)
@@ -103,10 +107,11 @@ class ShapeIntegration:
                     for identifier_add in identifiers_add:
                         self.addShape(shape_add, identifier_add)
 
-            self.writeShapeToFile()
+        self.writeShapeToFile()
 
     def getTargetDeclaration(self, shape: Graph, NodeShapes: List):
         targetDict = {}
+        
         for identifier, p, o in shape:
             if p in self.targetDeclarationNS:
                 l = targetDict.get((p,o),{})
@@ -127,12 +132,33 @@ class ShapeIntegration:
                     propertyPaths = self.getPropertyPath(propertyPaths, shape, o, NodeShapes)
         return propertyPaths
 
-    def getNodeShapes(self, shape: Graph):
+    def getNodeShapes(self, shape: Graph, replace=False):
         NodeShapes = []
-        for s, p, o in shape:
-            if p == self.rdfSyntax.type and o == self.shaclNS.NodeShape:
-                NodeShapes.append(s)
-        return NodeShapes
+        if replace == False:
+            for s, p, o in shape:
+                if p == self.rdfSyntax.type and o == self.shaclNS.NodeShape:
+                    NodeShapes.append(s)
+        else:
+            # repalce duplicate node shapes in previous shape
+            for s, p, o in shape:
+                if p == self.rdfSyntax.type and o == self.shaclNS.NodeShape:
+                    if s not in self.integrated_identifier:
+                        NodeShapes.append(s)
+                    else:
+                        new_shape_identifier = URIRef(str(s)+str(self.random_number.pop()))
+                        shape = self.updateShape(shape, s, new_shape_identifier)
+
+        return NodeShapes, shape
+
+    def updateShape(self, g, shape_identifier, new_shape_identifier):
+        for s, p, o in g:
+            if s == shape_identifier:
+                g.remove((s,p,o))
+                g.add((new_shape_identifier,p,o))
+            elif o == shape_identifier:
+                g.remove((s,p,o))
+                g.add((s,p,new_shape_identifier))
+        return g
 
     def getConstraints(self, shape: Graph, identifier, NodeShapes: List):
         constraints = {}
@@ -404,9 +430,10 @@ class ShapeIntegration:
                      inference='rdfs', abort_on_first=False, meta_shacl=False, debug=False)
         if not r[0]:
             print(r[2])
-        else:
-            parent_folder = os.path.dirname(self.output)
-            Path(f"%s%s" % (shape_dir, parent_folder)).mkdir(parents=True, exist_ok=True)
+        # # else:
+        parent_folder = os.path.dirname(self.output)
+        Path(f"%s%s" % (shape_dir, parent_folder)).mkdir(parents=True, exist_ok=True)
 
-            filenNameShape = "%s%s" % (shape_dir, self.output)
-            self.SHACL.serialize(destination=filenNameShape, format='turtle')
+        filenNameShape = "%s%s" % (shape_dir, self.output)
+        self.SHACL.serialize(destination=filenNameShape, format='turtle')
+        print("Saved final file in ", filenNameShape)

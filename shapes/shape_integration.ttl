@@ -1,0 +1,1428 @@
+@prefix era: <http://data.europa.eu/949/> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<http://example.com/NodeShape/RINFData> a sh:NodeShape ;
+    sh:name "RINFData" ;
+    sh:node <http://example.com/NodeShape/None>,
+        <http://example.com/NodeShape/RINFData/MemberStateCode> ;
+    sh:nodeKind sh:IRI ;
+    sh:targetClass <http://example.com/RINFData> ;
+    sh:xone ( <http://example.com/NodeShape/RINFData/SectionOfLine> <http://example.com/NodeShape/RINFData/OperationalPoint> ) .
+
+<http://mapping.example.com/map_etcs-baseline_000/shape> a sh:NodeShape ;
+    sh:nodeKind sh:IRI ;
+    sh:pattern "http://data.europa.eu/949/functionalInfrastructure/etcsLevels/.*_.*_.*_.*_.*" ;
+    sh:property [ sh:nodeKind sh:IRI ;
+            sh:path era:etcsBaseline ] .
+
+<http://mapping.example.com/map_etcs-level_000/shape> a sh:NodeShape ;
+    sh:nodeKind sh:IRI ;
+    sh:pattern "http://data.europa.eu/949/functionalInfrastructure/etcsLevels/.*_.*_.*_.*_.*" ;
+    sh:property [ sh:nodeKind sh:IRI ;
+            sh:path era:etcsLevelType ],
+        [ sh:nodeKind sh:Literal ;
+            sh:path rdfs:label ] ;
+    sh:targetClass era:ETCSLevel .
+
+<http://mapping.example.com/map_line-national-ids_000/shape> a sh:NodeShape ;
+    sh:nodeKind sh:IRI ;
+    sh:pattern "http://data.europa.eu/949/functionalInfrastructure/nationalLines/.*/.*" ;
+    sh:property [ sh:nodeKind sh:Literal ;
+            sh:path rdfs:label ],
+        [ sh:node <http://mapping.example.com/map_eu-country_000/shape> ;
+            sh:nodeKind sh:IRI ;
+            sh:path era:inCountry ] ;
+    sh:targetClass era:NationalRailwayLine .
+
+<http://mapping.example.com/map_load-capability_000/shape> a sh:NodeShape ;
+    sh:nodeKind sh:IRI ;
+    sh:pattern "http://data.europa.eu/949/functionalInfrastructure/load-capabilities/.*_.*_.*_.*_.*" ;
+    sh:property [ sh:nodeKind sh:IRI ;
+            sh:path era:loadCapabilityLineCategory ],
+        [ sh:datatype xsd:integer ;
+            sh:nodeKind sh:Literal ;
+            sh:path era:loadCapabilitySpeed ] ;
+    sh:targetClass era:LoadCapability .
+
+<http://mapping.example.com/map_min-axle-loads-vehicle-category_000/shape> a sh:NodeShape ;
+    sh:nodeKind sh:IRI ;
+    sh:pattern "http://data.europa.eu/949/functionalInfrastructure/min-axle-load-vehicle-categories/.*_.*_.*_.*_.*" ;
+    sh:property [ sh:nodeKind sh:IRI ;
+            sh:path era:minAxleLoadVehicleCategory ],
+        [ sh:datatype xsd:double ;
+            sh:nodeKind sh:Literal ;
+            sh:path era:minAxleLoad ] ;
+    sh:targetClass era:MinAxleLoadVehicleCategory .
+
+<http://mapping.example.com/map_op-track_000/shape> a sh:NodeShape ;
+    sh:nodeKind sh:IRI ;
+    sh:pattern "http://data.europa.eu/949/functionalInfrastructure/tracks/.*_.*" ;
+    sh:property [ sh:nodeKind sh:Literal ;
+            sh:path era:imCode ],
+        [ sh:datatype xsd:date ;
+            sh:nodeKind sh:Literal ;
+            sh:path era:validityEndDate ],
+        [ sh:nodeKind sh:Literal ;
+            sh:path rdfs:label ],
+        [ sh:nodeKind sh:Literal ;
+            sh:path era:trackId ],
+        [ sh:datatype xsd:date ;
+            sh:nodeKind sh:Literal ;
+            sh:path era:validityStartDate ] ;
+    sh:targetClass era:Track .
+
+<http://mapping.example.com/map_operational-border-point1_000/shape> a sh:NodeShape ;
+    sh:nodeKind sh:IRI ;
+    sh:pattern "http://data.europa.eu/949/functionalInfrastructure/operationalPoints/.*" ;
+    sh:property [ sh:nodeKind sh:IRI ;
+            sh:path era:opType ],
+        [ sh:nodeKind sh:Literal ;
+            sh:path era:uopid ],
+        [ sh:nodeKind sh:IRI ;
+            sh:path era:opInfoPerCountry ] ;
+    sh:targetClass era:OperationalPoint .
+
+<http://mapping.example.com/map_operational-border-point2_000/shape> a sh:NodeShape ;
+    sh:nodeKind sh:IRI ;
+    sh:pattern "http://data.europa.eu/949/functionalInfrastructure/operationalPoints/.*/.*/.*_.*" ;
+    sh:property [ sh:nodeKind sh:IRI ;
+            sh:path era:hasAbstraction ],
+        [ sh:nodeKind sh:Literal ;
+            sh:path era:uopid ],
+        [ sh:nodeKind sh:IRI ;
+            sh:path <http://www.opengis.net/ont/geosparql#hasGeometry> ],
+        [ sh:nodeKind sh:IRI ;
+            sh:path era:opType ],
+        [ sh:nodeKind sh:IRI ;
+            sh:path <http://www.w3.org/2003/01/geo/wgs84_pos#location> ],
+        [ sh:nodeKind sh:Literal ;
+            sh:path rdfs:label ],
+        [ sh:nodeKind sh:Literal ;
+            sh:path era:tafTAPCode ],
+        [ sh:datatype xsd:date ;
+            sh:nodeKind sh:Literal ;
+            sh:path era:validityStartDate ],
+        [ sh:node <http://mapping.example.com/map_eu-country_000/shape5814> ;
+            sh:nodeKind sh:IRI ;
+            sh:path era:inCountry ],
+        [ sh:nodeKind sh:Literal ;
+            sh:path era:opName ],
+        [ sh:datatype xsd:date ;
+            sh:nodeKind sh:Literal ;
+            sh:path era:validityEndDate ],
+        [ sh:nodeKind sh:IRI ;
+            sh:path era:borderPointOf ] ;
+    sh:targetClass era:OperationalPoint .
+
+<http://mapping.example.com/map_operational-point_000/shape> a sh:NodeShape ;
+    sh:nodeKind sh:IRI ;
+    sh:pattern "http://data.europa.eu/949/topology/netElements/.*" ;
+    sh:property [ sh:nodeKind sh:Literal ;
+            sh:path rdfs:label ],
+        [ sh:nodeKind sh:IRI ;
+            sh:path era:hasImplementation ] ;
+    sh:targetClass era:NetElement .
+
+<http://mapping.example.com/map_raised-pantograph-distance-speed_000/shape> a sh:NodeShape ;
+    sh:nodeKind sh:IRI ;
+    sh:pattern "http://data.europa.eu/949/functionalInfrastructure/raisedPantographsDistanceAndSpeed/.*_.*_.*_.*_.*" ;
+    sh:property [ sh:datatype xsd:integer ;
+            sh:nodeKind sh:Literal ;
+            sh:path era:raisedPantographsNumber ],
+        [ sh:datatype xsd:integer ;
+            sh:nodeKind sh:Literal ;
+            sh:path era:raisedPantographsDistance ],
+        [ sh:nodeKind sh:Literal ;
+            sh:path rdfs:label ],
+        [ sh:datatype xsd:integer ;
+            sh:nodeKind sh:Literal ;
+            sh:path era:raisedPantographsSpeed ] ;
+    sh:targetClass era:RaisedPantographsDistanceAndSpeed .
+
+<http://mapping.example.com/map_sections-of-line_000/shape> a sh:NodeShape ;
+    sh:nodeKind sh:IRI ;
+    sh:pattern "http://data.europa.eu/949/topology/netElements/.*_.*_.*" ;
+    sh:property [ sh:nodeKind sh:Literal ;
+            sh:path rdfs:label ],
+        [ sh:nodeKind sh:IRI ;
+            sh:path era:hasImplementation ] ;
+    sh:targetClass era:NetElement .
+
+<http://mapping.example.com/map_sections-of-line_000/shape8785> a sh:NodeShape ;
+    sh:nodeKind sh:IRI ;
+    sh:pattern "http://data.europa.eu/949/functionalInfrastructure/sectionsOfLine/.*_.*_.*/.*_.*" ;
+    sh:property [ sh:datatype xsd:date ;
+            sh:nodeKind sh:Literal ;
+            sh:path era:validityStartDate ],
+        [ sh:node <http://mapping.example.com/map_link-sol-to-operational-point_000/shape> ;
+            sh:nodeKind sh:IRI ;
+            sh:path era:opEnd ],
+        [ sh:nodeKind sh:IRI ;
+            sh:path era:hasAbstraction ],
+        [ sh:nodeKind sh:IRI ;
+            sh:path era:canonicalURI ],
+        [ sh:nodeKind sh:IRI ;
+            sh:path era:lineNationalId ],
+        [ sh:node <http://mapping.example.com/map_link-sol-to-operational-point_000/shape> ;
+            sh:nodeKind sh:IRI ;
+            sh:path era:opStart ],
+        [ sh:nodeKind sh:IRI ;
+            sh:path <http://www.opengis.net/ont/geosparql#hasGeometry> ],
+        [ sh:datatype xsd:double ;
+            sh:nodeKind sh:Literal ;
+            sh:path era:length ],
+        [ sh:nodeKind sh:IRI ;
+            sh:path era:solNature ],
+        [ sh:nodeKind sh:Literal ;
+            sh:path era:imCode ],
+        [ sh:node <http://mapping.example.com/map_eu-country_000/shape2362> ;
+            sh:nodeKind sh:IRI ;
+            sh:path era:inCountry ],
+        [ sh:datatype xsd:date ;
+            sh:nodeKind sh:Literal ;
+            sh:path era:validityEndDate ] ;
+    sh:targetClass era:SectionOfLine .
+
+<http://mapping.example.com/map_sol-end_000/shape> a sh:NodeShape ;
+    sh:nodeKind sh:IRI ;
+    sh:pattern "http://data.europa.eu/949/topology/netRelations/.*_.*_.*_.*" ;
+    sh:property [ sh:nodeKind sh:IRI ;
+            sh:path era:elementA ],
+        [ sh:nodeKind sh:IRI ;
+            sh:path era:elementB ] ;
+    sh:targetClass era:NetRelation .
+
+<http://mapping.example.com/map_sol-start_000/shape> a sh:NodeShape ;
+    sh:nodeKind sh:IRI ;
+    sh:pattern "http://data.europa.eu/949/topology/netRelations/.*_.*_.*_.*" ;
+    sh:property [ sh:nodeKind sh:IRI ;
+            sh:path era:elementB ],
+        [ sh:nodeKind sh:IRI ;
+            sh:path era:elementA ] ;
+    sh:targetClass era:NetRelation .
+
+<http://example.com/NodeShape/RINFData/MemberStateCode> a sh:NodeShape ;
+    sh:name "MemberStateCode" ;
+    sh:node <http://example.com/NodeShape/None> ;
+    sh:nodeKind sh:IRI ;
+    sh:property <http://example.com/PropertyShape/RINFData/MemberStateCode/Code>,
+        <http://example.com/PropertyShape/RINFData/MemberStateCode/Version> ;
+    sh:targetClass <http://example.com/MemberStateCode> .
+
+<http://example.com/NodeShape/RINFData/OperationalPoint> a sh:NodeShape ;
+    sh:name "OperationalPoint" ;
+    sh:node <http://example.com/NodeShape/None>,
+        <http://example.com/NodeShape/RINFData/OperationalPoint/OPGeographicLocation>,
+        <http://example.com/NodeShape/RINFData/OperationalPoint/OPName>,
+        <http://example.com/NodeShape/RINFData/OperationalPoint/OPRailwayLocation>,
+        <http://example.com/NodeShape/RINFData/OperationalPoint/OPRules>,
+        <http://example.com/NodeShape/RINFData/OperationalPoint/OPSiding>,
+        <http://example.com/NodeShape/RINFData/OperationalPoint/OPTafTapCode>,
+        <http://example.com/NodeShape/RINFData/OperationalPoint/OPTrack>,
+        <http://example.com/NodeShape/RINFData/OperationalPoint/OPType>,
+        <http://example.com/NodeShape/RINFData/OperationalPoint/OPTypeGaugeChangeover>,
+        <http://example.com/NodeShape/RINFData/OperationalPoint/UniqueOPID> ;
+    sh:nodeKind sh:IRI ;
+    sh:property <http://example.com/PropertyShape/RINFData/OperationalPoint/ValidityDateEnd>,
+        <http://example.com/PropertyShape/RINFData/OperationalPoint/ValidityDateStart> ;
+    sh:targetClass <http://example.com/OperationalPoint> .
+
+<http://example.com/NodeShape/RINFData/OperationalPoint/OPGeographicLocation> a sh:NodeShape ;
+    sh:name "OPGeographicLocation" ;
+    sh:node <http://example.com/NodeShape/None> ;
+    sh:nodeKind sh:IRI ;
+    sh:property <http://example.com/PropertyShape/RINFData/OperationalPoint/OPGeographicLocation/Latitude>,
+        <http://example.com/PropertyShape/RINFData/OperationalPoint/OPGeographicLocation/Longitude> ;
+    sh:targetClass <http://example.com/OPGeographicLocation> .
+
+<http://example.com/NodeShape/RINFData/OperationalPoint/OPName> a sh:NodeShape ;
+    sh:name "OPName" ;
+    sh:node <http://example.com/NodeShape/None> ;
+    sh:nodeKind sh:IRI ;
+    sh:property <http://example.com/PropertyShape/RINFData/OperationalPoint/OPName/Value> ;
+    sh:targetClass <http://example.com/OPName> .
+
+<http://example.com/NodeShape/RINFData/OperationalPoint/OPRailwayLocation> a sh:NodeShape ;
+    sh:name "OPRailwayLocation" ;
+    sh:node <http://example.com/NodeShape/None> ;
+    sh:nodeKind sh:IRI ;
+    sh:property <http://example.com/PropertyShape/RINFData/OperationalPoint/OPRailwayLocation/Kilometer>,
+        <http://example.com/PropertyShape/RINFData/OperationalPoint/OPRailwayLocation/NationalIdentNum> ;
+    sh:targetClass <http://example.com/OPRailwayLocation> .
+
+<http://example.com/NodeShape/RINFData/OperationalPoint/OPRules> a sh:NodeShape ;
+    sh:name "OPRules" ;
+    sh:node <http://example.com/NodeShape/None>,
+        <http://example.com/NodeShape/RINFData/OperationalPoint/OPRules/OPRulesParameter> ;
+    sh:nodeKind sh:IRI ;
+    sh:targetClass <http://example.com/OPRules> .
+
+<http://example.com/NodeShape/RINFData/OperationalPoint/OPRules/OPRulesParameter> a sh:NodeShape ;
+    sh:name "OPRulesParameter" ;
+    sh:node <http://example.com/NodeShape/None> ;
+    sh:nodeKind sh:IRI ;
+    sh:property <http://example.com/PropertyShape/RINFData/OperationalPoint/OPRules/OPRulesParameter/ID>,
+        <http://example.com/PropertyShape/RINFData/OperationalPoint/OPRules/OPRulesParameter/IsApplicable>,
+        <http://example.com/PropertyShape/RINFData/OperationalPoint/OPRules/OPRulesParameter/OptionalValue>,
+        <http://example.com/PropertyShape/RINFData/OperationalPoint/OPRules/OPRulesParameter/Value> ;
+    sh:targetClass <http://example.com/OPRulesParameter> .
+
+<http://example.com/NodeShape/RINFData/OperationalPoint/OPSiding> a sh:NodeShape ;
+    sh:name "OPSiding" ;
+    sh:node <http://example.com/NodeShape/None>,
+        <http://example.com/NodeShape/RINFData/OperationalPoint/OPSiding/OPSidingIMCode>,
+        <http://example.com/NodeShape/RINFData/OperationalPoint/OPSiding/OPSidingIdentification>,
+        <http://example.com/NodeShape/RINFData/OperationalPoint/OPSiding/OPSidingParameter>,
+        <http://example.com/NodeShape/RINFData/OperationalPoint/OPSiding/OPSidingTunnel> ;
+    sh:nodeKind sh:IRI ;
+    sh:property <http://example.com/PropertyShape/RINFData/OperationalPoint/OPSiding/ValidityDateEnd>,
+        <http://example.com/PropertyShape/RINFData/OperationalPoint/OPSiding/ValidityDateStart> ;
+    sh:targetClass <http://example.com/OPSiding> .
+
+<http://example.com/NodeShape/RINFData/OperationalPoint/OPSiding/OPSidingIMCode> a sh:NodeShape ;
+    sh:name "OPSidingIMCode" ;
+    sh:node <http://example.com/NodeShape/None> ;
+    sh:nodeKind sh:IRI ;
+    sh:property <http://example.com/PropertyShape/RINFData/OperationalPoint/OPSiding/OPSidingIMCode/Value> ;
+    sh:targetClass <http://example.com/OPSidingIMCode> .
+
+<http://example.com/NodeShape/RINFData/OperationalPoint/OPSiding/OPSidingIdentification> a sh:NodeShape ;
+    sh:name "OPSidingIdentification" ;
+    sh:node <http://example.com/NodeShape/None> ;
+    sh:nodeKind sh:IRI ;
+    sh:property <http://example.com/PropertyShape/RINFData/OperationalPoint/OPSiding/OPSidingIdentification/Value> ;
+    sh:targetClass <http://example.com/OPSidingIdentification> .
+
+<http://example.com/NodeShape/RINFData/OperationalPoint/OPSiding/OPSidingParameter> a sh:NodeShape ;
+    sh:name "OPSidingParameter" ;
+    sh:node <http://example.com/NodeShape/None> ;
+    sh:nodeKind sh:IRI ;
+    sh:property <http://example.com/PropertyShape/RINFData/OperationalPoint/OPSiding/OPSidingParameter/ID>,
+        <http://example.com/PropertyShape/RINFData/OperationalPoint/OPSiding/OPSidingParameter/IsApplicable>,
+        <http://example.com/PropertyShape/RINFData/OperationalPoint/OPSiding/OPSidingParameter/OptionalValue>,
+        <http://example.com/PropertyShape/RINFData/OperationalPoint/OPSiding/OPSidingParameter/Value> ;
+    sh:targetClass <http://example.com/OPSidingParameter> .
+
+<http://example.com/NodeShape/RINFData/OperationalPoint/OPSiding/OPSidingTunnel> a sh:NodeShape ;
+    sh:name "OPSidingTunnel" ;
+    sh:node <http://example.com/NodeShape/None>,
+        <http://example.com/NodeShape/RINFData/OperationalPoint/OPSiding/OPSidingTunnel/OPSidingTunnelIMCode>,
+        <http://example.com/NodeShape/RINFData/OperationalPoint/OPSiding/OPSidingTunnel/OPSidingTunnelIdentification>,
+        <http://example.com/NodeShape/RINFData/OperationalPoint/OPSiding/OPSidingTunnel/OPSidingTunnelParameter> ;
+    sh:nodeKind sh:IRI ;
+    sh:property <http://example.com/PropertyShape/RINFData/OperationalPoint/OPSiding/OPSidingTunnel/ValidityDateEnd>,
+        <http://example.com/PropertyShape/RINFData/OperationalPoint/OPSiding/OPSidingTunnel/ValidityDateStart> ;
+    sh:targetClass <http://example.com/OPSidingTunnel> .
+
+<http://example.com/NodeShape/RINFData/OperationalPoint/OPSiding/OPSidingTunnel/OPSidingTunnelIMCode> a sh:NodeShape ;
+    sh:name "OPSidingTunnelIMCode" ;
+    sh:node <http://example.com/NodeShape/None> ;
+    sh:nodeKind sh:IRI ;
+    sh:property <http://example.com/PropertyShape/RINFData/OperationalPoint/OPSiding/OPSidingTunnel/OPSidingTunnelIMCode/Value> ;
+    sh:targetClass <http://example.com/OPSidingTunnelIMCode> .
+
+<http://example.com/NodeShape/RINFData/OperationalPoint/OPSiding/OPSidingTunnel/OPSidingTunnelIdentification> a sh:NodeShape ;
+    sh:name "OPSidingTunnelIdentification" ;
+    sh:node <http://example.com/NodeShape/None> ;
+    sh:nodeKind sh:IRI ;
+    sh:property <http://example.com/PropertyShape/RINFData/OperationalPoint/OPSiding/OPSidingTunnel/OPSidingTunnelIdentification/Value> ;
+    sh:targetClass <http://example.com/OPSidingTunnelIdentification> .
+
+<http://example.com/NodeShape/RINFData/OperationalPoint/OPSiding/OPSidingTunnel/OPSidingTunnelParameter> a sh:NodeShape ;
+    sh:name "OPSidingTunnelParameter" ;
+    sh:node <http://example.com/NodeShape/None> ;
+    sh:nodeKind sh:IRI ;
+    sh:property <http://example.com/PropertyShape/RINFData/OperationalPoint/OPSiding/OPSidingTunnel/OPSidingTunnelParameter/ID>,
+        <http://example.com/PropertyShape/RINFData/OperationalPoint/OPSiding/OPSidingTunnel/OPSidingTunnelParameter/IsApplicable>,
+        <http://example.com/PropertyShape/RINFData/OperationalPoint/OPSiding/OPSidingTunnel/OPSidingTunnelParameter/OptionalValue>,
+        <http://example.com/PropertyShape/RINFData/OperationalPoint/OPSiding/OPSidingTunnel/OPSidingTunnelParameter/Value> ;
+    sh:targetClass <http://example.com/OPSidingTunnelParameter> .
+
+<http://example.com/NodeShape/RINFData/OperationalPoint/OPTafTapCode> a sh:NodeShape ;
+    sh:name "OPTafTapCode" ;
+    sh:node <http://example.com/NodeShape/None> ;
+    sh:nodeKind sh:IRI ;
+    sh:property <http://example.com/PropertyShape/RINFData/OperationalPoint/OPTafTapCode/IsApplicable>,
+        <http://example.com/PropertyShape/RINFData/OperationalPoint/OPTafTapCode/Value> ;
+    sh:targetClass <http://example.com/OPTafTapCode> .
+
+<http://example.com/NodeShape/RINFData/OperationalPoint/OPTrack> a sh:NodeShape ;
+    sh:name "OPTrack" ;
+    sh:node <http://example.com/NodeShape/None>,
+        <http://example.com/NodeShape/RINFData/OperationalPoint/OPTrack/OPTrackIMCode>,
+        <http://example.com/NodeShape/RINFData/OperationalPoint/OPTrack/OPTrackIdentification>,
+        <http://example.com/NodeShape/RINFData/OperationalPoint/OPTrack/OPTrackParameter>,
+        <http://example.com/NodeShape/RINFData/OperationalPoint/OPTrack/OPTrackPlatform>,
+        <http://example.com/NodeShape/RINFData/OperationalPoint/OPTrack/OPTrackTunnel> ;
+    sh:nodeKind sh:IRI ;
+    sh:property <http://example.com/PropertyShape/RINFData/OperationalPoint/OPTrack/ValidityDateEnd>,
+        <http://example.com/PropertyShape/RINFData/OperationalPoint/OPTrack/ValidityDateStart> ;
+    sh:targetClass <http://example.com/OPTrack> .
+
+<http://example.com/NodeShape/RINFData/OperationalPoint/OPTrack/OPTrackIMCode> a sh:NodeShape ;
+    sh:name "OPTrackIMCode" ;
+    sh:node <http://example.com/NodeShape/None> ;
+    sh:nodeKind sh:IRI ;
+    sh:property <http://example.com/PropertyShape/RINFData/OperationalPoint/OPTrack/OPTrackIMCode/Value> ;
+    sh:targetClass <http://example.com/OPTrackIMCode> .
+
+<http://example.com/NodeShape/RINFData/OperationalPoint/OPTrack/OPTrackIdentification> a sh:NodeShape ;
+    sh:name "OPTrackIdentification" ;
+    sh:node <http://example.com/NodeShape/None> ;
+    sh:nodeKind sh:IRI ;
+    sh:property <http://example.com/PropertyShape/RINFData/OperationalPoint/OPTrack/OPTrackIdentification/Value> ;
+    sh:targetClass <http://example.com/OPTrackIdentification> .
+
+<http://example.com/NodeShape/RINFData/OperationalPoint/OPTrack/OPTrackParameter> a sh:NodeShape ;
+    sh:name "OPTrackParameter" ;
+    sh:node <http://example.com/NodeShape/None> ;
+    sh:nodeKind sh:IRI ;
+    sh:property <http://example.com/PropertyShape/RINFData/OperationalPoint/OPTrack/OPTrackParameter/ID>,
+        <http://example.com/PropertyShape/RINFData/OperationalPoint/OPTrack/OPTrackParameter/IsApplicable>,
+        <http://example.com/PropertyShape/RINFData/OperationalPoint/OPTrack/OPTrackParameter/OptionalValue>,
+        <http://example.com/PropertyShape/RINFData/OperationalPoint/OPTrack/OPTrackParameter/Value> ;
+    sh:targetClass <http://example.com/OPTrackParameter> .
+
+<http://example.com/NodeShape/RINFData/OperationalPoint/OPTrack/OPTrackPlatform> a sh:NodeShape ;
+    sh:name "OPTrackPlatform" ;
+    sh:node <http://example.com/NodeShape/None>,
+        <http://example.com/NodeShape/RINFData/OperationalPoint/OPTrack/OPTrackPlatform/OPTrackPlatformIMCode>,
+        <http://example.com/NodeShape/RINFData/OperationalPoint/OPTrack/OPTrackPlatform/OPTrackPlatformIdentification>,
+        <http://example.com/NodeShape/RINFData/OperationalPoint/OPTrack/OPTrackPlatform/OPTrackPlatformParameter> ;
+    sh:nodeKind sh:IRI ;
+    sh:property <http://example.com/PropertyShape/RINFData/OperationalPoint/OPTrack/OPTrackPlatform/ValidityDateEnd>,
+        <http://example.com/PropertyShape/RINFData/OperationalPoint/OPTrack/OPTrackPlatform/ValidityDateStart> ;
+    sh:targetClass <http://example.com/OPTrackPlatform> .
+
+<http://example.com/NodeShape/RINFData/OperationalPoint/OPTrack/OPTrackPlatform/OPTrackPlatformIMCode> a sh:NodeShape ;
+    sh:name "OPTrackPlatformIMCode" ;
+    sh:node <http://example.com/NodeShape/None> ;
+    sh:nodeKind sh:IRI ;
+    sh:property <http://example.com/PropertyShape/RINFData/OperationalPoint/OPTrack/OPTrackPlatform/OPTrackPlatformIMCode/Value> ;
+    sh:targetClass <http://example.com/OPTrackPlatformIMCode> .
+
+<http://example.com/NodeShape/RINFData/OperationalPoint/OPTrack/OPTrackPlatform/OPTrackPlatformIdentification> a sh:NodeShape ;
+    sh:name "OPTrackPlatformIdentification" ;
+    sh:node <http://example.com/NodeShape/None> ;
+    sh:nodeKind sh:IRI ;
+    sh:property <http://example.com/PropertyShape/RINFData/OperationalPoint/OPTrack/OPTrackPlatform/OPTrackPlatformIdentification/Value> ;
+    sh:targetClass <http://example.com/OPTrackPlatformIdentification> .
+
+<http://example.com/NodeShape/RINFData/OperationalPoint/OPTrack/OPTrackPlatform/OPTrackPlatformParameter> a sh:NodeShape ;
+    sh:name "OPTrackPlatformParameter" ;
+    sh:node <http://example.com/NodeShape/None> ;
+    sh:nodeKind sh:IRI ;
+    sh:property <http://example.com/PropertyShape/RINFData/OperationalPoint/OPTrack/OPTrackPlatform/OPTrackPlatformParameter/ID>,
+        <http://example.com/PropertyShape/RINFData/OperationalPoint/OPTrack/OPTrackPlatform/OPTrackPlatformParameter/IsApplicable>,
+        <http://example.com/PropertyShape/RINFData/OperationalPoint/OPTrack/OPTrackPlatform/OPTrackPlatformParameter/OptionalValue>,
+        <http://example.com/PropertyShape/RINFData/OperationalPoint/OPTrack/OPTrackPlatform/OPTrackPlatformParameter/Value> ;
+    sh:targetClass <http://example.com/OPTrackPlatformParameter> .
+
+<http://example.com/NodeShape/RINFData/OperationalPoint/OPTrack/OPTrackTunnel> a sh:NodeShape ;
+    sh:name "OPTrackTunnel" ;
+    sh:node <http://example.com/NodeShape/None>,
+        <http://example.com/NodeShape/RINFData/OperationalPoint/OPTrack/OPTrackTunnel/OPTrackTunnelIMCode>,
+        <http://example.com/NodeShape/RINFData/OperationalPoint/OPTrack/OPTrackTunnel/OPTrackTunnelIdentification>,
+        <http://example.com/NodeShape/RINFData/OperationalPoint/OPTrack/OPTrackTunnel/OPTrackTunnelParameter> ;
+    sh:nodeKind sh:IRI ;
+    sh:property <http://example.com/PropertyShape/RINFData/OperationalPoint/OPTrack/OPTrackTunnel/ValidityDateEnd>,
+        <http://example.com/PropertyShape/RINFData/OperationalPoint/OPTrack/OPTrackTunnel/ValidityDateStart> ;
+    sh:targetClass <http://example.com/OPTrackTunnel> .
+
+<http://example.com/NodeShape/RINFData/OperationalPoint/OPTrack/OPTrackTunnel/OPTrackTunnelIMCode> a sh:NodeShape ;
+    sh:name "OPTrackTunnelIMCode" ;
+    sh:node <http://example.com/NodeShape/None> ;
+    sh:nodeKind sh:IRI ;
+    sh:property <http://example.com/PropertyShape/RINFData/OperationalPoint/OPTrack/OPTrackTunnel/OPTrackTunnelIMCode/Value> ;
+    sh:targetClass <http://example.com/OPTrackTunnelIMCode> .
+
+<http://example.com/NodeShape/RINFData/OperationalPoint/OPTrack/OPTrackTunnel/OPTrackTunnelIdentification> a sh:NodeShape ;
+    sh:name "OPTrackTunnelIdentification" ;
+    sh:node <http://example.com/NodeShape/None> ;
+    sh:nodeKind sh:IRI ;
+    sh:property <http://example.com/PropertyShape/RINFData/OperationalPoint/OPTrack/OPTrackTunnel/OPTrackTunnelIdentification/Value> ;
+    sh:targetClass <http://example.com/OPTrackTunnelIdentification> .
+
+<http://example.com/NodeShape/RINFData/OperationalPoint/OPTrack/OPTrackTunnel/OPTrackTunnelParameter> a sh:NodeShape ;
+    sh:name "OPTrackTunnelParameter" ;
+    sh:node <http://example.com/NodeShape/None> ;
+    sh:nodeKind sh:IRI ;
+    sh:property <http://example.com/PropertyShape/RINFData/OperationalPoint/OPTrack/OPTrackTunnel/OPTrackTunnelParameter/ID>,
+        <http://example.com/PropertyShape/RINFData/OperationalPoint/OPTrack/OPTrackTunnel/OPTrackTunnelParameter/IsApplicable>,
+        <http://example.com/PropertyShape/RINFData/OperationalPoint/OPTrack/OPTrackTunnel/OPTrackTunnelParameter/OptionalValue>,
+        <http://example.com/PropertyShape/RINFData/OperationalPoint/OPTrack/OPTrackTunnel/OPTrackTunnelParameter/Value> ;
+    sh:targetClass <http://example.com/OPTrackTunnelParameter> .
+
+<http://example.com/NodeShape/RINFData/OperationalPoint/OPType> a sh:NodeShape ;
+    sh:name "OPType" ;
+    sh:node <http://example.com/NodeShape/None> ;
+    sh:nodeKind sh:IRI ;
+    sh:property <http://example.com/PropertyShape/RINFData/OperationalPoint/OPType/OptionalValue>,
+        <http://example.com/PropertyShape/RINFData/OperationalPoint/OPType/Value> ;
+    sh:targetClass <http://example.com/OPType> .
+
+<http://example.com/NodeShape/RINFData/OperationalPoint/OPTypeGaugeChangeover> a sh:NodeShape ;
+    sh:name "OPTypeGaugeChangeover" ;
+    sh:node <http://example.com/NodeShape/None> ;
+    sh:nodeKind sh:IRI ;
+    sh:property <http://example.com/PropertyShape/RINFData/OperationalPoint/OPTypeGaugeChangeover/IsApplicable>,
+        <http://example.com/PropertyShape/RINFData/OperationalPoint/OPTypeGaugeChangeover/OptionalValue>,
+        <http://example.com/PropertyShape/RINFData/OperationalPoint/OPTypeGaugeChangeover/Value> ;
+    sh:targetClass <http://example.com/OPTypeGaugeChangeover> .
+
+<http://example.com/NodeShape/RINFData/OperationalPoint/UniqueOPID> a sh:NodeShape ;
+    sh:name "UniqueOPID" ;
+    sh:node <http://example.com/NodeShape/None> ;
+    sh:nodeKind sh:IRI ;
+    sh:property <http://example.com/PropertyShape/RINFData/OperationalPoint/UniqueOPID/Value> ;
+    sh:targetClass <http://example.com/UniqueOPID> .
+
+<http://example.com/NodeShape/RINFData/SectionOfLine> a sh:NodeShape ;
+    sh:name "SectionOfLine" ;
+    sh:node <http://example.com/NodeShape/None>,
+        <http://example.com/NodeShape/RINFData/SectionOfLine/SOLIMCode>,
+        <http://example.com/NodeShape/RINFData/SectionOfLine/SOLLength>,
+        <http://example.com/NodeShape/RINFData/SectionOfLine/SOLLineIdentification>,
+        <http://example.com/NodeShape/RINFData/SectionOfLine/SOLNature>,
+        <http://example.com/NodeShape/RINFData/SectionOfLine/SOLOPEnd>,
+        <http://example.com/NodeShape/RINFData/SectionOfLine/SOLOPStart>,
+        <http://example.com/NodeShape/RINFData/SectionOfLine/SOLTrack> ;
+    sh:nodeKind sh:IRI ;
+    sh:property <http://example.com/PropertyShape/RINFData/SectionOfLine/ValidityDateEnd>,
+        <http://example.com/PropertyShape/RINFData/SectionOfLine/ValidityDateStart> ;
+    sh:targetClass <http://example.com/SectionOfLine> .
+
+<http://example.com/NodeShape/RINFData/SectionOfLine/SOLIMCode> a sh:NodeShape ;
+    sh:name "SOLIMCode" ;
+    sh:node <http://example.com/NodeShape/None> ;
+    sh:nodeKind sh:IRI ;
+    sh:property <http://example.com/PropertyShape/RINFData/SectionOfLine/SOLIMCode/Value> ;
+    sh:targetClass <http://example.com/SOLIMCode> .
+
+<http://example.com/NodeShape/RINFData/SectionOfLine/SOLLength> a sh:NodeShape ;
+    sh:name "SOLLength" ;
+    sh:node <http://example.com/NodeShape/None> ;
+    sh:nodeKind sh:IRI ;
+    sh:property <http://example.com/PropertyShape/RINFData/SectionOfLine/SOLLength/Value> ;
+    sh:targetClass <http://example.com/SOLLength> .
+
+<http://example.com/NodeShape/RINFData/SectionOfLine/SOLLineIdentification> a sh:NodeShape ;
+    sh:name "SOLLineIdentification" ;
+    sh:node <http://example.com/NodeShape/None> ;
+    sh:nodeKind sh:IRI ;
+    sh:property <http://example.com/PropertyShape/RINFData/SectionOfLine/SOLLineIdentification/Value> ;
+    sh:targetClass <http://example.com/SOLLineIdentification> .
+
+<http://example.com/NodeShape/RINFData/SectionOfLine/SOLNature> a sh:NodeShape ;
+    sh:name "SOLNature" ;
+    sh:node <http://example.com/NodeShape/None> ;
+    sh:nodeKind sh:IRI ;
+    sh:property <http://example.com/PropertyShape/RINFData/SectionOfLine/SOLNature/OptionalValue>,
+        <http://example.com/PropertyShape/RINFData/SectionOfLine/SOLNature/Value> ;
+    sh:targetClass <http://example.com/SOLNature> .
+
+<http://example.com/NodeShape/RINFData/SectionOfLine/SOLOPEnd> a sh:NodeShape ;
+    sh:name "SOLOPEnd" ;
+    sh:node <http://example.com/NodeShape/None> ;
+    sh:nodeKind sh:IRI ;
+    sh:property <http://example.com/PropertyShape/RINFData/SectionOfLine/SOLOPEnd/Value> ;
+    sh:targetClass <http://example.com/SOLOPEnd> .
+
+<http://example.com/NodeShape/RINFData/SectionOfLine/SOLOPStart> a sh:NodeShape ;
+    sh:name "SOLOPStart" ;
+    sh:node <http://example.com/NodeShape/None> ;
+    sh:nodeKind sh:IRI ;
+    sh:property <http://example.com/PropertyShape/RINFData/SectionOfLine/SOLOPStart/Value> ;
+    sh:targetClass <http://example.com/SOLOPStart> .
+
+<http://example.com/NodeShape/RINFData/SectionOfLine/SOLTrack> a sh:NodeShape ;
+    sh:name "SOLTrack" ;
+    sh:node <http://example.com/NodeShape/None>,
+        <http://example.com/NodeShape/RINFData/SectionOfLine/SOLTrack/SOLTrackDirection>,
+        <http://example.com/NodeShape/RINFData/SectionOfLine/SOLTrack/SOLTrackIdentification>,
+        <http://example.com/NodeShape/RINFData/SectionOfLine/SOLTrack/SOLTrackParameter>,
+        <http://example.com/NodeShape/RINFData/SectionOfLine/SOLTrack/SOLTunnel> ;
+    sh:nodeKind sh:IRI ;
+    sh:property <http://example.com/PropertyShape/RINFData/SectionOfLine/SOLTrack/ValidityDateEnd>,
+        <http://example.com/PropertyShape/RINFData/SectionOfLine/SOLTrack/ValidityDateStart> ;
+    sh:targetClass <http://example.com/SOLTrack> .
+
+<http://example.com/NodeShape/RINFData/SectionOfLine/SOLTrack/SOLTrackDirection> a sh:NodeShape ;
+    sh:name "SOLTrackDirection" ;
+    sh:node <http://example.com/NodeShape/None> ;
+    sh:nodeKind sh:IRI ;
+    sh:property <http://example.com/PropertyShape/RINFData/SectionOfLine/SOLTrack/SOLTrackDirection/OptionalValue>,
+        <http://example.com/PropertyShape/RINFData/SectionOfLine/SOLTrack/SOLTrackDirection/Value> ;
+    sh:targetClass <http://example.com/SOLTrackDirection> .
+
+<http://example.com/NodeShape/RINFData/SectionOfLine/SOLTrack/SOLTrackIdentification> a sh:NodeShape ;
+    sh:name "SOLTrackIdentification" ;
+    sh:node <http://example.com/NodeShape/None> ;
+    sh:nodeKind sh:IRI ;
+    sh:property <http://example.com/PropertyShape/RINFData/SectionOfLine/SOLTrack/SOLTrackIdentification/Value> ;
+    sh:targetClass <http://example.com/SOLTrackIdentification> .
+
+<http://example.com/NodeShape/RINFData/SectionOfLine/SOLTrack/SOLTrackParameter> a sh:NodeShape ;
+    sh:name "SOLTrackParameter" ;
+    sh:node <http://example.com/NodeShape/None>,
+        <http://example.com/NodeShape/RINFData/SectionOfLine/SOLTrack/SOLTrackParameter/LocationPoint> ;
+    sh:nodeKind sh:IRI ;
+    sh:property <http://example.com/PropertyShape/RINFData/SectionOfLine/SOLTrack/SOLTrackParameter/ID>,
+        <http://example.com/PropertyShape/RINFData/SectionOfLine/SOLTrack/SOLTrackParameter/IsApplicable>,
+        <http://example.com/PropertyShape/RINFData/SectionOfLine/SOLTrack/SOLTrackParameter/OptionalValue>,
+        <http://example.com/PropertyShape/RINFData/SectionOfLine/SOLTrack/SOLTrackParameter/Set>,
+        <http://example.com/PropertyShape/RINFData/SectionOfLine/SOLTrack/SOLTrackParameter/Value> ;
+    sh:targetClass <http://example.com/SOLTrackParameter> .
+
+<http://example.com/NodeShape/RINFData/SectionOfLine/SOLTrack/SOLTrackParameter/LocationPoint> a sh:NodeShape ;
+    sh:name "LocationPoint" ;
+    sh:node <http://example.com/NodeShape/None> ;
+    sh:nodeKind sh:IRI ;
+    sh:property <http://example.com/PropertyShape/RINFData/SectionOfLine/SOLTrack/SOLTrackParameter/LocationPoint/Kilometer>,
+        <http://example.com/PropertyShape/RINFData/SectionOfLine/SOLTrack/SOLTrackParameter/LocationPoint/Latitude>,
+        <http://example.com/PropertyShape/RINFData/SectionOfLine/SOLTrack/SOLTrackParameter/LocationPoint/Longitude>,
+        <http://example.com/PropertyShape/RINFData/SectionOfLine/SOLTrack/SOLTrackParameter/LocationPoint/Value> ;
+    sh:targetClass <http://example.com/LocationPoint> .
+
+<http://example.com/NodeShape/RINFData/SectionOfLine/SOLTrack/SOLTunnel> a sh:NodeShape ;
+    sh:name "SOLTunnel" ;
+    sh:node <http://example.com/NodeShape/None>,
+        <http://example.com/NodeShape/RINFData/SectionOfLine/SOLTrack/SOLTunnel/SOLTunnelEnd>,
+        <http://example.com/NodeShape/RINFData/SectionOfLine/SOLTrack/SOLTunnel/SOLTunnelIMCode>,
+        <http://example.com/NodeShape/RINFData/SectionOfLine/SOLTrack/SOLTunnel/SOLTunnelIdentification>,
+        <http://example.com/NodeShape/RINFData/SectionOfLine/SOLTrack/SOLTunnel/SOLTunnelParameter>,
+        <http://example.com/NodeShape/RINFData/SectionOfLine/SOLTrack/SOLTunnel/SOLTunnelStart> ;
+    sh:nodeKind sh:IRI ;
+    sh:property <http://example.com/PropertyShape/RINFData/SectionOfLine/SOLTrack/SOLTunnel/ValidityDateEnd>,
+        <http://example.com/PropertyShape/RINFData/SectionOfLine/SOLTrack/SOLTunnel/ValidityDateStart> ;
+    sh:targetClass <http://example.com/SOLTunnel> .
+
+<http://example.com/NodeShape/RINFData/SectionOfLine/SOLTrack/SOLTunnel/SOLTunnelEnd> a sh:NodeShape ;
+    sh:name "SOLTunnelEnd" ;
+    sh:node <http://example.com/NodeShape/None> ;
+    sh:nodeKind sh:IRI ;
+    sh:property <http://example.com/PropertyShape/RINFData/SectionOfLine/SOLTrack/SOLTunnel/SOLTunnelEnd/Kilometer>,
+        <http://example.com/PropertyShape/RINFData/SectionOfLine/SOLTrack/SOLTunnel/SOLTunnelEnd/Latitude>,
+        <http://example.com/PropertyShape/RINFData/SectionOfLine/SOLTrack/SOLTunnel/SOLTunnelEnd/Longitude> ;
+    sh:targetClass <http://example.com/SOLTunnelEnd> .
+
+<http://example.com/NodeShape/RINFData/SectionOfLine/SOLTrack/SOLTunnel/SOLTunnelIMCode> a sh:NodeShape ;
+    sh:name "SOLTunnelIMCode" ;
+    sh:node <http://example.com/NodeShape/None> ;
+    sh:nodeKind sh:IRI ;
+    sh:property <http://example.com/PropertyShape/RINFData/SectionOfLine/SOLTrack/SOLTunnel/SOLTunnelIMCode/Value> ;
+    sh:targetClass <http://example.com/SOLTunnelIMCode> .
+
+<http://example.com/NodeShape/RINFData/SectionOfLine/SOLTrack/SOLTunnel/SOLTunnelIdentification> a sh:NodeShape ;
+    sh:name "SOLTunnelIdentification" ;
+    sh:node <http://example.com/NodeShape/None> ;
+    sh:nodeKind sh:IRI ;
+    sh:property <http://example.com/PropertyShape/RINFData/SectionOfLine/SOLTrack/SOLTunnel/SOLTunnelIdentification/Value> ;
+    sh:targetClass <http://example.com/SOLTunnelIdentification> .
+
+<http://example.com/NodeShape/RINFData/SectionOfLine/SOLTrack/SOLTunnel/SOLTunnelParameter> a sh:NodeShape ;
+    sh:name "SOLTunnelParameter" ;
+    sh:node <http://example.com/NodeShape/None> ;
+    sh:nodeKind sh:IRI ;
+    sh:property <http://example.com/PropertyShape/RINFData/SectionOfLine/SOLTrack/SOLTunnel/SOLTunnelParameter/ID>,
+        <http://example.com/PropertyShape/RINFData/SectionOfLine/SOLTrack/SOLTunnel/SOLTunnelParameter/IsApplicable>,
+        <http://example.com/PropertyShape/RINFData/SectionOfLine/SOLTrack/SOLTunnel/SOLTunnelParameter/OptionalValue>,
+        <http://example.com/PropertyShape/RINFData/SectionOfLine/SOLTrack/SOLTunnel/SOLTunnelParameter/Value> ;
+    sh:targetClass <http://example.com/SOLTunnelParameter> .
+
+<http://example.com/NodeShape/RINFData/SectionOfLine/SOLTrack/SOLTunnel/SOLTunnelStart> a sh:NodeShape ;
+    sh:name "SOLTunnelStart" ;
+    sh:node <http://example.com/NodeShape/None> ;
+    sh:nodeKind sh:IRI ;
+    sh:property <http://example.com/PropertyShape/RINFData/SectionOfLine/SOLTrack/SOLTunnel/SOLTunnelStart/Kilometer>,
+        <http://example.com/PropertyShape/RINFData/SectionOfLine/SOLTrack/SOLTunnel/SOLTunnelStart/Latitude>,
+        <http://example.com/PropertyShape/RINFData/SectionOfLine/SOLTrack/SOLTunnel/SOLTunnelStart/Longitude> ;
+    sh:targetClass <http://example.com/SOLTunnelStart> .
+
+<http://example.com/PropertyShape/RINFData/MemberStateCode/Code> a sh:PropertyShape ;
+    sh:datatype xsd:string ;
+    sh:maxCount 1 ;
+    sh:maxLength 2 ;
+    sh:minCount 1 ;
+    sh:minLength 2 ;
+    sh:name "Code" ;
+    sh:path <http://example.com/Code> .
+
+<http://example.com/PropertyShape/RINFData/MemberStateCode/Version> a sh:PropertyShape ;
+    sh:datatype xsd:decimal ;
+    sh:maxCount 1 ;
+    sh:minCount 1 ;
+    sh:name "Version" ;
+    sh:path <http://example.com/Version> .
+
+<http://example.com/PropertyShape/RINFData/OperationalPoint/OPGeographicLocation/Latitude> a sh:PropertyShape ;
+    sh:datatype xsd:decimal ;
+    sh:maxCount 1 ;
+    sh:minCount 1 ;
+    sh:name "Latitude" ;
+    sh:path <http://example.com/Latitude> .
+
+<http://example.com/PropertyShape/RINFData/OperationalPoint/OPGeographicLocation/Longitude> a sh:PropertyShape ;
+    sh:datatype xsd:decimal ;
+    sh:maxCount 1 ;
+    sh:minCount 1 ;
+    sh:name "Longitude" ;
+    sh:path <http://example.com/Longitude> .
+
+<http://example.com/PropertyShape/RINFData/OperationalPoint/OPName/Value> a sh:PropertyShape ;
+    sh:datatype xsd:string ;
+    sh:maxCount 1 ;
+    sh:maxLength 450 ;
+    sh:minCount 1 ;
+    sh:name "Value" ;
+    sh:path <http://example.com/Value> .
+
+<http://example.com/PropertyShape/RINFData/OperationalPoint/OPRailwayLocation/Kilometer> a sh:PropertyShape ;
+    sh:datatype xsd:decimal ;
+    sh:maxCount 1 ;
+    sh:minCount 1 ;
+    sh:name "Kilometer" ;
+    sh:path <http://example.com/Kilometer> .
+
+<http://example.com/PropertyShape/RINFData/OperationalPoint/OPRailwayLocation/NationalIdentNum> a sh:PropertyShape ;
+    sh:datatype xsd:string ;
+    sh:maxCount 1 ;
+    sh:maxLength 450 ;
+    sh:minCount 1 ;
+    sh:name "NationalIdentNum" ;
+    sh:path <http://example.com/NationalIdentNum> .
+
+<http://example.com/PropertyShape/RINFData/OperationalPoint/OPRules/OPRulesParameter/ID> a sh:PropertyShape ;
+    sh:datatype xsd:string ;
+    sh:maxCount 1 ;
+    sh:maxLength 450 ;
+    sh:minCount 1 ;
+    sh:name "ID" ;
+    sh:path <http://example.com/ID> .
+
+<http://example.com/PropertyShape/RINFData/OperationalPoint/OPRules/OPRulesParameter/IsApplicable> a sh:PropertyShape ;
+    sh:datatype xsd:string ;
+    sh:maxCount 1 ;
+    sh:maxLength 3 ;
+    sh:minCount 1 ;
+    sh:minLength 1 ;
+    sh:name "IsApplicable" ;
+    sh:path <http://example.com/IsApplicable> .
+
+<http://example.com/PropertyShape/RINFData/OperationalPoint/OPRules/OPRulesParameter/OptionalValue> a sh:PropertyShape ;
+    sh:datatype xsd:string ;
+    sh:maxCount 1 ;
+    sh:maxLength 450 ;
+    sh:minCount 0 ;
+    sh:name "OptionalValue" ;
+    sh:path <http://example.com/OptionalValue> .
+
+<http://example.com/PropertyShape/RINFData/OperationalPoint/OPRules/OPRulesParameter/Value> a sh:PropertyShape ;
+    sh:datatype xsd:string ;
+    sh:maxCount 1 ;
+    sh:maxLength 450 ;
+    sh:minCount 0 ;
+    sh:name "Value" ;
+    sh:path <http://example.com/Value> .
+
+<http://example.com/PropertyShape/RINFData/OperationalPoint/OPSiding/OPSidingIMCode/Value> a sh:PropertyShape ;
+    sh:datatype xsd:string ;
+    sh:maxCount 1 ;
+    sh:maxLength 4 ;
+    sh:minCount 1 ;
+    sh:minLength 1 ;
+    sh:name "Value" ;
+    sh:path <http://example.com/Value> .
+
+<http://example.com/PropertyShape/RINFData/OperationalPoint/OPSiding/OPSidingIdentification/Value> a sh:PropertyShape ;
+    sh:datatype xsd:string ;
+    sh:maxCount 1 ;
+    sh:maxLength 450 ;
+    sh:minCount 1 ;
+    sh:name "Value" ;
+    sh:path <http://example.com/Value> .
+
+<http://example.com/PropertyShape/RINFData/OperationalPoint/OPSiding/OPSidingParameter/ID> a sh:PropertyShape ;
+    sh:datatype xsd:string ;
+    sh:maxCount 1 ;
+    sh:maxLength 450 ;
+    sh:minCount 1 ;
+    sh:name "ID" ;
+    sh:path <http://example.com/ID> .
+
+<http://example.com/PropertyShape/RINFData/OperationalPoint/OPSiding/OPSidingParameter/IsApplicable> a sh:PropertyShape ;
+    sh:datatype xsd:string ;
+    sh:maxCount 1 ;
+    sh:maxLength 3 ;
+    sh:minCount 1 ;
+    sh:minLength 1 ;
+    sh:name "IsApplicable" ;
+    sh:path <http://example.com/IsApplicable> .
+
+<http://example.com/PropertyShape/RINFData/OperationalPoint/OPSiding/OPSidingParameter/OptionalValue> a sh:PropertyShape ;
+    sh:datatype xsd:string ;
+    sh:maxCount 1 ;
+    sh:maxLength 450 ;
+    sh:minCount 0 ;
+    sh:name "OptionalValue" ;
+    sh:path <http://example.com/OptionalValue> .
+
+<http://example.com/PropertyShape/RINFData/OperationalPoint/OPSiding/OPSidingParameter/Value> a sh:PropertyShape ;
+    sh:datatype xsd:string ;
+    sh:maxCount 1 ;
+    sh:maxLength 450 ;
+    sh:minCount 0 ;
+    sh:name "Value" ;
+    sh:path <http://example.com/Value> .
+
+<http://example.com/PropertyShape/RINFData/OperationalPoint/OPSiding/OPSidingTunnel/OPSidingTunnelIMCode/Value> a sh:PropertyShape ;
+    sh:datatype xsd:string ;
+    sh:maxCount 1 ;
+    sh:maxLength 4 ;
+    sh:minCount 1 ;
+    sh:minLength 1 ;
+    sh:name "Value" ;
+    sh:path <http://example.com/Value> .
+
+<http://example.com/PropertyShape/RINFData/OperationalPoint/OPSiding/OPSidingTunnel/OPSidingTunnelIdentification/Value> a sh:PropertyShape ;
+    sh:datatype xsd:string ;
+    sh:maxCount 1 ;
+    sh:maxLength 450 ;
+    sh:minCount 1 ;
+    sh:name "Value" ;
+    sh:path <http://example.com/Value> .
+
+<http://example.com/PropertyShape/RINFData/OperationalPoint/OPSiding/OPSidingTunnel/OPSidingTunnelParameter/ID> a sh:PropertyShape ;
+    sh:datatype xsd:string ;
+    sh:maxCount 1 ;
+    sh:maxLength 450 ;
+    sh:minCount 1 ;
+    sh:name "ID" ;
+    sh:path <http://example.com/ID> .
+
+<http://example.com/PropertyShape/RINFData/OperationalPoint/OPSiding/OPSidingTunnel/OPSidingTunnelParameter/IsApplicable> a sh:PropertyShape ;
+    sh:datatype xsd:string ;
+    sh:maxCount 1 ;
+    sh:maxLength 3 ;
+    sh:minCount 1 ;
+    sh:minLength 1 ;
+    sh:name "IsApplicable" ;
+    sh:path <http://example.com/IsApplicable> .
+
+<http://example.com/PropertyShape/RINFData/OperationalPoint/OPSiding/OPSidingTunnel/OPSidingTunnelParameter/OptionalValue> a sh:PropertyShape ;
+    sh:datatype xsd:string ;
+    sh:maxCount 1 ;
+    sh:maxLength 450 ;
+    sh:minCount 0 ;
+    sh:name "OptionalValue" ;
+    sh:path <http://example.com/OptionalValue> .
+
+<http://example.com/PropertyShape/RINFData/OperationalPoint/OPSiding/OPSidingTunnel/OPSidingTunnelParameter/Value> a sh:PropertyShape ;
+    sh:datatype xsd:string ;
+    sh:maxCount 1 ;
+    sh:maxLength 450 ;
+    sh:minCount 0 ;
+    sh:name "Value" ;
+    sh:path <http://example.com/Value> .
+
+<http://example.com/PropertyShape/RINFData/OperationalPoint/OPSiding/OPSidingTunnel/ValidityDateEnd> a sh:PropertyShape ;
+    sh:datatype xsd:date ;
+    sh:maxCount 1 ;
+    sh:minCount 0 ;
+    sh:name "ValidityDateEnd" ;
+    sh:path <http://example.com/ValidityDateEnd> .
+
+<http://example.com/PropertyShape/RINFData/OperationalPoint/OPSiding/OPSidingTunnel/ValidityDateStart> a sh:PropertyShape ;
+    sh:datatype xsd:date ;
+    sh:maxCount 1 ;
+    sh:minCount 0 ;
+    sh:name "ValidityDateStart" ;
+    sh:path <http://example.com/ValidityDateStart> .
+
+<http://example.com/PropertyShape/RINFData/OperationalPoint/OPSiding/ValidityDateEnd> a sh:PropertyShape ;
+    sh:datatype xsd:date ;
+    sh:maxCount 1 ;
+    sh:minCount 0 ;
+    sh:name "ValidityDateEnd" ;
+    sh:path <http://example.com/ValidityDateEnd> .
+
+<http://example.com/PropertyShape/RINFData/OperationalPoint/OPSiding/ValidityDateStart> a sh:PropertyShape ;
+    sh:datatype xsd:date ;
+    sh:maxCount 1 ;
+    sh:minCount 0 ;
+    sh:name "ValidityDateStart" ;
+    sh:path <http://example.com/ValidityDateStart> .
+
+<http://example.com/PropertyShape/RINFData/OperationalPoint/OPTafTapCode/IsApplicable> a sh:PropertyShape ;
+    sh:datatype xsd:string ;
+    sh:maxCount 1 ;
+    sh:maxLength 3 ;
+    sh:minCount 1 ;
+    sh:minLength 1 ;
+    sh:name "IsApplicable" ;
+    sh:path <http://example.com/IsApplicable> .
+
+<http://example.com/PropertyShape/RINFData/OperationalPoint/OPTafTapCode/Value> a sh:PropertyShape ;
+    sh:datatype xsd:string ;
+    sh:maxCount 1 ;
+    sh:maxLength 7 ;
+    sh:minCount 0 ;
+    sh:minLength 1 ;
+    sh:name "Value" ;
+    sh:path <http://example.com/Value> .
+
+<http://example.com/PropertyShape/RINFData/OperationalPoint/OPTrack/OPTrackIMCode/Value> a sh:PropertyShape ;
+    sh:datatype xsd:string ;
+    sh:maxCount 1 ;
+    sh:maxLength 4 ;
+    sh:minCount 1 ;
+    sh:minLength 1 ;
+    sh:name "Value" ;
+    sh:path <http://example.com/Value> .
+
+<http://example.com/PropertyShape/RINFData/OperationalPoint/OPTrack/OPTrackIdentification/Value> a sh:PropertyShape ;
+    sh:datatype xsd:string ;
+    sh:maxCount 1 ;
+    sh:maxLength 450 ;
+    sh:minCount 1 ;
+    sh:name "Value" ;
+    sh:path <http://example.com/Value> .
+
+<http://example.com/PropertyShape/RINFData/OperationalPoint/OPTrack/OPTrackParameter/ID> a sh:PropertyShape ;
+    sh:datatype xsd:string ;
+    sh:maxCount 1 ;
+    sh:maxLength 450 ;
+    sh:minCount 1 ;
+    sh:name "ID" ;
+    sh:path <http://example.com/ID> .
+
+<http://example.com/PropertyShape/RINFData/OperationalPoint/OPTrack/OPTrackParameter/IsApplicable> a sh:PropertyShape ;
+    sh:datatype xsd:string ;
+    sh:maxCount 1 ;
+    sh:maxLength 3 ;
+    sh:minCount 1 ;
+    sh:minLength 1 ;
+    sh:name "IsApplicable" ;
+    sh:path <http://example.com/IsApplicable> .
+
+<http://example.com/PropertyShape/RINFData/OperationalPoint/OPTrack/OPTrackParameter/OptionalValue> a sh:PropertyShape ;
+    sh:datatype xsd:string ;
+    sh:maxCount 1 ;
+    sh:maxLength 450 ;
+    sh:minCount 0 ;
+    sh:name "OptionalValue" ;
+    sh:path <http://example.com/OptionalValue> .
+
+<http://example.com/PropertyShape/RINFData/OperationalPoint/OPTrack/OPTrackParameter/Value> a sh:PropertyShape ;
+    sh:datatype xsd:string ;
+    sh:maxCount 1 ;
+    sh:maxLength 450 ;
+    sh:minCount 0 ;
+    sh:name "Value" ;
+    sh:path <http://example.com/Value> .
+
+<http://example.com/PropertyShape/RINFData/OperationalPoint/OPTrack/OPTrackPlatform/OPTrackPlatformIMCode/Value> a sh:PropertyShape ;
+    sh:datatype xsd:string ;
+    sh:maxCount 1 ;
+    sh:maxLength 4 ;
+    sh:minCount 1 ;
+    sh:minLength 1 ;
+    sh:name "Value" ;
+    sh:path <http://example.com/Value> .
+
+<http://example.com/PropertyShape/RINFData/OperationalPoint/OPTrack/OPTrackPlatform/OPTrackPlatformIdentification/Value> a sh:PropertyShape ;
+    sh:datatype xsd:string ;
+    sh:maxCount 1 ;
+    sh:maxLength 450 ;
+    sh:minCount 1 ;
+    sh:name "Value" ;
+    sh:path <http://example.com/Value> .
+
+<http://example.com/PropertyShape/RINFData/OperationalPoint/OPTrack/OPTrackPlatform/OPTrackPlatformParameter/ID> a sh:PropertyShape ;
+    sh:datatype xsd:string ;
+    sh:maxCount 1 ;
+    sh:maxLength 450 ;
+    sh:minCount 1 ;
+    sh:name "ID" ;
+    sh:path <http://example.com/ID> .
+
+<http://example.com/PropertyShape/RINFData/OperationalPoint/OPTrack/OPTrackPlatform/OPTrackPlatformParameter/IsApplicable> a sh:PropertyShape ;
+    sh:datatype xsd:string ;
+    sh:maxCount 1 ;
+    sh:maxLength 3 ;
+    sh:minCount 1 ;
+    sh:minLength 1 ;
+    sh:name "IsApplicable" ;
+    sh:path <http://example.com/IsApplicable> .
+
+<http://example.com/PropertyShape/RINFData/OperationalPoint/OPTrack/OPTrackPlatform/OPTrackPlatformParameter/OptionalValue> a sh:PropertyShape ;
+    sh:datatype xsd:string ;
+    sh:maxCount 1 ;
+    sh:maxLength 450 ;
+    sh:minCount 0 ;
+    sh:name "OptionalValue" ;
+    sh:path <http://example.com/OptionalValue> .
+
+<http://example.com/PropertyShape/RINFData/OperationalPoint/OPTrack/OPTrackPlatform/OPTrackPlatformParameter/Value> a sh:PropertyShape ;
+    sh:datatype xsd:string ;
+    sh:maxCount 1 ;
+    sh:maxLength 450 ;
+    sh:minCount 0 ;
+    sh:name "Value" ;
+    sh:path <http://example.com/Value> .
+
+<http://example.com/PropertyShape/RINFData/OperationalPoint/OPTrack/OPTrackPlatform/ValidityDateEnd> a sh:PropertyShape ;
+    sh:datatype xsd:date ;
+    sh:maxCount 1 ;
+    sh:minCount 0 ;
+    sh:name "ValidityDateEnd" ;
+    sh:path <http://example.com/ValidityDateEnd> .
+
+<http://example.com/PropertyShape/RINFData/OperationalPoint/OPTrack/OPTrackPlatform/ValidityDateStart> a sh:PropertyShape ;
+    sh:datatype xsd:date ;
+    sh:maxCount 1 ;
+    sh:minCount 0 ;
+    sh:name "ValidityDateStart" ;
+    sh:path <http://example.com/ValidityDateStart> .
+
+<http://example.com/PropertyShape/RINFData/OperationalPoint/OPTrack/OPTrackTunnel/OPTrackTunnelIMCode/Value> a sh:PropertyShape ;
+    sh:datatype xsd:string ;
+    sh:maxCount 1 ;
+    sh:maxLength 4 ;
+    sh:minCount 1 ;
+    sh:minLength 1 ;
+    sh:name "Value" ;
+    sh:path <http://example.com/Value> .
+
+<http://example.com/PropertyShape/RINFData/OperationalPoint/OPTrack/OPTrackTunnel/OPTrackTunnelIdentification/Value> a sh:PropertyShape ;
+    sh:datatype xsd:string ;
+    sh:maxCount 1 ;
+    sh:maxLength 450 ;
+    sh:minCount 1 ;
+    sh:name "Value" ;
+    sh:path <http://example.com/Value> .
+
+<http://example.com/PropertyShape/RINFData/OperationalPoint/OPTrack/OPTrackTunnel/OPTrackTunnelParameter/ID> a sh:PropertyShape ;
+    sh:datatype xsd:string ;
+    sh:maxCount 1 ;
+    sh:maxLength 450 ;
+    sh:minCount 1 ;
+    sh:name "ID" ;
+    sh:path <http://example.com/ID> .
+
+<http://example.com/PropertyShape/RINFData/OperationalPoint/OPTrack/OPTrackTunnel/OPTrackTunnelParameter/IsApplicable> a sh:PropertyShape ;
+    sh:datatype xsd:string ;
+    sh:maxCount 1 ;
+    sh:maxLength 3 ;
+    sh:minCount 1 ;
+    sh:minLength 1 ;
+    sh:name "IsApplicable" ;
+    sh:path <http://example.com/IsApplicable> .
+
+<http://example.com/PropertyShape/RINFData/OperationalPoint/OPTrack/OPTrackTunnel/OPTrackTunnelParameter/OptionalValue> a sh:PropertyShape ;
+    sh:datatype xsd:string ;
+    sh:maxCount 1 ;
+    sh:maxLength 450 ;
+    sh:minCount 0 ;
+    sh:name "OptionalValue" ;
+    sh:path <http://example.com/OptionalValue> .
+
+<http://example.com/PropertyShape/RINFData/OperationalPoint/OPTrack/OPTrackTunnel/OPTrackTunnelParameter/Value> a sh:PropertyShape ;
+    sh:datatype xsd:string ;
+    sh:maxCount 1 ;
+    sh:maxLength 450 ;
+    sh:minCount 0 ;
+    sh:name "Value" ;
+    sh:path <http://example.com/Value> .
+
+<http://example.com/PropertyShape/RINFData/OperationalPoint/OPTrack/OPTrackTunnel/ValidityDateEnd> a sh:PropertyShape ;
+    sh:datatype xsd:date ;
+    sh:maxCount 1 ;
+    sh:minCount 0 ;
+    sh:name "ValidityDateEnd" ;
+    sh:path <http://example.com/ValidityDateEnd> .
+
+<http://example.com/PropertyShape/RINFData/OperationalPoint/OPTrack/OPTrackTunnel/ValidityDateStart> a sh:PropertyShape ;
+    sh:datatype xsd:date ;
+    sh:maxCount 1 ;
+    sh:minCount 0 ;
+    sh:name "ValidityDateStart" ;
+    sh:path <http://example.com/ValidityDateStart> .
+
+<http://example.com/PropertyShape/RINFData/OperationalPoint/OPTrack/ValidityDateEnd> a sh:PropertyShape ;
+    sh:datatype xsd:date ;
+    sh:maxCount 1 ;
+    sh:minCount 0 ;
+    sh:name "ValidityDateEnd" ;
+    sh:path <http://example.com/ValidityDateEnd> .
+
+<http://example.com/PropertyShape/RINFData/OperationalPoint/OPTrack/ValidityDateStart> a sh:PropertyShape ;
+    sh:datatype xsd:date ;
+    sh:maxCount 1 ;
+    sh:minCount 0 ;
+    sh:name "ValidityDateStart" ;
+    sh:path <http://example.com/ValidityDateStart> .
+
+<http://example.com/PropertyShape/RINFData/OperationalPoint/OPType/OptionalValue> a sh:PropertyShape ;
+    sh:datatype xsd:string ;
+    sh:maxCount 1 ;
+    sh:maxLength 450 ;
+    sh:minCount 0 ;
+    sh:name "OptionalValue" ;
+    sh:path <http://example.com/OptionalValue> .
+
+<http://example.com/PropertyShape/RINFData/OperationalPoint/OPType/Value> a sh:PropertyShape ;
+    sh:datatype xsd:string ;
+    sh:maxCount 1 ;
+    sh:maxLength 450 ;
+    sh:minCount 1 ;
+    sh:name "Value" ;
+    sh:path <http://example.com/Value> .
+
+<http://example.com/PropertyShape/RINFData/OperationalPoint/OPTypeGaugeChangeover/IsApplicable> a sh:PropertyShape ;
+    sh:datatype xsd:string ;
+    sh:maxCount 1 ;
+    sh:maxLength 3 ;
+    sh:minCount 1 ;
+    sh:minLength 1 ;
+    sh:name "IsApplicable" ;
+    sh:path <http://example.com/IsApplicable> .
+
+<http://example.com/PropertyShape/RINFData/OperationalPoint/OPTypeGaugeChangeover/OptionalValue> a sh:PropertyShape ;
+    sh:datatype xsd:string ;
+    sh:maxCount 1 ;
+    sh:maxLength 450 ;
+    sh:minCount 0 ;
+    sh:name "OptionalValue" ;
+    sh:path <http://example.com/OptionalValue> .
+
+<http://example.com/PropertyShape/RINFData/OperationalPoint/OPTypeGaugeChangeover/Value> a sh:PropertyShape ;
+    sh:datatype xsd:string ;
+    sh:maxCount 1 ;
+    sh:maxLength 450 ;
+    sh:minCount 0 ;
+    sh:name "Value" ;
+    sh:path <http://example.com/Value> .
+
+<http://example.com/PropertyShape/RINFData/OperationalPoint/UniqueOPID/Value> a sh:PropertyShape ;
+    sh:datatype xsd:string ;
+    sh:maxCount 1 ;
+    sh:maxLength 12 ;
+    sh:minCount 1 ;
+    sh:name "Value" ;
+    sh:path <http://example.com/Value> .
+
+<http://example.com/PropertyShape/RINFData/OperationalPoint/ValidityDateEnd> a sh:PropertyShape ;
+    sh:datatype xsd:date ;
+    sh:maxCount 1 ;
+    sh:minCount 0 ;
+    sh:name "ValidityDateEnd" ;
+    sh:path <http://example.com/ValidityDateEnd> .
+
+<http://example.com/PropertyShape/RINFData/OperationalPoint/ValidityDateStart> a sh:PropertyShape ;
+    sh:datatype xsd:date ;
+    sh:maxCount 1 ;
+    sh:minCount 0 ;
+    sh:name "ValidityDateStart" ;
+    sh:path <http://example.com/ValidityDateStart> .
+
+<http://example.com/PropertyShape/RINFData/SectionOfLine/SOLIMCode/Value> a sh:PropertyShape ;
+    sh:datatype xsd:string ;
+    sh:maxCount 1 ;
+    sh:maxLength 4 ;
+    sh:minCount 1 ;
+    sh:minLength 1 ;
+    sh:name "Value" ;
+    sh:path <http://example.com/Value> .
+
+<http://example.com/PropertyShape/RINFData/SectionOfLine/SOLLength/Value> a sh:PropertyShape ;
+    sh:datatype xsd:decimal ;
+    sh:maxCount 1 ;
+    sh:minCount 1 ;
+    sh:name "Value" ;
+    sh:path <http://example.com/Value> .
+
+<http://example.com/PropertyShape/RINFData/SectionOfLine/SOLLineIdentification/Value> a sh:PropertyShape ;
+    sh:datatype xsd:string ;
+    sh:maxCount 1 ;
+    sh:maxLength 450 ;
+    sh:minCount 1 ;
+    sh:name "Value" ;
+    sh:path <http://example.com/Value> .
+
+<http://example.com/PropertyShape/RINFData/SectionOfLine/SOLNature/OptionalValue> a sh:PropertyShape ;
+    sh:datatype xsd:string ;
+    sh:maxCount 1 ;
+    sh:maxLength 450 ;
+    sh:minCount 0 ;
+    sh:name "OptionalValue" ;
+    sh:path <http://example.com/OptionalValue> .
+
+<http://example.com/PropertyShape/RINFData/SectionOfLine/SOLNature/Value> a sh:PropertyShape ;
+    sh:datatype xsd:string ;
+    sh:maxCount 1 ;
+    sh:maxLength 450 ;
+    sh:minCount 1 ;
+    sh:name "Value" ;
+    sh:path <http://example.com/Value> .
+
+<http://example.com/PropertyShape/RINFData/SectionOfLine/SOLOPEnd/Value> a sh:PropertyShape ;
+    sh:datatype xsd:string ;
+    sh:maxCount 1 ;
+    sh:maxLength 12 ;
+    sh:minCount 1 ;
+    sh:name "Value" ;
+    sh:path <http://example.com/Value> .
+
+<http://example.com/PropertyShape/RINFData/SectionOfLine/SOLOPStart/Value> a sh:PropertyShape ;
+    sh:datatype xsd:string ;
+    sh:maxCount 1 ;
+    sh:maxLength 12 ;
+    sh:minCount 1 ;
+    sh:name "Value" ;
+    sh:path <http://example.com/Value> .
+
+<http://example.com/PropertyShape/RINFData/SectionOfLine/SOLTrack/SOLTrackDirection/OptionalValue> a sh:PropertyShape ;
+    sh:datatype xsd:string ;
+    sh:maxCount 1 ;
+    sh:maxLength 450 ;
+    sh:minCount 0 ;
+    sh:name "OptionalValue" ;
+    sh:path <http://example.com/OptionalValue> .
+
+<http://example.com/PropertyShape/RINFData/SectionOfLine/SOLTrack/SOLTrackDirection/Value> a sh:PropertyShape ;
+    sh:datatype xsd:string ;
+    sh:maxCount 1 ;
+    sh:maxLength 450 ;
+    sh:minCount 1 ;
+    sh:name "Value" ;
+    sh:path <http://example.com/Value> .
+
+<http://example.com/PropertyShape/RINFData/SectionOfLine/SOLTrack/SOLTrackIdentification/Value> a sh:PropertyShape ;
+    sh:datatype xsd:string ;
+    sh:maxCount 1 ;
+    sh:maxLength 450 ;
+    sh:minCount 1 ;
+    sh:name "Value" ;
+    sh:path <http://example.com/Value> .
+
+<http://example.com/PropertyShape/RINFData/SectionOfLine/SOLTrack/SOLTrackParameter/ID> a sh:PropertyShape ;
+    sh:datatype xsd:string ;
+    sh:maxCount 1 ;
+    sh:maxLength 450 ;
+    sh:minCount 1 ;
+    sh:name "ID" ;
+    sh:path <http://example.com/ID> .
+
+<http://example.com/PropertyShape/RINFData/SectionOfLine/SOLTrack/SOLTrackParameter/IsApplicable> a sh:PropertyShape ;
+    sh:datatype xsd:string ;
+    sh:maxCount 1 ;
+    sh:maxLength 3 ;
+    sh:minCount 1 ;
+    sh:minLength 1 ;
+    sh:name "IsApplicable" ;
+    sh:path <http://example.com/IsApplicable> .
+
+<http://example.com/PropertyShape/RINFData/SectionOfLine/SOLTrack/SOLTrackParameter/LocationPoint/Kilometer> a sh:PropertyShape ;
+    sh:datatype xsd:decimal ;
+    sh:maxCount 1 ;
+    sh:minCount 1 ;
+    sh:name "Kilometer" ;
+    sh:path <http://example.com/Kilometer> .
+
+<http://example.com/PropertyShape/RINFData/SectionOfLine/SOLTrack/SOLTrackParameter/LocationPoint/Latitude> a sh:PropertyShape ;
+    sh:datatype xsd:decimal ;
+    sh:maxCount 1 ;
+    sh:minCount 0 ;
+    sh:name "Latitude" ;
+    sh:path <http://example.com/Latitude> .
+
+<http://example.com/PropertyShape/RINFData/SectionOfLine/SOLTrack/SOLTrackParameter/LocationPoint/Longitude> a sh:PropertyShape ;
+    sh:datatype xsd:decimal ;
+    sh:maxCount 1 ;
+    sh:minCount 0 ;
+    sh:name "Longitude" ;
+    sh:path <http://example.com/Longitude> .
+
+<http://example.com/PropertyShape/RINFData/SectionOfLine/SOLTrack/SOLTrackParameter/LocationPoint/Value> a sh:PropertyShape ;
+    sh:datatype xsd:string ;
+    sh:maxCount 1 ;
+    sh:maxLength 450 ;
+    sh:minCount 1 ;
+    sh:name "Value" ;
+    sh:path <http://example.com/Value> .
+
+<http://example.com/PropertyShape/RINFData/SectionOfLine/SOLTrack/SOLTrackParameter/OptionalValue> a sh:PropertyShape ;
+    sh:datatype xsd:string ;
+    sh:maxCount 1 ;
+    sh:maxLength 450 ;
+    sh:minCount 0 ;
+    sh:name "OptionalValue" ;
+    sh:path <http://example.com/OptionalValue> .
+
+<http://example.com/PropertyShape/RINFData/SectionOfLine/SOLTrack/SOLTrackParameter/Set> a sh:PropertyShape ;
+    sh:datatype xsd:string ;
+    sh:maxCount 1 ;
+    sh:maxLength 1000 ;
+    sh:minCount 0 ;
+    sh:name "Set" ;
+    sh:path <http://example.com/Set> .
+
+<http://example.com/PropertyShape/RINFData/SectionOfLine/SOLTrack/SOLTrackParameter/Value> a sh:PropertyShape ;
+    sh:datatype xsd:string ;
+    sh:maxCount 1 ;
+    sh:maxLength 1000 ;
+    sh:minCount 0 ;
+    sh:name "Value" ;
+    sh:path <http://example.com/Value> .
+
+<http://example.com/PropertyShape/RINFData/SectionOfLine/SOLTrack/SOLTunnel/SOLTunnelEnd/Kilometer> a sh:PropertyShape ;
+    sh:datatype xsd:decimal ;
+    sh:maxCount 1 ;
+    sh:minCount 1 ;
+    sh:name "Kilometer" ;
+    sh:path <http://example.com/Kilometer> .
+
+<http://example.com/PropertyShape/RINFData/SectionOfLine/SOLTrack/SOLTunnel/SOLTunnelEnd/Latitude> a sh:PropertyShape ;
+    sh:datatype xsd:decimal ;
+    sh:maxCount 1 ;
+    sh:minCount 1 ;
+    sh:name "Latitude" ;
+    sh:path <http://example.com/Latitude> .
+
+<http://example.com/PropertyShape/RINFData/SectionOfLine/SOLTrack/SOLTunnel/SOLTunnelEnd/Longitude> a sh:PropertyShape ;
+    sh:datatype xsd:decimal ;
+    sh:maxCount 1 ;
+    sh:minCount 1 ;
+    sh:name "Longitude" ;
+    sh:path <http://example.com/Longitude> .
+
+<http://example.com/PropertyShape/RINFData/SectionOfLine/SOLTrack/SOLTunnel/SOLTunnelIMCode/Value> a sh:PropertyShape ;
+    sh:datatype xsd:string ;
+    sh:maxCount 1 ;
+    sh:maxLength 4 ;
+    sh:minCount 1 ;
+    sh:minLength 1 ;
+    sh:name "Value" ;
+    sh:path <http://example.com/Value> .
+
+<http://example.com/PropertyShape/RINFData/SectionOfLine/SOLTrack/SOLTunnel/SOLTunnelIdentification/Value> a sh:PropertyShape ;
+    sh:datatype xsd:string ;
+    sh:maxCount 1 ;
+    sh:maxLength 450 ;
+    sh:minCount 1 ;
+    sh:name "Value" ;
+    sh:path <http://example.com/Value> .
+
+<http://example.com/PropertyShape/RINFData/SectionOfLine/SOLTrack/SOLTunnel/SOLTunnelParameter/ID> a sh:PropertyShape ;
+    sh:datatype xsd:string ;
+    sh:maxCount 1 ;
+    sh:maxLength 450 ;
+    sh:minCount 1 ;
+    sh:name "ID" ;
+    sh:path <http://example.com/ID> .
+
+<http://example.com/PropertyShape/RINFData/SectionOfLine/SOLTrack/SOLTunnel/SOLTunnelParameter/IsApplicable> a sh:PropertyShape ;
+    sh:datatype xsd:string ;
+    sh:maxCount 1 ;
+    sh:maxLength 3 ;
+    sh:minCount 1 ;
+    sh:minLength 1 ;
+    sh:name "IsApplicable" ;
+    sh:path <http://example.com/IsApplicable> .
+
+<http://example.com/PropertyShape/RINFData/SectionOfLine/SOLTrack/SOLTunnel/SOLTunnelParameter/OptionalValue> a sh:PropertyShape ;
+    sh:datatype xsd:string ;
+    sh:maxCount 1 ;
+    sh:maxLength 450 ;
+    sh:minCount 0 ;
+    sh:name "OptionalValue" ;
+    sh:path <http://example.com/OptionalValue> .
+
+<http://example.com/PropertyShape/RINFData/SectionOfLine/SOLTrack/SOLTunnel/SOLTunnelParameter/Value> a sh:PropertyShape ;
+    sh:datatype xsd:string ;
+    sh:maxCount 1 ;
+    sh:maxLength 450 ;
+    sh:minCount 0 ;
+    sh:name "Value" ;
+    sh:path <http://example.com/Value> .
+
+<http://example.com/PropertyShape/RINFData/SectionOfLine/SOLTrack/SOLTunnel/SOLTunnelStart/Kilometer> a sh:PropertyShape ;
+    sh:datatype xsd:decimal ;
+    sh:maxCount 1 ;
+    sh:minCount 1 ;
+    sh:name "Kilometer" ;
+    sh:path <http://example.com/Kilometer> .
+
+<http://example.com/PropertyShape/RINFData/SectionOfLine/SOLTrack/SOLTunnel/SOLTunnelStart/Latitude> a sh:PropertyShape ;
+    sh:datatype xsd:decimal ;
+    sh:maxCount 1 ;
+    sh:minCount 1 ;
+    sh:name "Latitude" ;
+    sh:path <http://example.com/Latitude> .
+
+<http://example.com/PropertyShape/RINFData/SectionOfLine/SOLTrack/SOLTunnel/SOLTunnelStart/Longitude> a sh:PropertyShape ;
+    sh:datatype xsd:decimal ;
+    sh:maxCount 1 ;
+    sh:minCount 1 ;
+    sh:name "Longitude" ;
+    sh:path <http://example.com/Longitude> .
+
+<http://example.com/PropertyShape/RINFData/SectionOfLine/SOLTrack/SOLTunnel/ValidityDateEnd> a sh:PropertyShape ;
+    sh:datatype xsd:date ;
+    sh:maxCount 1 ;
+    sh:minCount 0 ;
+    sh:name "ValidityDateEnd" ;
+    sh:path <http://example.com/ValidityDateEnd> .
+
+<http://example.com/PropertyShape/RINFData/SectionOfLine/SOLTrack/SOLTunnel/ValidityDateStart> a sh:PropertyShape ;
+    sh:datatype xsd:date ;
+    sh:maxCount 1 ;
+    sh:minCount 0 ;
+    sh:name "ValidityDateStart" ;
+    sh:path <http://example.com/ValidityDateStart> .
+
+<http://example.com/PropertyShape/RINFData/SectionOfLine/SOLTrack/ValidityDateEnd> a sh:PropertyShape ;
+    sh:datatype xsd:date ;
+    sh:maxCount 1 ;
+    sh:minCount 0 ;
+    sh:name "ValidityDateEnd" ;
+    sh:path <http://example.com/ValidityDateEnd> .
+
+<http://example.com/PropertyShape/RINFData/SectionOfLine/SOLTrack/ValidityDateStart> a sh:PropertyShape ;
+    sh:datatype xsd:date ;
+    sh:maxCount 1 ;
+    sh:minCount 0 ;
+    sh:name "ValidityDateStart" ;
+    sh:path <http://example.com/ValidityDateStart> .
+
+<http://example.com/PropertyShape/RINFData/SectionOfLine/ValidityDateEnd> a sh:PropertyShape ;
+    sh:datatype xsd:date ;
+    sh:maxCount 1 ;
+    sh:minCount 0 ;
+    sh:name "ValidityDateEnd" ;
+    sh:path <http://example.com/ValidityDateEnd> .
+
+<http://example.com/PropertyShape/RINFData/SectionOfLine/ValidityDateStart> a sh:PropertyShape ;
+    sh:datatype xsd:date ;
+    sh:maxCount 1 ;
+    sh:minCount 0 ;
+    sh:name "ValidityDateStart" ;
+    sh:path <http://example.com/ValidityDateStart> .
+
+<http://mapping.example.com/map_eu-country_000/shape> a sh:NodeShape ;
+    sh:nodeKind sh:Literal .
+
+<http://mapping.example.com/map_eu-country_000/shape2362> a sh:NodeShape ;
+    sh:nodeKind sh:Literal .
+
+<http://mapping.example.com/map_eu-country_000/shape5814> a sh:NodeShape ;
+    sh:nodeKind sh:Literal .
+
+<http://mapping.example.com/map_link-sol-to-operational-point_000/shape> a sh:NodeShape ;
+    sh:nodeKind sh:IRI ;
+    sh:pattern "http://data.europa.eu/949/functionalInfrastructure/operationalPoints/.*/.*_.*" .
+
