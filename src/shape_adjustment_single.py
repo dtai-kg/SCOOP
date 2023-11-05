@@ -9,9 +9,7 @@ from utils import GrapDFS
 import re
 
 class ShapeAdjustment:
-    def __init__(self, rml_graph: Graph, initial_graph: Graph):
-        self.rml_graph = rml_graph
-        self.initial_graph = initial_graph
+    def __init__(self, source_type):
         self.shaclNS = Namespace('http://www.w3.org/ns/shacl#')
         self.rdfSyntax = Namespace('http://www.w3.org/1999/02/22-rdf-syntax-ns#')
         self.rmlNS = Namespace('http://semweb.mmlab.be/ns/rml#')
@@ -36,25 +34,27 @@ class ShapeAdjustment:
         self.OBJECT = self.r2rmlNS.object
         self.PARENTTM = self.rmlNS.parentTriplesMap
         
-        self.source_type = None
-        self.iterator = None
-        self.findNS = []
-        self.findPS = []
-        self.shape_path = {}
-        self.adjusted_shape = []
+        self.source_type = source_type
+        self.adjusted_graph = Graph()
     
-    def parseRML(self):
+    def parseRML(self, rml_graph: Graph):
         """
         A function to parse the RML graph and return a list of dictionary of the triples maps 
         (path of subject map, predicate map, object map, logical source, and classes and properties)
         """
+        self.rml_graph = rml_graph
+        self.iterator = None
+        self.findNS = []
+        self.findPS = []
+        self.adjusted_shape = []
         self.rml_parsed = {}
-        for triples_map_identifier in g.subjects(RDF.type, self.TRIPLES_MAP_CLASS):
+        for triples_map_identifier in self.rml_graph.subjects(RDF.type, self.TRIPLES_MAP_CLASS):
             self.rml_parsed[triples_map_identifier] = {}
 
             source_identifier = self.rml_graph.value(triples_map_identifier, self.LOGICAL_SOURCE)
             source, reference_formulation, iterator = self.getSource(source_identifier)
-            self.setSourceType(reference_formulation, iterator)
+            # self.setSourceType(reference_formulation, iterator)
+            self.iterator = iterator
             self.rml_parsed[triples_map_identifier] = {'source': source, 'reference_formulation': reference_formulation, 'iterator': iterator}
             
             subject_map_identifier = self.rml_graph.value(triples_map_identifier, self.SUBJECT_MAP)
@@ -71,7 +71,11 @@ class ShapeAdjustment:
                     pom_list.append({'property': pom_property, 'path': pom_object_path, 'datatype': pom_object_datatype, 'parent': pom_object_parent})
             self.rml_parsed[triples_map_identifier]['pom'] = pom_list
         
-    
+    def parseRawDataSchemaShape(self, initial_graph: Graph):
+        self.initial_graph = initial_graph
+        self.shape_path = {}
+        getattr(self, f"parse_{self.source_type}", None)()
+
     def getSource(self, source_identifier):
         """
         A function to get the logical source of a triples map
@@ -86,15 +90,15 @@ class ShapeAdjustment:
                 iterator = str(o)
         return source, reference_formulation, iterator
 
-    def setSourceType(self, reference_formulation, iterator):
-        if reference_formulation == self.QLNS.CSV:
-            self.source_type = 'csv'
-        elif reference_formulation == self.QLNS.XPath:
-            self.source_type = 'xml'
-            self.iterator = iterator
-        elif reference_formulation == self.QLNS.JSONPath:
-            self.source_type = 'json'
-            self.iterator = iterator
+    # def setSourceType(self, reference_formulation, iterator):
+    #     if reference_formulation == self.QLNS.CSV:
+    #         self.source_type = 'csv'
+    #     elif reference_formulation == self.QLNS.XPath:
+    #         self.source_type = 'xml'
+    #         self.iterator = iterator
+    #     elif reference_formulation == self.QLNS.JSONPath:
+    #         self.source_type = 'json'
+    #         self.iterator = iterator
 
     def getSubjectMap(self, subject_map_identifier):
         """
@@ -414,53 +418,62 @@ class ShapeAdjustment:
                 self.initial_graph.remove((s,p,o))
         self.remove_graph(identifier_to_remove)
 
+
     def remove_graph(self, old_subjects):
-        bnodes = []
         for s,p,o in self.initial_graph:
             if s in old_subjects:
                 self.initial_graph.remove((s,p,o))
                 if isinstance(o,BNode):
-                    bnodes.append(o)
+                    self.remove_graph([o])
             elif o in old_subjects:
                 self.initial_graph.remove((s,p,o))
-            if (s in bnodes) or (o in bnodes):
-                if isinstance(o,BNode):
-                    bnodes.append(o)
-                if isinstance(s,BNode):
-                    bnodes.append(s)
-        for s,p,o in self.initial_graph:
-            if (s in bnodes) or (o in bnodes):
-                self.initial_graph.remove((s,p,o))
 
-    def adjust(self):
-        self.parseRML()
-        print(self.rml_parsed)
-        print("\n")
-        getattr(self, f"parse_{self.source_type}", None)()
-        print(self.shape_path)
+    # def remove_graph(self, old_subjects):
+    #     bnodes = []
+    #     for s,p,o in self.initial_graph:
+    #         if s in old_subjects:
+    #             self.initial_graph.remove((s,p,o))
+    #             if isinstance(o,BNode):
+    #                 bnodes.append(o)
+    #         elif o in old_subjects:
+    #             self.initial_graph.remove((s,p,o))
+    #         if (s in bnodes) or (o in bnodes):
+    #             if isinstance(o,BNode):
+    #                 bnodes.append(o)
+    #             if isinstance(s,BNode):
+    #                 bnodes.append(s)
+    #     for s,p,o in self.initial_graph:
+    #         if (s in bnodes) or (o in bnodes):
+    #             self.initial_graph.remove((s,p,o))
+
+    def adjust(self, initial_graph):
+        self.initial_graph = initial_graph 
         for triples_map_identifier in self.rml_parsed:
             self.adjust_sm(self.rml_parsed[triples_map_identifier]["sm"]["path"], self.rml_parsed[triples_map_identifier]["sm"]["classes"])
             self.adjust_pom(self.rml_parsed[triples_map_identifier]["pom"])
             self.findNS = []
         self.clear_graph()
+        self.adjusted_graph+=self.initial_graph
 
     def writeShapeToFile(self, output_file):
         validation_shape_graph = Graph().parse("shacl-shacl.ttl", format="turtle")
-        r = validate(self.initial_graph, shacl_graph=validation_shape_graph, ont_graph=None,
+        r = validate(self.adjusted_graph, shacl_graph=validation_shape_graph, ont_graph=None,
                      inference='rdfs', abort_on_first=False, meta_shacl=False, debug=False)
         if not r[0]:
             print(r[2])
         else:
             print("Saved to adjusted SHACL shapes to file", output_file)
-            self.initial_graph.serialize(destination=output_file, format='turtle')
+            self.adjusted_graph.serialize(destination=output_file, format='turtle')
 
 if __name__ == '__main__':
-    g = Graph()
+
     # g.parse('adjustment_test/rml2.ttl', format='ttl')
     # g_xsd = Graph().parse('adjustment_test/xsd.shape.ttl')
-    g.parse('adjustment_test/era.rml.ttl', format='ttl')
+    g_rml = Graph().parse('usecases/RINF/mappings/RINF-etcs-levels_rml.ttl', format='ttl')
     g_xsd = Graph().parse('adjustment_test/RINF-metadata.xsd.shape.ttl')
     
-    sa = ShapeAdjustment(g, g_xsd)
-    sa.adjust()
-    sa.writeShapeToFile("adjustment_test/era_adjusted_shacl.ttl")
+    sa = ShapeAdjustment("xml")
+    sa.parseRawDataSchemaShape(g_xsd)
+    sa.parseRML(g_rml)
+    sa.adjust(g_xsd)
+    sa.writeShapeToFile("adjustment_test/era_adjusted_shacl2.ttl")

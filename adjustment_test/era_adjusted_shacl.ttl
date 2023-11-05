@@ -3,60 +3,20 @@
 
 <http://example.com/NodeShape/> a sh:NodeShape ;
     sh:nodeKind sh:IRI ;
-    sh:property <http://example.com/PropertyShape/demonstrationINF>,
-        <http://example.com/PropertyShape/freightCorridor>,
-        <http://example.com/PropertyShape/gaugingCheckLocation>,
-        <http://example.com/PropertyShape/gaugingProfile>,
-        <http://example.com/PropertyShape/gaugingTransversalDocument>,
-        <http://example.com/PropertyShape/lineCategory>,
-        <http://example.com/PropertyShape/tenClassification>,
-        <http://example.com/PropertyShape/track>,
-        <http://example.com/PropertyShape/verificationINF>,
-        <http://example.com/PropertyShape/wheelSetGauge> .
+    sh:property <http://example.com/PropertyShape/etcsBaseline> .
 
-<http://example.com/NodeShape/Track> a sh:NodeShape ;
+<http://example.com/NodeShape/ETCSLevel> a sh:NodeShape ;
     sh:nodeKind sh:IRI ;
-    sh:property <http://example.com/PropertyShape/imCode>,
-        <http://example.com/PropertyShape/rdf-schema#label>,
-        <http://example.com/PropertyShape/trackId> ;
-    sh:targetClass <http://data.europa.eu/949/Track> .
+    sh:property <http://example.com/PropertyShape/etcsLevelType>,
+        <http://example.com/PropertyShape/rdf-schema#label> ;
+    sh:targetClass <http://data.europa.eu/949/ETCSLevel> .
 
-<http://example.com/PropertyShape/demonstrationINF> a sh:PropertyShape ;
-    sh:path <http://data.europa.eu/949/demonstrationINF> .
+<http://example.com/PropertyShape/etcsBaseline> a sh:PropertyShape ;
+    sh:path <http://data.europa.eu/949/etcsBaseline> .
 
-<http://example.com/PropertyShape/freightCorridor> a sh:PropertyShape ;
-    sh:path <http://data.europa.eu/949/freightCorridor> .
-
-<http://example.com/PropertyShape/gaugingCheckLocation> a sh:PropertyShape ;
-    sh:path <http://data.europa.eu/949/gaugingCheckLocation> .
-
-<http://example.com/PropertyShape/gaugingProfile> a sh:PropertyShape ;
-    sh:path <http://data.europa.eu/949/gaugingProfile> .
-
-<http://example.com/PropertyShape/gaugingTransversalDocument> a sh:PropertyShape ;
-    sh:path <http://data.europa.eu/949/gaugingTransversalDocument> .
-
-<http://example.com/PropertyShape/imCode> a sh:PropertyShape ;
-    sh:path <http://data.europa.eu/949/imCode> .
-
-<http://example.com/PropertyShape/lineCategory> a sh:PropertyShape ;
-    sh:path <http://data.europa.eu/949/lineCategory> .
+<http://example.com/PropertyShape/etcsLevelType> a sh:PropertyShape ;
+    sh:path <http://data.europa.eu/949/etcsLevelType> .
 
 <http://example.com/PropertyShape/rdf-schema#label> a sh:PropertyShape ;
     sh:path rdfs:label .
-
-<http://example.com/PropertyShape/tenClassification> a sh:PropertyShape ;
-    sh:path <http://data.europa.eu/949/tenClassification> .
-
-<http://example.com/PropertyShape/track> a sh:PropertyShape ;
-    sh:path <http://data.europa.eu/949/track> .
-
-<http://example.com/PropertyShape/trackId> a sh:PropertyShape ;
-    sh:path <http://data.europa.eu/949/trackId> .
-
-<http://example.com/PropertyShape/verificationINF> a sh:PropertyShape ;
-    sh:path <http://data.europa.eu/949/verificationINF> .
-
-<http://example.com/PropertyShape/wheelSetGauge> a sh:PropertyShape ;
-    sh:path <http://data.europa.eu/949/wheelSetGauge> .
 

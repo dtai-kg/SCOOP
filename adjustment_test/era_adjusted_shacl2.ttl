@@ -1,0 +1,22 @@
+@prefix ns1: <http://www.w3.org/ns/shacl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+<http://example.com/NodeShape/> a ns1:NodeShape ;
+    ns1:nodeKind ns1:IRI ;
+    ns1:property <http://example.com/PropertyShape/etcsBaseline> .
+
+<http://example.com/NodeShape/ETCSLevel> a ns1:NodeShape ;
+    ns1:nodeKind ns1:IRI ;
+    ns1:property <http://example.com/PropertyShape/etcsLevelType>,
+        <http://example.com/PropertyShape/rdf-schema#label> ;
+    ns1:targetClass <http://data.europa.eu/949/ETCSLevel> .
+
+<http://example.com/PropertyShape/etcsBaseline> a ns1:PropertyShape ;
+    ns1:path <http://data.europa.eu/949/etcsBaseline> .
+
+<http://example.com/PropertyShape/etcsLevelType> a ns1:PropertyShape ;
+    ns1:path <http://data.europa.eu/949/etcsLevelType> .
+
+<http://example.com/PropertyShape/rdf-schema#label> a ns1:PropertyShape ;
+    ns1:path rdfs:label .
+
