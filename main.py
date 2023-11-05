@@ -141,8 +141,8 @@ if __name__ == "__main__":
     total_end_time = time.time()    
     
 
-    # print("Cleaning temp folder")
-    # for f in os.listdir("temp"):
-    #     os.remove(os.path.join("temp", f))
+    print("Cleaning temp folder")
+    for f in os.listdir("temp"):
+        os.remove(os.path.join("temp", f))
 
     print("Total time: ", total_end_time - total_start_time)

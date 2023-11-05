@@ -423,17 +423,12 @@ class ShapeIntegration:
                 subgraph += self.extractSubgraph(shape, o, visited_nodes)
         return subgraph
     
-    def writeShapeToFile(self, shape_dir="shapes/"):
+    def writeShapeToFile(self):
 
         validation_shape_graph = Graph().parse("shacl-shacl.ttl", format="turtle")
         r = validate(self.SHACL, shacl_graph=validation_shape_graph, ont_graph=None,
                      inference='rdfs', abort_on_first=False, meta_shacl=False, debug=False)
         if not r[0]:
             print(r[2])
-        # # else:
-        parent_folder = os.path.dirname(self.output)
-        Path(f"%s%s" % (shape_dir, parent_folder)).mkdir(parents=True, exist_ok=True)
-
-        filenNameShape = "%s%s" % (shape_dir, self.output)
-        self.SHACL.serialize(destination=filenNameShape, format='turtle')
-        print("Saved final file in ", filenNameShape)
+        self.SHACL.serialize(destination=self.output, format='turtle')
+        print("Saved final file in ", self.output)
