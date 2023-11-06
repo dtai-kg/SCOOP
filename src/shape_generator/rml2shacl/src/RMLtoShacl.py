@@ -212,12 +212,12 @@ class RMLtoSHACL:
         self.SHACL.graph.bind(
             'rdfs', 'http://www.w3.org/1999/02/22-rdf-syntax-ns#')
 
-        parent_folder = os.path.dirname(file_name)
+        # parent_folder = os.path.dirname(file_name)
         
-        Path(f"%s%s" % (shape_dir, parent_folder)).mkdir(
-            parents=True, exist_ok=True)
+        # Path(f"%s%s" % (shape_dir, parent_folder)).mkdir(
+        #     parents=True, exist_ok=True)
 
-        filenNameShape = "%s%s" % (shape_dir, file_name)
+        # filenNameShape = "%s%s" % (shape_dir, file_name)
 
         filenNameShape = self.shacl_path
         print('Saved SHACL shapes in ',filenNameShape)

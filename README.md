@@ -47,6 +47,10 @@ Confirmed constraint list:
 - [X] hasValue
 - [X] in
 
+## RML2SHACL and XSD2SHACL
+
+Some mapping sm has the same template but does not in one mapping ... thus target will has pronlem
+
 ## OWL2SHACL
 
 - [ ] nodeKind 

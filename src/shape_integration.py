@@ -120,55 +120,50 @@ class ShapeIntegration:
         return targetDict
 
     def getPropertyPath(self, propertyPaths: Dict, shape: Graph, identifier, NodeShapes: List):
-        for s, p, o in shape:
-            if s == identifier:
-                if p in self.propertyPathNS:
-                    l = propertyPaths.get((p,o),[])
-                    l.append(s)
-                    propertyPaths[(p,o)] = l
-                elif p == self.shaclNS["property"]:
-                    propertyPaths = self.getPropertyPath(propertyPaths, shape, o, NodeShapes)
-                elif (s in NodeShapes) and (p == self.shaclNS.node):
-                    propertyPaths = self.getPropertyPath(propertyPaths, shape, o, NodeShapes)
+        for s, p, o in shape.triples((identifier, None, None)):     
+            if p in self.propertyPathNS:
+                l = propertyPaths.get((p,o),[])
+                l.append(s)
+                propertyPaths[(p,o)] = l
+            elif p == self.shaclNS["property"]:
+                propertyPaths = self.getPropertyPath(propertyPaths, shape, o, NodeShapes)
+            elif (s in NodeShapes) and (p == self.shaclNS.node):
+                propertyPaths = self.getPropertyPath(propertyPaths, shape, o, NodeShapes)
         return propertyPaths
 
     def getNodeShapes(self, shape: Graph, replace=False):
         NodeShapes = []
         if replace == False:
-            for s, p, o in shape:
-                if p == self.rdfSyntax.type and o == self.shaclNS.NodeShape:
-                    NodeShapes.append(s)
+            for s, p, o in shape.triples((None, self.rdfSyntax.type, self.shaclNS.NodeShape)):
+                NodeShapes.append(s)
         else:
             # repalce duplicate node shapes in previous shape
-            for s, p, o in shape:
-                if p == self.rdfSyntax.type and o == self.shaclNS.NodeShape:
-                    if s not in self.integrated_identifier:
-                        NodeShapes.append(s)
-                    else:
-                        new_shape_identifier = URIRef(str(s)+str(self.random_number.pop()))
-                        shape = self.updateShape(shape, s, new_shape_identifier)
+            for s, p, o in shape.triples((None, self.rdfSyntax.type, self.shaclNS.NodeShape)):
+                if s not in self.integrated_identifier:
+                    NodeShapes.append(s)
+                else:
+                    new_shape_identifier = URIRef(str(s)+str(self.random_number.pop()))
+                    shape = self.updateShape(shape, s, new_shape_identifier)
 
         return NodeShapes, shape
 
     def updateShape(self, g, shape_identifier, new_shape_identifier):
-        for s, p, o in g:
-            if s == shape_identifier:
-                g.remove((s,p,o))
-                g.add((new_shape_identifier,p,o))
-            elif o == shape_identifier:
-                g.remove((s,p,o))
-                g.add((s,p,new_shape_identifier))
+        for s, p, o in g.triples((shape_identifier,None,None)):
+            g.remove((s,p,o))
+            g.add((new_shape_identifier,p,o))
+        for s, p, o in g.triples((None,None,shape_identifier)):
+            g.remove((s,p,o))
+            g.add((s,p,new_shape_identifier)) 
         return g
 
     def getConstraints(self, shape: Graph, identifier, NodeShapes: List):
         constraints = {}
-        for s, p, o in shape:
-            if s == identifier: 
-                if p == self.shaclNS.node:
-                    if s not in NodeShapes:
-                        constraints[p] = o
-                elif (p not in [self.rdfSyntax.type, self.shaclNS["property"]]) and (p not in self.targetDeclarationNS) and (p not in self.propertyPathNS):
+        for s, p, o in shape.triples((identifier, None, None)):
+            if p == self.shaclNS.node:
+                if s not in NodeShapes:
                     constraints[p] = o
+            elif (p not in [self.rdfSyntax.type, self.shaclNS["property"]]) and (p not in self.targetDeclarationNS) and (p not in self.propertyPathNS):
+                constraints[p] = o
         return constraints
 
     def addConstraints(self, shape_add, identifier_path_current, constraints_current, constraint_add, constraint_add_value):
@@ -295,10 +290,9 @@ class ShapeIntegration:
                 return None
 
             if constraints_current.get(self.shaclNS.languageIn, None) != None:
-                for s, p, o in self.SHACL:
-                    if s == identifier_path_current and p == self.shaclNS.languageIn:
-                        node_current = o
-                        break
+                for s, p, o in self.SHACL.triples((identifier_path_current, self.shaclNS.languageIn, None)):    
+                    node_current = o
+                    break
                 _, languageIn_current = self.findList(self.SHACL, node_current, [])
             else:
                 node_current = BNode()
@@ -355,10 +349,9 @@ class ShapeIntegration:
                 return None
 
             if constraints_current.get(self.shaclNS["in"], None) != None:
-                for s, p, o in self.SHACL:
-                    if s == identifier_path_current and p == self.shaclNS["in"]:
-                        node_current = o
-                        break
+                for s, p, o in self.SHACL.triples((identifier_path_current, self.shaclNS["in"], None)):
+                    node_current = o
+                    break
                 _, In_current = self.findList(self.SHACL, node_current, [])
             else:
                 node_current = BNode()
@@ -371,16 +364,15 @@ class ShapeIntegration:
             self.SHACL.add((identifier_path_current, constraint_add, constraint_add_value))
 
     def findList(self, g, node_current, rdflist):
-        for s, p, o in g:
-            if s == node_current:
-                g.remove((s, p, o))
-                if p == self.rdfSyntax.first:
-                    rdflist.append(o)
-                elif p == self.rdfSyntax.rest:
-                    if o == self.rdfSyntax.nil:
-                        continue
-                    else:
-                        g, rdflist = self.findList(g, o, rdflist)
+        for s, p, o in g.triples((node_current, None, None)):
+            g.remove((s, p, o))
+            if p == self.rdfSyntax.first:
+                rdflist.append(o)
+            elif p == self.rdfSyntax.rest:
+                if o == self.rdfSyntax.nil:
+                    continue
+                else:
+                    g, rdflist = self.findList(g, o, rdflist)
         return g, rdflist
       
     # Function copied from Thomas's code on GitHub
@@ -423,8 +415,21 @@ class ShapeIntegration:
                 subgraph += self.extractSubgraph(shape, o, visited_nodes)
         return subgraph
     
-    def writeShapeToFile(self):
+    def STATS(self):
+        # Calculate the statistics of the final shape
+        classes = set()
+        properties = set()
+        for s, p, o in self.SHACL:
+            if p == self.shaclNS.targetClass:
+                classes.add(o)
+            elif p == self.shaclNS.path or p == self.shaclNS.targetSubjectsOf or p == self.shaclNS.targetObjectsOf:
+                properties.add(o)
+        print("STATS: ")
+        print("\t Number of classes: ", len(classes))
+        print("\t Number of properties: ", len(properties))
 
+    def writeShapeToFile(self):
+        self.STATS()
         validation_shape_graph = Graph().parse("shacl-shacl.ttl", format="turtle")
         r = validate(self.SHACL, shacl_graph=validation_shape_graph, ont_graph=None,
                      inference='rdfs', abort_on_first=False, meta_shacl=False, debug=False)

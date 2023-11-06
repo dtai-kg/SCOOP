@@ -15,6 +15,8 @@ from src.shape_generator.rml2shacl.src.RML import *
 from src.shape_generator.rml2shacl.src.RMLtoShacl import RMLtoSHACL
 from src.shape_generator.rml2shacl.src.SHACL import *
 
+from src.shape_generator.owl2shacl.src.OWLtoSHACL import translateFromUrl, translateFromFile, translateByJar
+
 from src.shape_generator.xsd2shacl.src.XSDtoSHACL import XSDtoSHACL
 
 def extract_shape_rml(rml_files):
@@ -23,6 +25,7 @@ def extract_shape_rml(rml_files):
         mapping_file = rml_files[i]
         shacl_file = f'temp/rml{i}.ttl'
         try:
+            print("Translating RML file ", mapping_file)
             RtoS = RMLtoSHACL()
             RtoS.evaluate_file(mapping_file,shacl_file)
             shacl_files.append(shacl_file)
@@ -32,8 +35,19 @@ def extract_shape_rml(rml_files):
     return shacl_files
 
 
-def extract_shape_ontology(ontology):
-    pass
+def extract_shape_ontology(owl_files):
+    shacl_files = []
+    for i in range(len(owl_files)):
+        owl_file = owl_files[i]
+        shacl_file = f'temp/owl{i}.ttl'        
+        try:
+            translateByJar(owl_file, shacl_file)
+        except:
+            print("Error translating ontology to SHACL shape by JAR, trying REST API now")
+            translateFromFile(owl_file, shacl_file)
+        shacl_files.append(shacl_file)
+    print("=======Stored ontology-driven SHACL shapes in ", shacl_files)
+    return shacl_files
 
 def extract_shape_xsd(xsd_files, rml_files=[]):
     shacl_files = []
@@ -50,15 +64,16 @@ def extract_shape_xsd(xsd_files, rml_files=[]):
                 sa.parseRawDataSchemaShape(xsd_shape_g)
                 for rml in rml_files:
                     try:
+                        print("Adjusting shape :", rml)
                         rml_shape_g = Graph().parse(rml, format='turtle')
                         sa.parseRML(rml_shape_g)
                         sa.adjust(Graph()+xsd_shape_g)
                     except:
-                        print("Error adjusting shape ", rml)
+                        print("Error adjusting shape :", rml)
                 sa.writeShapeToFile(shacl_file)
             shacl_files.append(shacl_file)
         except:
-            print("Error translating XSD file ", xsd_file)
+            print("Error translating XSD file :", xsd_file)
     print("=======Stored XSD-driven SHACL shapes in ", shacl_files)
     return shacl_files
 
@@ -66,16 +81,16 @@ def integrate_shapes(shapes, output_file):
     shapes_graph = []
     validation_shape_graph = Graph().parse("shacl-shacl.ttl", format="turtle")
     for shape in shapes:
-        print("Start reading shape %s", shape)
+        print("Start reading shape :", shape)
         try:
             g = Graph().parse(shape, format='turtle')
-            r = validate(g, shacl_graph=validation_shape_graph, ont_graph=None,
-                            inference='rdfs', abort_on_first=False, meta_shacl=False, debug=False)
-            if not r[0]:
-                print(r[2])
-                sys.exit(1)
+            # r = validate(g, shacl_graph=validation_shape_graph, ont_graph=None,
+            #                 inference='rdfs', abort_on_first=False, meta_shacl=False, debug=False)
+            # if not r[0]:
+            #     print(r[2])
+            #     sys.exit(1)
         except:
-            print('Error reading shape %s', shape)
+            print('Error reading shape :', shape)
 
         shapes_graph.append(g)
 
@@ -104,35 +119,41 @@ if __name__ == "__main__":
     for p in args.priority:
         if p == 'rml' and args.rml:
             print("Start translating rml")
-            files = []
+            rml_files = []
             for rml in args.rml:
                 if os.path.isdir(rml):
-                    files.extend([os.path.join(rml, f) for f in os.listdir(rml) if f.endswith('.ttl')])
+                    rml_files.extend([os.path.join(rml, f) for f in os.listdir(rml) if f.endswith('.ttl')])
                 else:
-                    files.append(rml)
-            shapes.extend(extract_shape_rml(files))
+                    rml_files.append(rml)
+            rml_shacl_files = extract_shape_rml(rml_files)
+            shapes.extend(rml_shacl_files)
             print("Finish translating rml")
 
         elif p == 'ontology' and args.ontology:
             print("Start translating ontology")
-            files = []
+            owl_files = []
             for owl in args.ontology:
                 if os.path.isdir(owl):
-                    files.extend([os.path.join(owl, f) for f in os.listdir(owl) if f.endswith('.owl')])
+                    owl_files.extend([os.path.join(owl, f) for f in os.listdir(owl) if f.endswith('.owl') or f.endswith('.ttl') or f.endswith('.rdf')])
                 else:
-                    files.append(owl)
-            shapes.extend(extract_shape_ontology(args.ontology))
+                    owl_files.append(owl)
+            owl_shacl_files = extract_shape_ontology(owl_files)
+            shapes.extend(owl_shacl_files)
             print("Finish translating ontology")
 
         elif p == 'xsd' and args.xsd:
             print("Start translating xsd")
-            files = []
+            xsd_files = []
             for xsd in args.xsd:
                 if os.path.isdir(xsd):
-                    files.extend([os.path.join(xsd, f) for f in os.listdir(xsd) if f.endswith('.xsd') or f.endswith('.xml')])
+                    xsd_files.extend([os.path.join(xsd, f) for f in os.listdir(xsd) if f.endswith('.xsd') or f.endswith('.xml')])
                 else:
-                    files.append(xsd)
-            shapes.extend(extract_shape_xsd(files))
+                    xsd_files.append(xsd)
+            if args.rml:
+                xsd_shacl_files = extract_shape_xsd(xsd_files, rml_files)
+            else:
+                xsd_shacl_files = extract_shape_xsd(xsd_files)
+            shapes.extend(xsd_shacl_files)
             print("Finish translating xsd")
 
     print("Start integrating shapes")

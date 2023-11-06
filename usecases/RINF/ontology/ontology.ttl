@@ -7783,7 +7783,7 @@ era:SubsetWithCommonCharacteristics rdf:type owl:Class ;
 era:SystemSeparationInfo rdf:type owl:Class ;
                          dct:created "2023-04-05"^^xsd:date ;
                          rdfs:comment "Indication of required several information on system separation."@en ;
-                         rdfs:isDefinedBy "http://data.europa.eu/949/"^^xsd:date ;
+                         rdfs:isDefinedBy "http://data.europa.eu/949/"^^xsd:anyURI ;
                          rdfs:label "System separation info"@en ;
                          vs:term_status "stable" .
 
