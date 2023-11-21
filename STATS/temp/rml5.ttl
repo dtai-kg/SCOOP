@@ -1,0 +1,21 @@
+@prefix era: <http://data.europa.eu/949/> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+
+<http://mapping.example.com/map_sol-end_000/shape> a sh:NodeShape ;
+    sh:nodeKind sh:IRI ;
+    sh:pattern "http://data.europa.eu/949/topology/netRelations/.*_.*_.*_.*" ;
+    sh:property [ sh:nodeKind sh:IRI ;
+            sh:path era:elementA ],
+        [ sh:nodeKind sh:IRI ;
+            sh:path era:elementB ] ;
+    sh:targetClass era:NetRelation .
+
+<http://mapping.example.com/map_sol-start_000/shape> a sh:NodeShape ;
+    sh:nodeKind sh:IRI ;
+    sh:pattern "http://data.europa.eu/949/topology/netRelations/.*_.*_.*_.*" ;
+    sh:property [ sh:nodeKind sh:IRI ;
+            sh:path era:elementA ],
+        [ sh:nodeKind sh:IRI ;
+            sh:path era:elementB ] ;
+    sh:targetClass era:NetRelation .
+

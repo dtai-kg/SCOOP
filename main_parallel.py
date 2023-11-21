@@ -105,14 +105,20 @@ def integrate_shapes(shapes, output_file):
 def extractShapeParallel(input_files:tuple):
     file_type, files = input_files[0]
     if file_type == 'rml':
+        start_rml_time = time.time()
         shacl_files = extract_shape_rml(files)
+        print("RML2SHACL execution time: ", time.time() - start_rml_time)
         return ['rml', shacl_files]
     elif file_type == 'ontology':
+        start_ontology_time = time.time()
         shacl_files = extract_shape_ontology(files)
+        print("OWL2SHACL execution time: ", time.time() - start_ontology_time)
         return ['ontology', shacl_files]
     elif file_type == 'xsd':
         files, rml_files = files
+        start_xsd_time = time.time()
         shacl_files = extract_shape_xsd(files, rml_files)
+        print("XSD2SHACL execution time: ", time.time() - start_xsd_time)
         return ['xsd', shacl_files]
 
 if __name__ == "__main__":

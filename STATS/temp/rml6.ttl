@@ -1,0 +1,14 @@
+@prefix era: <http://data.europa.eu/949/> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<http://mapping.example.com/map_min-axle-loads-vehicle-category_000/shape> a sh:NodeShape ;
+    sh:nodeKind sh:IRI ;
+    sh:pattern "http://data.europa.eu/949/functionalInfrastructure/min-axle-load-vehicle-categories/.*_.*_.*_.*_.*" ;
+    sh:property [ sh:datatype xsd:double ;
+            sh:nodeKind sh:Literal ;
+            sh:path era:minAxleLoad ],
+        [ sh:nodeKind sh:IRI ;
+            sh:path era:minAxleLoadVehicleCategory ] ;
+    sh:targetClass era:MinAxleLoadVehicleCategory .
+

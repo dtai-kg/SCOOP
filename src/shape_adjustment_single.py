@@ -127,14 +127,20 @@ class ShapeAdjustment:
                 template_length = 0
                 for i in str(o).split("{"):
                     template_length+=len(i.split("}")[-1])
-                shared_key = o
+                shared_key = self.clean_shared_key(str(o))
             elif s == subject_map_identifier and p == self.REFERENCE:
                 path.extend(getattr(self, f"parseReference_{self.source_type}", None)(o))
-                shared_key = str(o)
+                shared_key = self.clean_shared_key(str(o))
             elif s == subject_map_identifier and p == self.CLASS:
                 classes.append(o)
         return path, classes, template_length, shared_key
-    
+
+    def clean_shared_key(self, shared_key):
+        # remove_list = ["parent::*/parent::", "parent::*/", "parent::",]
+        shared_key = re.sub(r'parent::[^/]*\/', '', shared_key)
+        shared_key = re.sub(r'{[^{]*?\[.*\]/', '{', shared_key)
+        return shared_key
+
     def getPredicate(self, pom_identifier):
         """
         A function to get the predicate of a triples map
@@ -177,8 +183,8 @@ class ShapeAdjustment:
             elif s == pom_identifier and p == self.PARENTTM:
                 path.append(o)
             elif s == pom_identifier and p == self.FNMLNS.functionValue:
-                #path = self.getFunctionValue(o)
-                path.append("skip_function")
+                path = self.getFunctionValue(o)
+                #path.append("skip_function")
                 return path, datatype, parent, template_length, constant, termType
         return path, datatype, parent, template_length, constant, termType
 
@@ -290,10 +296,10 @@ class ShapeAdjustment:
     def getShapePath(self, complex_type_list):
         gdfs = GrapDFS()
 
-        for s, p, o in self.initial_graph:
-            if p == self.shaclNS.property:
-                gdfs.add_edge(str(o), str(s))
-            elif p == self.shaclNS.node and "http://example.com/NodeShape/None" != str(o):
+        for s, p, o in self.initial_graph.triples((None, self.shaclNS.property, None)):
+            gdfs.add_edge(str(o), str(s))
+        for s, p, o in self.initial_graph.triples((None, self.shaclNS.node, None)):
+            if "http://example.com/NodeShape/None" != str(o):
                 gdfs.add_edge(str(o), str(s))
         result = gdfs.find_paths()
 
@@ -357,8 +363,8 @@ class ShapeAdjustment:
                 self.findNS.append(URIRef(shape_identifier))
             return None
 
-        if sm_classes == []:
-            return None
+        # if sm_classes == []:
+        #     return None
 
         temp_pop = str(self.random_number.pop())
         for path_list in sm_path:
@@ -428,40 +434,40 @@ class ShapeAdjustment:
                     path = path_list[0]
                     for shape_identifier in self.shape_path:
                         if "NodeShape" in shape_identifier:
-                            continue   
-
+                            continue 
                         for initial_path in self.shape_path[shape_identifier]:   
-                             
                             if (initial_path == path) or path.endswith(initial_path) or (pom["constant"] == True and initial_path == self.iterator) or ("parent:" in path and self.validatePath(path, initial_path)):
-                                
-                                if URIRef(shape_identifier) in self.adjusted_shape:
+                                shape_identifier = URIRef(shape_identifier)
+                                if shape_identifier in self.adjusted_shape:
                                     # new_shape_identifier = shape_identifier + "/" + pom["property"].split("/")[-1]
-                                    new_shape_identifier = shape_identifier + "/" + pom["property"].split("/")[-1] + str(self.random_number.pop())
-                                    self.updateShape(URIRef(shape_identifier), URIRef(new_shape_identifier))
+                                    new_shape_identifier = URIRef(str(shape_identifier) + "/" + pom["property"].split("/")[-1] + str(self.random_number.pop()))
+                                    self.updateShape(shape_identifier, new_shape_identifier)
                                     shape_identifier = new_shape_identifier
-                                self.adjusted_shape.append(URIRef(shape_identifier))
-                                self.initial_graph.remove((URIRef(shape_identifier), self.shaclNS.path, None))
-                                self.initial_graph.add((URIRef(shape_identifier), self.shaclNS.path, pom["property"]))
+                                self.adjusted_shape.append(shape_identifier)
+                                self.initial_graph.remove((shape_identifier, self.shaclNS.path, None))
+                                self.initial_graph.add((shape_identifier, self.shaclNS.path, pom["property"]))
                                 if pom["datatype"] is not None:
-                                    self.initial_graph.remove((URIRef(shape_identifier), self.shaclNS.nodeKind, None))
-                                    self.initial_graph.remove((URIRef(shape_identifier), self.shaclNS.datatype, None))
-                                    self.initial_graph.add((URIRef(shape_identifier), self.shaclNS.datatype, pom["datatype"]))
+                                    self.initial_graph.remove((shape_identifier, self.shaclNS.nodeKind, None))
+                                    self.initial_graph.remove((shape_identifier, self.shaclNS.datatype, None))
+                                    self.initial_graph.add((shape_identifier, self.shaclNS.datatype, pom["datatype"]))
                                 if pom["termType"] is not None:
-                                    self.initial_graph.remove((URIRef(shape_identifier), self.shaclNS.nodeKind, None))
-                                    self.initial_graph.add((URIRef(shape_identifier), self.shaclNS.nodeKind, pom["termType"]))
+                                    self.initial_graph.remove((shape_identifier, self.shaclNS.nodeKind, None))
+                                    self.initial_graph.add((shape_identifier, self.shaclNS.nodeKind, pom["termType"]))
                                 if pom["template_length"] is not None:
-                                    value = self.initial_graph.value(URIRef(shape_identifier), self.shaclNS.minLength)
+                                    value = self.initial_graph.value(shape_identifier, self.shaclNS.minLength)
                                     if value is not None:
-                                        self.initial_graph.remove((URIRef(shape_identifier), self.shaclNS.minLength, value))
-                                        self.initial_graph.add((URIRef(shape_identifier), self.shaclNS.minLength, Literal(int(pom["template_length"])+int(value))))
-                                    value = self.initial_graph.value(URIRef(shape_identifier), self.shaclNS.maxLength)
+                                        self.initial_graph.remove((shape_identifier, self.shaclNS.minLength, value))
+                                        self.initial_graph.add((shape_identifier, self.shaclNS.minLength, Literal(int(pom["template_length"])+int(value))))
+                                    value = self.initial_graph.value(shape_identifier, self.shaclNS.maxLength)
                                     if value is not None:
-                                        self.initial_graph.remove((URIRef(shape_identifier), self.shaclNS.maxLength, value))
-                                        self.initial_graph.add((URIRef(shape_identifier), self.shaclNS.maxLength, Literal(int(pom["template_length"])+int(value))))
+                                        self.initial_graph.remove((shape_identifier, self.shaclNS.maxLength, value))
+                                        self.initial_graph.add((shape_identifier, self.shaclNS.maxLength, Literal(int(pom["template_length"])+int(value))))
                                 # if self.findNS == []:
-                                #     self.initial_graph.add((URIRef(shape_identifier), self.shaclNS.targetSubjectsOf, pom["property"]))
-                                self.findPS.append(URIRef(shape_identifier))
-
+                                #     self.initial_graph.add((shape_identifier, self.shaclNS.targetSubjectsOf, pom["property"]))
+                                self.findPS.append(shape_identifier)
+                                for subject in self.findNS:
+                                    self.initial_graph.add((subject, self.shaclNS.property, shape_identifier))
+ 
                 else:
                     constraints = {}
                     for path in path_list:
@@ -486,11 +492,10 @@ class ShapeAdjustment:
                 
                 self.initial_graph.add((shape_identifier, RDF.type, self.shaclNS.PropertyShape))
                 self.initial_graph.add((shape_identifier, self.shaclNS.path, pom["property"]))
-                if self.findNS != []:
-                    for subject in self.findNS:
-                        self.initial_graph.add((subject, self.shaclNS.property, shape_identifier))
+                for subject in self.findNS:
+                    self.initial_graph.add((subject, self.shaclNS.property, shape_identifier))
                 else:
-                    self.initial_graph.add((shape_identifier, self.shaclNS.targetSubjectsOf, pom["property"]))
+                    self.initial_graph.add((shape_identifier, self.shaclNS.targetObjectsOf, pom["property"]))
                 if pom["datatype"] is not None:
                     self.initial_graph.add((shape_identifier, self.shaclNS.datatype, pom["datatype"]))
                 if pom["termType"] is not None:
@@ -532,11 +537,10 @@ class ShapeAdjustment:
         self.initial_graph.add((shape_identifier, self.shaclNS.nodeKind, self.shaclNS.IRI))
         self.initial_graph.add((shape_identifier, self.shaclNS.path, property))
 
-        if self.findNS != []:
-            for subject in self.findNS:
-                self.initial_graph.add((subject, self.shaclNS.property, shape_identifier))
+        for subject in self.findNS:
+            self.initial_graph.add((subject, self.shaclNS.property, shape_identifier))
         else:
-            self.initial_graph.add((shape_identifier, self.shaclNS.targetSubjectsOf, property))
+            self.initial_graph.add((shape_identifier, self.shaclNS.targetObjectsOf, property))
 
         for constraint, constraint_value in constraints.items():
             if constraint == self.shaclNS.minCount or constraint == self.shaclNS.maxCount:
@@ -630,8 +634,9 @@ if __name__ == '__main__':
     start_time = time.time()
     g_xsd = Graph().parse('adjustment_test/RINF-metadata.xsd.shape.ttl')
     files = []
-    rml = "usecases/RINF/mappings/"
-    files.extend([os.path.join(rml, f) for f in os.listdir(rml) if f.endswith('.ttl')])
+    # rml = "usecases/RINF/mappings/"
+    # files.extend([os.path.join(rml, f) for f in os.listdir(rml) if f.endswith('.ttl')])
+    files = ["usecases/RINF/mappings/_RINF-operational-points_rml.ttl"]
     sa = ShapeAdjustment("xml")
     sa.parseRawDataSchemaShape(g_xsd)
     for i in range(len(files)):
@@ -640,7 +645,7 @@ if __name__ == '__main__':
         g_rml = Graph().parse(files[i], format='ttl')
         sa.parseRML(g_rml)
         sa.adjust(Graph()+g_xsd)
-    sa.writeShapeToFile("adjustment_test/temp/shacl"+str(i)+".ttl")
+    sa.writeShapeToFile("test.ttl")
     end_time = time.time()
     print('Shape adjustment took %s seconds', end_time - start_time)
 

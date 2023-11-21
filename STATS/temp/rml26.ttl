@@ -1,0 +1,41 @@
+@prefix era: <http://data.europa.eu/949/> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+
+<http://mapping.example.com/map_contact-line-system_000/shape> a sh:NodeShape ;
+    sh:nodeKind sh:IRI ;
+    sh:pattern "http://data.europa.eu/949/functionalInfrastructure/contactLineSystems/.*_.*_.*_.*_.*" ;
+    sh:property [ sh:node <http://mapping.example.com/map_index-predicates_000/shape> ;
+            sh:nodeKind sh:IRI ;
+            sh:path era:notYetAvailable ] .
+
+<http://mapping.example.com/map_etcs-level_000/shape> a sh:NodeShape ;
+    sh:nodeKind sh:IRI ;
+    sh:pattern "http://data.europa.eu/949/functionalInfrastructure/etcsLevels/.*_.*_.*_.*_.*" ;
+    sh:property [ sh:node <http://mapping.example.com/map_index-predicates_000/shape> ;
+            sh:nodeKind sh:IRI ;
+            sh:path era:notYetAvailable ] .
+
+<http://mapping.example.com/map_sol-tracks-not-yet-available_000/shape> a sh:NodeShape ;
+    sh:nodeKind sh:IRI ;
+    sh:pattern "http://data.europa.eu/949/functionalInfrastructure/tracks/.*_.*_.*_.*" ;
+    sh:property [ sh:node <http://mapping.example.com/map_index-predicates_000/shape> ;
+            sh:nodeKind sh:IRI ;
+            sh:path era:notYetAvailable ] .
+
+<http://mapping.example.com/map_sol-tunnel_000/shape> a sh:NodeShape ;
+    sh:nodeKind sh:IRI ;
+    sh:pattern "http://data.europa.eu/949/functionalInfrastructure/tunnels/.*_.*.*_.*.*" ;
+    sh:property [ sh:node <http://mapping.example.com/map_index-predicates_000/shape> ;
+            sh:nodeKind sh:IRI ;
+            sh:path era:notYetAvailable ] .
+
+<http://mapping.example.com/map_train-detection-system_000/shape> a sh:NodeShape ;
+    sh:nodeKind sh:IRI ;
+    sh:pattern "http://data.europa.eu/949/functionalInfrastructure/trainDetectionSystems/.*_.*_.*_.*_.*" ;
+    sh:property [ sh:node <http://mapping.example.com/map_index-predicates_000/shape> ;
+            sh:nodeKind sh:IRI ;
+            sh:path era:notYetAvailable ] .
+
+<http://mapping.example.com/map_index-predicates_000/shape> a sh:NodeShape ;
+    sh:nodeKind sh:Literal .
+
