@@ -6,7 +6,8 @@ import time
 import datetime
 from rdflib import Graph
 from pyshacl import validate
-from src.shape_integration import ShapeIntegration
+from src.shape_integration_priority import ShapeIntegrationPriority
+from src.shape_integration_priority_r import ShapeIntegrationPriorityR
 from src.shape_adjustment_single import ShapeAdjustment
 
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
@@ -77,9 +78,9 @@ def extract_shape_xsd(xsd_files, rml_files=[]):
     print("=======Stored XSD-driven SHACL shapes in ", shacl_files)
     return shacl_files
 
-def integrate_shapes(shapes, output_file):
+def integrate_shapes(shapes, output_file, mode):
     shapes_graph = []
-    validation_shape_graph = Graph().parse("shacl-shacl.ttl", format="turtle")
+    # validation_shape_graph = Graph().parse("shacl-shacl.ttl", format="turtle")
     for shape in shapes:
         print("Start reading shape :", shape)
         try:
@@ -92,17 +93,27 @@ def integrate_shapes(shapes, output_file):
         except:
             print('Error reading shape :', shape)
 
-        shapes_graph.append(g)
+        shapes_graph.append((g,shape))
 
     # Shape integration
-    start_time = time.time()
-    shIn = ShapeIntegration(shapes_graph, output_file)
-    shIn.integration()
-    print('Shape integration took %s seconds', time.time() - start_time)
-    print("Saved final file in ", output_file)
+    if mode == 'priority':
+        print("Start integrating shapes with priority")
+        start_time = time.time()
+        shIn = ShapeIntegrationPriority(shapes_graph, output_file)
+        shIn.integration()
+        print('Shape integration took %s seconds', time.time() - start_time)
+        print("Saved final file in ", output_file)
+    elif mode == 'priorityR':
+        print("Start integrating shapes with priority restricted")
+        start_time = time.time()
+        shIn = ShapeIntegrationPriorityR(shapes_graph, output_file)
+        shIn.integration()
+        print('Shape integration took %s seconds', time.time() - start_time)
+        print("Saved final file in ", output_file)
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description='Shape Integration')
+    parser.add_argument('--mode', type=str, help='integration mode: priority, priorityR, or all', default="priority")
     parser.add_argument('--priority', '-p', type=str, nargs='+', help='List of priority for integrating shapes from diverse sources', default=['rml', 'ontology', 'xsd'])
     parser.add_argument('--rml', '-r', type=str, nargs='+', help='Path to folder or rml files to be translated')
     parser.add_argument('--ontology', '-owl', type=str, nargs='+', help='Path to folder or owl files to be translated')
@@ -157,7 +168,7 @@ if __name__ == "__main__":
             print("Finish translating xsd")
 
     print("Start integrating shapes")
-    integrate_shapes(shapes, args.output)
+    integrate_shapes(shapes, args.output, args.mode)
 
     total_end_time = time.time()    
     

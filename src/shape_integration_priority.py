@@ -7,7 +7,7 @@ from pyshacl import validate
 import random
 
 
-class ShapeIntegration:
+class ShapeIntegrationPriority():
     def __init__(self, shapes: List, output: str):
         self.shaclNS = Namespace('http://www.w3.org/ns/shacl#')
         self.rdfSyntax = Namespace(
@@ -25,7 +25,7 @@ class ShapeIntegration:
         """
         Integrating a set of shapes into a single shape
         """
-        for shape_add in self.shapes:
+        for shape_add, _ in self.shapes:
 
             NodeShapes_current, _ = self.getNodeShapes(self.SHACL)
             NodeShapes_add, shape_add = self.getNodeShapes(shape_add, replace=True)
