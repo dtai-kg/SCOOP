@@ -1,0 +1,133 @@
+==========integrationAll_rml_owl.ttl.MT.validation.ttl
+http://www.w3.org/ns/shacl#ClassConstraintComponent 864
+All errors: 864
+==========integrationAll_rml_xsd.ttl.MT.validation.ttl
+http://www.w3.org/ns/shacl#MinCountConstraintComponent 738
+All errors: 0
+==========integrationAll_rml_xsd_owl.ttl.MT.validation.ttl
+http://www.w3.org/ns/shacl#ClassConstraintComponent 864
+http://www.w3.org/ns/shacl#MinCountConstraintComponent 738
+All errors: 864
+==========integrationAll_xsd_owl.ttl.MT.validation.ttl
+http://www.w3.org/ns/shacl#ClassConstraintComponent 864
+http://www.w3.org/ns/shacl#MinCountConstraintComponent 738
+http://www.w3.org/ns/shacl#NodeKindConstraintComponent 108
+All errors: 972
+==========integrationR_rml_owl.ttl.MT.validation.ttl
+http://www.w3.org/ns/shacl#ClassConstraintComponent 864
+All errors: 864
+==========integrationR_rml_xsd.ttl.MT.validation.ttl
+http://www.w3.org/ns/shacl#MaxLengthConstraintComponent 216
+http://www.w3.org/ns/shacl#MinCountConstraintComponent 738
+All errors: 216
+==========integrationR_rml_xsd_owl.ttl.MT.validation.ttl
+http://www.w3.org/ns/shacl#ClassConstraintComponent 864
+http://www.w3.org/ns/shacl#MinCountConstraintComponent 738
+http://www.w3.org/ns/shacl#MaxLengthConstraintComponent 216
+All errors: 972
+==========integration_rml_owl.ttl.MT.validation.ttl
+http://www.w3.org/ns/shacl#ClassConstraintComponent 864
+All errors: 864
+==========integration_rml_xsd.ttl.MT.validation.ttl
+http://www.w3.org/ns/shacl#MinCountConstraintComponent 738
+http://www.w3.org/ns/shacl#MaxLengthConstraintComponent 216
+All errors: 216
+==========integration_rml_xsd_owl.ttl.MT.validation.ttl
+http://www.w3.org/ns/shacl#ClassConstraintComponent 864
+http://www.w3.org/ns/shacl#MinCountConstraintComponent 738
+http://www.w3.org/ns/shacl#MaxLengthConstraintComponent 216
+All errors: 972
+==========owl0.ttl.MT.validation.ttl
+http://www.w3.org/ns/shacl#ClassConstraintComponent 864
+All errors: 864
+==========rml0.ttl.MT.validation.ttl
+http://www.w3.org/ns/shacl#ClassConstraintComponent 864
+All errors: 864
+==========rml1.ttl.MT.validation.ttl
+http://www.w3.org/ns/shacl#ClassConstraintComponent 864
+All errors: 864
+==========rml10.ttl.MT.validation.ttl
+http://www.w3.org/ns/shacl#ClassConstraintComponent 864
+All errors: 864
+==========rml11.ttl.MT.validation.ttl
+http://www.w3.org/ns/shacl#ClassConstraintComponent 864
+All errors: 864
+==========rml12.ttl.MT.validation.ttl
+http://www.w3.org/ns/shacl#ClassConstraintComponent 864
+All errors: 864
+==========rml13.ttl.MT.validation.ttl
+http://www.w3.org/ns/shacl#ClassConstraintComponent 864
+All errors: 864
+==========rml14.ttl.MT.validation.ttl
+http://www.w3.org/ns/shacl#ClassConstraintComponent 864
+All errors: 864
+==========rml15.ttl.MT.validation.ttl
+http://www.w3.org/ns/shacl#ClassConstraintComponent 864
+All errors: 864
+==========rml16.ttl.MT.validation.ttl
+http://www.w3.org/ns/shacl#ClassConstraintComponent 864
+All errors: 864
+==========rml17.ttl.MT.validation.ttl
+http://www.w3.org/ns/shacl#ClassConstraintComponent 864
+All errors: 864
+==========rml18.ttl.MT.validation.ttl
+http://www.w3.org/ns/shacl#ClassConstraintComponent 864
+All errors: 864
+==========rml19.ttl.MT.validation.ttl
+http://www.w3.org/ns/shacl#ClassConstraintComponent 864
+All errors: 864
+==========rml2.ttl.MT.validation.ttl
+http://www.w3.org/ns/shacl#ClassConstraintComponent 864
+All errors: 864
+==========rml20.ttl.MT.validation.ttl
+http://www.w3.org/ns/shacl#ClassConstraintComponent 864
+All errors: 864
+==========rml21.ttl.MT.validation.ttl
+http://www.w3.org/ns/shacl#ClassConstraintComponent 864
+All errors: 864
+==========rml22.ttl.MT.validation.ttl
+http://www.w3.org/ns/shacl#ClassConstraintComponent 864
+All errors: 864
+==========rml23.ttl.MT.validation.ttl
+http://www.w3.org/ns/shacl#ClassConstraintComponent 864
+All errors: 864
+==========rml24.ttl.MT.validation.ttl
+http://www.w3.org/ns/shacl#ClassConstraintComponent 864
+All errors: 864
+==========rml25.ttl.MT.validation.ttl
+http://www.w3.org/ns/shacl#ClassConstraintComponent 864
+All errors: 864
+==========rml26.ttl.MT.validation.ttl
+http://www.w3.org/ns/shacl#ClassConstraintComponent 864
+All errors: 864
+==========rml27.ttl.MT.validation.ttl
+http://www.w3.org/ns/shacl#ClassConstraintComponent 864
+All errors: 864
+==========rml3.ttl.MT.validation.ttl
+http://www.w3.org/ns/shacl#ClassConstraintComponent 864
+All errors: 864
+==========rml4.ttl.MT.validation.ttl
+http://www.w3.org/ns/shacl#ClassConstraintComponent 864
+All errors: 864
+==========rml5.ttl.MT.validation.ttl
+http://www.w3.org/ns/shacl#ClassConstraintComponent 864
+All errors: 864
+==========rml6.ttl.MT.validation.ttl
+http://www.w3.org/ns/shacl#ClassConstraintComponent 864
+All errors: 864
+==========rml7.ttl.MT.validation.ttl
+http://www.w3.org/ns/shacl#ClassConstraintComponent 864
+All errors: 864
+==========rml8.ttl.MT.validation.ttl
+http://www.w3.org/ns/shacl#ClassConstraintComponent 864
+All errors: 864
+==========rml9.ttl.MT.validation.ttl
+http://www.w3.org/ns/shacl#ClassConstraintComponent 864
+All errors: 864
+==========xsd0.ttl.MT.validation.ttl
+http://www.w3.org/ns/shacl#ClassConstraintComponent 864
+http://www.w3.org/ns/shacl#MinCountConstraintComponent 738
+http://www.w3.org/ns/shacl#MaxLengthConstraintComponent 432
+http://www.w3.org/ns/shacl#DatatypeConstraintComponent 432
+http://www.w3.org/ns/shacl#NodeKindConstraintComponent 108
+All errors: 1188

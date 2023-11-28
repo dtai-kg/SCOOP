@@ -81,4 +81,13 @@ def correctSHACL(shape):
             if len(temp) > 1:
                 for value in temp:
                     shape.remove((s,constraint,value))
+    
+    for s, p, o in shape.triples((None, None, shaclNS.PropertyShape)):
+        path = shape.value(s, shaclNS.path)
+        if not path:
+            shape.remove((s, None, shaclNS.PropertyShape))
+            # for s2, p2, o2 in shape.triples((s, None, None)):
+            #     shape.remove((s2, p2, o2))
+            # for s2, p2, o2 in shape.triples((None, None, s)):
+            #     shape.remove((s2, p2, o2))
     return shape

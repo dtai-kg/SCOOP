@@ -766,8 +766,7 @@
         <https://astrea.linkeddata.es/shapes#8ec3df6128b290bfc40e0811a9b0d3d5> ;
     sh:targetClass era:ETCSLevel .
 
-<https://astrea.linkeddata.es/shapes#0a36486bbb4c2a5cb91d1b9781218514> a sh:PropertyShape ;
-    rdfs:isDefinedBy gsp:,
+<https://astrea.linkeddata.es/shapes#0a36486bbb4c2a5cb91d1b9781218514> rdfs:isDefinedBy gsp:,
         <http://www.opengis.net/spec/geosparql/1.1/req/geometry-extension/spatial-object-properties> ;
     sh:nodeKind sh:BlankNodeOrIRI .
 
@@ -783,8 +782,7 @@ In https://eur-lex.europa.eu/eli/reg_impl/2019/773/oj 3.2.7 Type of signalling s
     sh:name "Operational regime type"@en ;
     sh:path era:operationalRegimeType .
 
-<https://astrea.linkeddata.es/shapes#13ad26cda35dc976cf7b606a9032165f> a sh:PropertyShape ;
-    rdfs:label "References the geolocation of the start of a tunnel."@en,
+<https://astrea.linkeddata.es/shapes#13ad26cda35dc976cf7b606a9032165f> rdfs:label "References the geolocation of the start of a tunnel."@en,
         "Start of tunnel"@en ;
     rdfs:isDefinedBy era: ;
     sh:description "References the geolocation of the start of a tunnel."@en ;
@@ -794,8 +792,7 @@ In https://eur-lex.europa.eu/eli/reg_impl/2019/773/oj 3.2.7 Type of signalling s
                 sh:path era:startLocation ] [ sh:class wgs:Point ;
                 sh:path era:startLocation ] ) .
 
-<https://astrea.linkeddata.es/shapes#15a6cd8931c541592ed2d736be18e85b> a sh:PropertyShape ;
-    rdfs:isDefinedBy gsp:,
+<https://astrea.linkeddata.es/shapes#15a6cd8931c541592ed2d736be18e85b> rdfs:isDefinedBy gsp:,
         <http://www.opengis.net/spec/geosparql/1.1/req/geometry-extension/geometry-properties> ;
     sh:nodeKind sh:BlankNodeOrIRI .
 
@@ -956,8 +953,7 @@ In https://eur-lex.europa.eu/eli/reg_impl/2019/773/oj 3.2.7 Type of signalling s
         <https://astrea.linkeddata.es/shapes#ff63c112898eda72efa0d74c75376b15> ;
     sh:targetClass era:VehicleType .
 
-<https://astrea.linkeddata.es/shapes#19c40459561d11dd0f501917ad28463d> a sh:PropertyShape ;
-    rdfs:isDefinedBy gsp:,
+<https://astrea.linkeddata.es/shapes#19c40459561d11dd0f501917ad28463d> rdfs:isDefinedBy gsp:,
         <http://www.opengis.net/spec/geosparql/1.0/req/topology-vocab-extension/spatial-object-properties>,
         <http://www.opengis.net/spec/geosparql/1.1/req/topology-vocab-extension/spatial-object-properties> ;
     sh:nodeKind sh:BlankNodeOrIRI .
@@ -1101,8 +1097,7 @@ It should be provided in 3 directions."""@en ;
         <https://astrea.linkeddata.es/shapes#ca2cb472818ff3b7046d2ce80e32539e> ;
     sh:targetClass era:MaximumMagneticField .
 
-<https://astrea.linkeddata.es/shapes#39ac00a5f63bea27354e0da9265ac6fa> a sh:PropertyShape ;
-    rdfs:isDefinedBy gsp:,
+<https://astrea.linkeddata.es/shapes#39ac00a5f63bea27354e0da9265ac6fa> rdfs:isDefinedBy gsp:,
         <http://www.opengis.net/spec/geosparql/1.1/req/geometry-extension/spatial-object-properties> ;
     sh:nodeKind sh:BlankNodeOrIRI .
 
@@ -1274,8 +1269,7 @@ Each track can have several raised pantographs per train allowed (structured) va
         <https://astrea.linkeddata.es/shapes#f01da1adf07d6895e34556f51e859a3a> ;
     sh:targetClass era:LineReference .
 
-<https://astrea.linkeddata.es/shapes#5a3380251b3eb8e31116c627c12f6869> a sh:PropertyShape ;
-    rdfs:isDefinedBy gsp:,
+<https://astrea.linkeddata.es/shapes#5a3380251b3eb8e31116c627c12f6869> rdfs:isDefinedBy gsp:,
         <http://www.opengis.net/spec/geosparql/1.1/req/geometry-extension/spatial-object-properties> ;
     sh:nodeKind sh:BlankNodeOrIRI .
 
@@ -1303,8 +1297,7 @@ In https://eur-lex.europa.eu/eli/reg_impl/2019/773/oj 2.1.2 Principal locations 
         <https://astrea.linkeddata.es/shapes#ff1ecabefbfb988b7d025dfd817b8cd0> ;
     sh:targetClass era:OperationalPoint .
 
-<https://astrea.linkeddata.es/shapes#6433101e7e37be2f7ebb4145d8bb0e66> a sh:PropertyShape ;
-    rdfs:label "End of tunnel"@en,
+<https://astrea.linkeddata.es/shapes#6433101e7e37be2f7ebb4145d8bb0e66> rdfs:label "End of tunnel"@en,
         "Geographical coordinates in decimal degrees and km of the line at the end of a tunnel."@en ;
     rdfs:isDefinedBy era: ;
     sh:description "Geographical coordinates in decimal degrees and km of the line at the end of a tunnel."@en ;
@@ -1373,8 +1366,7 @@ Each track can have several load capability (structured) values, and each one ha
         <https://astrea.linkeddata.es/shapes#6491f9b3615df3af6ce9e66b3ec0523c> ;
     sh:targetClass era:LoadCapability .
 
-<https://astrea.linkeddata.es/shapes#773ee1c13e884ec4f5e6535d912e7461> a sh:PropertyShape ;
-    rdfs:isDefinedBy gsp:,
+<https://astrea.linkeddata.es/shapes#773ee1c13e884ec4f5e6535d912e7461> rdfs:isDefinedBy gsp:,
         <http://www.opengis.net/spec/geosparql/1.0/req/geometry-extension/wkt-literal>,
         <http://www.opengis.net/spec/geosparql/1.1/req/geometry-extension/wkt-literal> ;
     rdfs:seeAlso <https://portal.ogc.org/files/?artifact_id=25355> ;
@@ -1503,8 +1495,7 @@ Definition RSM: Apparatus by means of which a conventional visual or acoustic in
     sh:nodeKind sh:IRI ;
     sh:targetClass rdfs:Resource .
 
-<https://astrea.linkeddata.es/shapes#a1b67a37d2dcd6e1b5a744defb32e848> a sh:PropertyShape ;
-    rdfs:isDefinedBy gsp:,
+<https://astrea.linkeddata.es/shapes#a1b67a37d2dcd6e1b5a744defb32e848> rdfs:isDefinedBy gsp:,
         <http://www.opengis.net/spec/geosparql/1.1/req/geometry-extension/geojson-literal> ;
     rdfs:seeAlso <https://tools.ietf.org/html/rfc7946> ;
     sh:nodeKind sh:Literal .
@@ -1519,8 +1510,7 @@ Definition RSM: Apparatus by means of which a conventional visual or acoustic in
         <https://astrea.linkeddata.es/shapes#f7ba27c0add66bc61d957b1f9dc4ce56> ;
     sh:targetClass era:MinAxleLoadVehicleCategory .
 
-<https://astrea.linkeddata.es/shapes#a23bb7eb5acbec745f833bb3641424c0> a sh:PropertyShape ;
-    rdfs:isDefinedBy gsp:,
+<https://astrea.linkeddata.es/shapes#a23bb7eb5acbec745f833bb3641424c0> rdfs:isDefinedBy gsp:,
         <http://www.opengis.net/spec/geosparql/1.1/req/geometry-extension/spatial-object-properties> ;
     sh:nodeKind sh:BlankNodeOrIRI .
 
@@ -1551,8 +1541,7 @@ Definition RSM: Apparatus by means of which a conventional visual or acoustic in
     sh:nodeKind sh:IRI ;
     sh:targetClass era:VehicleKeeper .
 
-<https://astrea.linkeddata.es/shapes#b43c2bc06054e5242a46b9d7b3c5a68f> a sh:PropertyShape ;
-    rdfs:isDefinedBy gsp:,
+<https://astrea.linkeddata.es/shapes#b43c2bc06054e5242a46b9d7b3c5a68f> rdfs:isDefinedBy gsp:,
         <http://www.opengis.net/spec/geosparql/1.0/req/geometry-extension/gml-literal>,
         <http://www.opengis.net/spec/geosparql/1.1/req/geometry-extension/gml-literal> ;
     rdfs:seeAlso <https://portal.ogc.org/files/?artifact_id=20509> ;
@@ -1731,8 +1720,7 @@ Definition RSM: Apparatus by means of which a conventional visual or acoustic in
         <https://astrea.linkeddata.es/shapes#f346ed97745fa7ab0d58ba62aea03aaf> ;
     sh:targetClass era:SystemSeparationInfo .
 
-<https://astrea.linkeddata.es/shapes#b8840ae319dd17775a4c3ff2c43caeca> a sh:PropertyShape ;
-    sh:nodeKind sh:Literal .
+<https://astrea.linkeddata.es/shapes#b8840ae319dd17775a4c3ff2c43caeca> sh:nodeKind sh:Literal .
 
 <https://astrea.linkeddata.es/shapes#bad6fe0616822dbdee41612805dde4b1> a sh:NodeShape ;
     rdfs:label "Border"@en ;
@@ -1760,14 +1748,12 @@ Definition RSM: Apparatus by means of which a conventional visual or acoustic in
         <https://astrea.linkeddata.es/shapes#71003ec0eaf2beb7e2048f77dcb93314> ;
     sh:targetClass era:FrenchTrainDetectionSystemLimitation .
 
-<https://astrea.linkeddata.es/shapes#c5d4912fb1cc7d3779a951d7afa0f700> a sh:PropertyShape ;
-    rdfs:isDefinedBy gsp:,
+<https://astrea.linkeddata.es/shapes#c5d4912fb1cc7d3779a951d7afa0f700> rdfs:isDefinedBy gsp:,
         <http://www.opengis.net/spec/geosparql/1.1/req/geometry-extension/dggs-literal> ;
     rdfs:seeAlso <http://www.opengis.net/doc/AS/dggs/2.0> ;
     sh:nodeKind sh:Literal .
 
-<https://astrea.linkeddata.es/shapes#c7e07eef6553d6c6878af4d7532c1ed0> a sh:PropertyShape ;
-    rdfs:isDefinedBy gsp:,
+<https://astrea.linkeddata.es/shapes#c7e07eef6553d6c6878af4d7532c1ed0> rdfs:isDefinedBy gsp:,
         <http://www.opengis.net/spec/geosparql/1.1/req/geometry-extension/feature-properties> ;
     sh:nodeKind sh:BlankNodeOrIRI .
 
@@ -1775,8 +1761,7 @@ Definition RSM: Apparatus by means of which a conventional visual or acoustic in
     sh:nodeKind sh:Literal ;
     sh:path <http://schema.org/url> .
 
-<https://astrea.linkeddata.es/shapes#d1bce004ef69d73256a124a70d9f2a57> a sh:PropertyShape ;
-    rdfs:isDefinedBy gsp:,
+<https://astrea.linkeddata.es/shapes#d1bce004ef69d73256a124a70d9f2a57> rdfs:isDefinedBy gsp:,
         <http://www.opengis.net/spec/geosparql/1.1/req/geometry-extension/kml-literal> ;
     rdfs:seeAlso <https://www.ogc.org/standards/kml/> ;
     sh:nodeKind sh:Literal .
@@ -2248,8 +2233,7 @@ The system separation info is the Indication of required several information on 
     sh:path era:wheelchairSpaces ;
     sh:pattern "[\\-+]?[0-9]+" .
 
-<https://astrea.linkeddata.es/shapes#16b639b6c59786f5c650e18b0080386b> a sh:PropertyShape ;
-    sh:class gsp:Geometry .
+<https://astrea.linkeddata.es/shapes#16b639b6c59786f5c650e18b0080386b> sh:class gsp:Geometry .
 
 <https://astrea.linkeddata.es/shapes#1776c65dacefb9076565b31aa3759044> a sh:PropertyShape ;
     rdfs:label "Identification of track"@en,

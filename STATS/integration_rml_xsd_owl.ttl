@@ -5311,8 +5311,7 @@ The system separation info is the Indication of required several information on 
     sh:path era:wheelchairSpaces ;
     sh:pattern "[\\-+]?[0-9]+" .
 
-<https://astrea.linkeddata.es/shapes#16b639b6c59786f5c650e18b0080386b> a sh:PropertyShape ;
-    sh:class <http://www.opengis.net/ont/geosparql#Geometry> .
+<https://astrea.linkeddata.es/shapes#16b639b6c59786f5c650e18b0080386b> sh:class <http://www.opengis.net/ont/geosparql#Geometry> .
 
 <https://astrea.linkeddata.es/shapes#17e762113f77b7aa379a6c1c73c2825f> a sh:PropertyShape ;
     rdfs:isDefinedBy <http://www.opengis.net/ont/geosparql#>,

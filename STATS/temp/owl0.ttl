@@ -783,7 +783,7 @@ In https://eur-lex.europa.eu/eli/reg_impl/2019/773/oj 3.2.7 Type of signalling s
     sh:name "Operational regime type"@en ;
     sh:path era:operationalRegimeType .
 
-<https://astrea.linkeddata.es/shapes#13ad26cda35dc976cf7b606a9032165f> a sh:PropertyShape ;
+<https://astrea.linkeddata.es/shapes#13ad26cda35dc976cf7b606a9032165f>
     rdfs:label "References the geolocation of the start of a tunnel."@en,
         "Start of tunnel"@en ;
     rdfs:isDefinedBy era: ;
@@ -2248,8 +2248,7 @@ The system separation info is the Indication of required several information on 
     sh:path era:wheelchairSpaces ;
     sh:pattern "[\\-+]?[0-9]+" .
 
-<https://astrea.linkeddata.es/shapes#16b639b6c59786f5c650e18b0080386b> a sh:PropertyShape ;
-    sh:class gsp:Geometry .
+<https://astrea.linkeddata.es/shapes#16b639b6c59786f5c650e18b0080386b> sh:class gsp:Geometry .
 
 <https://astrea.linkeddata.es/shapes#1776c65dacefb9076565b31aa3759044> a sh:PropertyShape ;
     rdfs:label "Identification of track"@en,
