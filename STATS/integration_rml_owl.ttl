@@ -4,11 +4,59 @@
 @prefix sh: <http://www.w3.org/ns/shacl#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
-<http://mapping.example.com/map_etcs-baseline_000/shape> a sh:NodeShape ;
+<http://mapping.example.com/map_contact-line-systems_000/shape> a sh:NodeShape ;
+    rdfs:label "Contact Line System"@en ;
+    rdfs:isDefinedBy era: ;
+    sh:description "System that is used to transmit electrical energy to road or rail vehicles."@en ;
+    sh:name "Contact Line System"@en ;
     sh:nodeKind sh:IRI ;
-    sh:pattern "http://data.europa.eu/949/functionalInfrastructure/etcsLevels/.*_.*_.*_.*_.*" ;
+    sh:pattern "http://data.europa.eu/949/functionalInfrastructure/contactLineSystems/.*_.*_.*_.*_.*" ;
+    sh:property [ sh:nodeKind sh:Literal ;
+            sh:path rdfs:label ],
+        [ rdfs:label "Type of contact line system"@en ;
+            rdfs:isDefinedBy era: ;
+            sh:class <http://www.w3.org/2004/02/skos/core#Concept> ;
+            sh:description "Indication of the type of the contact line system. The allowed values for this property belong to the SKOS Concept Scheme http://data.europa.eu/949/concepts/contact-line-systems/ContactLineSystems"@en ;
+            sh:name "Type of contact line system"@en ;
+            sh:nodeKind sh:IRI ;
+            sh:path era:contactLineSystemType ],
+        <https://astrea.linkeddata.es/shapes#0776d475224c5bd759505dcce0038be6>,
+        <https://astrea.linkeddata.es/shapes#0ee976535ceb548324a2a593f020d8a2>,
+        <https://astrea.linkeddata.es/shapes#52192c02b01b4c9fbcdc3c91fcf2e4dc>,
+        <https://astrea.linkeddata.es/shapes#89b4bedc58ad4559c1b6764c0cf51ac4>,
+        <https://astrea.linkeddata.es/shapes#b64967cb5ca4ecd219e30f7ec0568cae>,
+        <https://astrea.linkeddata.es/shapes#ba1a7810f96ca26dcfd05a4a8d38811b>,
+        <https://astrea.linkeddata.es/shapes#bddd8eea1d6204ef60194932f2fca797>,
+        <https://astrea.linkeddata.es/shapes#c92dc8579b875253305d1bb28e8ad8cf>,
+        <https://astrea.linkeddata.es/shapes#d6ad9260efae3b3ea3dca24b765715ff>,
+        <https://astrea.linkeddata.es/shapes#e27213d22eda0492cbf1f2d69352507b> ;
+    sh:targetClass era:ContactLineSystem .
+
+<http://mapping.example.com/map_current-limitation_000/shape> a sh:NodeShape ;
+    sh:nodeKind sh:IRI ;
+    sh:pattern "http://data.europa.eu/949/functionalInfrastructure/contactLineSystems/.*_.*_.*_.*_.*" ;
+    sh:property [ sh:datatype xsd:boolean ;
+            sh:nodeKind sh:Literal ;
+            sh:path era:currentLimitationRequired ],
+        [ sh:datatype xsd:boolean ;
+            sh:nodeKind sh:Literal ;
+            sh:path era:currentLimitationRequired ] .
+
+<http://mapping.example.com/map_energy-supply-system-tsi-compliant_000/shape> a sh:NodeShape ;
+    sh:nodeKind sh:IRI ;
+    sh:pattern "http://data.europa.eu/949/functionalInfrastructure/contactLineSystems/.*_.*_.*_.*_.*" ;
+    sh:property [ sh:datatype xsd:boolean ;
+            sh:nodeKind sh:Literal ;
+            sh:path era:energySupplySystemTSICompliant ],
+        [ sh:datatype xsd:boolean ;
+            sh:nodeKind sh:Literal ;
+            sh:path era:energySupplySystemTSICompliant ] .
+
+<http://mapping.example.com/map_energy-supply-system_000/shape> a sh:NodeShape ;
+    sh:nodeKind sh:IRI ;
+    sh:pattern "http://data.europa.eu/949/functionalInfrastructure/contactLineSystems/.*_.*_.*_.*_.*" ;
     sh:property [ sh:nodeKind sh:IRI ;
-            sh:path era:etcsBaseline ] .
+            sh:path era:energySupplySystem ] .
 
 <http://mapping.example.com/map_etcs-level_000/shape> a sh:NodeShape ;
     rdfs:label "ETCS Level"@en ;
@@ -29,6 +77,44 @@
         <https://astrea.linkeddata.es/shapes#2ea1da6023fb9abcf22f722c2f9912da> ;
     sh:targetClass era:ETCSLevel .
 
+<http://mapping.example.com/map_french-detection-limitation_000/shape> a sh:NodeShape ;
+    rdfs:label "Section with train detection limitation, only for the French network"@en ;
+    rdfs:isDefinedBy era: ;
+    sh:description """Specific for route compatibility check on French network. Sections with: 
+-1 Tonnage circulated per track is inferior to 15000 tons/day/track 
+-2 Directional Interlocking 
+-3 45-second delay for directional interlocking 
+-4 Installation with track circuit announcement 
+-5 Absence of a shunting assistance pedal in the normal direction of circulation for non-reversible double track lines 
+-6 Absence of a shunting assistance pedal regardless of the direction of traffic for single track lines and tracks for two way working 
+-7 Absence of a pedal announcement mechanism 
+-8 45-second delay for specific announcement reset devices"""@en ;
+    sh:name "Section with train detection limitation, only for the French network"@en ;
+    sh:nodeKind sh:IRI ;
+    sh:pattern "http://data.europa.eu/949/functionalInfrastructure/frenchTrainDetectionSystemLimitation/.*_.*_.*_.*_.*" ;
+    sh:property [ sh:nodeKind sh:Literal ;
+            sh:path rdfs:label ],
+        [ sh:nodeKind sh:IRI ;
+            sh:path era:tdsfrenchTrainDetectionSystemLimitation ],
+        [ rdfs:label "Section with train detection limitation is applicable, only for the French network"@en ;
+            rdfs:isDefinedBy era: ;
+            sh:datatype xsd:boolean ;
+            sh:description "Part of the section with train detection limitation that indicates if it is applicable. Only for the French network."@en ;
+            sh:name "Section with train detection limitation is applicable, only for the French network"@en ;
+            sh:nodeKind sh:Literal ;
+            sh:path era:frenchTrainDetectionSystemLimitationApplicable ;
+            sh:pattern "true|false|0|1" ],
+        [ rdfs:label "Section with train detection limitation is applicable, only for the French network"@en ;
+            rdfs:isDefinedBy era: ;
+            sh:datatype xsd:boolean ;
+            sh:description "Part of the section with train detection limitation that indicates if it is applicable. Only for the French network."@en ;
+            sh:name "Section with train detection limitation is applicable, only for the French network"@en ;
+            sh:nodeKind sh:Literal ;
+            sh:path era:frenchTrainDetectionSystemLimitationApplicable ;
+            sh:pattern "true|false|0|1" ],
+        <https://astrea.linkeddata.es/shapes#1cbaec44829929f1905d71640868a204> ;
+    sh:targetClass era:FrenchTrainDetectionSystemLimitation .
+
 <http://mapping.example.com/map_line-national-ids_000/shape> a sh:NodeShape ;
     rdfs:label "National railway line"@en ;
     rdfs:isDefinedBy era: ;
@@ -37,12 +123,40 @@
     sh:name "National railway line"@en ;
     sh:nodeKind sh:IRI ;
     sh:pattern "http://data.europa.eu/949/functionalInfrastructure/nationalLines/.*/.*" ;
-    sh:property [ sh:nodeKind sh:Literal ;
-            sh:path rdfs:label ],
-        [ sh:node <http://mapping.example.com/map_eu-country_000/shape> ;
+    sh:property [ sh:node <http://mapping.example.com/map_eu-country_000/shape> ;
             sh:nodeKind sh:IRI ;
-            sh:path era:inCountry ] ;
+            sh:path era:inCountry ],
+        [ sh:nodeKind sh:Literal ;
+            sh:path rdfs:label ] ;
     sh:targetClass era:NationalRailwayLine .
+
+<http://mapping.example.com/map_line-reference_000/shape> a sh:NodeShape ;
+    rdfs:label "Railway location"@en ;
+    rdfs:isDefinedBy era: ;
+    sh:description "A reference to a specific national railway line."@en ;
+    sh:name "Railway location"@en ;
+    sh:nodeKind sh:IRI ;
+    sh:pattern "http://data.europa.eu/949/functionalInfrastructure/lineReferences/.*_.*" ;
+    sh:property [ rdfs:label "Unique line identification or unique line number within Member State."@en ;
+            rdfs:isDefinedBy era: ;
+            sh:class era:NationalRailwayLine ;
+            sh:description "Unique line identification or unique line number within Member State."@en ;
+            sh:maxCount 1 ;
+            sh:name "National line identification"@en ;
+            sh:nodeKind sh:IRI ;
+            sh:path era:lineNationalId ],
+        [ rdfs:label "Kilometer"@en ;
+            rdfs:isDefinedBy era: ;
+            sh:datatype xsd:double ;
+            sh:description """Distance measured in kilometers from the origin of a national railway line.
+In https://eur-lex.europa.eu/eli/reg_impl/2019/773/oj 2.2.2 Principal locations (stations, yards, junctions, freight terminals) and their position relative to the line."""@en ;
+            sh:name "Kilometer"@en ;
+            sh:nodeKind sh:Literal ;
+            sh:path era:kilometer ;
+            sh:pattern "(\\+|-)?([0-9]+(\\.[0-9]*)?|\\.[0-9]+)([Ee](\\+|-)?[0-9]+)?|(\\+|-)?INF|NaN" ],
+        [ sh:nodeKind sh:Literal ;
+            sh:path rdfs:label ] ;
+    sh:targetClass era:LineReference .
 
 <http://mapping.example.com/map_load-capability_000/shape> a sh:NodeShape ;
     rdfs:label "Load capability"@en ;
@@ -51,17 +165,7 @@
     sh:name "Load capability"@en ;
     sh:nodeKind sh:IRI ;
     sh:pattern "http://data.europa.eu/949/functionalInfrastructure/load-capabilities/.*_.*_.*_.*_.*" ;
-    sh:property [ rdfs:label """Part of the load capability of a track that corresponds to the speed of the load model. 
-The load capability is a value selected from the list of load models representing: line category which is amended by value of speed [km/h] permitted for a specific load model. The list of values may also be Route Availability which is amended by value of speed [miles/h] permitted for a specific load model."""@en ;
-            rdfs:isDefinedBy era: ;
-            sh:datatype xsd:integer ;
-            sh:description """Part of the load capability of a track that corresponds to the speed of the load model. 
-The load capability is a value selected from the list of load models representing: line category which is amended by value of speed [km/h] permitted for a specific load model. The list of values may also be Route Availability which is amended by value of speed [miles/h] permitted for a specific load model."""@en ;
-            sh:name "Load capability speed"@en ;
-            sh:nodeKind sh:Literal ;
-            sh:path era:loadCapabilitySpeed ;
-            sh:pattern "[\\-+]?[0-9]+" ],
-        [ rdfs:label """Part of the load capability of a track that corresponds to the line category of the load model. 
+    sh:property [ rdfs:label """Part of the load capability of a track that corresponds to the line category of the load model. 
 The load capability is a value selected from the list of load models representing: line category which is amended by value of speed [km/h] permitted for a specific load model. The list of values may also be Route Availability which is amended by value of speed [miles/h] permitted for a specific load model.
 The allowed values for this property belong to the SKOS Concept Scheme http://data.europa.eu/949/concepts/load-capability-line-categories/LoadCapabilityLineCategories"""@en ;
             rdfs:isDefinedBy era: ;
@@ -71,8 +175,65 @@ The load capability is a value selected from the list of load models representin
 The allowed values for this property belong to the SKOS Concept Scheme http://data.europa.eu/949/concepts/load-capability-line-categories/LoadCapabilityLineCategories"""@en ;
             sh:name "Load capability line category"@en ;
             sh:nodeKind sh:IRI ;
-            sh:path era:loadCapabilityLineCategory ] ;
+            sh:path era:loadCapabilityLineCategory ],
+        [ rdfs:label """Part of the load capability of a track that corresponds to the speed of the load model. 
+The load capability is a value selected from the list of load models representing: line category which is amended by value of speed [km/h] permitted for a specific load model. The list of values may also be Route Availability which is amended by value of speed [miles/h] permitted for a specific load model."""@en ;
+            rdfs:isDefinedBy era: ;
+            sh:datatype xsd:integer ;
+            sh:description """Part of the load capability of a track that corresponds to the speed of the load model. 
+The load capability is a value selected from the list of load models representing: line category which is amended by value of speed [km/h] permitted for a specific load model. The list of values may also be Route Availability which is amended by value of speed [miles/h] permitted for a specific load model."""@en ;
+            sh:name "Load capability speed"@en ;
+            sh:nodeKind sh:Literal ;
+            sh:path era:loadCapabilitySpeed ;
+            sh:pattern "[\\-+]?[0-9]+" ] ;
     sh:targetClass era:LoadCapability .
+
+<http://mapping.example.com/map_location_000/shape> a sh:NodeShape ;
+    rdfs:label "Point" ;
+    rdfs:isDefinedBy <http://www.opengis.net/spec/geosparql/1.1/req/geometry-extension/geometry-class> ;
+    sh:description """A point, typically described using a coordinate system relative to Earth, such as WGS84.
+  """ ;
+    sh:name "Point" ;
+    sh:nodeKind sh:IRI ;
+    sh:pattern "http://data.europa.eu/949/locations/.*/.*" ;
+    sh:property [ sh:datatype xsd:double ;
+            sh:nodeKind sh:Literal ;
+            sh:path <http://www.w3.org/2003/01/geo/wgs84_pos#lat> ],
+        [ rdfs:isDefinedBy <http://www.opengis.net/spec/geosparql/1.1/req/geometry-extension/geometry-as-wkt-literal> ;
+            sh:datatype <http://www.opengis.net/ont/geosparql#wktLiteral> ;
+            sh:nodeKind sh:Literal ;
+            sh:path <http://www.opengis.net/ont/geosparql#asWKT> ],
+        [ sh:datatype xsd:double ;
+            sh:nodeKind sh:Literal ;
+            sh:path <http://www.w3.org/2003/01/geo/wgs84_pos#long> ],
+        <https://astrea.linkeddata.es/shapes#0bb266d44d2e049e4a4bcdb6089de9b5>,
+        <https://astrea.linkeddata.es/shapes#0cef7e49760c68e11fcddb0e86b175b9>,
+        <https://astrea.linkeddata.es/shapes#0f6502053608fc059a721676b6e67115>,
+        <https://astrea.linkeddata.es/shapes#213dce020d8d1d818cf322430ccb65dd>,
+        <https://astrea.linkeddata.es/shapes#36d656c5dfc31ad481ee03f2fbead4d2>,
+        <https://astrea.linkeddata.es/shapes#51b0574d80cdcbd9d25e74798414eddd>,
+        <https://astrea.linkeddata.es/shapes#6f1a80b9ea58c60979eb6b5d7dd31a18>,
+        <https://astrea.linkeddata.es/shapes#b3b89c89e30bbeb141774553213d763a>,
+        <https://astrea.linkeddata.es/shapes#ba37020ab8b5cf73b00e9187bead387c>,
+        <https://astrea.linkeddata.es/shapes#bb9ad1857093cc31f11d9ba7f19348ea>,
+        <https://astrea.linkeddata.es/shapes#ce9b1b3ec27a653696d2ed4bd02b1d12>,
+        <https://astrea.linkeddata.es/shapes#e03b53e6ee02aa5451f9df7010548e0d> ;
+    sh:targetClass <http://www.opengis.net/ont/geosparql#Geometry>,
+        <http://www.w3.org/2003/01/geo/wgs84_pos#Point> .
+
+<http://mapping.example.com/map_maximum-current-standstill_000/shape> a sh:NodeShape ;
+    sh:nodeKind sh:IRI ;
+    sh:pattern "http://data.europa.eu/949/functionalInfrastructure/contactLineSystems/.*_.*_.*_.*_.*" ;
+    sh:property [ sh:datatype xsd:double ;
+            sh:nodeKind sh:Literal ;
+            sh:path era:maxCurrentStandstillPantograph ] .
+
+<http://mapping.example.com/map_maximum-train-current_000/shape> a sh:NodeShape ;
+    sh:nodeKind sh:IRI ;
+    sh:pattern "http://data.europa.eu/949/functionalInfrastructure/contactLineSystems/.*_.*_.*_.*_.*" ;
+    sh:property [ sh:datatype xsd:integer ;
+            sh:nodeKind sh:Literal ;
+            sh:path era:maxTrainCurrent ] .
 
 <http://mapping.example.com/map_min-axle-loads-vehicle-category_000/shape> a sh:NodeShape ;
     rdfs:label "Min axle load vehicle category"@en ;
@@ -99,6 +260,53 @@ The allowed values for this property belong to the SKOS Concept Scheme http://da
             sh:pattern "(\\+|-)?([0-9]+(\\.[0-9]*)?|\\.[0-9]+)([Ee](\\+|-)?[0-9]+)?|(\\+|-)?INF|NaN" ] ;
     sh:targetClass era:MinAxleLoadVehicleCategory .
 
+<http://mapping.example.com/map_op-track-tunnel_000/shape> a sh:NodeShape ;
+    rdfs:label "Tunnel"@en ;
+    rdfs:isDefinedBy era: ;
+    sh:description "A railway tunnel is an excavation or a construction around the track provided to allow the railway to pass for example higher land, buildings or water."@en ;
+    sh:name "Tunnel"@en ;
+    sh:nodeKind sh:IRI ;
+    sh:pattern "http://data.europa.eu/949/functionalInfrastructure/tunnels/.*_.*_.*" ;
+    sh:property [ rdfs:label """Unique tunnel identification or unique number within Member State.
+In https://eur-lex.europa.eu/eli/reg_impl/2019/773/oj 3.2.3 Tunnels: location, name, length, specific information such as the existence of walkways and points of safe egress as well as the location of safe areas where evacuation of passengers may take place; fire safety categorisation."""@en ;
+            rdfs:isDefinedBy era: ;
+            sh:datatype xsd:string ;
+            sh:description """Unique tunnel identification or unique number within Member State.
+In https://eur-lex.europa.eu/eli/reg_impl/2019/773/oj 3.2.3 Tunnels: location, name, length, specific information such as the existence of walkways and points of safe egress as well as the location of safe areas where evacuation of passengers may take place; fire safety categorisation."""@en ;
+            sh:maxCount 1 ;
+            sh:name "Tunnel identification"@en ;
+            sh:nodeKind sh:Literal ;
+            sh:path era:tunnelIdentification ;
+            sh:pattern ".*" ],
+        [ sh:datatype xsd:date ;
+            sh:nodeKind sh:Literal ;
+            sh:path era:validityEndDate ],
+        [ sh:nodeKind sh:Literal ;
+            sh:path rdfs:label ],
+        [ sh:node <http://mapping.example.com/map_eu-country_000/shape1870> ;
+            sh:nodeKind sh:IRI ;
+            sh:path era:inCountry ],
+        [ sh:datatype xsd:date ;
+            sh:nodeKind sh:Literal ;
+            sh:path era:validityStartDate ],
+        [ sh:nodeKind sh:Literal ;
+            sh:path era:imCode ],
+        <https://astrea.linkeddata.es/shapes#0031ca67940043b21691665188393b89>,
+        <https://astrea.linkeddata.es/shapes#0656ac282b233613a4e97b1158fddeae>,
+        <https://astrea.linkeddata.es/shapes#0b2d02f63fe8fa74f0d26578a31ba47c>,
+        <https://astrea.linkeddata.es/shapes#35bc8290150c8a0250f4f34f722c8b93>,
+        <https://astrea.linkeddata.es/shapes#5edb4f6431854ddaab351570295387ff>,
+        <https://astrea.linkeddata.es/shapes#67dd7330e4cb98b732edcfe008cc96fa>,
+        <https://astrea.linkeddata.es/shapes#68dd1c953f64a4d5ff3ac672fc7e5efb>,
+        <https://astrea.linkeddata.es/shapes#7b7b6d85a40968cea0b3b84493d6d607>,
+        <https://astrea.linkeddata.es/shapes#81d0cb2dd5f77220b27950d99568e0c8>,
+        <https://astrea.linkeddata.es/shapes#a98e230dd1563e655c9911b9d14a30e4>,
+        <https://astrea.linkeddata.es/shapes#cdab201c7a44be0ab4b70d042aab2e2d>,
+        <https://astrea.linkeddata.es/shapes#ea7daa0a30c2fbd86d703a706905eb00>,
+        <https://astrea.linkeddata.es/shapes#eac2e6f84f17869280c5559214cc867e>,
+        <https://astrea.linkeddata.es/shapes#f4fb6a8693fcef866058ce6a1d2c15a6> ;
+    sh:targetClass era:Tunnel .
+
 <http://mapping.example.com/map_op-track_000/shape> a sh:NodeShape ;
     rdfs:label "Track"@en ;
     rdfs:isDefinedBy era: ;
@@ -107,14 +315,12 @@ The allowed values for this property belong to the SKOS Concept Scheme http://da
     sh:name "Track"@en ;
     sh:nodeKind sh:IRI ;
     sh:pattern "http://data.europa.eu/949/functionalInfrastructure/tracks/.*_.*" ;
-    sh:property [ sh:nodeKind sh:Literal ;
-            sh:path era:imCode ],
+    sh:property [ sh:datatype xsd:date ;
+            sh:nodeKind sh:Literal ;
+            sh:path era:validityEndDate ],
         [ sh:datatype xsd:date ;
             sh:nodeKind sh:Literal ;
             sh:path era:validityStartDate ],
-        [ sh:datatype xsd:date ;
-            sh:nodeKind sh:Literal ;
-            sh:path era:validityEndDate ],
         [ rdfs:label """Unique track identification or unique track number within a Section of Line.
 In https://eur-lex.europa.eu/eli/reg_impl/2019/773/oj 2.2.1 Indication of running lines, loops catch/trap points and access to sidings, 2.3.4 Identification and plan of tracks, including switches, 2.3.9 Identification of loops."""@en ;
             rdfs:isDefinedBy era: ;
@@ -128,6 +334,26 @@ In https://eur-lex.europa.eu/eli/reg_impl/2019/773/oj 2.2.1 Indication of runnin
             sh:pattern ".*" ],
         [ sh:nodeKind sh:Literal ;
             sh:path rdfs:label ],
+        [ sh:nodeKind sh:Literal ;
+            sh:path era:imCode ],
+        [ sh:nodeKind sh:IRI ;
+            sh:path era:hasAbstraction ],
+        [ rdfs:label """The normal running direction is:
+- The same as the direction defined by the start and end of the SoL: (N)
+- The opposite to the direction defined by the start and end of the SoL: (O)
+- Both directions: (B)
+The allowed values for this property belong to the SKOS Concept Scheme http://data.europa.eu/949/concepts/track-running-directions/TrackRunningDirections."""@en ;
+            rdfs:isDefinedBy era: ;
+            sh:class <http://www.w3.org/2004/02/skos/core#Concept> ;
+            sh:description """The normal running direction is:
+- The same as the direction defined by the start and end of the SoL: (N)
+- The opposite to the direction defined by the start and end of the SoL: (O)
+- Both directions: (B)
+The allowed values for this property belong to the SKOS Concept Scheme http://data.europa.eu/949/concepts/track-running-directions/TrackRunningDirections."""@en ;
+            sh:maxCount 1 ;
+            sh:name "Normal running direction"@en ;
+            sh:nodeKind sh:IRI ;
+            sh:path era:trackDirection ],
         <https://astrea.linkeddata.es/shapes#00211b53f643d8d8d65ebf7860172970>,
         <https://astrea.linkeddata.es/shapes#01eceb38e14de6a4c68ec784cffad115>,
         <https://astrea.linkeddata.es/shapes#01ed9f28cac5529dac386d0f4f9bc3e0>,
@@ -141,7 +367,6 @@ In https://eur-lex.europa.eu/eli/reg_impl/2019/773/oj 2.2.1 Indication of runnin
         <https://astrea.linkeddata.es/shapes#0f27302d24339dee56cc1d95ac4c9ff3>,
         <https://astrea.linkeddata.es/shapes#100b8112490cbaabda74a3a5b964a3c3>,
         <https://astrea.linkeddata.es/shapes#1081014d00410cc95b817f3637b2a59e>,
-        <https://astrea.linkeddata.es/shapes#1156168d9707500402e4dfc808a6ce76>,
         <https://astrea.linkeddata.es/shapes#129fd08e2db8267b2e3495804a860bcc>,
         <https://astrea.linkeddata.es/shapes#14cb773c55ef17b01ab1e3da6c1c9d42>,
         <https://astrea.linkeddata.es/shapes#154fc00747483ab5f1a548c53f17049a>,
@@ -300,16 +525,7 @@ In https://eur-lex.europa.eu/eli/reg_impl/2019/773/oj 2.1.2 Principal locations 
     sh:name "Operational Point"@en ;
     sh:nodeKind sh:IRI ;
     sh:pattern "http://data.europa.eu/949/functionalInfrastructure/operationalPoints/.*" ;
-    sh:property [ rdfs:label "Type of operational point"@en ;
-            rdfs:isDefinedBy era: ;
-            sh:class <http://www.w3.org/2004/02/skos/core#Concept> ;
-            sh:description """Type of facility in relation to the dominating operational functions. The allowed values for this property belong to the SKOS Concept Scheme http://data.europa.eu/949/concepts/op-types/OperationalPointTypes.
-In https://eur-lex.europa.eu/eli/reg_impl/2019/773/oj 2.3.2 Type of location passenger terminal, freight terminal, yard, depot."""@en ;
-            sh:maxCount 1 ;
-            sh:name "Type of operational point"@en ;
-            sh:nodeKind sh:IRI ;
-            sh:path era:opType ],
-        [ rdfs:label "Unique OP ID"@en ;
+    sh:property [ rdfs:label "Unique OP ID"@en ;
             rdfs:isDefinedBy era: ;
             sh:datatype xsd:string ;
             sh:description """Code composed of country code and alphanumeric operational point code, as defined in RINF.
@@ -319,6 +535,15 @@ In https://eur-lex.europa.eu/eli/reg_impl/2019/773/oj 2.2.2 Principal locations 
             sh:nodeKind sh:Literal ;
             sh:path era:uopid ;
             sh:pattern ".*" ],
+        [ rdfs:label "Type of operational point"@en ;
+            rdfs:isDefinedBy era: ;
+            sh:class <http://www.w3.org/2004/02/skos/core#Concept> ;
+            sh:description """Type of facility in relation to the dominating operational functions. The allowed values for this property belong to the SKOS Concept Scheme http://data.europa.eu/949/concepts/op-types/OperationalPointTypes.
+In https://eur-lex.europa.eu/eli/reg_impl/2019/773/oj 2.3.2 Type of location passenger terminal, freight terminal, yard, depot."""@en ;
+            sh:maxCount 1 ;
+            sh:name "Type of operational point"@en ;
+            sh:nodeKind sh:IRI ;
+            sh:path era:opType ],
         [ rdfs:label "Relates an operational point that represents the general information of a  border point to the information that each country maintains for the border point."@en ;
             rdfs:isDefinedBy era: ;
             sh:class era:OperationalPoint ;
@@ -326,13 +551,48 @@ In https://eur-lex.europa.eu/eli/reg_impl/2019/773/oj 2.2.2 Principal locations 
             sh:name "Border point information per country"@en ;
             sh:nodeKind sh:IRI ;
             sh:path era:opInfoPerCountry ],
+        [ sh:nodeKind sh:IRI ;
+            sh:path <http://www.w3.org/2003/01/geo/wgs84_pos#location> ],
+        [ rdfs:label "Primary location code developed for information exchange in accordance with the TSIs relating to telematics applications."@en ;
+            rdfs:isDefinedBy era: ;
+            sh:datatype xsd:string ;
+            sh:description "Primary code developed for TAF/TAP."@en ;
+            sh:maxCount 1 ;
+            sh:name "Primary location code developed for information exchange in accordance with the TSIs relating to telematics applications."@en ;
+            sh:nodeKind sh:Literal ;
+            sh:path era:tafTAPCode ;
+            sh:pattern ".*" ],
+        [ sh:nodeKind sh:IRI ;
+            sh:path <http://www.opengis.net/ont/geosparql#hasGeometry> ],
+        [ rdfs:label "Name of Operational point"@en ;
+            rdfs:isDefinedBy era: ;
+            sh:datatype xsd:string ;
+            sh:description """Name normally related to the town or village or to traffic control purpose.
+In https://eur-lex.europa.eu/eli/reg_impl/2019/773/oj 2.3.1 Name of location."""@en ;
+            sh:maxCount 1 ;
+            sh:name "Name of Operational point"@en ;
+            sh:nodeKind sh:Literal ;
+            sh:path era:opName ;
+            sh:pattern ".*" ],
+        [ sh:nodeKind sh:IRI ;
+            sh:path era:hasAbstraction ],
+        [ sh:node <http://mapping.example.com/map_eu-country_000/shape7899> ;
+            sh:nodeKind sh:IRI ;
+            sh:path era:inCountry ],
+        [ sh:datatype xsd:date ;
+            sh:nodeKind sh:Literal ;
+            sh:path era:validityStartDate ],
+        [ sh:datatype xsd:date ;
+            sh:nodeKind sh:Literal ;
+            sh:path era:validityEndDate ],
+        _:n9b5f271e62334f70830fdef36ed56465b22,
+        [ sh:nodeKind sh:Literal ;
+            sh:path rdfs:label ],
         <https://astrea.linkeddata.es/shapes#05691de2eeed7358cf7d9b5f06af8e7e>,
         <https://astrea.linkeddata.es/shapes#18a5c917ac552d89476bbe04ff4545f2>,
         <https://astrea.linkeddata.es/shapes#3a1840a71759183afb146eeb729aedac>,
         <https://astrea.linkeddata.es/shapes#46aec0f289df7fe0f9eeaea670696a78>,
         <https://astrea.linkeddata.es/shapes#49186d912fd1d6e06f83a264e2b43c9e>,
-        <https://astrea.linkeddata.es/shapes#5cb461f286e9992a3e44fda31189b6a7>,
-        <https://astrea.linkeddata.es/shapes#639ee6ea78ddfabd3057b9b790ac1a5d>,
         <https://astrea.linkeddata.es/shapes#680bdb077d1c2041aabd0bc2a8f7aa65>,
         <https://astrea.linkeddata.es/shapes#7f4338bff66ecb6800bff191edc10cde>,
         <https://astrea.linkeddata.es/shapes#99d4747806a51aac6a8e8ff1fe42a563>,
@@ -348,21 +608,13 @@ In https://eur-lex.europa.eu/eli/reg_impl/2019/773/oj 2.1.2 Principal locations 
     sh:name "Operational Point"@en ;
     sh:nodeKind sh:IRI ;
     sh:pattern "http://data.europa.eu/949/functionalInfrastructure/operationalPoints/.*/.*/.*_.*" ;
-    sh:property [ sh:nodeKind sh:IRI ;
-            sh:path <http://www.opengis.net/ont/geosparql#hasGeometry> ],
-        [ sh:nodeKind sh:IRI ;
-            sh:path <http://www.w3.org/2003/01/geo/wgs84_pos#location> ],
-        [ rdfs:label "Type of operational point"@en ;
-            rdfs:isDefinedBy era: ;
-            sh:class <http://www.w3.org/2004/02/skos/core#Concept> ;
-            sh:description """Type of facility in relation to the dominating operational functions. The allowed values for this property belong to the SKOS Concept Scheme http://data.europa.eu/949/concepts/op-types/OperationalPointTypes.
-In https://eur-lex.europa.eu/eli/reg_impl/2019/773/oj 2.3.2 Type of location passenger terminal, freight terminal, yard, depot."""@en ;
-            sh:maxCount 1 ;
-            sh:name "Type of operational point"@en ;
-            sh:nodeKind sh:IRI ;
-            sh:path era:opType ],
-        [ sh:nodeKind sh:Literal ;
+    sh:property [ sh:nodeKind sh:Literal ;
             sh:path rdfs:label ],
+        [ sh:datatype xsd:date ;
+            sh:nodeKind sh:Literal ;
+            sh:path era:validityEndDate ],
+        [ sh:nodeKind sh:IRI ;
+            sh:path era:hasAbstraction ],
         [ rdfs:label "Name of Operational point"@en ;
             rdfs:isDefinedBy era: ;
             sh:datatype xsd:string ;
@@ -373,6 +625,13 @@ In https://eur-lex.europa.eu/eli/reg_impl/2019/773/oj 2.3.1 Name of location."""
             sh:nodeKind sh:Literal ;
             sh:path era:opName ;
             sh:pattern ".*" ],
+        [ rdfs:label "Relates the information that each country maintains on a border point, to the operational point that represents the general information on the border point."@en ;
+            rdfs:isDefinedBy era: ;
+            sh:class era:OperationalPoint ;
+            sh:description "Relates the information that each country maintains on a border point, to the operational point that represents the general information on the border point."@en ;
+            sh:name "Border point of"@en ;
+            sh:nodeKind sh:IRI ;
+            sh:path era:borderPointOf ],
         [ rdfs:label "Unique OP ID"@en ;
             rdfs:isDefinedBy era: ;
             sh:datatype xsd:string ;
@@ -383,21 +642,21 @@ In https://eur-lex.europa.eu/eli/reg_impl/2019/773/oj 2.2.2 Principal locations 
             sh:nodeKind sh:Literal ;
             sh:path era:uopid ;
             sh:pattern ".*" ],
-        [ sh:datatype xsd:date ;
-            sh:nodeKind sh:Literal ;
-            sh:path era:validityStartDate ],
-        [ rdfs:label "Relates the information that each country maintains on a border point, to the operational point that represents the general information on the border point."@en ;
-            rdfs:isDefinedBy era: ;
-            sh:class era:OperationalPoint ;
-            sh:description "Relates the information that each country maintains on a border point, to the operational point that represents the general information on the border point."@en ;
-            sh:name "Border point of"@en ;
-            sh:nodeKind sh:IRI ;
-            sh:path era:borderPointOf ],
-        [ sh:nodeKind sh:IRI ;
-            sh:path era:hasAbstraction ],
-        [ sh:node <http://mapping.example.com/map_eu-country_000/shape4878> ;
+        [ sh:node <http://mapping.example.com/map_eu-country_000/shape1522>,
+                <http://mapping.example.com/map_eu-country_000/shape7899> ;
             sh:nodeKind sh:IRI ;
             sh:path era:inCountry ],
+        [ rdfs:label "Type of operational point"@en ;
+            rdfs:isDefinedBy era: ;
+            sh:class <http://www.w3.org/2004/02/skos/core#Concept> ;
+            sh:description """Type of facility in relation to the dominating operational functions. The allowed values for this property belong to the SKOS Concept Scheme http://data.europa.eu/949/concepts/op-types/OperationalPointTypes.
+In https://eur-lex.europa.eu/eli/reg_impl/2019/773/oj 2.3.2 Type of location passenger terminal, freight terminal, yard, depot."""@en ;
+            sh:maxCount 1 ;
+            sh:name "Type of operational point"@en ;
+            sh:nodeKind sh:IRI ;
+            sh:path era:opType ],
+        [ sh:nodeKind sh:IRI ;
+            sh:path <http://www.w3.org/2003/01/geo/wgs84_pos#location> ],
         [ rdfs:label "Primary location code developed for information exchange in accordance with the TSIs relating to telematics applications."@en ;
             rdfs:isDefinedBy era: ;
             sh:datatype xsd:string ;
@@ -407,9 +666,12 @@ In https://eur-lex.europa.eu/eli/reg_impl/2019/773/oj 2.2.2 Principal locations 
             sh:nodeKind sh:Literal ;
             sh:path era:tafTAPCode ;
             sh:pattern ".*" ],
+        [ sh:nodeKind sh:IRI ;
+            sh:path <http://www.opengis.net/ont/geosparql#hasGeometry> ],
         [ sh:datatype xsd:date ;
             sh:nodeKind sh:Literal ;
-            sh:path era:validityEndDate ],
+            sh:path era:validityStartDate ],
+        _:n9b5f271e62334f70830fdef36ed56465b22,
         <https://astrea.linkeddata.es/shapes#18a5c917ac552d89476bbe04ff4545f2>,
         <https://astrea.linkeddata.es/shapes#3a1840a71759183afb146eeb729aedac>,
         <https://astrea.linkeddata.es/shapes#46aec0f289df7fe0f9eeaea670696a78>,
@@ -429,7 +691,8 @@ In https://eur-lex.europa.eu/eli/reg_impl/2019/773/oj 2.2.2 Principal locations 
     sh:name "Net Element"@en ;
     sh:nodeKind sh:IRI ;
     sh:pattern "http://data.europa.eu/949/topology/netElements/.*" ;
-    sh:property [ sh:nodeKind sh:Literal ;
+    sh:property _:n39e382d0a4d84db7a4d6cc6af3766da0b7,
+        [ sh:nodeKind sh:Literal ;
             sh:path rdfs:label ],
         [ rdfs:label "Property that links a topological abstraction entity with its physical representation."@en ;
             rdfs:isDefinedBy era: ;
@@ -444,13 +707,124 @@ In https://eur-lex.europa.eu/eli/reg_impl/2019/773/oj 2.2.2 Principal locations 
         <https://astrea.linkeddata.es/shapes#bf9e809bf8d990d651b74710d5a9f0fa> ;
     sh:targetClass era:NetElement .
 
+<http://mapping.example.com/map_phase-information_000/shape> a sh:NodeShape ;
+    rdfs:label "Phase info"@en ;
+    rdfs:isDefinedBy era: ;
+    sh:description "Indication of required several information on phase separation."@en ;
+    sh:name "Phase info"@en ;
+    sh:nodeKind sh:IRI ;
+    sh:pattern "http://data.europa.eu/949/functionalInfrastructure/phaseInfo/.*_.*_.*_.*_.*" ;
+    sh:property [ rdfs:label "Phase info pantograph lowered"@en ;
+            rdfs:isDefinedBy era: ;
+            sh:datatype xsd:boolean ;
+            sh:description """Part of the phase info of a track that shows whether a pantograph has to be lowered.
+The phase info is the indication of required several information on phase separation."""@en ;
+            sh:name "Phase info pantograph lowered"@en ;
+            sh:nodeKind sh:Literal ;
+            sh:path era:phaseInfoPantographLowered ;
+            sh:pattern "true|false|0|1" ],
+        [ rdfs:label "Phase info switch off breaker"@en ;
+            rdfs:isDefinedBy era: ;
+            sh:datatype xsd:boolean ;
+            sh:description """Part of the phase info of a track that shows whether the breaker has to be switched off.
+The phase info is the indication of required several information on phase separation."""@en ;
+            sh:name "Phase info switch off breaker"@en ;
+            sh:nodeKind sh:Literal ;
+            sh:path era:phaseInfoSwitchOffBreaker ;
+            sh:pattern "true|false|0|1" ],
+        [ rdfs:label "Phase info length"@en ;
+            rdfs:isDefinedBy era: ;
+            sh:datatype xsd:integer ;
+            sh:description """Part of the phase info of a track that corresponds to the length of the phase separation in metres. 
+The phase info is the indication of required several information on phase separation."""@en ;
+            sh:name "Phase info length"@en ;
+            sh:nodeKind sh:Literal ;
+            sh:path era:phaseInfoLength ;
+            sh:pattern "[\\-+]?[0-9]+" ],
+        [ rdfs:label "Phase info Km"@en ;
+            rdfs:isDefinedBy era: ;
+            sh:datatype xsd:double ;
+            sh:description """Part of the phase info of a track that indicates the location from the start of the line where the new value is valid.
+The phase info is the indication of required several information on phase separation."""@en ;
+            sh:name "Phase info Km"@en ;
+            sh:nodeKind sh:Literal ;
+            sh:path era:phaseInfoKm ;
+            sh:pattern "(\\+|-)?([0-9]+(\\.[0-9]*)?|\\.[0-9]+)([Ee](\\+|-)?[0-9]+)?|(\\+|-)?INF|NaN" ],
+        [ rdfs:label "Phase info switch off breaker"@en ;
+            rdfs:isDefinedBy era: ;
+            sh:datatype xsd:boolean ;
+            sh:description """Part of the phase info of a track that shows whether the breaker has to be switched off.
+The phase info is the indication of required several information on phase separation."""@en ;
+            sh:name "Phase info switch off breaker"@en ;
+            sh:nodeKind sh:Literal ;
+            sh:path era:phaseInfoSwitchOffBreaker ;
+            sh:pattern "true|false|0|1" ],
+        [ sh:nodeKind sh:Literal ;
+            sh:path rdfs:label ],
+        [ rdfs:label "Phase info pantograph lowered"@en ;
+            rdfs:isDefinedBy era: ;
+            sh:datatype xsd:boolean ;
+            sh:description """Part of the phase info of a track that shows whether a pantograph has to be lowered.
+The phase info is the indication of required several information on phase separation."""@en ;
+            sh:name "Phase info pantograph lowered"@en ;
+            sh:nodeKind sh:Literal ;
+            sh:path era:phaseInfoPantographLowered ;
+            sh:pattern "true|false|0|1" ],
+        <https://astrea.linkeddata.es/shapes#126957b4cef74acac74defcb55d31f53> ;
+    sh:targetClass era:PhaseInfo .
+
+<http://mapping.example.com/map_platform_000/shape> a sh:NodeShape ;
+    rdfs:label "Platform"@en ;
+    rdfs:isDefinedBy era: ;
+    rdfs:seeAlso <https://wiki3.railml.org/DataModel/3.2/IS/EARoot/EA250.htm> ;
+    sh:description "Platform for the purpose of RINF is understood as a platform edge. A platform concerns only the part of the structure neighbouring to the track (interfaced with trains)."@en ;
+    sh:name "Platform"@en ;
+    sh:nodeKind sh:IRI ;
+    sh:pattern "http://data.europa.eu/949/functionalInfrastructure/platforms/.*_.*" ;
+    sh:property [ sh:datatype xsd:date ;
+            sh:nodeKind sh:Literal ;
+            sh:path era:validityStartDate ],
+        [ sh:datatype xsd:date ;
+            sh:nodeKind sh:Literal ;
+            sh:path era:validityEndDate ],
+        [ sh:nodeKind sh:Literal ;
+            sh:path era:imCode ],
+        [ rdfs:label """Unique platform identification or platform number within an Operational Point.
+In 2.3.5 https://eur-lex.europa.eu/eli/reg_impl/2019/773/oj Identification of platforms."""@en ;
+            rdfs:isDefinedBy era: ;
+            sh:datatype xsd:string ;
+            sh:description """Unique platform identification or platform number within an Operational Point.
+In 2.3.5 https://eur-lex.europa.eu/eli/reg_impl/2019/773/oj Identification of platforms."""@en ;
+            sh:maxCount 1 ;
+            sh:name "Platform id"@en ;
+            sh:nodeKind sh:Literal ;
+            sh:path era:platformId ;
+            sh:pattern ".*" ],
+        [ sh:nodeKind sh:Literal ;
+            sh:path rdfs:label ],
+        <https://astrea.linkeddata.es/shapes#090d41b781dd9a9ca64075a0b08690de>,
+        <https://astrea.linkeddata.es/shapes#129fd08e2db8267b2e3495804a860bcc>,
+        <https://astrea.linkeddata.es/shapes#502df89379478ac92c5f6e9e51fdbcd8>,
+        <https://astrea.linkeddata.es/shapes#98b37db95bd95a8d8e94005ca1c70dbc>,
+        <https://astrea.linkeddata.es/shapes#9e08f7854a31fcf80222fe296491d320> ;
+    sh:targetClass era:Platform .
+
 <http://mapping.example.com/map_raised-pantograph-distance-speed_000/shape> a sh:NodeShape ;
     rdfs:label "Raised pantographs distance and speed"@en ;
     rdfs:isDefinedBy era: ;
     sh:name "Raised pantographs distance and speed"@en ;
     sh:nodeKind sh:IRI ;
     sh:pattern "http://data.europa.eu/949/functionalInfrastructure/raisedPantographsDistanceAndSpeed/.*_.*_.*_.*_.*" ;
-    sh:property [ rdfs:label """Part of the raised pantographs distance and speed of a track that corresponds to the number of pantographs. 
+    sh:property [ rdfs:label "Raised pantographs distance"@en ;
+            rdfs:isDefinedBy era: ;
+            sh:datatype xsd:integer ;
+            sh:description """Part of the raised pantographs dustance and speed of a track that corresponds to the minimum distance between pantographs, in metres.
+The raised pantographs distance and speed is  the indication of maximum number of raised pantographs per train allowed and minimum spacing centre line to centre line of adjacent pantograph heads, expressed in metres, at the given speed."""@en ;
+            sh:name "Raised pantographs distance"@en ;
+            sh:nodeKind sh:Literal ;
+            sh:path era:raisedPantographsDistance ;
+            sh:pattern "[\\-+]?[0-9]+" ],
+        [ rdfs:label """Part of the raised pantographs distance and speed of a track that corresponds to the number of pantographs. 
 The raised pantographs distance and speed is  the indication of maximum number of raised pantographs per train allowed and minimum spacing centre line to centre line of adjacent pantograph heads, expressed in metres, at the given speed"""@en ;
             rdfs:isDefinedBy era: ;
             sh:datatype xsd:integer ;
@@ -460,8 +834,6 @@ The raised pantographs distance and speed is  the indication of maximum number o
             sh:nodeKind sh:Literal ;
             sh:path era:raisedPantographsNumber ;
             sh:pattern "[\\-+]?[0-9]+" ],
-        [ sh:nodeKind sh:Literal ;
-            sh:path rdfs:label ],
         [ rdfs:label "Raised pantographs speed"@en ;
             rdfs:isDefinedBy era: ;
             sh:datatype xsd:integer ;
@@ -471,16 +843,22 @@ The raised pantographs distance and speed is  the indication of maximum number o
             sh:nodeKind sh:Literal ;
             sh:path era:raisedPantographsSpeed ;
             sh:pattern "[\\-+]?[0-9]+" ],
-        [ rdfs:label "Raised pantographs distance"@en ;
-            rdfs:isDefinedBy era: ;
-            sh:datatype xsd:integer ;
-            sh:description """Part of the raised pantographs dustance and speed of a track that corresponds to the minimum distance between pantographs, in metres.
-The raised pantographs distance and speed is  the indication of maximum number of raised pantographs per train allowed and minimum spacing centre line to centre line of adjacent pantograph heads, expressed in metres, at the given speed."""@en ;
-            sh:name "Raised pantographs distance"@en ;
-            sh:nodeKind sh:Literal ;
-            sh:path era:raisedPantographsDistance ;
-            sh:pattern "[\\-+]?[0-9]+" ] ;
+        [ sh:nodeKind sh:Literal ;
+            sh:path rdfs:label ] ;
     sh:targetClass era:RaisedPantographsDistanceAndSpeed .
+
+<http://mapping.example.com/map_regenerative-braking_000/shape> a sh:NodeShape ;
+    sh:nodeKind sh:IRI ;
+    sh:pattern "http://data.europa.eu/949/functionalInfrastructure/contactLineSystems/.*_.*_.*_.*_.*" ;
+    sh:property [ sh:datatype xsd:boolean ;
+            sh:nodeKind sh:Literal ;
+            sh:path era:hasRegenerativeBrake ],
+        [ sh:datatype xsd:boolean ;
+            sh:nodeKind sh:Literal ;
+            sh:path era:hasRegenerativeBrake ],
+        [ sh:datatype xsd:boolean ;
+            sh:nodeKind sh:Literal ;
+            sh:path era:conditionalRegenerativeBrake ] .
 
 <http://mapping.example.com/map_sections-of-line_000/shape> a sh:NodeShape ;
     rdfs:label "Net Element"@en ;
@@ -490,7 +868,8 @@ The raised pantographs distance and speed is  the indication of maximum number o
     sh:name "Net Element"@en ;
     sh:nodeKind sh:IRI ;
     sh:pattern "http://data.europa.eu/949/topology/netElements/.*_.*_.*" ;
-    sh:property [ rdfs:label "Property that links a topological abstraction entity with its physical representation."@en ;
+    sh:property _:n39e382d0a4d84db7a4d6cc6af3766da0b7,
+        [ rdfs:label "Property that links a topological abstraction entity with its physical representation."@en ;
             rdfs:isDefinedBy era: ;
             sh:class era:InfrastructureObject ;
             sh:description "Property that links a topological abstraction entity with its physical representation."@en ;
@@ -505,7 +884,7 @@ The raised pantographs distance and speed is  the indication of maximum number o
         <https://astrea.linkeddata.es/shapes#bf9e809bf8d990d651b74710d5a9f0fa> ;
     sh:targetClass era:NetElement .
 
-<http://mapping.example.com/map_sections-of-line_000/shape1066> a sh:NodeShape ;
+<http://mapping.example.com/map_sections-of-line_000/shape2197> a sh:NodeShape ;
     rdfs:label "Section Of Line"@en ;
     rdfs:isDefinedBy era: ;
     sh:description """A section of line means the part of line between adjacent operational points and may consist of several tracks.
@@ -513,24 +892,29 @@ In https://eur-lex.europa.eu/eli/reg_impl/2019/773/oj 2.1.1 Line sections."""@en
     sh:name "Section Of Line"@en ;
     sh:nodeKind sh:IRI ;
     sh:pattern "http://data.europa.eu/949/functionalInfrastructure/sectionsOfLine/.*_.*_.*/.*_.*" ;
-    sh:property [ sh:nodeKind sh:Literal ;
-            sh:path era:imCode ],
+    sh:property [ rdfs:label "Nature of Section of Line"@en ;
+            rdfs:isDefinedBy era: ;
+            sh:class <http://www.w3.org/2004/02/skos/core#Concept> ;
+            sh:description """Kind of section of line expressing size of presented data which depends on fact whether it connects OPs generated by division of a big node into several OPs or not.
+The allowed values for this property belong to the SKOS Concept Scheme http://data.europa.eu/949/concepts/sol-natures/SoLNatures"""@en ;
+            sh:maxCount 1 ;
+            sh:name "Nature of Section of Line"@en ;
+            sh:nodeKind sh:IRI ;
+            sh:path era:solNature ],
+        [ sh:datatype xsd:double ;
+            sh:nodeKind sh:Literal ;
+            sh:path era:length ],
+        [ sh:datatype xsd:date ;
+            sh:nodeKind sh:Literal ;
+            sh:path era:validityStartDate ],
         [ sh:nodeKind sh:IRI ;
-            sh:path <http://www.opengis.net/ont/geosparql#hasGeometry> ],
+            sh:path era:canonicalURI ],
+        [ sh:node <http://mapping.example.com/map_eu-country_000/shape9356> ;
+            sh:nodeKind sh:IRI ;
+            sh:path era:inCountry ],
         [ sh:datatype xsd:date ;
             sh:nodeKind sh:Literal ;
             sh:path era:validityEndDate ],
-        [ rdfs:label "Unique line identification or unique line number within Member State."@en ;
-            rdfs:isDefinedBy era: ;
-            sh:class era:NationalRailwayLine ;
-            sh:description "Unique line identification or unique line number within Member State."@en ;
-            sh:maxCount 1 ;
-            sh:name "National line identification"@en ;
-            sh:nodeKind sh:IRI ;
-            sh:path era:lineNationalId ;
-            sh:qualifiedMaxCount 1 ;
-            sh:qualifiedMinCount 1 ;
-            sh:qualifiedValueShape [ ] ],
         [ rdfs:label """Unique OP ID at start of section of line (kilometres increasing from start OP to the end OP).
 In https://eur-lex.europa.eu/eli/reg_impl/2019/773/oj 3.1.1 Line segment extremity 1."""@en ;
             rdfs:isDefinedBy era: ;
@@ -544,18 +928,6 @@ In https://eur-lex.europa.eu/eli/reg_impl/2019/773/oj 3.1.1 Line segment extremi
             sh:qualifiedMaxCount 1 ;
             sh:qualifiedMinCount 1 ;
             sh:qualifiedValueShape [ ] ],
-        [ rdfs:label "Nature of Section of Line"@en ;
-            rdfs:isDefinedBy era: ;
-            sh:class <http://www.w3.org/2004/02/skos/core#Concept> ;
-            sh:description """Kind of section of line expressing size of presented data which depends on fact whether it connects OPs generated by division of a big node into several OPs or not.
-The allowed values for this property belong to the SKOS Concept Scheme http://data.europa.eu/949/concepts/sol-natures/SoLNatures"""@en ;
-            sh:maxCount 1 ;
-            sh:name "Nature of Section of Line"@en ;
-            sh:nodeKind sh:IRI ;
-            sh:path era:solNature ],
-        [ sh:datatype xsd:date ;
-            sh:nodeKind sh:Literal ;
-            sh:path era:validityStartDate ],
         [ rdfs:label """Unique OP ID at end of section of line (kilometres increasing from start OP to the end OP).
 In https://eur-lex.europa.eu/eli/reg_impl/2019/773/oj 3.1.2 Line segment extremity 2."""@en ;
             rdfs:isDefinedBy era: ;
@@ -569,18 +941,117 @@ In https://eur-lex.europa.eu/eli/reg_impl/2019/773/oj 3.1.2 Line segment extremi
             sh:qualifiedMaxCount 1 ;
             sh:qualifiedMinCount 1 ;
             sh:qualifiedValueShape [ ] ],
-        [ sh:nodeKind sh:IRI ;
-            sh:path era:canonicalURI ],
-        [ sh:datatype xsd:double ;
-            sh:nodeKind sh:Literal ;
-            sh:path era:length ],
+        [ sh:nodeKind sh:Literal ;
+            sh:path era:imCode ],
+        [ rdfs:label "Unique line identification or unique line number within Member State."@en ;
+            rdfs:isDefinedBy era: ;
+            sh:class era:NationalRailwayLine ;
+            sh:description "Unique line identification or unique line number within Member State."@en ;
+            sh:maxCount 1 ;
+            sh:name "National line identification"@en ;
+            sh:nodeKind sh:IRI ;
+            sh:path era:lineNationalId ;
+            sh:qualifiedMaxCount 1 ;
+            sh:qualifiedMinCount 1 ;
+            sh:qualifiedValueShape [ ] ],
         [ sh:nodeKind sh:IRI ;
             sh:path era:hasAbstraction ],
-        [ sh:node <http://mapping.example.com/map_eu-country_000/shape2801> ;
-            sh:nodeKind sh:IRI ;
-            sh:path era:inCountry ],
+        [ sh:nodeKind sh:IRI ;
+            sh:path <http://www.opengis.net/ont/geosparql#hasGeometry> ],
         <https://astrea.linkeddata.es/shapes#46aec0f289df7fe0f9eeaea670696a78> ;
     sh:targetClass era:SectionOfLine .
+
+<http://mapping.example.com/map_siding-tunnel_000/shape> a sh:NodeShape ;
+    rdfs:label "Tunnel"@en ;
+    rdfs:isDefinedBy era: ;
+    sh:description "A railway tunnel is an excavation or a construction around the track provided to allow the railway to pass for example higher land, buildings or water."@en ;
+    sh:name "Tunnel"@en ;
+    sh:nodeKind sh:IRI ;
+    sh:pattern "http://data.europa.eu/949/functionalInfrastructure/tunnels/.*_.*_.*" ;
+    sh:property [ sh:nodeKind sh:Literal ;
+            sh:path era:imCode ],
+        [ sh:node <http://mapping.example.com/map_eu-country_000/shape1870> ;
+            sh:nodeKind sh:IRI ;
+            sh:path era:inCountry ],
+        [ sh:datatype xsd:date ;
+            sh:nodeKind sh:Literal ;
+            sh:path era:validityStartDate ],
+        [ sh:datatype xsd:date ;
+            sh:nodeKind sh:Literal ;
+            sh:path era:validityEndDate ],
+        [ sh:nodeKind sh:Literal ;
+            sh:path rdfs:label ],
+        [ rdfs:label """Unique tunnel identification or unique number within Member State.
+In https://eur-lex.europa.eu/eli/reg_impl/2019/773/oj 3.2.3 Tunnels: location, name, length, specific information such as the existence of walkways and points of safe egress as well as the location of safe areas where evacuation of passengers may take place; fire safety categorisation."""@en ;
+            rdfs:isDefinedBy era: ;
+            sh:datatype xsd:string ;
+            sh:description """Unique tunnel identification or unique number within Member State.
+In https://eur-lex.europa.eu/eli/reg_impl/2019/773/oj 3.2.3 Tunnels: location, name, length, specific information such as the existence of walkways and points of safe egress as well as the location of safe areas where evacuation of passengers may take place; fire safety categorisation."""@en ;
+            sh:maxCount 1 ;
+            sh:name "Tunnel identification"@en ;
+            sh:nodeKind sh:Literal ;
+            sh:path era:tunnelIdentification ;
+            sh:pattern ".*" ],
+        <https://astrea.linkeddata.es/shapes#0031ca67940043b21691665188393b89>,
+        <https://astrea.linkeddata.es/shapes#0656ac282b233613a4e97b1158fddeae>,
+        <https://astrea.linkeddata.es/shapes#0b2d02f63fe8fa74f0d26578a31ba47c>,
+        <https://astrea.linkeddata.es/shapes#35bc8290150c8a0250f4f34f722c8b93>,
+        <https://astrea.linkeddata.es/shapes#5edb4f6431854ddaab351570295387ff>,
+        <https://astrea.linkeddata.es/shapes#67dd7330e4cb98b732edcfe008cc96fa>,
+        <https://astrea.linkeddata.es/shapes#68dd1c953f64a4d5ff3ac672fc7e5efb>,
+        <https://astrea.linkeddata.es/shapes#7b7b6d85a40968cea0b3b84493d6d607>,
+        <https://astrea.linkeddata.es/shapes#81d0cb2dd5f77220b27950d99568e0c8>,
+        <https://astrea.linkeddata.es/shapes#a98e230dd1563e655c9911b9d14a30e4>,
+        <https://astrea.linkeddata.es/shapes#cdab201c7a44be0ab4b70d042aab2e2d>,
+        <https://astrea.linkeddata.es/shapes#ea7daa0a30c2fbd86d703a706905eb00>,
+        <https://astrea.linkeddata.es/shapes#eac2e6f84f17869280c5559214cc867e>,
+        <https://astrea.linkeddata.es/shapes#f4fb6a8693fcef866058ce6a1d2c15a6> ;
+    sh:targetClass era:Tunnel .
+
+<http://mapping.example.com/map_siding_000/shape> a sh:NodeShape ;
+    rdfs:label "Siding"@en ;
+    rdfs:isDefinedBy era: ;
+    sh:description "Sidings are all those tracks where running trains in service movements ends and which are not used for operational routing of a train."@en ;
+    sh:name "Siding"@en ;
+    sh:nodeKind sh:IRI ;
+    sh:pattern "http://data.europa.eu/949/functionalInfrastructure/sidings/.*_.*" ;
+    sh:property [ sh:nodeKind sh:Literal ;
+            sh:path rdfs:label ],
+        [ sh:nodeKind sh:Literal ;
+            sh:path era:imCode ],
+        [ rdfs:label """Unique siding identification or number within an Operational Point.
+IN https://eur-lex.europa.eu/eli/reg_impl/2019/773/oj 2.2.1 Indication of running lines, loops catch/trap points and access to sidings."""@en ;
+            rdfs:isDefinedBy era: ;
+            sh:datatype xsd:string ;
+            sh:description """Unique siding identification or number within an Operational Point.
+IN https://eur-lex.europa.eu/eli/reg_impl/2019/773/oj 2.2.1 Indication of running lines, loops catch/trap points and access to sidings."""@en ;
+            sh:maxCount 1 ;
+            sh:name "Identification of siding"@en ;
+            sh:nodeKind sh:Literal ;
+            sh:path era:sidingId ;
+            sh:pattern ".*" ],
+        [ sh:datatype xsd:date ;
+            sh:nodeKind sh:Literal ;
+            sh:path era:validityEndDate ],
+        [ sh:datatype xsd:date ;
+            sh:nodeKind sh:Literal ;
+            sh:path era:validityStartDate ],
+        <https://astrea.linkeddata.es/shapes#01bc66d2c0837f3570ce571a4bdee735>,
+        <https://astrea.linkeddata.es/shapes#0f91b14ee05a7486e1d8fc39ec3fd3bb>,
+        <https://astrea.linkeddata.es/shapes#129fd08e2db8267b2e3495804a860bcc>,
+        <https://astrea.linkeddata.es/shapes#12eebac06c2c8b8ba6f1adff293ef714>,
+        <https://astrea.linkeddata.es/shapes#257bb378f2921194edd89bdc866897ed>,
+        <https://astrea.linkeddata.es/shapes#31e43b29445751e4cb4c66dee368a6a8>,
+        <https://astrea.linkeddata.es/shapes#4e854d007ad5336ee033ac1c1cb91006>,
+        <https://astrea.linkeddata.es/shapes#5d0b9e00ac6cee9052be73dd104d8047>,
+        <https://astrea.linkeddata.es/shapes#670d6fa0d4ee20e1b6b92857d33a7d45>,
+        <https://astrea.linkeddata.es/shapes#8c52766fdacc59d4f6ef95b77cc0ac35>,
+        <https://astrea.linkeddata.es/shapes#8cf4b1212fedf512286eb3bd87857df8>,
+        <https://astrea.linkeddata.es/shapes#a3bbff1c24067fb7cf2db38b37accfd5>,
+        <https://astrea.linkeddata.es/shapes#b4da174731614a745c41c3e85c6afdca>,
+        <https://astrea.linkeddata.es/shapes#c89af8889ed10aa07edae0282d65af7c>,
+        <https://astrea.linkeddata.es/shapes#c92dc8579b875253305d1bb28e8ad8cf> ;
+    sh:targetClass era:Siding .
 
 <http://mapping.example.com/map_sol-end_000/shape> a sh:NodeShape ;
     rdfs:label "Net Relation"@en ;
@@ -590,7 +1061,71 @@ In https://eur-lex.europa.eu/eli/reg_impl/2019/773/oj 3.1.2 Line segment extremi
     sh:name "Net Relation"@en ;
     sh:nodeKind sh:IRI ;
     sh:pattern "http://data.europa.eu/949/topology/netRelations/.*_.*_.*_.*" ;
-    sh:property [ rdfs:label """References the second topological object in an oriented relation.
+    sh:property _:n69ad29c8487e41b78526cf15132f74d0b10,
+        _:n69ad29c8487e41b78526cf15132f74d0b11,
+        _:n69ad29c8487e41b78526cf15132f74d0b13,
+        _:n69ad29c8487e41b78526cf15132f74d0b14,
+        _:n69ad29c8487e41b78526cf15132f74d0b15,
+        _:n69ad29c8487e41b78526cf15132f74d0b16,
+        _:n69ad29c8487e41b78526cf15132f74d0b18,
+        _:n69ad29c8487e41b78526cf15132f74d0b19,
+        _:n69ad29c8487e41b78526cf15132f74d0b2,
+        _:n69ad29c8487e41b78526cf15132f74d0b20,
+        _:n69ad29c8487e41b78526cf15132f74d0b21,
+        _:n69ad29c8487e41b78526cf15132f74d0b22,
+        _:n69ad29c8487e41b78526cf15132f74d0b23,
+        _:n69ad29c8487e41b78526cf15132f74d0b24,
+        _:n69ad29c8487e41b78526cf15132f74d0b25,
+        _:n69ad29c8487e41b78526cf15132f74d0b27,
+        _:n69ad29c8487e41b78526cf15132f74d0b28,
+        _:n69ad29c8487e41b78526cf15132f74d0b3,
+        _:n69ad29c8487e41b78526cf15132f74d0b30,
+        _:n69ad29c8487e41b78526cf15132f74d0b31,
+        _:n69ad29c8487e41b78526cf15132f74d0b32,
+        _:n69ad29c8487e41b78526cf15132f74d0b35,
+        _:n69ad29c8487e41b78526cf15132f74d0b36,
+        _:n69ad29c8487e41b78526cf15132f74d0b37,
+        _:n69ad29c8487e41b78526cf15132f74d0b38,
+        _:n69ad29c8487e41b78526cf15132f74d0b39,
+        _:n69ad29c8487e41b78526cf15132f74d0b40,
+        _:n69ad29c8487e41b78526cf15132f74d0b41,
+        _:n69ad29c8487e41b78526cf15132f74d0b43,
+        _:n69ad29c8487e41b78526cf15132f74d0b45,
+        _:n69ad29c8487e41b78526cf15132f74d0b46,
+        _:n69ad29c8487e41b78526cf15132f74d0b47,
+        _:n69ad29c8487e41b78526cf15132f74d0b48,
+        _:n69ad29c8487e41b78526cf15132f74d0b49,
+        _:n69ad29c8487e41b78526cf15132f74d0b5,
+        _:n69ad29c8487e41b78526cf15132f74d0b50,
+        _:n69ad29c8487e41b78526cf15132f74d0b51,
+        _:n69ad29c8487e41b78526cf15132f74d0b52,
+        _:n69ad29c8487e41b78526cf15132f74d0b53,
+        _:n69ad29c8487e41b78526cf15132f74d0b54,
+        _:n69ad29c8487e41b78526cf15132f74d0b55,
+        _:n69ad29c8487e41b78526cf15132f74d0b56,
+        _:n69ad29c8487e41b78526cf15132f74d0b58,
+        _:n69ad29c8487e41b78526cf15132f74d0b6,
+        _:n69ad29c8487e41b78526cf15132f74d0b60,
+        _:n69ad29c8487e41b78526cf15132f74d0b61,
+        _:n69ad29c8487e41b78526cf15132f74d0b62,
+        _:n69ad29c8487e41b78526cf15132f74d0b65,
+        _:n69ad29c8487e41b78526cf15132f74d0b66,
+        _:n69ad29c8487e41b78526cf15132f74d0b67,
+        _:n69ad29c8487e41b78526cf15132f74d0b68,
+        _:n69ad29c8487e41b78526cf15132f74d0b69,
+        _:n69ad29c8487e41b78526cf15132f74d0b7,
+        _:n69ad29c8487e41b78526cf15132f74d0b70,
+        _:n69ad29c8487e41b78526cf15132f74d0b71,
+        _:n69ad29c8487e41b78526cf15132f74d0b72,
+        _:n69ad29c8487e41b78526cf15132f74d0b73,
+        _:n69ad29c8487e41b78526cf15132f74d0b74,
+        _:n69ad29c8487e41b78526cf15132f74d0b75,
+        _:n69ad29c8487e41b78526cf15132f74d0b76,
+        _:n69ad29c8487e41b78526cf15132f74d0b79,
+        _:n69ad29c8487e41b78526cf15132f74d0b8,
+        _:n69ad29c8487e41b78526cf15132f74d0b80,
+        _:n69ad29c8487e41b78526cf15132f74d0b9,
+        [ rdfs:label """References the second topological object in an oriented relation.
 Indicates the object that corresponds to a section of line, an operational point or a track inside an operational point connected at end."""@en ;
             rdfs:isDefinedBy era: ;
             rdfs:seeAlso <https://rsm-evolution.org/220927_RSM/EARoot/EA2/EA2/EA290.html> ;
@@ -609,10 +1144,7 @@ Indicates the object that corresponds to a section of line, an operational point
 Indicates the object that corresponds to a section of line, an operational point or a track inside an operational point connected at start."""@en ;
             sh:name "Element A"@en ;
             sh:nodeKind sh:IRI ;
-            sh:path era:elementA ],
-        <https://astrea.linkeddata.es/shapes#39a5378300d8c19a18c203a7af501fae>,
-        <https://astrea.linkeddata.es/shapes#952e70fa7b1c5de776327a4207709af1>,
-        <https://astrea.linkeddata.es/shapes#d91d1dbd1b12b68d790a488d42101abc> ;
+            sh:path era:elementA ] ;
     sh:targetClass era:NetRelation .
 
 <http://mapping.example.com/map_sol-start_000/shape> a sh:NodeShape ;
@@ -623,7 +1155,71 @@ Indicates the object that corresponds to a section of line, an operational point
     sh:name "Net Relation"@en ;
     sh:nodeKind sh:IRI ;
     sh:pattern "http://data.europa.eu/949/topology/netRelations/.*_.*_.*_.*" ;
-    sh:property [ rdfs:label """References the second topological object in an oriented relation.
+    sh:property _:n69ad29c8487e41b78526cf15132f74d0b10,
+        _:n69ad29c8487e41b78526cf15132f74d0b11,
+        _:n69ad29c8487e41b78526cf15132f74d0b13,
+        _:n69ad29c8487e41b78526cf15132f74d0b14,
+        _:n69ad29c8487e41b78526cf15132f74d0b15,
+        _:n69ad29c8487e41b78526cf15132f74d0b16,
+        _:n69ad29c8487e41b78526cf15132f74d0b18,
+        _:n69ad29c8487e41b78526cf15132f74d0b19,
+        _:n69ad29c8487e41b78526cf15132f74d0b2,
+        _:n69ad29c8487e41b78526cf15132f74d0b20,
+        _:n69ad29c8487e41b78526cf15132f74d0b21,
+        _:n69ad29c8487e41b78526cf15132f74d0b22,
+        _:n69ad29c8487e41b78526cf15132f74d0b23,
+        _:n69ad29c8487e41b78526cf15132f74d0b24,
+        _:n69ad29c8487e41b78526cf15132f74d0b25,
+        _:n69ad29c8487e41b78526cf15132f74d0b27,
+        _:n69ad29c8487e41b78526cf15132f74d0b28,
+        _:n69ad29c8487e41b78526cf15132f74d0b3,
+        _:n69ad29c8487e41b78526cf15132f74d0b30,
+        _:n69ad29c8487e41b78526cf15132f74d0b31,
+        _:n69ad29c8487e41b78526cf15132f74d0b32,
+        _:n69ad29c8487e41b78526cf15132f74d0b35,
+        _:n69ad29c8487e41b78526cf15132f74d0b36,
+        _:n69ad29c8487e41b78526cf15132f74d0b37,
+        _:n69ad29c8487e41b78526cf15132f74d0b38,
+        _:n69ad29c8487e41b78526cf15132f74d0b39,
+        _:n69ad29c8487e41b78526cf15132f74d0b40,
+        _:n69ad29c8487e41b78526cf15132f74d0b41,
+        _:n69ad29c8487e41b78526cf15132f74d0b43,
+        _:n69ad29c8487e41b78526cf15132f74d0b45,
+        _:n69ad29c8487e41b78526cf15132f74d0b46,
+        _:n69ad29c8487e41b78526cf15132f74d0b47,
+        _:n69ad29c8487e41b78526cf15132f74d0b48,
+        _:n69ad29c8487e41b78526cf15132f74d0b49,
+        _:n69ad29c8487e41b78526cf15132f74d0b5,
+        _:n69ad29c8487e41b78526cf15132f74d0b50,
+        _:n69ad29c8487e41b78526cf15132f74d0b51,
+        _:n69ad29c8487e41b78526cf15132f74d0b52,
+        _:n69ad29c8487e41b78526cf15132f74d0b53,
+        _:n69ad29c8487e41b78526cf15132f74d0b54,
+        _:n69ad29c8487e41b78526cf15132f74d0b55,
+        _:n69ad29c8487e41b78526cf15132f74d0b56,
+        _:n69ad29c8487e41b78526cf15132f74d0b58,
+        _:n69ad29c8487e41b78526cf15132f74d0b6,
+        _:n69ad29c8487e41b78526cf15132f74d0b60,
+        _:n69ad29c8487e41b78526cf15132f74d0b61,
+        _:n69ad29c8487e41b78526cf15132f74d0b62,
+        _:n69ad29c8487e41b78526cf15132f74d0b65,
+        _:n69ad29c8487e41b78526cf15132f74d0b66,
+        _:n69ad29c8487e41b78526cf15132f74d0b67,
+        _:n69ad29c8487e41b78526cf15132f74d0b68,
+        _:n69ad29c8487e41b78526cf15132f74d0b69,
+        _:n69ad29c8487e41b78526cf15132f74d0b7,
+        _:n69ad29c8487e41b78526cf15132f74d0b70,
+        _:n69ad29c8487e41b78526cf15132f74d0b71,
+        _:n69ad29c8487e41b78526cf15132f74d0b72,
+        _:n69ad29c8487e41b78526cf15132f74d0b73,
+        _:n69ad29c8487e41b78526cf15132f74d0b74,
+        _:n69ad29c8487e41b78526cf15132f74d0b75,
+        _:n69ad29c8487e41b78526cf15132f74d0b76,
+        _:n69ad29c8487e41b78526cf15132f74d0b79,
+        _:n69ad29c8487e41b78526cf15132f74d0b8,
+        _:n69ad29c8487e41b78526cf15132f74d0b80,
+        _:n69ad29c8487e41b78526cf15132f74d0b9,
+        [ rdfs:label """References the second topological object in an oriented relation.
 Indicates the object that corresponds to a section of line, an operational point or a track inside an operational point connected at end."""@en ;
             rdfs:isDefinedBy era: ;
             rdfs:seeAlso <https://rsm-evolution.org/220927_RSM/EARoot/EA2/EA2/EA290.html> ;
@@ -642,11 +1238,162 @@ Indicates the object that corresponds to a section of line, an operational point
 Indicates the object that corresponds to a section of line, an operational point or a track inside an operational point connected at start."""@en ;
             sh:name "Element A"@en ;
             sh:nodeKind sh:IRI ;
-            sh:path era:elementA ],
-        <https://astrea.linkeddata.es/shapes#39a5378300d8c19a18c203a7af501fae>,
-        <https://astrea.linkeddata.es/shapes#952e70fa7b1c5de776327a4207709af1>,
-        <https://astrea.linkeddata.es/shapes#d91d1dbd1b12b68d790a488d42101abc> ;
+            sh:path era:elementA ] ;
     sh:targetClass era:NetRelation .
+
+<http://mapping.example.com/map_sol-tunnel_000/shape8521> a sh:NodeShape ;
+    rdfs:label "Tunnel"@en ;
+    rdfs:isDefinedBy era: ;
+    sh:description "A railway tunnel is an excavation or a construction around the track provided to allow the railway to pass for example higher land, buildings or water."@en ;
+    sh:name "Tunnel"@en ;
+    sh:nodeKind sh:IRI ;
+    sh:pattern "http://data.europa.eu/949/functionalInfrastructure/tunnels/.*_.*.*_.*.*" ;
+    sh:property [ sh:nodeKind sh:IRI ;
+            sh:path era:startLocation ],
+        [ rdfs:label """Unique tunnel identification or unique number within Member State.
+In https://eur-lex.europa.eu/eli/reg_impl/2019/773/oj 3.2.3 Tunnels: location, name, length, specific information such as the existence of walkways and points of safe egress as well as the location of safe areas where evacuation of passengers may take place; fire safety categorisation."""@en ;
+            rdfs:isDefinedBy era: ;
+            sh:datatype xsd:string ;
+            sh:description """Unique tunnel identification or unique number within Member State.
+In https://eur-lex.europa.eu/eli/reg_impl/2019/773/oj 3.2.3 Tunnels: location, name, length, specific information such as the existence of walkways and points of safe egress as well as the location of safe areas where evacuation of passengers may take place; fire safety categorisation."""@en ;
+            sh:maxCount 1 ;
+            sh:name "Tunnel identification"@en ;
+            sh:nodeKind sh:Literal ;
+            sh:path era:tunnelIdentification ;
+            sh:pattern ".*" ],
+        [ sh:nodeKind sh:Literal ;
+            sh:path era:imCode ],
+        [ sh:node <http://mapping.example.com/map_eu-country_000/shape1870> ;
+            sh:nodeKind sh:IRI ;
+            sh:path era:inCountry ],
+        [ sh:nodeKind sh:IRI ;
+            sh:path era:endLocation ],
+        [ sh:nodeKind sh:IRI ;
+            sh:path era:netElement ],
+        [ sh:datatype xsd:date ;
+            sh:nodeKind sh:Literal ;
+            sh:path era:validityEndDate ],
+        [ sh:nodeKind sh:Literal ;
+            sh:path rdfs:label ],
+        [ sh:datatype xsd:date ;
+            sh:nodeKind sh:Literal ;
+            sh:path era:validityStartDate ],
+        <https://astrea.linkeddata.es/shapes#0031ca67940043b21691665188393b89>,
+        <https://astrea.linkeddata.es/shapes#0656ac282b233613a4e97b1158fddeae>,
+        <https://astrea.linkeddata.es/shapes#0b2d02f63fe8fa74f0d26578a31ba47c>,
+        <https://astrea.linkeddata.es/shapes#35bc8290150c8a0250f4f34f722c8b93>,
+        <https://astrea.linkeddata.es/shapes#5edb4f6431854ddaab351570295387ff>,
+        <https://astrea.linkeddata.es/shapes#67dd7330e4cb98b732edcfe008cc96fa>,
+        <https://astrea.linkeddata.es/shapes#68dd1c953f64a4d5ff3ac672fc7e5efb>,
+        <https://astrea.linkeddata.es/shapes#7b7b6d85a40968cea0b3b84493d6d607>,
+        <https://astrea.linkeddata.es/shapes#81d0cb2dd5f77220b27950d99568e0c8>,
+        <https://astrea.linkeddata.es/shapes#a98e230dd1563e655c9911b9d14a30e4>,
+        <https://astrea.linkeddata.es/shapes#cdab201c7a44be0ab4b70d042aab2e2d>,
+        <https://astrea.linkeddata.es/shapes#ea7daa0a30c2fbd86d703a706905eb00>,
+        <https://astrea.linkeddata.es/shapes#eac2e6f84f17869280c5559214cc867e>,
+        <https://astrea.linkeddata.es/shapes#f4fb6a8693fcef866058ce6a1d2c15a6> ;
+    sh:targetClass era:Tunnel .
+
+<http://mapping.example.com/map_system-separation-info_000/shape1884> a sh:NodeShape ;
+    rdfs:label "System separation info"@en ;
+    rdfs:isDefinedBy "http://data.europa.eu/949/"^^xsd:anyURI ;
+    sh:description "Indication of required several information on system separation."@en ;
+    sh:name "System separation info"@en ;
+    sh:nodeKind sh:IRI ;
+    sh:pattern "http://data.europa.eu/949/functionalInfrastructure/systemSeparationInfo/.*_.*_.*_.*_.*" ;
+    sh:property [ sh:nodeKind sh:Literal ;
+            sh:path rdfs:label ],
+        [ rdfs:label "System separation info length"@en ;
+            rdfs:isDefinedBy era: ;
+            sh:datatype xsd:integer ;
+            sh:description """Part of the system separation info of a track that shows the length of the system separation in metres.
+The system separation info is the Indication of required several information on system separation."""@en ;
+            sh:name "System separation info length"@en ;
+            sh:nodeKind sh:Literal ;
+            sh:path era:systemSeparationInfoLength ;
+            sh:pattern "[\\-+]?[0-9]+" ],
+        [ rdfs:label "System separation info switch off breaker"@en ;
+            rdfs:isDefinedBy era: ;
+            sh:datatype xsd:boolean ;
+            sh:description """Part of the system separation info of a track that shows whether the breaker has to be switched off.
+The system separation info is the Indication of required several information on system separation."""@en ;
+            sh:name "System separation info switch off breaker"@en ;
+            sh:nodeKind sh:Literal ;
+            sh:path era:systemSeparationInfoSwitchOffBreaker ;
+            sh:pattern "true|false|0|1" ],
+        [ rdfs:label "System separation info switch off breaker"@en ;
+            rdfs:isDefinedBy era: ;
+            sh:datatype xsd:boolean ;
+            sh:description """Part of the system separation info of a track that shows whether the breaker has to be switched off.
+The system separation info is the Indication of required several information on system separation."""@en ;
+            sh:name "System separation info switch off breaker"@en ;
+            sh:nodeKind sh:Literal ;
+            sh:path era:systemSeparationInfoSwitchOffBreaker ;
+            sh:pattern "true|false|0|1" ],
+        [ sh:datatype xsd:boolean ;
+            sh:nodeKind sh:Literal ;
+            sh:path era:systemSeparationInfoKm ],
+        [ sh:datatype xsd:boolean ;
+            sh:nodeKind sh:Literal ;
+            sh:path era:systemSeparationInfoLoweredPantograph ],
+        [ sh:datatype xsd:boolean ;
+            sh:nodeKind sh:Literal ;
+            sh:path era:systemSeparationInfoLoweredPantograph ],
+        <https://astrea.linkeddata.es/shapes#14d9afcf65fb4a0c250bec32e649b194>,
+        <https://astrea.linkeddata.es/shapes#3ea62527e36c53ea92beb08443606f67> ;
+    sh:targetClass era:SystemSeparationInfo .
+
+<http://mapping.example.com/map_train-detection-system_000/shape1153> a sh:NodeShape ;
+    rdfs:label "Train Detection System"@en ;
+    rdfs:isDefinedBy era: ;
+    rdfs:seeAlso <https://wiki3.railml.org/DataModel/3.2/IS/EARoot/EA402.htm> ;
+    sh:description "System used to detect the position of vehicles in the railway track."@en ;
+    sh:name "Train Detection System"@en ;
+    sh:nodeKind sh:IRI ;
+    sh:pattern "http://data.europa.eu/949/functionalInfrastructure/trainDetectionSystems/.*_.*_.*_.*_.*" ;
+    sh:property [ rdfs:label "Type of train detection system"@en ;
+            rdfs:isDefinedBy era: ;
+            sh:class <http://www.w3.org/2004/02/skos/core#Concept> ;
+            sh:description "Indication of types of train detection systems installed. The allowed values for this property belong to the SKOS Concept Scheme http://data.europa.eu/949/concepts/train-detection/TrainDetectionSystems"@en ;
+            sh:name "Type of train detection system"@en ;
+            sh:nodeKind sh:IRI ;
+            sh:path era:trainDetectionSystemType ],
+        [ sh:nodeKind sh:Literal ;
+            sh:path rdfs:label ],
+        <https://astrea.linkeddata.es/shapes#09a486fc228907cb40257b444e2381a4>,
+        <https://astrea.linkeddata.es/shapes#115168a22ba804567e820339ecc5899d>,
+        <https://astrea.linkeddata.es/shapes#144472f7be62d51ea6892cfcc73cf5ea>,
+        <https://astrea.linkeddata.es/shapes#3e9af56945efb6d70a0c5584f2ae30c7>,
+        <https://astrea.linkeddata.es/shapes#5246fca12722eb17162218f3931cf73f>,
+        <https://astrea.linkeddata.es/shapes#53df61d003eb0920c3ab93d41ae6e990>,
+        <https://astrea.linkeddata.es/shapes#5fb6baa99e2ca39f4617611dfbda7d51>,
+        <https://astrea.linkeddata.es/shapes#655f83eabb0c201bd913133daa4c51f4>,
+        <https://astrea.linkeddata.es/shapes#6ce8342160f8e0a189717f5e0d244408>,
+        <https://astrea.linkeddata.es/shapes#7faf3951c51537d418b3e4b90c042571>,
+        <https://astrea.linkeddata.es/shapes#81d13ce5e5ee079b72bed4b10b71442c>,
+        <https://astrea.linkeddata.es/shapes#8787c3395264c4dc6c2c79933d81e2b0>,
+        <https://astrea.linkeddata.es/shapes#8ec4b4871fabf025678e1c6b86cb8695>,
+        <https://astrea.linkeddata.es/shapes#8f4d64e4e77257fe21e9016e597a6fc6>,
+        <https://astrea.linkeddata.es/shapes#95860c0bd6b328525bb4a6ca30eb52e1>,
+        <https://astrea.linkeddata.es/shapes#9750634c61e8ec86093a6722f8f424a0>,
+        <https://astrea.linkeddata.es/shapes#9fc6e8052c49b24b96c1bf0d6198b1eb>,
+        <https://astrea.linkeddata.es/shapes#ae571cbe2d9b310a67e0926c7a0b529e>,
+        <https://astrea.linkeddata.es/shapes#bdd7c71ec6ad74b34281b7f7b2c2c5b6>,
+        <https://astrea.linkeddata.es/shapes#c1419331a4619ba1c95844586f7fc694>,
+        <https://astrea.linkeddata.es/shapes#caed10933115d6375c66cc574f32a019>,
+        <https://astrea.linkeddata.es/shapes#cb408fbd994f342cd6b02570ea62a229>,
+        <https://astrea.linkeddata.es/shapes#cbe547a3a37f9201ee9545688aba4887>,
+        <https://astrea.linkeddata.es/shapes#cd2799512931ab92e027cb94db68617c>,
+        <https://astrea.linkeddata.es/shapes#e58dcfa1cf084eabfc758f45828299ee>,
+        <https://astrea.linkeddata.es/shapes#f135fc8abe9afe655f4a461c37092dc0> ;
+    sh:targetClass era:TrainDetectionSystem .
+
+<http://mapping.example.com/map_umax2_000/shape> a sh:NodeShape ;
+    sh:nodeKind sh:IRI ;
+    sh:pattern "http://data.europa.eu/949/functionalInfrastructure/contactLineSystems/.*_.*_.*_.*_.*" ;
+    sh:property [ sh:datatype xsd:integer ;
+            sh:nodeKind sh:Literal ;
+            sh:path era:umax2 ] .
 
 <https://astrea.linkeddata.es/shapes#19bc28a320b6e50db90a007933c6bc8d> a sh:NodeShape ;
     rdfs:label "Vehicle Type"@en ;
@@ -815,57 +1562,6 @@ Indicates the object that corresponds to a section of line, an operational point
     sh:property <https://astrea.linkeddata.es/shapes#d02be0d01d64d38ec6a6b7090e55e956> ;
     sh:targetClass era:SpecialArea .
 
-<https://astrea.linkeddata.es/shapes#22ce04d0f84093537f346db7b4d80026> a sh:NodeShape ;
-    rdfs:label "Tunnel"@en ;
-    rdfs:isDefinedBy era: ;
-    sh:description "A railway tunnel is an excavation or a construction around the track provided to allow the railway to pass for example higher land, buildings or water."@en ;
-    sh:name "Tunnel"@en ;
-    sh:nodeKind sh:IRI ;
-    sh:property <https://astrea.linkeddata.es/shapes#0031ca67940043b21691665188393b89>,
-        <https://astrea.linkeddata.es/shapes#0656ac282b233613a4e97b1158fddeae>,
-        <https://astrea.linkeddata.es/shapes#0b2d02f63fe8fa74f0d26578a31ba47c>,
-        <https://astrea.linkeddata.es/shapes#35bc8290150c8a0250f4f34f722c8b93>,
-        <https://astrea.linkeddata.es/shapes#4f5dfbd1d9b386ddd9396ac865e701e5>,
-        <https://astrea.linkeddata.es/shapes#5edb4f6431854ddaab351570295387ff>,
-        <https://astrea.linkeddata.es/shapes#67dd7330e4cb98b732edcfe008cc96fa>,
-        <https://astrea.linkeddata.es/shapes#68dd1c953f64a4d5ff3ac672fc7e5efb>,
-        <https://astrea.linkeddata.es/shapes#7b7b6d85a40968cea0b3b84493d6d607>,
-        <https://astrea.linkeddata.es/shapes#81d0cb2dd5f77220b27950d99568e0c8>,
-        <https://astrea.linkeddata.es/shapes#a98e230dd1563e655c9911b9d14a30e4>,
-        <https://astrea.linkeddata.es/shapes#cdab201c7a44be0ab4b70d042aab2e2d>,
-        <https://astrea.linkeddata.es/shapes#ea7daa0a30c2fbd86d703a706905eb00>,
-        <https://astrea.linkeddata.es/shapes#eac2e6f84f17869280c5559214cc867e>,
-        <https://astrea.linkeddata.es/shapes#f4fb6a8693fcef866058ce6a1d2c15a6> ;
-    sh:targetClass era:Tunnel .
-
-<https://astrea.linkeddata.es/shapes#2e48a8940b474c834dc6920bdccf135c> a sh:NodeShape ;
-    rdfs:label "Phase info"@en ;
-    rdfs:isDefinedBy era: ;
-    sh:description "Indication of required several information on phase separation."@en ;
-    sh:name "Phase info"@en ;
-    sh:nodeKind sh:IRI ;
-    sh:property <https://astrea.linkeddata.es/shapes#12657f4868a7920e4a76c6d9d3caab0d>,
-        <https://astrea.linkeddata.es/shapes#126957b4cef74acac74defcb55d31f53>,
-        <https://astrea.linkeddata.es/shapes#22398862458352cb2473433372f3118f>,
-        <https://astrea.linkeddata.es/shapes#9357c9a6bad61c89fad771f3895bf9b4>,
-        <https://astrea.linkeddata.es/shapes#c25ea824cb984825c0884ecee4c5eb92> ;
-    sh:targetClass era:PhaseInfo .
-
-<https://astrea.linkeddata.es/shapes#2f79d0ab122b7e0944a2c77e623b4239> a sh:NodeShape ;
-    rdfs:label "Platform"@en ;
-    rdfs:isDefinedBy era: ;
-    rdfs:seeAlso <https://wiki3.railml.org/DataModel/3.2/IS/EARoot/EA250.htm> ;
-    sh:description "Platform for the purpose of RINF is understood as a platform edge. A platform concerns only the part of the structure neighbouring to the track (interfaced with trains)."@en ;
-    sh:name "Platform"@en ;
-    sh:nodeKind sh:IRI ;
-    sh:property <https://astrea.linkeddata.es/shapes#090d41b781dd9a9ca64075a0b08690de>,
-        <https://astrea.linkeddata.es/shapes#129fd08e2db8267b2e3495804a860bcc>,
-        <https://astrea.linkeddata.es/shapes#3deebe1cc5edc70912723c7bfba84070>,
-        <https://astrea.linkeddata.es/shapes#502df89379478ac92c5f6e9e51fdbcd8>,
-        <https://astrea.linkeddata.es/shapes#98b37db95bd95a8d8e94005ca1c70dbc>,
-        <https://astrea.linkeddata.es/shapes#9e08f7854a31fcf80222fe296491d320> ;
-    sh:targetClass era:Platform .
-
 <https://astrea.linkeddata.es/shapes#30d990e93e70b34a354986f72aa1b7df> a sh:NodeShape ;
     rdfs:label "Infrastructure object"@en ;
     rdfs:isDefinedBy era: ;
@@ -900,58 +1596,6 @@ It should be provided in 3 directions."""@en ;
     sh:nodeKind sh:IRI ;
     sh:property <https://astrea.linkeddata.es/shapes#12f4c087a4fffd920dbb98cff165f970> ;
     sh:targetClass <http://www.opengis.net/ont/geosparql#FeatureCollection> .
-
-<https://astrea.linkeddata.es/shapes#3e34d4f931930d4074df9b8fb38a4196> a sh:NodeShape ;
-    rdfs:label "Train Detection System"@en ;
-    rdfs:isDefinedBy era: ;
-    rdfs:seeAlso <https://wiki3.railml.org/DataModel/3.2/IS/EARoot/EA402.htm> ;
-    sh:description "System used to detect the position of vehicles in the railway track."@en ;
-    sh:name "Train Detection System"@en ;
-    sh:nodeKind sh:IRI ;
-    sh:property <https://astrea.linkeddata.es/shapes#09a486fc228907cb40257b444e2381a4>,
-        <https://astrea.linkeddata.es/shapes#115168a22ba804567e820339ecc5899d>,
-        <https://astrea.linkeddata.es/shapes#144472f7be62d51ea6892cfcc73cf5ea>,
-        <https://astrea.linkeddata.es/shapes#3e9af56945efb6d70a0c5584f2ae30c7>,
-        <https://astrea.linkeddata.es/shapes#5246fca12722eb17162218f3931cf73f>,
-        <https://astrea.linkeddata.es/shapes#53df61d003eb0920c3ab93d41ae6e990>,
-        <https://astrea.linkeddata.es/shapes#5fb6baa99e2ca39f4617611dfbda7d51>,
-        <https://astrea.linkeddata.es/shapes#655f83eabb0c201bd913133daa4c51f4>,
-        <https://astrea.linkeddata.es/shapes#6ce8342160f8e0a189717f5e0d244408>,
-        <https://astrea.linkeddata.es/shapes#7faf3951c51537d418b3e4b90c042571>,
-        <https://astrea.linkeddata.es/shapes#81d13ce5e5ee079b72bed4b10b71442c>,
-        <https://astrea.linkeddata.es/shapes#8416512abf54ca24dc2bb2559b302a8f>,
-        <https://astrea.linkeddata.es/shapes#8787c3395264c4dc6c2c79933d81e2b0>,
-        <https://astrea.linkeddata.es/shapes#8ec4b4871fabf025678e1c6b86cb8695>,
-        <https://astrea.linkeddata.es/shapes#8f4d64e4e77257fe21e9016e597a6fc6>,
-        <https://astrea.linkeddata.es/shapes#95860c0bd6b328525bb4a6ca30eb52e1>,
-        <https://astrea.linkeddata.es/shapes#9750634c61e8ec86093a6722f8f424a0>,
-        <https://astrea.linkeddata.es/shapes#9fc6e8052c49b24b96c1bf0d6198b1eb>,
-        <https://astrea.linkeddata.es/shapes#ae571cbe2d9b310a67e0926c7a0b529e>,
-        <https://astrea.linkeddata.es/shapes#bdd7c71ec6ad74b34281b7f7b2c2c5b6>,
-        <https://astrea.linkeddata.es/shapes#c1419331a4619ba1c95844586f7fc694>,
-        <https://astrea.linkeddata.es/shapes#caed10933115d6375c66cc574f32a019>,
-        <https://astrea.linkeddata.es/shapes#cb408fbd994f342cd6b02570ea62a229>,
-        <https://astrea.linkeddata.es/shapes#cbe547a3a37f9201ee9545688aba4887>,
-        <https://astrea.linkeddata.es/shapes#cd2799512931ab92e027cb94db68617c>,
-        <https://astrea.linkeddata.es/shapes#e58dcfa1cf084eabfc758f45828299ee>,
-        <https://astrea.linkeddata.es/shapes#f135fc8abe9afe655f4a461c37092dc0> ;
-    sh:targetClass era:TrainDetectionSystem .
-
-<https://astrea.linkeddata.es/shapes#3ef793712378e097aac823894a277e63> a sh:NodeShape ;
-    rdfs:label "Point" ;
-    sh:description """ 
-Uniquely identified by lat/long/alt. i.e.
-
-spaciallyIntersects(P1, P2) :- lat(P1, LAT), long(P1, LONG), alt(P1, ALT),
-  lat(P2, LAT), long(P2, LONG), alt(P2, ALT).
-
-sameThing(P1, P2) :- type(P1, Point), type(P2, Point), spaciallyIntersects(P1, P2).
-  """,
-        """A point, typically described using a coordinate system relative to Earth, such as WGS84.
-  """ ;
-    sh:name "Point" ;
-    sh:nodeKind sh:IRI ;
-    sh:targetClass <http://www.w3.org/2003/01/geo/wgs84_pos#Point> .
 
 <https://astrea.linkeddata.es/shapes#46d402e83cfb35cbae8c49868c56e7c7> a sh:NodeShape ;
     rdfs:label "Manufacturer"@en ;
@@ -1004,17 +1648,6 @@ sameThing(P1, P2) :- type(P1, Point), type(P2, Point), spaciallyIntersects(P1, P
         <https://astrea.linkeddata.es/shapes#f18f7256295c59aebe82dfe599badc40>,
         <https://astrea.linkeddata.es/shapes#f8482c6a0f358f8055f45eacf42d6a2c> ;
     sh:targetClass <http://www.opengis.net/ont/geosparql#SpatialObject> .
-
-<https://astrea.linkeddata.es/shapes#51525b16fcd279df4387bb379357e870> a sh:NodeShape ;
-    rdfs:label "Railway location"@en ;
-    rdfs:isDefinedBy era: ;
-    sh:description "Railway location",
-        "A reference to a specific national railway line."@en ;
-    sh:name "Railway location"@en ;
-    sh:nodeKind sh:IRI ;
-    sh:property <https://astrea.linkeddata.es/shapes#8f10fb54de844d6b895efef2dfa23ddd>,
-        <https://astrea.linkeddata.es/shapes#f01da1adf07d6895e34556f51e859a3a> ;
-    sh:targetClass era:LineReference .
 
 <https://astrea.linkeddata.es/shapes#6ace7559c09873d57bb26d2909a563c6> a sh:NodeShape ;
     rdfs:label "SpatialThing" ;
@@ -1096,48 +1729,9 @@ Definition RSM: Apparatus by means of which a conventional visual or acoustic in
         <https://astrea.linkeddata.es/shapes#ae1803e4d24d1eced6e3524a9c486bb8> ;
     sh:targetClass era:Signal .
 
-<https://astrea.linkeddata.es/shapes#9e81a8547fd8cabc79752e243c8d2b67> a sh:NodeShape ;
-    rdfs:isDefinedBy <http://www.opengis.net/ont/geosparql#>,
-        <http://www.opengis.net/spec/geosparql/1.0/req/geometry-extension/geometry-class>,
-        <http://www.opengis.net/spec/geosparql/1.1/req/geometry-extension/geometry-class> ;
-    sh:nodeKind sh:IRI ;
-    sh:property <https://astrea.linkeddata.es/shapes#0bb266d44d2e049e4a4bcdb6089de9b5>,
-        <https://astrea.linkeddata.es/shapes#0cef7e49760c68e11fcddb0e86b175b9>,
-        <https://astrea.linkeddata.es/shapes#0f6502053608fc059a721676b6e67115>,
-        <https://astrea.linkeddata.es/shapes#213dce020d8d1d818cf322430ccb65dd>,
-        <https://astrea.linkeddata.es/shapes#36d656c5dfc31ad481ee03f2fbead4d2>,
-        <https://astrea.linkeddata.es/shapes#51b0574d80cdcbd9d25e74798414eddd>,
-        <https://astrea.linkeddata.es/shapes#6f1a80b9ea58c60979eb6b5d7dd31a18>,
-        <https://astrea.linkeddata.es/shapes#b3b89c89e30bbeb141774553213d763a>,
-        <https://astrea.linkeddata.es/shapes#ba37020ab8b5cf73b00e9187bead387c>,
-        <https://astrea.linkeddata.es/shapes#bb9ad1857093cc31f11d9ba7f19348ea>,
-        <https://astrea.linkeddata.es/shapes#ce9b1b3ec27a653696d2ed4bd02b1d12>,
-        <https://astrea.linkeddata.es/shapes#e03b53e6ee02aa5451f9df7010548e0d>,
-        <https://astrea.linkeddata.es/shapes#ea758cf93a4a6fcb568c859d464061d1> ;
-    sh:targetClass <http://www.opengis.net/ont/geosparql#Geometry> .
-
 <https://astrea.linkeddata.es/shapes#a0005af2635b82beb671b40f25536d31> a sh:NodeShape ;
     sh:nodeKind sh:IRI ;
     sh:targetClass rdfs:Resource .
-
-<https://astrea.linkeddata.es/shapes#a6646857e35dd7bbc53429a21d18ac92> a sh:NodeShape ;
-    rdfs:label "Contact Line System"@en ;
-    rdfs:isDefinedBy era: ;
-    sh:description "System that is used to transmit electrical energy to road or rail vehicles."@en ;
-    sh:name "Contact Line System"@en ;
-    sh:nodeKind sh:IRI ;
-    sh:property <https://astrea.linkeddata.es/shapes#0776d475224c5bd759505dcce0038be6>,
-        <https://astrea.linkeddata.es/shapes#0ee976535ceb548324a2a593f020d8a2>,
-        <https://astrea.linkeddata.es/shapes#1286c42d58b758d1aa787d97a5855c53>,
-        <https://astrea.linkeddata.es/shapes#52192c02b01b4c9fbcdc3c91fcf2e4dc>,
-        <https://astrea.linkeddata.es/shapes#89b4bedc58ad4559c1b6764c0cf51ac4>,
-        <https://astrea.linkeddata.es/shapes#b64967cb5ca4ecd219e30f7ec0568cae>,
-        <https://astrea.linkeddata.es/shapes#ba1a7810f96ca26dcfd05a4a8d38811b>,
-        <https://astrea.linkeddata.es/shapes#bddd8eea1d6204ef60194932f2fca797>,
-        <https://astrea.linkeddata.es/shapes#c92dc8579b875253305d1bb28e8ad8cf>,
-        <https://astrea.linkeddata.es/shapes#d6ad9260efae3b3ea3dca24b765715ff>,
-        <https://astrea.linkeddata.es/shapes#e27213d22eda0492cbf1f2d69352507b> ;
-    sh:targetClass era:ContactLineSystem .
 
 <https://astrea.linkeddata.es/shapes#ac9acb58f027a5b7dc3d6bcec51663b6> a sh:NodeShape ;
     rdfs:label "Vehicle Keeper"@en ;
@@ -1308,18 +1902,6 @@ Definition RSM: Apparatus by means of which a conventional visual or acoustic in
         <https://astrea.linkeddata.es/shapes#ffa665794aba763afe24c1a7c4e1f082> ;
     sh:targetClass era:SubsetWithCommonCharacteristics .
 
-<https://astrea.linkeddata.es/shapes#b6853788156ebf126ce080472d510b33> a sh:NodeShape ;
-    rdfs:label "System separation info"@en ;
-    rdfs:isDefinedBy "http://data.europa.eu/949/"^^xsd:anyURI ;
-    sh:description "Indication of required several information on system separation."@en ;
-    sh:name "System separation info"@en ;
-    sh:nodeKind sh:IRI ;
-    sh:property <https://astrea.linkeddata.es/shapes#14d9afcf65fb4a0c250bec32e649b194>,
-        <https://astrea.linkeddata.es/shapes#3ea62527e36c53ea92beb08443606f67>,
-        <https://astrea.linkeddata.es/shapes#4914cd4f7e6e6493b3930acf32f8cdec>,
-        <https://astrea.linkeddata.es/shapes#f346ed97745fa7ab0d58ba62aea03aaf> ;
-    sh:targetClass era:SystemSeparationInfo .
-
 <https://astrea.linkeddata.es/shapes#bad6fe0616822dbdee41612805dde4b1> a sh:NodeShape ;
     rdfs:label "Border"@en ;
     rdfs:isDefinedBy era: ;
@@ -1327,24 +1909,6 @@ Definition RSM: Apparatus by means of which a conventional visual or acoustic in
     sh:name "Border"@en ;
     sh:nodeKind sh:IRI ;
     sh:targetClass era:Border .
-
-<https://astrea.linkeddata.es/shapes#baf949ce81e9c592b23f14640939660a> a sh:NodeShape ;
-    rdfs:label "Section with train detection limitation, only for the French network"@en ;
-    rdfs:isDefinedBy era: ;
-    sh:description """Specific for route compatibility check on French network. Sections with: 
--1 Tonnage circulated per track is inferior to 15000 tons/day/track 
--2 Directional Interlocking 
--3 45-second delay for directional interlocking 
--4 Installation with track circuit announcement 
--5 Absence of a shunting assistance pedal in the normal direction of circulation for non-reversible double track lines 
--6 Absence of a shunting assistance pedal regardless of the direction of traffic for single track lines and tracks for two way working 
--7 Absence of a pedal announcement mechanism 
--8 45-second delay for specific announcement reset devices"""@en ;
-    sh:name "Section with train detection limitation, only for the French network"@en ;
-    sh:nodeKind sh:IRI ;
-    sh:property <https://astrea.linkeddata.es/shapes#1cbaec44829929f1905d71640868a204>,
-        <https://astrea.linkeddata.es/shapes#71003ec0eaf2beb7e2048f77dcb93314> ;
-    sh:targetClass era:FrenchTrainDetectionSystemLimitation .
 
 <https://astrea.linkeddata.es/shapes#d32e8d49cee14ebe9bc95e297f839e15> a sh:NodeShape ;
     rdfs:isDefinedBy <http://www.opengis.net/ont/geosparql#>,
@@ -1390,30 +1954,6 @@ Definition RSM: Apparatus by means of which a conventional visual or acoustic in
         <https://astrea.linkeddata.es/shapes#b9e71cb2cc2ce6d3ff777df3f0e15862> ;
     sh:targetClass era:MaximumSpeedAndCantDeficiency .
 
-<https://astrea.linkeddata.es/shapes#fe71909ff52cd64113f213306da3fc27> a sh:NodeShape ;
-    rdfs:label "Siding"@en ;
-    rdfs:isDefinedBy era: ;
-    sh:description "Sidings are all those tracks where running trains in service movements ends and which are not used for operational routing of a train."@en ;
-    sh:name "Siding"@en ;
-    sh:nodeKind sh:IRI ;
-    sh:property <https://astrea.linkeddata.es/shapes#01bc66d2c0837f3570ce571a4bdee735>,
-        <https://astrea.linkeddata.es/shapes#0f91b14ee05a7486e1d8fc39ec3fd3bb>,
-        <https://astrea.linkeddata.es/shapes#129fd08e2db8267b2e3495804a860bcc>,
-        <https://astrea.linkeddata.es/shapes#12eebac06c2c8b8ba6f1adff293ef714>,
-        <https://astrea.linkeddata.es/shapes#257bb378f2921194edd89bdc866897ed>,
-        <https://astrea.linkeddata.es/shapes#31e43b29445751e4cb4c66dee368a6a8>,
-        <https://astrea.linkeddata.es/shapes#4e854d007ad5336ee033ac1c1cb91006>,
-        <https://astrea.linkeddata.es/shapes#5d0b9e00ac6cee9052be73dd104d8047>,
-        <https://astrea.linkeddata.es/shapes#670d6fa0d4ee20e1b6b92857d33a7d45>,
-        <https://astrea.linkeddata.es/shapes#8c52766fdacc59d4f6ef95b77cc0ac35>,
-        <https://astrea.linkeddata.es/shapes#8cf4b1212fedf512286eb3bd87857df8>,
-        <https://astrea.linkeddata.es/shapes#a3bbff1c24067fb7cf2db38b37accfd5>,
-        <https://astrea.linkeddata.es/shapes#b4da174731614a745c41c3e85c6afdca>,
-        <https://astrea.linkeddata.es/shapes#c89af8889ed10aa07edae0282d65af7c>,
-        <https://astrea.linkeddata.es/shapes#c92dc8579b875253305d1bb28e8ad8cf>,
-        <https://astrea.linkeddata.es/shapes#cc8597abe36afd2cc3abb53e195fed87> ;
-    sh:targetClass era:Siding .
-
 <https://astrea.linkeddata.es/shapes#ffeaf0d3664c31215f614a64f5bb45a5> a sh:NodeShape ;
     sh:nodeKind sh:IRI ;
     sh:targetClass <http://www.w3.org/2004/02/skos/core#Concept> .
@@ -1421,23 +1961,11 @@ Definition RSM: Apparatus by means of which a conventional visual or acoustic in
 <http://mapping.example.com/map_eu-country_000/shape> a sh:NodeShape ;
     sh:nodeKind sh:Literal .
 
-<http://mapping.example.com/map_eu-country_000/shape2801> a sh:NodeShape ;
+<http://mapping.example.com/map_eu-country_000/shape1522> a sh:NodeShape ;
     sh:nodeKind sh:Literal .
 
-<http://mapping.example.com/map_eu-country_000/shape4878> a sh:NodeShape ;
+<http://mapping.example.com/map_eu-country_000/shape9356> a sh:NodeShape ;
     sh:nodeKind sh:Literal .
-
-<https://astrea.linkeddata.es/shapes#0031ca67940043b21691665188393b89> a sh:PropertyShape ;
-    rdfs:label """Categorisation how a passenger train with a fire on board will continue to operate for a defined time period. The allowed values for this property belong to the SKOS Concept Scheme http://data.europa.eu/949/concepts/rolling-stock-fire/Categories.
-In https://eur-lex.europa.eu/eli/reg_impl/2019/773/oj 3.2.3 Tunnels: location, name, length, specific information such as the existence of walkways and points of safe egress as well as the location of safe areas where evacuation of passengers may take place; fire safety categorisation."""@en,
-        "Fire category of rolling stock required"@en ;
-    rdfs:isDefinedBy era: ;
-    sh:class <http://www.w3.org/2004/02/skos/core#Concept> ;
-    sh:description """Categorisation how a passenger train with a fire on board will continue to operate for a defined time period. The allowed values for this property belong to the SKOS Concept Scheme http://data.europa.eu/949/concepts/rolling-stock-fire/Categories.
-In https://eur-lex.europa.eu/eli/reg_impl/2019/773/oj 3.2.3 Tunnels: location, name, length, specific information such as the existence of walkways and points of safe egress as well as the location of safe areas where evacuation of passengers may take place; fire safety categorisation."""@en ;
-    sh:maxCount 1 ;
-    sh:name "Fire category of rolling stock required"@en ;
-    sh:path era:rollingStockFireCategory .
 
 <https://astrea.linkeddata.es/shapes#01bc66d2c0837f3570ce571a4bdee735> a sh:PropertyShape ;
     rdfs:label "Minimum radius of vertical curve hollow"@en,
@@ -1472,17 +2000,6 @@ The minimum radius of vertical curve is the radius of the smallest vertical curv
     sh:name "Border point of"@en ;
     sh:nodeKind sh:BlankNodeOrIRI ;
     sh:path era:borderPointOf .
-
-<https://astrea.linkeddata.es/shapes#0656ac282b233613a4e97b1158fddeae> a sh:PropertyShape ;
-    rdfs:label "EC declaration of verification for tunnel (SRT)"@en,
-        "Unique number for EC declarations in accordance with Commission Implementing Regulation (EU) 2019/250."@en ;
-    rdfs:isDefinedBy era: ;
-    sh:datatype xsd:string ;
-    sh:description "Unique number for EC declarations in accordance with Commission Implementing Regulation (EU) 2019/250."@en ;
-    sh:name "EC declaration of verification for tunnel (SRT)"@en ;
-    sh:nodeKind sh:Literal ;
-    sh:path era:verificationSRT ;
-    sh:pattern ".*" .
 
 <https://astrea.linkeddata.es/shapes#0776d475224c5bd759505dcce0038be6> a sh:PropertyShape ;
     rdfs:label "Indication whether regenerative braking is permitted, not permitted, or permitted under specific conditions."@en,
@@ -1519,17 +2036,6 @@ It should be provided in 3 directions."""@en ;
     sh:name "Train detection system maximum magnetic field"@en ;
     sh:nodeKind sh:BlankNodeOrIRI ;
     sh:path era:tdsMaximumMagneticField .
-
-<https://astrea.linkeddata.es/shapes#0b2d02f63fe8fa74f0d26578a31ba47c> a sh:PropertyShape ;
-    rdfs:label "EI declaration of demonstration for tunnel (SRT)"@en,
-        "Unique number for EI declarations following the same format requirements as specified for EC declarations in Annex VII of Commission Implementing Regulation (EU) 2019/250."@en ;
-    rdfs:isDefinedBy era: ;
-    sh:datatype xsd:string ;
-    sh:description "Unique number for EI declarations following the same format requirements as specified for EC declarations in Annex VII of Commission Implementing Regulation (EU) 2019/250."@en ;
-    sh:name "EI declaration of demonstration for tunnel (SRT)"@en ;
-    sh:nodeKind sh:Literal ;
-    sh:path era:demonstrationSRT ;
-    sh:pattern ".*" .
 
 <https://astrea.linkeddata.es/shapes#0b80ed43329379c9d60154b86a779600> a sh:PropertyShape ;
     rdfs:label "Has sanding prevention"@en,
@@ -1641,37 +2147,6 @@ It should be provided in 3 directions."""@en ;
     sh:path era:maxDistEndTrainFirstAxle ;
     sh:pattern "[\\-+]?[0-9]+" .
 
-<https://astrea.linkeddata.es/shapes#1156168d9707500402e4dfc808a6ce76> a sh:PropertyShape ;
-    rdfs:label "Normal running direction"@en,
-        """The normal running direction is:
-- The same as the direction defined by the start and end of the SoL: (N)
-- The opposite to the direction defined by the start and end of the SoL: (O)
-- Both directions: (B)
-The allowed values for this property belong to the SKOS Concept Scheme http://data.europa.eu/949/concepts/track-running-directions/TrackRunningDirections."""@en ;
-    rdfs:isDefinedBy era: ;
-    sh:class <http://www.w3.org/2004/02/skos/core#Concept> ;
-    sh:description """The normal running direction is:
-- The same as the direction defined by the start and end of the SoL: (N)
-- The opposite to the direction defined by the start and end of the SoL: (O)
-- Both directions: (B)
-The allowed values for this property belong to the SKOS Concept Scheme http://data.europa.eu/949/concepts/track-running-directions/TrackRunningDirections."""@en ;
-    sh:maxCount 1 ;
-    sh:name "Normal running direction"@en ;
-    sh:path era:trackDirection .
-
-<https://astrea.linkeddata.es/shapes#12657f4868a7920e4a76c6d9d3caab0d> a sh:PropertyShape ;
-    rdfs:label """Part of the phase info of a track that shows whether a pantograph has to be lowered.
-The phase info is the indication of required several information on phase separation."""@en,
-        "Phase info pantograph lowered"@en ;
-    rdfs:isDefinedBy era: ;
-    sh:datatype xsd:boolean ;
-    sh:description """Part of the phase info of a track that shows whether a pantograph has to be lowered.
-The phase info is the indication of required several information on phase separation."""@en ;
-    sh:name "Phase info pantograph lowered"@en ;
-    sh:nodeKind sh:Literal ;
-    sh:path era:phaseInfoPantographLowered ;
-    sh:pattern "true|false|0|1" .
-
 <https://astrea.linkeddata.es/shapes#126957b4cef74acac74defcb55d31f53> a sh:PropertyShape ;
     rdfs:label """Part of the system separation info of a track.  Indicates the the location from the start of the line where the new value is valid.
 The system separation info is the Indication of required several information on system separation."""@en,
@@ -1684,16 +2159,6 @@ The system separation info is the Indication of required several information on 
     sh:nodeKind sh:Literal ;
     sh:path era:systemSeparationInfoKm ;
     sh:pattern "(\\+|-)?([0-9]+(\\.[0-9]*)?|\\.[0-9]+)([Ee](\\+|-)?[0-9]+)?|(\\+|-)?INF|NaN" .
-
-<https://astrea.linkeddata.es/shapes#1286c42d58b758d1aa787d97a5855c53> a sh:PropertyShape ;
-    rdfs:label "Indication of the type of the contact line system. The allowed values for this property belong to the SKOS Concept Scheme http://data.europa.eu/949/concepts/contact-line-systems/ContactLineSystems"@en,
-        "Type of contact line system"@en ;
-    rdfs:isDefinedBy era: ;
-    sh:class <http://www.w3.org/2004/02/skos/core#Concept> ;
-    sh:description "Indication of the type of the contact line system. The allowed values for this property belong to the SKOS Concept Scheme http://data.europa.eu/949/concepts/contact-line-systems/ContactLineSystems"@en ;
-    sh:name "Type of contact line system"@en ;
-    sh:nodeKind sh:BlankNodeOrIRI ;
-    sh:path era:contactLineSystemType .
 
 <https://astrea.linkeddata.es/shapes#12eebac06c2c8b8ba6f1adff293ef714> a sh:PropertyShape ;
     rdfs:label "Existence of toilet discharge"@en,
@@ -1875,19 +2340,6 @@ The allowed values for this property belong to the SKOS Concept Scheme http://da
     sh:path <http://www.opengis.net/ont/geosparql#spatialDimension> ;
     sh:pattern "[\\-+]?[0-9]+" .
 
-<https://astrea.linkeddata.es/shapes#22398862458352cb2473433372f3118f> a sh:PropertyShape ;
-    rdfs:label """Part of the phase info of a track that shows whether the breaker has to be switched off.
-The phase info is the indication of required several information on phase separation."""@en,
-        "Phase info switch off breaker"@en ;
-    rdfs:isDefinedBy era: ;
-    sh:datatype xsd:boolean ;
-    sh:description """Part of the phase info of a track that shows whether the breaker has to be switched off.
-The phase info is the indication of required several information on phase separation."""@en ;
-    sh:name "Phase info switch off breaker"@en ;
-    sh:nodeKind sh:Literal ;
-    sh:path era:phaseInfoSwitchOffBreaker ;
-    sh:pattern "true|false|0|1" .
-
 <https://astrea.linkeddata.es/shapes#2388d4bc6753a3727865290609f72341> a sh:PropertyShape ;
     rdfs:label "Maximum length of the vehicle nose."@en,
         "Maximum length vehicle nose"@en ;
@@ -2023,17 +2475,6 @@ The phase info is the indication of required several information on phase separa
     sh:path era:vehicleSeries ;
     sh:pattern ".*" .
 
-<https://astrea.linkeddata.es/shapes#35bc8290150c8a0250f4f34f722c8b93> a sh:PropertyShape ;
-    rdfs:label "Categorisation how a passenger train with a fire on board will continue to operate for a defined time period — according to national rules if they exist"@en,
-        "National fire category of rolling stock required"@en ;
-    rdfs:isDefinedBy era: ;
-    sh:datatype xsd:string ;
-    sh:description "Categorisation how a passenger train with a fire on board will continue to operate for a defined time period — according to national rules if they exist"@en ;
-    sh:maxCount 1 ;
-    sh:name "National fire category of rolling stock required"@en ;
-    sh:path era:nationalRollingStockFireCategory ;
-    sh:pattern ".*" .
-
 <https://astrea.linkeddata.es/shapes#36d656c5dfc31ad481ee03f2fbead4d2> a sh:PropertyShape ;
     rdfs:isDefinedBy <http://www.opengis.net/ont/geosparql#>,
         <http://www.opengis.net/spec/geosparql/1.1/req/geometry-extension/geometry-properties> ;
@@ -2078,19 +2519,6 @@ The phase info is the indication of required several information on phase separa
     sh:nodeKind sh:Literal ;
     sh:path era:altitudeRangeDetail ;
     sh:pattern "[\\-+]?[0-9]+" .
-
-<https://astrea.linkeddata.es/shapes#3deebe1cc5edc70912723c7bfba84070> a sh:PropertyShape ;
-    rdfs:label "Platform id"@en,
-        """Unique platform identification or platform number within an Operational Point.
-In 2.3.5 https://eur-lex.europa.eu/eli/reg_impl/2019/773/oj Identification of platforms."""@en ;
-    rdfs:isDefinedBy era: ;
-    sh:datatype xsd:string ;
-    sh:description """Unique platform identification or platform number within an Operational Point.
-In 2.3.5 https://eur-lex.europa.eu/eli/reg_impl/2019/773/oj Identification of platforms."""@en ;
-    sh:maxCount 1 ;
-    sh:name "Platform id"@en ;
-    sh:path era:platformId ;
-    sh:pattern ".*" .
 
 <https://astrea.linkeddata.es/shapes#3e9af56945efb6d70a0c5584f2ae30c7> a sh:PropertyShape ;
     rdfs:label "Section with train detection limitation, only for the French network"@en,
@@ -2265,19 +2693,6 @@ The system separation info is the Indication of required several information on 
     sh:path era:alternativeName ;
     sh:pattern ".*" .
 
-<https://astrea.linkeddata.es/shapes#4914cd4f7e6e6493b3930acf32f8cdec> a sh:PropertyShape ;
-    rdfs:label """Part of the system separation info of a track that shows whether the breaker has to be switched off.
-The system separation info is the Indication of required several information on system separation."""@en,
-        "System separation info switch off breaker"@en ;
-    rdfs:isDefinedBy era: ;
-    sh:datatype xsd:boolean ;
-    sh:description """Part of the system separation info of a track that shows whether the breaker has to be switched off.
-The system separation info is the Indication of required several information on system separation."""@en ;
-    sh:name "System separation info switch off breaker"@en ;
-    sh:nodeKind sh:Literal ;
-    sh:path era:systemSeparationInfoSwitchOffBreaker ;
-    sh:pattern "true|false|0|1" .
-
 <https://astrea.linkeddata.es/shapes#49fc6080430f9f7718ab10dd9b212c8d> a sh:PropertyShape ;
     rdfs:label "Magnetic braking fitted"@en,
         "Magnetic track brake fitted. New property defined to distinguish it from magneticBraking which is a RINF SKOS property."@en ;
@@ -2315,19 +2730,6 @@ The system separation info is the Indication of required several information on 
     sh:name "Design mass under exceptional payload"@en ;
     sh:path era:designMassExceptionalPayload ;
     sh:pattern "[\\-+]?[0-9]+" .
-
-<https://astrea.linkeddata.es/shapes#4f5dfbd1d9b386ddd9396ac865e701e5> a sh:PropertyShape ;
-    rdfs:label "Tunnel identification"@en,
-        """Unique tunnel identification or unique number within Member State.
-In https://eur-lex.europa.eu/eli/reg_impl/2019/773/oj 3.2.3 Tunnels: location, name, length, specific information such as the existence of walkways and points of safe egress as well as the location of safe areas where evacuation of passengers may take place; fire safety categorisation."""@en ;
-    rdfs:isDefinedBy era: ;
-    sh:datatype xsd:string ;
-    sh:description """Unique tunnel identification or unique number within Member State.
-In https://eur-lex.europa.eu/eli/reg_impl/2019/773/oj 3.2.3 Tunnels: location, name, length, specific information such as the existence of walkways and points of safe egress as well as the location of safe areas where evacuation of passengers may take place; fire safety categorisation."""@en ;
-    sh:maxCount 1 ;
-    sh:name "Tunnel identification"@en ;
-    sh:path era:tunnelIdentification ;
-    sh:pattern ".*" .
 
 <https://astrea.linkeddata.es/shapes#4f701d45734065d529a48ba75b3963ca> a sh:PropertyShape ;
     rdfs:label "Number of PRM accessible toilets."@en,
@@ -2505,17 +2907,6 @@ In https://eur-lex.europa.eu/eli/reg_impl/2019/773/oj 2.2.3 Location, type and n
     sh:nodeKind sh:BlankNodeOrIRI ;
     sh:path <http://www.opengis.net/ont/geosparql#ehOverlap> .
 
-<https://astrea.linkeddata.es/shapes#5cb461f286e9992a3e44fda31189b6a7> a sh:PropertyShape ;
-    rdfs:label "Primary code developed for TAF/TAP."@en,
-        "Primary location code developed for information exchange in accordance with the TSIs relating to telematics applications."@en ;
-    rdfs:isDefinedBy era: ;
-    sh:datatype xsd:string ;
-    sh:description "Primary code developed for TAF/TAP."@en ;
-    sh:maxCount 1 ;
-    sh:name "Primary location code developed for information exchange in accordance with the TSIs relating to telematics applications."@en ;
-    sh:path era:tafTAPCode ;
-    sh:pattern ".*" .
-
 <https://astrea.linkeddata.es/shapes#5cecda7f71bf6351c7a4609b6635d99c> a sh:PropertyShape ;
     rdfs:label "Special conditions implemented on-board to switch over between different train protection control and warning systems. Given as combination of systems installed on board ('System XX'_'System YY')."@en,
         "Train control switch over special conditions"@en ;
@@ -2562,18 +2953,6 @@ The minimum radius of vertical curve is the radius of the smallest vertical curv
     sh:path era:subsetName ;
     sh:pattern ".*" .
 
-<https://astrea.linkeddata.es/shapes#5edb4f6431854ddaab351570295387ff> a sh:PropertyShape ;
-    rdfs:label """Relates a tunnel with a special area or location.
-In https://eur-lex.europa.eu/eli/reg_impl/2019/773/oj 3.2.3 Tunnels: location, name, length, specific information such as the existence of walkways and points of safe egress as well as the location of safe areas where evacuation of passengers may take place; fire safety categorisation."""@en,
-        "Special tunnel area"@en ;
-    rdfs:isDefinedBy "http://data.europa.eu/949/" ;
-    sh:class era:SpecialTunnelArea ;
-    sh:description """Relates a tunnel with a special area or location.
-In https://eur-lex.europa.eu/eli/reg_impl/2019/773/oj 3.2.3 Tunnels: location, name, length, specific information such as the existence of walkways and points of safe egress as well as the location of safe areas where evacuation of passengers may take place; fire safety categorisation."""@en ;
-    sh:name "Special tunnel area"@en ;
-    sh:nodeKind sh:BlankNodeOrIRI ;
-    sh:path era:specialTunnelArea .
-
 <https://astrea.linkeddata.es/shapes#5f803c77724f1d32177772de8287a0b3> a sh:PropertyShape ;
     rdfs:label "Number of vehicles composing the fixed formation (for fixed formation only). Note: the value is mandatory for all vehicle categories. If the vehicle is composed of only one car, the indicated value shall be '1'."@en,
         "Vehicles composing fixed formation"@en ;
@@ -2606,19 +2985,6 @@ In https://eur-lex.europa.eu/eli/reg_impl/2019/773/oj 3.2.3 Tunnels: location, n
     sh:name "ETCS equipment level"@en ;
     sh:path era:etcsEquipmentOnBoardLevel .
 
-<https://astrea.linkeddata.es/shapes#639ee6ea78ddfabd3057b9b790ac1a5d> a sh:PropertyShape ;
-    rdfs:label """Name normally related to the town or village or to traffic control purpose.
-In https://eur-lex.europa.eu/eli/reg_impl/2019/773/oj 2.3.1 Name of location."""@en,
-        "Name of Operational point"@en ;
-    rdfs:isDefinedBy era: ;
-    sh:datatype xsd:string ;
-    sh:description """Name normally related to the town or village or to traffic control purpose.
-In https://eur-lex.europa.eu/eli/reg_impl/2019/773/oj 2.3.1 Name of location."""@en ;
-    sh:maxCount 1 ;
-    sh:name "Name of Operational point"@en ;
-    sh:path era:opName ;
-    sh:pattern ".*" .
-
 <https://astrea.linkeddata.es/shapes#655f83eabb0c201bd913133daa4c51f4> a sh:PropertyShape ;
     rdfs:label "Deprecated according to the ammendment to the Regulation (EU) 2019/777. Indication whether rules for activation or deactivation of flange lubrication exist."@en,
         "Existence of rules on on-board flange lubrication"@en ;
@@ -2649,28 +3015,6 @@ In https://eur-lex.europa.eu/eli/reg_impl/2019/773/oj 2.3.1 Name of location."""
     sh:maxCount 1 ;
     sh:name "Existence of water restocking"@en ;
     sh:path era:hasWaterRestocking ;
-    sh:pattern "true|false|0|1" .
-
-<https://astrea.linkeddata.es/shapes#67dd7330e4cb98b732edcfe008cc96fa> a sh:PropertyShape ;
-    rdfs:label "Diesel or other thermal traction allowed"@en,
-        "Indication whether it is allowed to use diesel or other thermal traction in the tunnel."@en ;
-    rdfs:isDefinedBy era: ;
-    sh:datatype xsd:boolean ;
-    sh:description "Indication whether it is allowed to use diesel or other thermal traction in the tunnel."@en ;
-    sh:maxCount 1 ;
-    sh:name "Diesel or other thermal traction allowed"@en ;
-    sh:path era:dieselThermalAllowed ;
-    sh:pattern "true|false|0|1" .
-
-<https://astrea.linkeddata.es/shapes#68dd1c953f64a4d5ff3ac672fc7e5efb> a sh:PropertyShape ;
-    rdfs:label "Compliance of the tunnel with INF TSI"@en,
-        "Compliance of the tunnel with INF TSI at the maximum permitted speed."@en ;
-    rdfs:isDefinedBy era: ;
-    sh:datatype xsd:boolean ;
-    sh:description "Compliance of the tunnel with INF TSI at the maximum permitted speed."@en ;
-    sh:maxCount 1 ;
-    sh:name "Compliance of the tunnel with INF TSI"@en ;
-    sh:path era:complianceInfTsi ;
     sh:pattern "true|false|0|1" .
 
 <https://astrea.linkeddata.es/shapes#6ce349cecb083ded13424f266ee3dcb4> a sh:PropertyShape ;
@@ -2766,17 +3110,6 @@ In https://eur-lex.europa.eu/eli/reg_impl/2019/773/oj 2.3.1 Name of location."""
     sh:nodeKind sh:BlankNodeOrIRI ;
     sh:path <http://www.opengis.net/ont/geosparql#sfDisjoint> .
 
-<https://astrea.linkeddata.es/shapes#71003ec0eaf2beb7e2048f77dcb93314> a sh:PropertyShape ;
-    rdfs:label "Part of the section with train detection limitation that indicates if it is applicable. Only for the French network."@en,
-        "Section with train detection limitation is applicable, only for the French network"@en ;
-    rdfs:isDefinedBy era: ;
-    sh:datatype xsd:boolean ;
-    sh:description "Part of the section with train detection limitation that indicates if it is applicable. Only for the French network."@en ;
-    sh:name "Section with train detection limitation is applicable, only for the French network"@en ;
-    sh:nodeKind sh:Literal ;
-    sh:path era:frenchTrainDetectionSystemLimitationApplicable ;
-    sh:pattern "true|false|0|1" .
-
 <https://astrea.linkeddata.es/shapes#7306aafc035379d7c49fce607d950932> a sh:PropertyShape ;
     rdfs:label "Defines subset"@en,
         "For the purposes of the register of infrastructure, each infrastructure manager may describe its railway network optionally via common characteristic subsets."@en ;
@@ -2826,17 +3159,6 @@ In https://eur-lex.europa.eu/eli/reg_impl/2019/773/oj 2.3.1 Name of location."""
     sh:name "ETCS data communication application"@en ;
     sh:path era:etcsDataCommApp ;
     sh:pattern ".*" .
-
-<https://astrea.linkeddata.es/shapes#7b7b6d85a40968cea0b3b84493d6d607> a sh:PropertyShape ;
-    rdfs:label "Cross section area"@en,
-        "Smallest cross section area in square metres of the tunnel."@en ;
-    rdfs:isDefinedBy era: ;
-    sh:datatype xsd:integer ;
-    sh:description "Smallest cross section area in square metres of the tunnel."@en ;
-    sh:maxCount 1 ;
-    sh:name "Cross section area"@en ;
-    sh:path era:crossSectionArea ;
-    sh:pattern "[\\-+]?[0-9]+" .
 
 <https://astrea.linkeddata.es/shapes#7c3b13bb921121fa1376fd3c24a241fb> a sh:PropertyShape ;
     rdfs:isDefinedBy <http://www.opengis.net/ont/geosparql#>,
@@ -2891,17 +3213,6 @@ In https://eur-lex.europa.eu/eli/reg_impl/2019/773/oj 2.3.1 Name of location."""
     sh:path era:minFlangeHeight ;
     sh:pattern "(\\+|-)?([0-9]+(\\.[0-9]*)?|\\.[0-9]+)([Ee](\\+|-)?[0-9]+)?|(\\+|-)?INF|NaN" .
 
-<https://astrea.linkeddata.es/shapes#81d0cb2dd5f77220b27950d99568e0c8> a sh:PropertyShape ;
-    rdfs:label "Electronic document available from the IM stored by the Agency with precise description of the clearance gauge and geometry of the tunnel."@en,
-        "Reference to a document available from the IM with precise description of the tunnel"@en ;
-    rdfs:isDefinedBy era: ;
-    sh:datatype xsd:anyURI ;
-    sh:description "Electronic document available from the IM stored by the Agency with precise description of the clearance gauge and geometry of the tunnel."@en ;
-    sh:name "Reference to a document available from the IM with precise description of the tunnel"@en ;
-    sh:nodeKind sh:Literal ;
-    sh:path era:tunnelDocRef ;
-    sh:pattern "^(([^:/?#]+):)?(//([^/?#]*))?([^?#]*)(\\?([^#]*))?(#(.*))?" .
-
 <https://astrea.linkeddata.es/shapes#81d13ce5e5ee079b72bed4b10b71442c> a sh:PropertyShape ;
     rdfs:label "Deprecated according to the ammendment to the Regulation (EU) 2019/777. TSI compliance of rules for metal-free space around wheels. The allowed values for this property belong to the SKOS Concept Scheme http://data.europa.eu/949/concepts/tsi-compliances/TSICompliances."@en,
         "TSI compliance of rules for metal-free space around wheels"@en ;
@@ -2937,6 +3248,16 @@ In https://eur-lex.europa.eu/eli/reg_impl/2019/773/oj 2.3.1 Name of location."""
     sh:class <http://www.opengis.net/ont/geosparql#SpatialObject> ;
     sh:nodeKind sh:BlankNodeOrIRI ;
     sh:path <http://www.opengis.net/ont/geosparql#sfContains> .
+
+<https://astrea.linkeddata.es/shapes#8416512abf54ca24dc2bb2559b302a8f> a sh:PropertyShape ;
+    rdfs:label "Indication of types of train detection systems installed. The allowed values for this property belong to the SKOS Concept Scheme http://data.europa.eu/949/concepts/train-detection/TrainDetectionSystems"@en,
+        "Type of train detection system"@en ;
+    rdfs:isDefinedBy era: ;
+    sh:class <http://www.w3.org/2004/02/skos/core#Concept> ;
+    sh:description "Indication of types of train detection systems installed. The allowed values for this property belong to the SKOS Concept Scheme http://data.europa.eu/949/concepts/train-detection/TrainDetectionSystems"@en ;
+    sh:name "Type of train detection system"@en ;
+    sh:nodeKind sh:BlankNodeOrIRI ;
+    sh:path era:trainDetectionSystemType .
 
 <https://astrea.linkeddata.es/shapes#867bf2f844a86f6a39f41806a7a0026d> a sh:PropertyShape ;
     rdfs:label "Manufacturer"@en,
@@ -3122,16 +3443,6 @@ Deprecated because of replacement by a class and two integer properties. The rea
     sh:path era:vehicleKinematicGaugeOther ;
     sh:pattern ".*" .
 
-<https://astrea.linkeddata.es/shapes#8f10fb54de844d6b895efef2dfa23ddd> a sh:PropertyShape ;
-    rdfs:label "National line identification"@en,
-        "Unique line identification or unique line number within Member State."@en ;
-    rdfs:isDefinedBy era: ;
-    sh:class era:NationalRailwayLine ;
-    sh:description "Unique line identification or unique line number within Member State."@en ;
-    sh:maxCount 1 ;
-    sh:name "National line identification"@en ;
-    sh:path era:lineNationalId .
-
 <https://astrea.linkeddata.es/shapes#8f4d64e4e77257fe21e9016e597a6fc6> a sh:PropertyShape ;
     rdfs:label """Relates the class train detection system with the class that represents the section with train detection limitation. 
 Specific for route compatibility check on French network."""@en,
@@ -3173,19 +3484,6 @@ Specific for route compatibility check on French network."""@en ;
     sh:class <http://www.opengis.net/ont/geosparql#SpatialObject> ;
     sh:nodeKind sh:BlankNodeOrIRI ;
     sh:path <http://www.opengis.net/ont/geosparql#rcc8ntppi> .
-
-<https://astrea.linkeddata.es/shapes#9357c9a6bad61c89fad771f3895bf9b4> a sh:PropertyShape ;
-    rdfs:label """Part of the phase info of a track that corresponds to the length of the phase separation in metres. 
-The phase info is the indication of required several information on phase separation."""@en,
-        "Phase info length"@en ;
-    rdfs:isDefinedBy era: ;
-    sh:datatype xsd:integer ;
-    sh:description """Part of the phase info of a track that corresponds to the length of the phase separation in metres. 
-The phase info is the indication of required several information on phase separation."""@en ;
-    sh:name "Phase info length"@en ;
-    sh:nodeKind sh:Literal ;
-    sh:path era:phaseInfoLength ;
-    sh:pattern "[\\-+]?[0-9]+" .
 
 <https://astrea.linkeddata.es/shapes#942c7d14db6059b722eb734bd4f196a4> a sh:PropertyShape ;
     rdfs:label "Static axle load under exceptional payload"@en,
@@ -3397,19 +3695,6 @@ In https://eur-lex.europa.eu/eli/reg_impl/2019/773/oj  1.1 infrastructure manage
     sh:nodeKind sh:Literal ;
     sh:path era:minRimWidth ;
     sh:pattern "(\\+|-)?([0-9]+(\\.[0-9]*)?|\\.[0-9]+)([Ee](\\+|-)?[0-9]+)?|(\\+|-)?INF|NaN" .
-
-<https://astrea.linkeddata.es/shapes#a98e230dd1563e655c9911b9d14a30e4> a sh:PropertyShape ;
-    rdfs:label "Existence of evacuation and rescue points"@en,
-        """Indication of existence of evacuation and rescue points.
-In https://eur-lex.europa.eu/eli/reg_impl/2019/773/oj 3.2.3 Tunnels: location, name, length, specific information such as the existence of walkways and points of safe egress as well as the location of safe areas where evacuation of passengers may take place; fire safety categorisation."""@en ;
-    rdfs:isDefinedBy era: ;
-    sh:datatype xsd:boolean ;
-    sh:description """Indication of existence of evacuation and rescue points.
-In https://eur-lex.europa.eu/eli/reg_impl/2019/773/oj 3.2.3 Tunnels: location, name, length, specific information such as the existence of walkways and points of safe egress as well as the location of safe areas where evacuation of passengers may take place; fire safety categorisation."""@en ;
-    sh:name "Existence of evacuation and rescue points"@en ;
-    sh:nodeKind sh:Literal ;
-    sh:path era:hasEvacuationAndRescuePoints ;
-    sh:pattern "true|false|0|1" .
 
 <https://astrea.linkeddata.es/shapes#ab19f5edd3b13078443e8dae53094d94> a sh:PropertyShape ;
     rdfs:label "Fire safety category"@en,
@@ -3781,19 +4066,6 @@ In https://eur-lex.europa.eu/eli/reg_impl/2019/773/oj 3.3.2 Maximum train curren
     sh:path era:vehicleMaxSandingOutput ;
     sh:pattern ".*" .
 
-<https://astrea.linkeddata.es/shapes#c25ea824cb984825c0884ecee4c5eb92> a sh:PropertyShape ;
-    rdfs:label """Part of the phase info of a track that indicates the location from the start of the line where the new value is valid.
-The phase info is the indication of required several information on phase separation."""@en,
-        "Phase info Km"@en ;
-    rdfs:isDefinedBy era: ;
-    sh:datatype xsd:double ;
-    sh:description """Part of the phase info of a track that indicates the location from the start of the line where the new value is valid.
-The phase info is the indication of required several information on phase separation."""@en ;
-    sh:name "Phase info Km"@en ;
-    sh:nodeKind sh:Literal ;
-    sh:path era:phaseInfoKm ;
-    sh:pattern "(\\+|-)?([0-9]+(\\.[0-9]*)?|\\.[0-9]+)([Ee](\\+|-)?[0-9]+)?|(\\+|-)?INF|NaN" .
-
 <https://astrea.linkeddata.es/shapes#c40c5acdd043aacf495e4058012187dc> a sh:PropertyShape ;
     rdfs:label "Vehicle subcategory"@en,
         "Vehicle subcategory. The allowed values for this property belong to the SKOS Concept Scheme http://data.europa.eu/949/concepts/vehicle-types/Categories."@en ;
@@ -3933,19 +4205,6 @@ The allowed values for this property belong to a SKOS Concept Scheme."""@en ;
     sh:nodeKind sh:BlankNodeOrIRI ;
     sh:path era:tsiCompliantRSTShuntImpedance .
 
-<https://astrea.linkeddata.es/shapes#cc8597abe36afd2cc3abb53e195fed87> a sh:PropertyShape ;
-    rdfs:label "Identification of siding"@en,
-        """Unique siding identification or number within an Operational Point.
-IN https://eur-lex.europa.eu/eli/reg_impl/2019/773/oj 2.2.1 Indication of running lines, loops catch/trap points and access to sidings."""@en ;
-    rdfs:isDefinedBy era: ;
-    sh:datatype xsd:string ;
-    sh:description """Unique siding identification or number within an Operational Point.
-IN https://eur-lex.europa.eu/eli/reg_impl/2019/773/oj 2.2.1 Indication of running lines, loops catch/trap points and access to sidings."""@en ;
-    sh:maxCount 1 ;
-    sh:name "Identification of siding"@en ;
-    sh:path era:sidingId ;
-    sh:pattern ".*" .
-
 <https://astrea.linkeddata.es/shapes#cd2799512931ab92e027cb94db68617c> a sh:PropertyShape ;
     rdfs:label "Deprecated according to the ammendment to the Regulation (EU) 2019/777. Indication whether required distance between two consecutive axles is compliant with the TSI. The allowed values for this property belong to the SKOS Concept Scheme http://data.europa.eu/949/concepts/tsi-compliances/TSICompliances."@en,
         "TSI compliance of maximum permitted distance between two consecutive axles"@en ;
@@ -3955,17 +4214,6 @@ IN https://eur-lex.europa.eu/eli/reg_impl/2019/773/oj 2.2.1 Indication of runnin
     sh:name "TSI compliance of maximum permitted distance between two consecutive axles"@en ;
     sh:nodeKind sh:BlankNodeOrIRI ;
     sh:path era:tsiCompliantMaxDistConsecutiveAxles .
-
-<https://astrea.linkeddata.es/shapes#cdab201c7a44be0ab4b70d042aab2e2d> a sh:PropertyShape ;
-    rdfs:label "Existence of emergency plan"@en,
-        "Indication whether emergency plan exists."@en ;
-    rdfs:isDefinedBy era: ;
-    sh:datatype xsd:boolean ;
-    sh:description "Indication whether emergency plan exists."@en ;
-    sh:maxCount 1 ;
-    sh:name "Existence of emergency plan"@en ;
-    sh:path era:hasEmergencyPlan ;
-    sh:pattern "true|false|0|1" .
 
 <https://astrea.linkeddata.es/shapes#ce9b1b3ec27a653696d2ed4bd02b1d12> a sh:PropertyShape ;
     rdfs:isDefinedBy <http://www.opengis.net/ont/geosparql#>,
@@ -4211,36 +4459,6 @@ In https://eur-lex.europa.eu/eli/reg_impl/2019/773/oj 3.3.7 Conditions applying 
     sh:nodeKind sh:BlankNodeOrIRI ;
     sh:path <http://www.opengis.net/ont/geosparql#defaultGeometry> .
 
-<https://astrea.linkeddata.es/shapes#ea758cf93a4a6fcb568c859d464061d1> a sh:PropertyShape ;
-    rdfs:isDefinedBy <http://www.opengis.net/ont/geosparql#>,
-        <http://www.opengis.net/spec/geosparql/1.0/req/geometry-extension/geometry-as-wkt-literal>,
-        <http://www.opengis.net/spec/geosparql/1.1/req/geometry-extension/geometry-as-wkt-literal> ;
-    sh:datatype <http://www.opengis.net/ont/geosparql#wktLiteral> ;
-    sh:nodeKind sh:Literal ;
-    sh:path <http://www.opengis.net/ont/geosparql#asWKT> .
-
-<https://astrea.linkeddata.es/shapes#ea7daa0a30c2fbd86d703a706905eb00> a sh:PropertyShape ;
-    rdfs:label "Kilometer of the line at the end of a tunnel."@en,
-        "Tunnel kilometer end"@en ;
-    rdfs:isDefinedBy era: ;
-    sh:datatype xsd:double ;
-    sh:description "Kilometer of the line at the end of a tunnel."@en ;
-    sh:name "Tunnel kilometer end"@en ;
-    sh:nodeKind sh:Literal ;
-    sh:path era:tunnelKilometerEnd ;
-    sh:pattern "(\\+|-)?([0-9]+(\\.[0-9]*)?|\\.[0-9]+)([Ee](\\+|-)?[0-9]+)?|(\\+|-)?INF|NaN" .
-
-<https://astrea.linkeddata.es/shapes#eac2e6f84f17869280c5559214cc867e> a sh:PropertyShape ;
-    rdfs:label "Geographical coordinates in decimal degrees and km of the line at the beginning of a tunnel."@en,
-        "Tunnel kilometer start"@en ;
-    rdfs:isDefinedBy era: ;
-    sh:datatype xsd:double ;
-    sh:description "Geographical coordinates in decimal degrees and km of the line at the beginning of a tunnel."@en ;
-    sh:name "Tunnel kilometer start"@en ;
-    sh:nodeKind sh:Literal ;
-    sh:path era:tunnelKilometerStart ;
-    sh:pattern "(\\+|-)?([0-9]+(\\.[0-9]*)?|\\.[0-9]+)([Ee](\\+|-)?[0-9]+)?|(\\+|-)?INF|NaN" .
-
 <https://astrea.linkeddata.es/shapes#ec2a530dc3d0c86489f9e5fb56deec6c> a sh:PropertyShape ;
     rdfs:label "Maximum locomotives coupled"@en,
         "Maximum number of trainsets or locomotives coupled together in multiple operation."@en ;
@@ -4284,19 +4502,6 @@ In https://eur-lex.europa.eu/eli/reg_impl/2019/773/oj 3.3.7 Conditions applying 
     sh:path era:magneticBrakePrevention ;
     sh:pattern "true|false|0|1" .
 
-<https://astrea.linkeddata.es/shapes#f01da1adf07d6895e34556f51e859a3a> a sh:PropertyShape ;
-    rdfs:label """Distance measured in kilometers from the origin of a national railway line.
-In https://eur-lex.europa.eu/eli/reg_impl/2019/773/oj 2.2.2 Principal locations (stations, yards, junctions, freight terminals) and their position relative to the line."""@en,
-        "Kilometer"@en ;
-    rdfs:isDefinedBy era: ;
-    sh:datatype xsd:double ;
-    sh:description """Distance measured in kilometers from the origin of a national railway line.
-In https://eur-lex.europa.eu/eli/reg_impl/2019/773/oj 2.2.2 Principal locations (stations, yards, junctions, freight terminals) and their position relative to the line."""@en ;
-    sh:name "Kilometer"@en ;
-    sh:nodeKind sh:Literal ;
-    sh:path era:kilometer ;
-    sh:pattern "(\\+|-)?([0-9]+(\\.[0-9]*)?|\\.[0-9]+)([Ee](\\+|-)?[0-9]+)?|(\\+|-)?INF|NaN" .
-
 <https://astrea.linkeddata.es/shapes#f135fc8abe9afe655f4a461c37092dc0> a sh:PropertyShape ;
     rdfs:label """Deprecated according to the ammendment to the Regulation (EU) 2019/777.TSI compliance of Ferromagnetic characteristics of wheel material required. The allowed values for this property belong to the SKOS Concept Scheme http://data.europa.eu/949/concepts/tsi-compliances/TSICompliances.
 
@@ -4319,19 +4524,6 @@ The concept scheme is temporarily non-deferenceable."""@en ;
     sh:path <http://www.opengis.net/ont/geosparql#hasMetricVolume> ;
     sh:pattern "(\\+|-)?([0-9]+(\\.[0-9]*)?|\\.[0-9]+)([Ee](\\+|-)?[0-9]+)?|(\\+|-)?INF|NaN" .
 
-<https://astrea.linkeddata.es/shapes#f346ed97745fa7ab0d58ba62aea03aaf> a sh:PropertyShape ;
-    rdfs:label """Part of the system separation info of a track that shows the length of the system separation in metres.
-The system separation info is the Indication of required several information on system separation."""@en,
-        "System separation info length"@en ;
-    rdfs:isDefinedBy era: ;
-    sh:datatype xsd:integer ;
-    sh:description """Part of the system separation info of a track that shows the length of the system separation in metres.
-The system separation info is the Indication of required several information on system separation."""@en ;
-    sh:name "System separation info length"@en ;
-    sh:nodeKind sh:Literal ;
-    sh:path era:systemSeparationInfoLength ;
-    sh:pattern "[\\-+]?[0-9]+" .
-
 <https://astrea.linkeddata.es/shapes#f3f033f14f78dfbdd4106b4ab53051b7> a sh:PropertyShape ;
     rdfs:label "Pass-by noise level"@en,
         "Pass-by noise level given in dB(A)."@en ;
@@ -4342,19 +4534,6 @@ The system separation info is the Indication of required several information on 
     sh:nodeKind sh:Literal ;
     sh:path era:passByNoiseLevel ;
     sh:pattern "(\\+|-)?([0-9]+(\\.[0-9]*)?|\\.[0-9]+)([Ee](\\+|-)?[0-9]+)?|(\\+|-)?INF|NaN" .
-
-<https://astrea.linkeddata.es/shapes#f4fb6a8693fcef866058ce6a1d2c15a6> a sh:PropertyShape ;
-    rdfs:label "Existence of walkways"@en,
-        """Indication of existence of walkways.
-In https://eur-lex.europa.eu/eli/reg_impl/2019/773/oj 3.2.3 Tunnels: location, name, length, specific information such as the existence of walkways and points of safe egress as well as the location of safe areas where evacuation of passengers may take place; fire safety categorisation"""@en ;
-    rdfs:isDefinedBy era: ;
-    sh:datatype xsd:boolean ;
-    sh:description """Indication of existence of walkways.
-In https://eur-lex.europa.eu/eli/reg_impl/2019/773/oj 3.2.3 Tunnels: location, name, length, specific information such as the existence of walkways and points of safe egress as well as the location of safe areas where evacuation of passengers may take place; fire safety categorisation"""@en ;
-    sh:name "Existence of walkways"@en ;
-    sh:nodeKind sh:Literal ;
-    sh:path era:hasWalkway ;
-    sh:pattern "true|false|0|1" .
 
 <https://astrea.linkeddata.es/shapes#f514b2278f597221d6e03e4e02078f4b> a sh:PropertyShape ;
     rdfs:label "Catenary max rated current"@en,
@@ -4469,6 +4648,9 @@ The allowed values for this property belong to the SKOS Concept Scheme http://da
     sh:name "Non coded restrictions"@en ;
     sh:path era:nonCodedRestrictions ;
     sh:pattern ".*" .
+
+<http://mapping.example.com/map_eu-country_000/shape7899> a sh:NodeShape ;
+    sh:nodeKind sh:Literal .
 
 <http://mapping.example.com/map_link-sol-to-operational-point_000/shape> a sh:NodeShape ;
     sh:nodeKind sh:IRI ;
@@ -4912,17 +5094,6 @@ Applicable if trackside HABD is not TSI compliant, identification of trackside h
     sh:maxCount 1 ;
     sh:name "Nominal track gauge"@en ;
     sh:path era:wheelSetGauge .
-
-<https://astrea.linkeddata.es/shapes#39a5378300d8c19a18c203a7af501fae> a sh:PropertyShape ;
-    rdfs:label "Determines the position of the topological object B in a relation. The allowed values for this property belong to the SKOS Concept Scheme http://data.europa.eu/949/concepts/relation-positions/RelationPositions."@en,
-        "Position on B"@en ;
-    rdfs:isDefinedBy era: ;
-    rdfs:seeAlso <https://rsm-evolution.org/220927_RSM/EARoot/EA2/EA2/EA291.html> ;
-    sh:class <http://www.w3.org/2004/02/skos/core#Concept> ;
-    sh:description "Determines the position of the topological object B in a relation. The allowed values for this property belong to the SKOS Concept Scheme http://data.europa.eu/949/concepts/relation-positions/RelationPositions."@en ;
-    sh:name "Position on B"@en ;
-    sh:nodeKind sh:BlankNodeOrIRI ;
-    sh:path era:positionOnB .
 
 <https://astrea.linkeddata.es/shapes#3fec82b896780b9006a9dc87f2832b20> a sh:PropertyShape ;
     rdfs:label "Hot axle box detector direction"@en,
@@ -5455,16 +5626,6 @@ If the trackside does not provide Track Conditions, the driver will need to be i
     sh:nodeKind sh:BlankNodeOrIRI ;
     sh:path era:osmClass .
 
-<https://astrea.linkeddata.es/shapes#8416512abf54ca24dc2bb2559b302a8f> a sh:PropertyShape ;
-    rdfs:label "Indication of types of train detection systems installed. The allowed values for this property belong to the SKOS Concept Scheme http://data.europa.eu/949/concepts/train-detection/TrainDetectionSystems"@en,
-        "Type of train detection system"@en ;
-    rdfs:isDefinedBy era: ;
-    sh:class <http://www.w3.org/2004/02/skos/core#Concept> ;
-    sh:description "Indication of types of train detection systems installed. The allowed values for this property belong to the SKOS Concept Scheme http://data.europa.eu/949/concepts/train-detection/TrainDetectionSystems"@en ;
-    sh:name "Type of train detection system"@en ;
-    sh:nodeKind sh:BlankNodeOrIRI ;
-    sh:path era:trainDetectionSystemType .
-
 <https://astrea.linkeddata.es/shapes#84ae23ef45fdd4ef1d25140533601154> a sh:PropertyShape ;
     rdfs:label """Indication of limitations on the use of eddy current brakes. The allowed values for this property belong to the SKOS Concept Scheme http://data.europa.eu/949/concepts/eddy-current-braking/EddyCurrentBraking
 This property has been modified to be a RINF parameter (its eratvIndex is deleted). It is treated as a SKOS by RINF and as a boolean by ERATV. A new ERATV datatype property has been defined, eddyCurrentBrakingFitted with boolean values.
@@ -5610,17 +5771,6 @@ The allowed values for this property belong to a SKOS Concept Scheme."""@en ;
     sh:name "Reasons for which an ETCS Radio Block Center can reject a train"@en ;
     sh:nodeKind sh:BlankNodeOrIRI ;
     sh:path era:reasonsEtcsRadioBlockCenterReject .
-
-<https://astrea.linkeddata.es/shapes#952e70fa7b1c5de776327a4207709af1> a sh:PropertyShape ;
-    rdfs:label "Determines the position of the topological object A in a relation. The allowed values for this property belong to the SKOS Concept Scheme http://data.europa.eu/949/concepts/relation-positions/RelationPositions."@en,
-        "Position on A"@en ;
-    rdfs:isDefinedBy era: ;
-    rdfs:seeAlso <https://rsm-evolution.org/220927_RSM/EARoot/EA2/EA2/EA291.html> ;
-    sh:class <http://www.w3.org/2004/02/skos/core#Concept> ;
-    sh:description "Determines the position of the topological object A in a relation. The allowed values for this property belong to the SKOS Concept Scheme http://data.europa.eu/949/concepts/relation-positions/RelationPositions."@en ;
-    sh:name "Position on A"@en ;
-    sh:nodeKind sh:BlankNodeOrIRI ;
-    sh:path era:positionOnA .
 
 <https://astrea.linkeddata.es/shapes#95860c0bd6b328525bb4a6ca30eb52e1> a sh:PropertyShape ;
     rdfs:label "Deprecated according to the ammendment to the Regulation (EU) 2019/777. However, the parameter remains as it is also an ERATV parameter. Indication of maximum permitted distance between two consecutive axles in case of TSI non-compliance, given in millimetres."@en,
@@ -6167,16 +6317,6 @@ According to the specification referenced in Appendix A-1, index [C]."""@en ;
     sh:path era:gaugingTransversalDocument ;
     sh:pattern "^(([^:/?#]+):)?(//([^/?#]*))?([^?#]*)(\\?([^#]*))?(#(.*))?" .
 
-<https://astrea.linkeddata.es/shapes#d91d1dbd1b12b68d790a488d42101abc> a sh:PropertyShape ;
-    rdfs:label "Indicates the navigation possibilities between two related topological objects. The allowed values for this property belong to the SKOS Concept Scheme http://data.europa.eu/949/concepts/navigabilities/Navigabilities."@en,
-        "Navigability"@en ;
-    rdfs:isDefinedBy era: ;
-    sh:class <http://www.w3.org/2004/02/skos/core#Concept> ;
-    sh:description "Indicates the navigation possibilities between two related topological objects. The allowed values for this property belong to the SKOS Concept Scheme http://data.europa.eu/949/concepts/navigabilities/Navigabilities."@en ;
-    sh:name "Navigability"@en ;
-    sh:nodeKind sh:BlankNodeOrIRI ;
-    sh:path era:navigability .
-
 <https://astrea.linkeddata.es/shapes#d99785917388ad99a43670e14bcabaf1> a sh:PropertyShape ;
     rdfs:label "Existence of level crossings"@en,
         "Indication whether level crossings (including pedestrian track crossing) exist on the section of line."@en ;
@@ -6399,6 +6539,21 @@ In https://www.era.europa.eu/sites/default/files/filesystem/ertms/ccs_tsi_annex_
     sh:path era:switchRadioSystem ;
     sh:pattern "true|false|0|1" .
 
+<http://mapping.example.com/map_eu-country_000/shape1870> a sh:NodeShape ;
+    sh:nodeKind sh:Literal .
+
+<https://astrea.linkeddata.es/shapes#0031ca67940043b21691665188393b89> a sh:PropertyShape ;
+    rdfs:label """Categorisation how a passenger train with a fire on board will continue to operate for a defined time period. The allowed values for this property belong to the SKOS Concept Scheme http://data.europa.eu/949/concepts/rolling-stock-fire/Categories.
+In https://eur-lex.europa.eu/eli/reg_impl/2019/773/oj 3.2.3 Tunnels: location, name, length, specific information such as the existence of walkways and points of safe egress as well as the location of safe areas where evacuation of passengers may take place; fire safety categorisation."""@en,
+        "Fire category of rolling stock required"@en ;
+    rdfs:isDefinedBy era: ;
+    sh:class <http://www.w3.org/2004/02/skos/core#Concept> ;
+    sh:description """Categorisation how a passenger train with a fire on board will continue to operate for a defined time period. The allowed values for this property belong to the SKOS Concept Scheme http://data.europa.eu/949/concepts/rolling-stock-fire/Categories.
+In https://eur-lex.europa.eu/eli/reg_impl/2019/773/oj 3.2.3 Tunnels: location, name, length, specific information such as the existence of walkways and points of safe egress as well as the location of safe areas where evacuation of passengers may take place; fire safety categorisation."""@en ;
+    sh:maxCount 1 ;
+    sh:name "Fire category of rolling stock required"@en ;
+    sh:path era:rollingStockFireCategory .
+
 <https://astrea.linkeddata.es/shapes#01ed9f28cac5529dac386d0f4f9bc3e0> a sh:PropertyShape ;
     rdfs:label "Maximum unguided length of fixed obtuse crossings is based on a minimum wheel diameter in service expressed in millimetres."@en,
         "Minimum wheel diameter for fixed obtuse crossings"@en ;
@@ -6436,6 +6591,28 @@ This change was rolled back, RINF index was again added."""@en ;
     sh:name "Rail inclination"@en ;
     sh:path era:railInclination .
 
+<https://astrea.linkeddata.es/shapes#0656ac282b233613a4e97b1158fddeae> a sh:PropertyShape ;
+    rdfs:label "EC declaration of verification for tunnel (SRT)"@en,
+        "Unique number for EC declarations in accordance with Commission Implementing Regulation (EU) 2019/250."@en ;
+    rdfs:isDefinedBy era: ;
+    sh:datatype xsd:string ;
+    sh:description "Unique number for EC declarations in accordance with Commission Implementing Regulation (EU) 2019/250."@en ;
+    sh:name "EC declaration of verification for tunnel (SRT)"@en ;
+    sh:nodeKind sh:Literal ;
+    sh:path era:verificationSRT ;
+    sh:pattern ".*" .
+
+<https://astrea.linkeddata.es/shapes#0b2d02f63fe8fa74f0d26578a31ba47c> a sh:PropertyShape ;
+    rdfs:label "EI declaration of demonstration for tunnel (SRT)"@en,
+        "Unique number for EI declarations following the same format requirements as specified for EC declarations in Annex VII of Commission Implementing Regulation (EU) 2019/250."@en ;
+    rdfs:isDefinedBy era: ;
+    sh:datatype xsd:string ;
+    sh:description "Unique number for EI declarations following the same format requirements as specified for EC declarations in Annex VII of Commission Implementing Regulation (EU) 2019/250."@en ;
+    sh:name "EI declaration of demonstration for tunnel (SRT)"@en ;
+    sh:nodeKind sh:Literal ;
+    sh:path era:demonstrationSRT ;
+    sh:pattern ".*" .
+
 <https://astrea.linkeddata.es/shapes#129fd08e2db8267b2e3495804a860bcc> a sh:PropertyShape ;
     rdfs:label "Indication of the part of the trans-European network the line belongs to. The allowed values for this property belong to the SKOS Concept Scheme http://data.europa.eu/949/concepts/ten-classifications/TENClassifications."@en,
         "TEN classification (of track, of platform, of siding)"@en ;
@@ -6445,6 +6622,17 @@ This change was rolled back, RINF index was again added."""@en ;
     sh:name "TEN classification (of track, of platform, of siding)"@en ;
     sh:nodeKind sh:BlankNodeOrIRI ;
     sh:path era:tenClassification .
+
+<https://astrea.linkeddata.es/shapes#35bc8290150c8a0250f4f34f722c8b93> a sh:PropertyShape ;
+    rdfs:label "Categorisation how a passenger train with a fire on board will continue to operate for a defined time period — according to national rules if they exist"@en,
+        "National fire category of rolling stock required"@en ;
+    rdfs:isDefinedBy era: ;
+    sh:datatype xsd:string ;
+    sh:description "Categorisation how a passenger train with a fire on board will continue to operate for a defined time period — according to national rules if they exist"@en ;
+    sh:maxCount 1 ;
+    sh:name "National fire category of rolling stock required"@en ;
+    sh:path era:nationalRollingStockFireCategory ;
+    sh:pattern ".*" .
 
 <https://astrea.linkeddata.es/shapes#36805ec2e4ba661eb4f64236f10cd83b> a sh:PropertyShape ;
     rdfs:label "Indication of which contact strip materials are permitted to be used. The allowed values for this property belong to the SKOS Concept Scheme http://data.europa.eu/949/concepts/contact-strip-materials/ContactStripMaterials"@en,
@@ -6522,6 +6710,18 @@ The allowed values for this property belong to the SKOS Concept Scheme http://da
     sh:path era:minimumContactWireHeight ;
     sh:pattern "(\\+|-)?([0-9]+(\\.[0-9]*)?|\\.[0-9]+)([Ee](\\+|-)?[0-9]+)?|(\\+|-)?INF|NaN" .
 
+<https://astrea.linkeddata.es/shapes#5edb4f6431854ddaab351570295387ff> a sh:PropertyShape ;
+    rdfs:label """Relates a tunnel with a special area or location.
+In https://eur-lex.europa.eu/eli/reg_impl/2019/773/oj 3.2.3 Tunnels: location, name, length, specific information such as the existence of walkways and points of safe egress as well as the location of safe areas where evacuation of passengers may take place; fire safety categorisation."""@en,
+        "Special tunnel area"@en ;
+    rdfs:isDefinedBy "http://data.europa.eu/949/" ;
+    sh:class era:SpecialTunnelArea ;
+    sh:description """Relates a tunnel with a special area or location.
+In https://eur-lex.europa.eu/eli/reg_impl/2019/773/oj 3.2.3 Tunnels: location, name, length, specific information such as the existence of walkways and points of safe egress as well as the location of safe areas where evacuation of passengers may take place; fire safety categorisation."""@en ;
+    sh:name "Special tunnel area"@en ;
+    sh:nodeKind sh:BlankNodeOrIRI ;
+    sh:path era:specialTunnelArea .
+
 <https://astrea.linkeddata.es/shapes#606b8f0ee3d7872312f95e1967980f5d> a sh:PropertyShape ;
     rdfs:label """Indication of radio legacy systems installed. The allowed values for this property belong to the SKOS Concept Scheme http://data.europa.eu/949/concepts/legacy-radio-systems/LegacyRadioSystems
 In https://eur-lex.europa.eu/eli/reg_impl/2019/773/oj 3.2.8 Type of track to train radio equipment."""@en,
@@ -6534,6 +6734,28 @@ In https://eur-lex.europa.eu/eli/reg_impl/2019/773/oj 3.2.8 Type of track to tra
     sh:nodeKind sh:BlankNodeOrIRI ;
     sh:path era:legacyRadioSystem .
 
+<https://astrea.linkeddata.es/shapes#67dd7330e4cb98b732edcfe008cc96fa> a sh:PropertyShape ;
+    rdfs:label "Diesel or other thermal traction allowed"@en,
+        "Indication whether it is allowed to use diesel or other thermal traction in the tunnel."@en ;
+    rdfs:isDefinedBy era: ;
+    sh:datatype xsd:boolean ;
+    sh:description "Indication whether it is allowed to use diesel or other thermal traction in the tunnel."@en ;
+    sh:maxCount 1 ;
+    sh:name "Diesel or other thermal traction allowed"@en ;
+    sh:path era:dieselThermalAllowed ;
+    sh:pattern "true|false|0|1" .
+
+<https://astrea.linkeddata.es/shapes#68dd1c953f64a4d5ff3ac672fc7e5efb> a sh:PropertyShape ;
+    rdfs:label "Compliance of the tunnel with INF TSI"@en,
+        "Compliance of the tunnel with INF TSI at the maximum permitted speed."@en ;
+    rdfs:isDefinedBy era: ;
+    sh:datatype xsd:boolean ;
+    sh:description "Compliance of the tunnel with INF TSI at the maximum permitted speed."@en ;
+    sh:maxCount 1 ;
+    sh:name "Compliance of the tunnel with INF TSI"@en ;
+    sh:path era:complianceInfTsi ;
+    sh:pattern "true|false|0|1" .
+
 <https://astrea.linkeddata.es/shapes#714faa4183e4f3ee90fd8287b8372bb5> a sh:PropertyShape ;
     rdfs:label "Minimum tempertaure allowed for unrestricted operation access, according to European standard."@en,
         "Temperature range (minimum)"@en ;
@@ -6544,6 +6766,41 @@ In https://eur-lex.europa.eu/eli/reg_impl/2019/773/oj 3.2.8 Type of track to tra
     sh:nodeKind sh:Literal ;
     sh:path era:minimumTemperature ;
     sh:pattern "[\\-+]?[0-9]+" .
+
+<https://astrea.linkeddata.es/shapes#7b7b6d85a40968cea0b3b84493d6d607> a sh:PropertyShape ;
+    rdfs:label "Cross section area"@en,
+        "Smallest cross section area in square metres of the tunnel."@en ;
+    rdfs:isDefinedBy era: ;
+    sh:datatype xsd:integer ;
+    sh:description "Smallest cross section area in square metres of the tunnel."@en ;
+    sh:maxCount 1 ;
+    sh:name "Cross section area"@en ;
+    sh:path era:crossSectionArea ;
+    sh:pattern "[\\-+]?[0-9]+" .
+
+<https://astrea.linkeddata.es/shapes#81d0cb2dd5f77220b27950d99568e0c8> a sh:PropertyShape ;
+    rdfs:label "Electronic document available from the IM stored by the Agency with precise description of the clearance gauge and geometry of the tunnel."@en,
+        "Reference to a document available from the IM with precise description of the tunnel"@en ;
+    rdfs:isDefinedBy era: ;
+    sh:datatype xsd:anyURI ;
+    sh:description "Electronic document available from the IM stored by the Agency with precise description of the clearance gauge and geometry of the tunnel."@en ;
+    sh:name "Reference to a document available from the IM with precise description of the tunnel"@en ;
+    sh:nodeKind sh:Literal ;
+    sh:path era:tunnelDocRef ;
+    sh:pattern "^(([^:/?#]+):)?(//([^/?#]*))?([^?#]*)(\\?([^#]*))?(#(.*))?" .
+
+<https://astrea.linkeddata.es/shapes#a98e230dd1563e655c9911b9d14a30e4> a sh:PropertyShape ;
+    rdfs:label "Existence of evacuation and rescue points"@en,
+        """Indication of existence of evacuation and rescue points.
+In https://eur-lex.europa.eu/eli/reg_impl/2019/773/oj 3.2.3 Tunnels: location, name, length, specific information such as the existence of walkways and points of safe egress as well as the location of safe areas where evacuation of passengers may take place; fire safety categorisation."""@en ;
+    rdfs:isDefinedBy era: ;
+    sh:datatype xsd:boolean ;
+    sh:description """Indication of existence of evacuation and rescue points.
+In https://eur-lex.europa.eu/eli/reg_impl/2019/773/oj 3.2.3 Tunnels: location, name, length, specific information such as the existence of walkways and points of safe egress as well as the location of safe areas where evacuation of passengers may take place; fire safety categorisation."""@en ;
+    sh:name "Existence of evacuation and rescue points"@en ;
+    sh:nodeKind sh:Literal ;
+    sh:path era:hasEvacuationAndRescuePoints ;
+    sh:pattern "true|false|0|1" .
 
 <https://astrea.linkeddata.es/shapes#b1f8734c70c0f5e24a0e1abaf4b024c6> a sh:PropertyShape ;
     rdfs:label "Documents regarding the rules or restrictions of a strictly local nature available by the IM"@en,
@@ -6590,6 +6847,52 @@ In https://eur-lex.europa.eu/eli/reg_impl/2019/773/oj 3.3.8 Maximum current at s
     sh:path era:maxCurrentStandstillPantograph ;
     sh:pattern "(\\+|-)?([0-9]+(\\.[0-9]*)?|\\.[0-9]+)([Ee](\\+|-)?[0-9]+)?|(\\+|-)?INF|NaN" .
 
+<https://astrea.linkeddata.es/shapes#cdab201c7a44be0ab4b70d042aab2e2d> a sh:PropertyShape ;
+    rdfs:label "Existence of emergency plan"@en,
+        "Indication whether emergency plan exists."@en ;
+    rdfs:isDefinedBy era: ;
+    sh:datatype xsd:boolean ;
+    sh:description "Indication whether emergency plan exists."@en ;
+    sh:maxCount 1 ;
+    sh:name "Existence of emergency plan"@en ;
+    sh:path era:hasEmergencyPlan ;
+    sh:pattern "true|false|0|1" .
+
+<https://astrea.linkeddata.es/shapes#ea7daa0a30c2fbd86d703a706905eb00> a sh:PropertyShape ;
+    rdfs:label "Kilometer of the line at the end of a tunnel."@en,
+        "Tunnel kilometer end"@en ;
+    rdfs:isDefinedBy era: ;
+    sh:datatype xsd:double ;
+    sh:description "Kilometer of the line at the end of a tunnel."@en ;
+    sh:name "Tunnel kilometer end"@en ;
+    sh:nodeKind sh:Literal ;
+    sh:path era:tunnelKilometerEnd ;
+    sh:pattern "(\\+|-)?([0-9]+(\\.[0-9]*)?|\\.[0-9]+)([Ee](\\+|-)?[0-9]+)?|(\\+|-)?INF|NaN" .
+
+<https://astrea.linkeddata.es/shapes#eac2e6f84f17869280c5559214cc867e> a sh:PropertyShape ;
+    rdfs:label "Geographical coordinates in decimal degrees and km of the line at the beginning of a tunnel."@en,
+        "Tunnel kilometer start"@en ;
+    rdfs:isDefinedBy era: ;
+    sh:datatype xsd:double ;
+    sh:description "Geographical coordinates in decimal degrees and km of the line at the beginning of a tunnel."@en ;
+    sh:name "Tunnel kilometer start"@en ;
+    sh:nodeKind sh:Literal ;
+    sh:path era:tunnelKilometerStart ;
+    sh:pattern "(\\+|-)?([0-9]+(\\.[0-9]*)?|\\.[0-9]+)([Ee](\\+|-)?[0-9]+)?|(\\+|-)?INF|NaN" .
+
+<https://astrea.linkeddata.es/shapes#f4fb6a8693fcef866058ce6a1d2c15a6> a sh:PropertyShape ;
+    rdfs:label "Existence of walkways"@en,
+        """Indication of existence of walkways.
+In https://eur-lex.europa.eu/eli/reg_impl/2019/773/oj 3.2.3 Tunnels: location, name, length, specific information such as the existence of walkways and points of safe egress as well as the location of safe areas where evacuation of passengers may take place; fire safety categorisation"""@en ;
+    rdfs:isDefinedBy era: ;
+    sh:datatype xsd:boolean ;
+    sh:description """Indication of existence of walkways.
+In https://eur-lex.europa.eu/eli/reg_impl/2019/773/oj 3.2.3 Tunnels: location, name, length, specific information such as the existence of walkways and points of safe egress as well as the location of safe areas where evacuation of passengers may take place; fire safety categorisation"""@en ;
+    sh:name "Existence of walkways"@en ;
+    sh:nodeKind sh:Literal ;
+    sh:path era:hasWalkway ;
+    sh:pattern "true|false|0|1" .
+
 <https://astrea.linkeddata.es/shapes#f5ac2abaeb92573a1e148e219a4e49ab> a sh:PropertyShape ;
     rdfs:label "Maximum tempertaure allowed for unrestricted operation access, according to European standard."@en,
         "Temperature range (maximum)"@en ;
@@ -6621,4 +6924,555 @@ In https://eur-lex.europa.eu/eli/reg_impl/2019/773/oj 3.3.8 Maximum current at s
     sh:name "Minimum radius of horizontal curve"@en ;
     sh:path era:minimumHorizontalRadius ;
     sh:pattern "[\\-+]?[0-9]+" .
+
+_:n39e382d0a4d84db7a4d6cc6af3766da0b7 sh:datatype xsd:double ;
+    sh:nodeKind sh:Literal ;
+    sh:path era:length .
+
+_:n69ad29c8487e41b78526cf15132f74d0b10 rdfs:label "Position on A"@en ;
+    rdfs:isDefinedBy era: ;
+    rdfs:seeAlso <https://rsm-evolution.org/220927_RSM/EARoot/EA2/EA2/EA291.html> ;
+    sh:class <http://www.w3.org/2004/02/skos/core#Concept> ;
+    sh:description "Determines the position of the topological object A in a relation. The allowed values for this property belong to the SKOS Concept Scheme http://data.europa.eu/949/concepts/relation-positions/RelationPositions."@en ;
+    sh:name "Position on A"@en ;
+    sh:nodeKind sh:IRI ;
+    sh:path era:positionOnA .
+
+_:n69ad29c8487e41b78526cf15132f74d0b11 rdfs:label "Position on B"@en ;
+    rdfs:isDefinedBy era: ;
+    rdfs:seeAlso <https://rsm-evolution.org/220927_RSM/EARoot/EA2/EA2/EA291.html> ;
+    sh:class <http://www.w3.org/2004/02/skos/core#Concept> ;
+    sh:description "Determines the position of the topological object B in a relation. The allowed values for this property belong to the SKOS Concept Scheme http://data.europa.eu/949/concepts/relation-positions/RelationPositions."@en ;
+    sh:name "Position on B"@en ;
+    sh:nodeKind sh:IRI ;
+    sh:path era:positionOnB .
+
+_:n69ad29c8487e41b78526cf15132f74d0b13 rdfs:label "Navigability"@en ;
+    rdfs:isDefinedBy era: ;
+    sh:class <http://www.w3.org/2004/02/skos/core#Concept> ;
+    sh:description "Indicates the navigation possibilities between two related topological objects. The allowed values for this property belong to the SKOS Concept Scheme http://data.europa.eu/949/concepts/navigabilities/Navigabilities."@en ;
+    sh:name "Navigability"@en ;
+    sh:nodeKind sh:IRI ;
+    sh:path era:navigability .
+
+_:n69ad29c8487e41b78526cf15132f74d0b14 rdfs:label "Position on B"@en ;
+    rdfs:isDefinedBy era: ;
+    rdfs:seeAlso <https://rsm-evolution.org/220927_RSM/EARoot/EA2/EA2/EA291.html> ;
+    sh:class <http://www.w3.org/2004/02/skos/core#Concept> ;
+    sh:description "Determines the position of the topological object B in a relation. The allowed values for this property belong to the SKOS Concept Scheme http://data.europa.eu/949/concepts/relation-positions/RelationPositions."@en ;
+    sh:name "Position on B"@en ;
+    sh:nodeKind sh:IRI ;
+    sh:path era:positionOnB .
+
+_:n69ad29c8487e41b78526cf15132f74d0b15 rdfs:label "Position on A"@en ;
+    rdfs:isDefinedBy era: ;
+    rdfs:seeAlso <https://rsm-evolution.org/220927_RSM/EARoot/EA2/EA2/EA291.html> ;
+    sh:class <http://www.w3.org/2004/02/skos/core#Concept> ;
+    sh:description "Determines the position of the topological object A in a relation. The allowed values for this property belong to the SKOS Concept Scheme http://data.europa.eu/949/concepts/relation-positions/RelationPositions."@en ;
+    sh:name "Position on A"@en ;
+    sh:nodeKind sh:IRI ;
+    sh:path era:positionOnA .
+
+_:n69ad29c8487e41b78526cf15132f74d0b16 rdfs:label "Position on A"@en ;
+    rdfs:isDefinedBy era: ;
+    rdfs:seeAlso <https://rsm-evolution.org/220927_RSM/EARoot/EA2/EA2/EA291.html> ;
+    sh:class <http://www.w3.org/2004/02/skos/core#Concept> ;
+    sh:description "Determines the position of the topological object A in a relation. The allowed values for this property belong to the SKOS Concept Scheme http://data.europa.eu/949/concepts/relation-positions/RelationPositions."@en ;
+    sh:name "Position on A"@en ;
+    sh:nodeKind sh:IRI ;
+    sh:path era:positionOnA .
+
+_:n69ad29c8487e41b78526cf15132f74d0b18 rdfs:label "Navigability"@en ;
+    rdfs:isDefinedBy era: ;
+    sh:class <http://www.w3.org/2004/02/skos/core#Concept> ;
+    sh:description "Indicates the navigation possibilities between two related topological objects. The allowed values for this property belong to the SKOS Concept Scheme http://data.europa.eu/949/concepts/navigabilities/Navigabilities."@en ;
+    sh:name "Navigability"@en ;
+    sh:nodeKind sh:IRI ;
+    sh:path era:navigability .
+
+_:n69ad29c8487e41b78526cf15132f74d0b19 rdfs:label "Navigability"@en ;
+    rdfs:isDefinedBy era: ;
+    sh:class <http://www.w3.org/2004/02/skos/core#Concept> ;
+    sh:description "Indicates the navigation possibilities between two related topological objects. The allowed values for this property belong to the SKOS Concept Scheme http://data.europa.eu/949/concepts/navigabilities/Navigabilities."@en ;
+    sh:name "Navigability"@en ;
+    sh:nodeKind sh:IRI ;
+    sh:path era:navigability .
+
+_:n69ad29c8487e41b78526cf15132f74d0b2 rdfs:label "Navigability"@en ;
+    rdfs:isDefinedBy era: ;
+    sh:class <http://www.w3.org/2004/02/skos/core#Concept> ;
+    sh:description "Indicates the navigation possibilities between two related topological objects. The allowed values for this property belong to the SKOS Concept Scheme http://data.europa.eu/949/concepts/navigabilities/Navigabilities."@en ;
+    sh:name "Navigability"@en ;
+    sh:nodeKind sh:IRI ;
+    sh:path era:navigability .
+
+_:n69ad29c8487e41b78526cf15132f74d0b20 rdfs:label "Navigability"@en ;
+    rdfs:isDefinedBy era: ;
+    sh:class <http://www.w3.org/2004/02/skos/core#Concept> ;
+    sh:description "Indicates the navigation possibilities between two related topological objects. The allowed values for this property belong to the SKOS Concept Scheme http://data.europa.eu/949/concepts/navigabilities/Navigabilities."@en ;
+    sh:name "Navigability"@en ;
+    sh:nodeKind sh:IRI ;
+    sh:path era:navigability .
+
+_:n69ad29c8487e41b78526cf15132f74d0b21 rdfs:label "Position on A"@en ;
+    rdfs:isDefinedBy era: ;
+    rdfs:seeAlso <https://rsm-evolution.org/220927_RSM/EARoot/EA2/EA2/EA291.html> ;
+    sh:class <http://www.w3.org/2004/02/skos/core#Concept> ;
+    sh:description "Determines the position of the topological object A in a relation. The allowed values for this property belong to the SKOS Concept Scheme http://data.europa.eu/949/concepts/relation-positions/RelationPositions."@en ;
+    sh:name "Position on A"@en ;
+    sh:nodeKind sh:IRI ;
+    sh:path era:positionOnA .
+
+_:n69ad29c8487e41b78526cf15132f74d0b22 rdfs:label "Navigability"@en ;
+    rdfs:isDefinedBy era: ;
+    sh:class <http://www.w3.org/2004/02/skos/core#Concept> ;
+    sh:description "Indicates the navigation possibilities between two related topological objects. The allowed values for this property belong to the SKOS Concept Scheme http://data.europa.eu/949/concepts/navigabilities/Navigabilities."@en ;
+    sh:name "Navigability"@en ;
+    sh:nodeKind sh:IRI ;
+    sh:path era:navigability .
+
+_:n69ad29c8487e41b78526cf15132f74d0b23 rdfs:label "Navigability"@en ;
+    rdfs:isDefinedBy era: ;
+    sh:class <http://www.w3.org/2004/02/skos/core#Concept> ;
+    sh:description "Indicates the navigation possibilities between two related topological objects. The allowed values for this property belong to the SKOS Concept Scheme http://data.europa.eu/949/concepts/navigabilities/Navigabilities."@en ;
+    sh:name "Navigability"@en ;
+    sh:nodeKind sh:IRI ;
+    sh:path era:navigability .
+
+_:n69ad29c8487e41b78526cf15132f74d0b24 rdfs:label "Position on B"@en ;
+    rdfs:isDefinedBy era: ;
+    rdfs:seeAlso <https://rsm-evolution.org/220927_RSM/EARoot/EA2/EA2/EA291.html> ;
+    sh:class <http://www.w3.org/2004/02/skos/core#Concept> ;
+    sh:description "Determines the position of the topological object B in a relation. The allowed values for this property belong to the SKOS Concept Scheme http://data.europa.eu/949/concepts/relation-positions/RelationPositions."@en ;
+    sh:name "Position on B"@en ;
+    sh:nodeKind sh:IRI ;
+    sh:path era:positionOnB .
+
+_:n69ad29c8487e41b78526cf15132f74d0b25 rdfs:label "Navigability"@en ;
+    rdfs:isDefinedBy era: ;
+    sh:class <http://www.w3.org/2004/02/skos/core#Concept> ;
+    sh:description "Indicates the navigation possibilities between two related topological objects. The allowed values for this property belong to the SKOS Concept Scheme http://data.europa.eu/949/concepts/navigabilities/Navigabilities."@en ;
+    sh:name "Navigability"@en ;
+    sh:nodeKind sh:IRI ;
+    sh:path era:navigability .
+
+_:n69ad29c8487e41b78526cf15132f74d0b27 rdfs:label "Position on B"@en ;
+    rdfs:isDefinedBy era: ;
+    rdfs:seeAlso <https://rsm-evolution.org/220927_RSM/EARoot/EA2/EA2/EA291.html> ;
+    sh:class <http://www.w3.org/2004/02/skos/core#Concept> ;
+    sh:description "Determines the position of the topological object B in a relation. The allowed values for this property belong to the SKOS Concept Scheme http://data.europa.eu/949/concepts/relation-positions/RelationPositions."@en ;
+    sh:name "Position on B"@en ;
+    sh:nodeKind sh:IRI ;
+    sh:path era:positionOnB .
+
+_:n69ad29c8487e41b78526cf15132f74d0b28 rdfs:label "Navigability"@en ;
+    rdfs:isDefinedBy era: ;
+    sh:class <http://www.w3.org/2004/02/skos/core#Concept> ;
+    sh:description "Indicates the navigation possibilities between two related topological objects. The allowed values for this property belong to the SKOS Concept Scheme http://data.europa.eu/949/concepts/navigabilities/Navigabilities."@en ;
+    sh:name "Navigability"@en ;
+    sh:nodeKind sh:IRI ;
+    sh:path era:navigability .
+
+_:n69ad29c8487e41b78526cf15132f74d0b3 rdfs:label "Position on A"@en ;
+    rdfs:isDefinedBy era: ;
+    rdfs:seeAlso <https://rsm-evolution.org/220927_RSM/EARoot/EA2/EA2/EA291.html> ;
+    sh:class <http://www.w3.org/2004/02/skos/core#Concept> ;
+    sh:description "Determines the position of the topological object A in a relation. The allowed values for this property belong to the SKOS Concept Scheme http://data.europa.eu/949/concepts/relation-positions/RelationPositions."@en ;
+    sh:name "Position on A"@en ;
+    sh:nodeKind sh:IRI ;
+    sh:path era:positionOnA .
+
+_:n69ad29c8487e41b78526cf15132f74d0b30 rdfs:label "Position on A"@en ;
+    rdfs:isDefinedBy era: ;
+    rdfs:seeAlso <https://rsm-evolution.org/220927_RSM/EARoot/EA2/EA2/EA291.html> ;
+    sh:class <http://www.w3.org/2004/02/skos/core#Concept> ;
+    sh:description "Determines the position of the topological object A in a relation. The allowed values for this property belong to the SKOS Concept Scheme http://data.europa.eu/949/concepts/relation-positions/RelationPositions."@en ;
+    sh:name "Position on A"@en ;
+    sh:nodeKind sh:IRI ;
+    sh:path era:positionOnA .
+
+_:n69ad29c8487e41b78526cf15132f74d0b31 rdfs:label "Navigability"@en ;
+    rdfs:isDefinedBy era: ;
+    sh:class <http://www.w3.org/2004/02/skos/core#Concept> ;
+    sh:description "Indicates the navigation possibilities between two related topological objects. The allowed values for this property belong to the SKOS Concept Scheme http://data.europa.eu/949/concepts/navigabilities/Navigabilities."@en ;
+    sh:name "Navigability"@en ;
+    sh:nodeKind sh:IRI ;
+    sh:path era:navigability .
+
+_:n69ad29c8487e41b78526cf15132f74d0b32 rdfs:label "Navigability"@en ;
+    rdfs:isDefinedBy era: ;
+    sh:class <http://www.w3.org/2004/02/skos/core#Concept> ;
+    sh:description "Indicates the navigation possibilities between two related topological objects. The allowed values for this property belong to the SKOS Concept Scheme http://data.europa.eu/949/concepts/navigabilities/Navigabilities."@en ;
+    sh:name "Navigability"@en ;
+    sh:nodeKind sh:IRI ;
+    sh:path era:navigability .
+
+_:n69ad29c8487e41b78526cf15132f74d0b35 rdfs:label "Navigability"@en ;
+    rdfs:isDefinedBy era: ;
+    sh:class <http://www.w3.org/2004/02/skos/core#Concept> ;
+    sh:description "Indicates the navigation possibilities between two related topological objects. The allowed values for this property belong to the SKOS Concept Scheme http://data.europa.eu/949/concepts/navigabilities/Navigabilities."@en ;
+    sh:name "Navigability"@en ;
+    sh:nodeKind sh:IRI ;
+    sh:path era:navigability .
+
+_:n69ad29c8487e41b78526cf15132f74d0b36 rdfs:label "Navigability"@en ;
+    rdfs:isDefinedBy era: ;
+    sh:class <http://www.w3.org/2004/02/skos/core#Concept> ;
+    sh:description "Indicates the navigation possibilities between two related topological objects. The allowed values for this property belong to the SKOS Concept Scheme http://data.europa.eu/949/concepts/navigabilities/Navigabilities."@en ;
+    sh:name "Navigability"@en ;
+    sh:nodeKind sh:IRI ;
+    sh:path era:navigability .
+
+_:n69ad29c8487e41b78526cf15132f74d0b37 rdfs:label "Position on A"@en ;
+    rdfs:isDefinedBy era: ;
+    rdfs:seeAlso <https://rsm-evolution.org/220927_RSM/EARoot/EA2/EA2/EA291.html> ;
+    sh:class <http://www.w3.org/2004/02/skos/core#Concept> ;
+    sh:description "Determines the position of the topological object A in a relation. The allowed values for this property belong to the SKOS Concept Scheme http://data.europa.eu/949/concepts/relation-positions/RelationPositions."@en ;
+    sh:name "Position on A"@en ;
+    sh:nodeKind sh:IRI ;
+    sh:path era:positionOnA .
+
+_:n69ad29c8487e41b78526cf15132f74d0b38 rdfs:label "Position on A"@en ;
+    rdfs:isDefinedBy era: ;
+    rdfs:seeAlso <https://rsm-evolution.org/220927_RSM/EARoot/EA2/EA2/EA291.html> ;
+    sh:class <http://www.w3.org/2004/02/skos/core#Concept> ;
+    sh:description "Determines the position of the topological object A in a relation. The allowed values for this property belong to the SKOS Concept Scheme http://data.europa.eu/949/concepts/relation-positions/RelationPositions."@en ;
+    sh:name "Position on A"@en ;
+    sh:nodeKind sh:IRI ;
+    sh:path era:positionOnA .
+
+_:n69ad29c8487e41b78526cf15132f74d0b39 rdfs:label "Position on B"@en ;
+    rdfs:isDefinedBy era: ;
+    rdfs:seeAlso <https://rsm-evolution.org/220927_RSM/EARoot/EA2/EA2/EA291.html> ;
+    sh:class <http://www.w3.org/2004/02/skos/core#Concept> ;
+    sh:description "Determines the position of the topological object B in a relation. The allowed values for this property belong to the SKOS Concept Scheme http://data.europa.eu/949/concepts/relation-positions/RelationPositions."@en ;
+    sh:name "Position on B"@en ;
+    sh:nodeKind sh:IRI ;
+    sh:path era:positionOnB .
+
+_:n69ad29c8487e41b78526cf15132f74d0b40 rdfs:label "Position on B"@en ;
+    rdfs:isDefinedBy era: ;
+    rdfs:seeAlso <https://rsm-evolution.org/220927_RSM/EARoot/EA2/EA2/EA291.html> ;
+    sh:class <http://www.w3.org/2004/02/skos/core#Concept> ;
+    sh:description "Determines the position of the topological object B in a relation. The allowed values for this property belong to the SKOS Concept Scheme http://data.europa.eu/949/concepts/relation-positions/RelationPositions."@en ;
+    sh:name "Position on B"@en ;
+    sh:nodeKind sh:IRI ;
+    sh:path era:positionOnB .
+
+_:n69ad29c8487e41b78526cf15132f74d0b41 rdfs:label "Position on B"@en ;
+    rdfs:isDefinedBy era: ;
+    rdfs:seeAlso <https://rsm-evolution.org/220927_RSM/EARoot/EA2/EA2/EA291.html> ;
+    sh:class <http://www.w3.org/2004/02/skos/core#Concept> ;
+    sh:description "Determines the position of the topological object B in a relation. The allowed values for this property belong to the SKOS Concept Scheme http://data.europa.eu/949/concepts/relation-positions/RelationPositions."@en ;
+    sh:name "Position on B"@en ;
+    sh:nodeKind sh:IRI ;
+    sh:path era:positionOnB .
+
+_:n69ad29c8487e41b78526cf15132f74d0b43 rdfs:label "Navigability"@en ;
+    rdfs:isDefinedBy era: ;
+    sh:class <http://www.w3.org/2004/02/skos/core#Concept> ;
+    sh:description "Indicates the navigation possibilities between two related topological objects. The allowed values for this property belong to the SKOS Concept Scheme http://data.europa.eu/949/concepts/navigabilities/Navigabilities."@en ;
+    sh:name "Navigability"@en ;
+    sh:nodeKind sh:IRI ;
+    sh:path era:navigability .
+
+_:n69ad29c8487e41b78526cf15132f74d0b45 rdfs:label "Navigability"@en ;
+    rdfs:isDefinedBy era: ;
+    sh:class <http://www.w3.org/2004/02/skos/core#Concept> ;
+    sh:description "Indicates the navigation possibilities between two related topological objects. The allowed values for this property belong to the SKOS Concept Scheme http://data.europa.eu/949/concepts/navigabilities/Navigabilities."@en ;
+    sh:name "Navigability"@en ;
+    sh:nodeKind sh:IRI ;
+    sh:path era:navigability .
+
+_:n69ad29c8487e41b78526cf15132f74d0b46 rdfs:label "Position on A"@en ;
+    rdfs:isDefinedBy era: ;
+    rdfs:seeAlso <https://rsm-evolution.org/220927_RSM/EARoot/EA2/EA2/EA291.html> ;
+    sh:class <http://www.w3.org/2004/02/skos/core#Concept> ;
+    sh:description "Determines the position of the topological object A in a relation. The allowed values for this property belong to the SKOS Concept Scheme http://data.europa.eu/949/concepts/relation-positions/RelationPositions."@en ;
+    sh:name "Position on A"@en ;
+    sh:nodeKind sh:IRI ;
+    sh:path era:positionOnA .
+
+_:n69ad29c8487e41b78526cf15132f74d0b47 rdfs:label "Position on A"@en ;
+    rdfs:isDefinedBy era: ;
+    rdfs:seeAlso <https://rsm-evolution.org/220927_RSM/EARoot/EA2/EA2/EA291.html> ;
+    sh:class <http://www.w3.org/2004/02/skos/core#Concept> ;
+    sh:description "Determines the position of the topological object A in a relation. The allowed values for this property belong to the SKOS Concept Scheme http://data.europa.eu/949/concepts/relation-positions/RelationPositions."@en ;
+    sh:name "Position on A"@en ;
+    sh:nodeKind sh:IRI ;
+    sh:path era:positionOnA .
+
+_:n69ad29c8487e41b78526cf15132f74d0b48 rdfs:label "Navigability"@en ;
+    rdfs:isDefinedBy era: ;
+    sh:class <http://www.w3.org/2004/02/skos/core#Concept> ;
+    sh:description "Indicates the navigation possibilities between two related topological objects. The allowed values for this property belong to the SKOS Concept Scheme http://data.europa.eu/949/concepts/navigabilities/Navigabilities."@en ;
+    sh:name "Navigability"@en ;
+    sh:nodeKind sh:IRI ;
+    sh:path era:navigability .
+
+_:n69ad29c8487e41b78526cf15132f74d0b49 rdfs:label "Position on B"@en ;
+    rdfs:isDefinedBy era: ;
+    rdfs:seeAlso <https://rsm-evolution.org/220927_RSM/EARoot/EA2/EA2/EA291.html> ;
+    sh:class <http://www.w3.org/2004/02/skos/core#Concept> ;
+    sh:description "Determines the position of the topological object B in a relation. The allowed values for this property belong to the SKOS Concept Scheme http://data.europa.eu/949/concepts/relation-positions/RelationPositions."@en ;
+    sh:name "Position on B"@en ;
+    sh:nodeKind sh:IRI ;
+    sh:path era:positionOnB .
+
+_:n69ad29c8487e41b78526cf15132f74d0b5 rdfs:label "Navigability"@en ;
+    rdfs:isDefinedBy era: ;
+    sh:class <http://www.w3.org/2004/02/skos/core#Concept> ;
+    sh:description "Indicates the navigation possibilities between two related topological objects. The allowed values for this property belong to the SKOS Concept Scheme http://data.europa.eu/949/concepts/navigabilities/Navigabilities."@en ;
+    sh:name "Navigability"@en ;
+    sh:nodeKind sh:IRI ;
+    sh:path era:navigability .
+
+_:n69ad29c8487e41b78526cf15132f74d0b50 rdfs:label "Navigability"@en ;
+    rdfs:isDefinedBy era: ;
+    sh:class <http://www.w3.org/2004/02/skos/core#Concept> ;
+    sh:description "Indicates the navigation possibilities between two related topological objects. The allowed values for this property belong to the SKOS Concept Scheme http://data.europa.eu/949/concepts/navigabilities/Navigabilities."@en ;
+    sh:name "Navigability"@en ;
+    sh:nodeKind sh:IRI ;
+    sh:path era:navigability .
+
+_:n69ad29c8487e41b78526cf15132f74d0b51 rdfs:label "Position on B"@en ;
+    rdfs:isDefinedBy era: ;
+    rdfs:seeAlso <https://rsm-evolution.org/220927_RSM/EARoot/EA2/EA2/EA291.html> ;
+    sh:class <http://www.w3.org/2004/02/skos/core#Concept> ;
+    sh:description "Determines the position of the topological object B in a relation. The allowed values for this property belong to the SKOS Concept Scheme http://data.europa.eu/949/concepts/relation-positions/RelationPositions."@en ;
+    sh:name "Position on B"@en ;
+    sh:nodeKind sh:IRI ;
+    sh:path era:positionOnB .
+
+_:n69ad29c8487e41b78526cf15132f74d0b52 rdfs:label "Navigability"@en ;
+    rdfs:isDefinedBy era: ;
+    sh:class <http://www.w3.org/2004/02/skos/core#Concept> ;
+    sh:description "Indicates the navigation possibilities between two related topological objects. The allowed values for this property belong to the SKOS Concept Scheme http://data.europa.eu/949/concepts/navigabilities/Navigabilities."@en ;
+    sh:name "Navigability"@en ;
+    sh:nodeKind sh:IRI ;
+    sh:path era:navigability .
+
+_:n69ad29c8487e41b78526cf15132f74d0b53 rdfs:label "Position on A"@en ;
+    rdfs:isDefinedBy era: ;
+    rdfs:seeAlso <https://rsm-evolution.org/220927_RSM/EARoot/EA2/EA2/EA291.html> ;
+    sh:class <http://www.w3.org/2004/02/skos/core#Concept> ;
+    sh:description "Determines the position of the topological object A in a relation. The allowed values for this property belong to the SKOS Concept Scheme http://data.europa.eu/949/concepts/relation-positions/RelationPositions."@en ;
+    sh:name "Position on A"@en ;
+    sh:nodeKind sh:IRI ;
+    sh:path era:positionOnA .
+
+_:n69ad29c8487e41b78526cf15132f74d0b54 rdfs:label "Position on B"@en ;
+    rdfs:isDefinedBy era: ;
+    rdfs:seeAlso <https://rsm-evolution.org/220927_RSM/EARoot/EA2/EA2/EA291.html> ;
+    sh:class <http://www.w3.org/2004/02/skos/core#Concept> ;
+    sh:description "Determines the position of the topological object B in a relation. The allowed values for this property belong to the SKOS Concept Scheme http://data.europa.eu/949/concepts/relation-positions/RelationPositions."@en ;
+    sh:name "Position on B"@en ;
+    sh:nodeKind sh:IRI ;
+    sh:path era:positionOnB .
+
+_:n69ad29c8487e41b78526cf15132f74d0b55 rdfs:label "Navigability"@en ;
+    rdfs:isDefinedBy era: ;
+    sh:class <http://www.w3.org/2004/02/skos/core#Concept> ;
+    sh:description "Indicates the navigation possibilities between two related topological objects. The allowed values for this property belong to the SKOS Concept Scheme http://data.europa.eu/949/concepts/navigabilities/Navigabilities."@en ;
+    sh:name "Navigability"@en ;
+    sh:nodeKind sh:IRI ;
+    sh:path era:navigability .
+
+_:n69ad29c8487e41b78526cf15132f74d0b56 rdfs:label "Position on A"@en ;
+    rdfs:isDefinedBy era: ;
+    rdfs:seeAlso <https://rsm-evolution.org/220927_RSM/EARoot/EA2/EA2/EA291.html> ;
+    sh:class <http://www.w3.org/2004/02/skos/core#Concept> ;
+    sh:description "Determines the position of the topological object A in a relation. The allowed values for this property belong to the SKOS Concept Scheme http://data.europa.eu/949/concepts/relation-positions/RelationPositions."@en ;
+    sh:name "Position on A"@en ;
+    sh:nodeKind sh:IRI ;
+    sh:path era:positionOnA .
+
+_:n69ad29c8487e41b78526cf15132f74d0b58 rdfs:label "Navigability"@en ;
+    rdfs:isDefinedBy era: ;
+    sh:class <http://www.w3.org/2004/02/skos/core#Concept> ;
+    sh:description "Indicates the navigation possibilities between two related topological objects. The allowed values for this property belong to the SKOS Concept Scheme http://data.europa.eu/949/concepts/navigabilities/Navigabilities."@en ;
+    sh:name "Navigability"@en ;
+    sh:nodeKind sh:IRI ;
+    sh:path era:navigability .
+
+_:n69ad29c8487e41b78526cf15132f74d0b6 rdfs:label "Position on B"@en ;
+    rdfs:isDefinedBy era: ;
+    rdfs:seeAlso <https://rsm-evolution.org/220927_RSM/EARoot/EA2/EA2/EA291.html> ;
+    sh:class <http://www.w3.org/2004/02/skos/core#Concept> ;
+    sh:description "Determines the position of the topological object B in a relation. The allowed values for this property belong to the SKOS Concept Scheme http://data.europa.eu/949/concepts/relation-positions/RelationPositions."@en ;
+    sh:name "Position on B"@en ;
+    sh:nodeKind sh:IRI ;
+    sh:path era:positionOnB .
+
+_:n69ad29c8487e41b78526cf15132f74d0b60 rdfs:label "Navigability"@en ;
+    rdfs:isDefinedBy era: ;
+    sh:class <http://www.w3.org/2004/02/skos/core#Concept> ;
+    sh:description "Indicates the navigation possibilities between two related topological objects. The allowed values for this property belong to the SKOS Concept Scheme http://data.europa.eu/949/concepts/navigabilities/Navigabilities."@en ;
+    sh:name "Navigability"@en ;
+    sh:nodeKind sh:IRI ;
+    sh:path era:navigability .
+
+_:n69ad29c8487e41b78526cf15132f74d0b61 rdfs:label "Navigability"@en ;
+    rdfs:isDefinedBy era: ;
+    sh:class <http://www.w3.org/2004/02/skos/core#Concept> ;
+    sh:description "Indicates the navigation possibilities between two related topological objects. The allowed values for this property belong to the SKOS Concept Scheme http://data.europa.eu/949/concepts/navigabilities/Navigabilities."@en ;
+    sh:name "Navigability"@en ;
+    sh:nodeKind sh:IRI ;
+    sh:path era:navigability .
+
+_:n69ad29c8487e41b78526cf15132f74d0b62 rdfs:label "Position on B"@en ;
+    rdfs:isDefinedBy era: ;
+    rdfs:seeAlso <https://rsm-evolution.org/220927_RSM/EARoot/EA2/EA2/EA291.html> ;
+    sh:class <http://www.w3.org/2004/02/skos/core#Concept> ;
+    sh:description "Determines the position of the topological object B in a relation. The allowed values for this property belong to the SKOS Concept Scheme http://data.europa.eu/949/concepts/relation-positions/RelationPositions."@en ;
+    sh:name "Position on B"@en ;
+    sh:nodeKind sh:IRI ;
+    sh:path era:positionOnB .
+
+_:n69ad29c8487e41b78526cf15132f74d0b65 rdfs:label "Position on B"@en ;
+    rdfs:isDefinedBy era: ;
+    rdfs:seeAlso <https://rsm-evolution.org/220927_RSM/EARoot/EA2/EA2/EA291.html> ;
+    sh:class <http://www.w3.org/2004/02/skos/core#Concept> ;
+    sh:description "Determines the position of the topological object B in a relation. The allowed values for this property belong to the SKOS Concept Scheme http://data.europa.eu/949/concepts/relation-positions/RelationPositions."@en ;
+    sh:name "Position on B"@en ;
+    sh:nodeKind sh:IRI ;
+    sh:path era:positionOnB .
+
+_:n69ad29c8487e41b78526cf15132f74d0b66 rdfs:label "Position on A"@en ;
+    rdfs:isDefinedBy era: ;
+    rdfs:seeAlso <https://rsm-evolution.org/220927_RSM/EARoot/EA2/EA2/EA291.html> ;
+    sh:class <http://www.w3.org/2004/02/skos/core#Concept> ;
+    sh:description "Determines the position of the topological object A in a relation. The allowed values for this property belong to the SKOS Concept Scheme http://data.europa.eu/949/concepts/relation-positions/RelationPositions."@en ;
+    sh:name "Position on A"@en ;
+    sh:nodeKind sh:IRI ;
+    sh:path era:positionOnA .
+
+_:n69ad29c8487e41b78526cf15132f74d0b67 rdfs:label "Navigability"@en ;
+    rdfs:isDefinedBy era: ;
+    sh:class <http://www.w3.org/2004/02/skos/core#Concept> ;
+    sh:description "Indicates the navigation possibilities between two related topological objects. The allowed values for this property belong to the SKOS Concept Scheme http://data.europa.eu/949/concepts/navigabilities/Navigabilities."@en ;
+    sh:name "Navigability"@en ;
+    sh:nodeKind sh:IRI ;
+    sh:path era:navigability .
+
+_:n69ad29c8487e41b78526cf15132f74d0b68 rdfs:label "Navigability"@en ;
+    rdfs:isDefinedBy era: ;
+    sh:class <http://www.w3.org/2004/02/skos/core#Concept> ;
+    sh:description "Indicates the navigation possibilities between two related topological objects. The allowed values for this property belong to the SKOS Concept Scheme http://data.europa.eu/949/concepts/navigabilities/Navigabilities."@en ;
+    sh:name "Navigability"@en ;
+    sh:nodeKind sh:IRI ;
+    sh:path era:navigability .
+
+_:n69ad29c8487e41b78526cf15132f74d0b69 rdfs:label "Position on A"@en ;
+    rdfs:isDefinedBy era: ;
+    rdfs:seeAlso <https://rsm-evolution.org/220927_RSM/EARoot/EA2/EA2/EA291.html> ;
+    sh:class <http://www.w3.org/2004/02/skos/core#Concept> ;
+    sh:description "Determines the position of the topological object A in a relation. The allowed values for this property belong to the SKOS Concept Scheme http://data.europa.eu/949/concepts/relation-positions/RelationPositions."@en ;
+    sh:name "Position on A"@en ;
+    sh:nodeKind sh:IRI ;
+    sh:path era:positionOnA .
+
+_:n69ad29c8487e41b78526cf15132f74d0b7 rdfs:label "Navigability"@en ;
+    rdfs:isDefinedBy era: ;
+    sh:class <http://www.w3.org/2004/02/skos/core#Concept> ;
+    sh:description "Indicates the navigation possibilities between two related topological objects. The allowed values for this property belong to the SKOS Concept Scheme http://data.europa.eu/949/concepts/navigabilities/Navigabilities."@en ;
+    sh:name "Navigability"@en ;
+    sh:nodeKind sh:IRI ;
+    sh:path era:navigability .
+
+_:n69ad29c8487e41b78526cf15132f74d0b70 rdfs:label "Navigability"@en ;
+    rdfs:isDefinedBy era: ;
+    sh:class <http://www.w3.org/2004/02/skos/core#Concept> ;
+    sh:description "Indicates the navigation possibilities between two related topological objects. The allowed values for this property belong to the SKOS Concept Scheme http://data.europa.eu/949/concepts/navigabilities/Navigabilities."@en ;
+    sh:name "Navigability"@en ;
+    sh:nodeKind sh:IRI ;
+    sh:path era:navigability .
+
+_:n69ad29c8487e41b78526cf15132f74d0b71 rdfs:label "Navigability"@en ;
+    rdfs:isDefinedBy era: ;
+    sh:class <http://www.w3.org/2004/02/skos/core#Concept> ;
+    sh:description "Indicates the navigation possibilities between two related topological objects. The allowed values for this property belong to the SKOS Concept Scheme http://data.europa.eu/949/concepts/navigabilities/Navigabilities."@en ;
+    sh:name "Navigability"@en ;
+    sh:nodeKind sh:IRI ;
+    sh:path era:navigability .
+
+_:n69ad29c8487e41b78526cf15132f74d0b72 rdfs:label "Position on B"@en ;
+    rdfs:isDefinedBy era: ;
+    rdfs:seeAlso <https://rsm-evolution.org/220927_RSM/EARoot/EA2/EA2/EA291.html> ;
+    sh:class <http://www.w3.org/2004/02/skos/core#Concept> ;
+    sh:description "Determines the position of the topological object B in a relation. The allowed values for this property belong to the SKOS Concept Scheme http://data.europa.eu/949/concepts/relation-positions/RelationPositions."@en ;
+    sh:name "Position on B"@en ;
+    sh:nodeKind sh:IRI ;
+    sh:path era:positionOnB .
+
+_:n69ad29c8487e41b78526cf15132f74d0b73 rdfs:label "Position on B"@en ;
+    rdfs:isDefinedBy era: ;
+    rdfs:seeAlso <https://rsm-evolution.org/220927_RSM/EARoot/EA2/EA2/EA291.html> ;
+    sh:class <http://www.w3.org/2004/02/skos/core#Concept> ;
+    sh:description "Determines the position of the topological object B in a relation. The allowed values for this property belong to the SKOS Concept Scheme http://data.europa.eu/949/concepts/relation-positions/RelationPositions."@en ;
+    sh:name "Position on B"@en ;
+    sh:nodeKind sh:IRI ;
+    sh:path era:positionOnB .
+
+_:n69ad29c8487e41b78526cf15132f74d0b74 rdfs:label "Navigability"@en ;
+    rdfs:isDefinedBy era: ;
+    sh:class <http://www.w3.org/2004/02/skos/core#Concept> ;
+    sh:description "Indicates the navigation possibilities between two related topological objects. The allowed values for this property belong to the SKOS Concept Scheme http://data.europa.eu/949/concepts/navigabilities/Navigabilities."@en ;
+    sh:name "Navigability"@en ;
+    sh:nodeKind sh:IRI ;
+    sh:path era:navigability .
+
+_:n69ad29c8487e41b78526cf15132f74d0b75 rdfs:label "Navigability"@en ;
+    rdfs:isDefinedBy era: ;
+    sh:class <http://www.w3.org/2004/02/skos/core#Concept> ;
+    sh:description "Indicates the navigation possibilities between two related topological objects. The allowed values for this property belong to the SKOS Concept Scheme http://data.europa.eu/949/concepts/navigabilities/Navigabilities."@en ;
+    sh:name "Navigability"@en ;
+    sh:nodeKind sh:IRI ;
+    sh:path era:navigability .
+
+_:n69ad29c8487e41b78526cf15132f74d0b76 rdfs:label "Navigability"@en ;
+    rdfs:isDefinedBy era: ;
+    sh:class <http://www.w3.org/2004/02/skos/core#Concept> ;
+    sh:description "Indicates the navigation possibilities between two related topological objects. The allowed values for this property belong to the SKOS Concept Scheme http://data.europa.eu/949/concepts/navigabilities/Navigabilities."@en ;
+    sh:name "Navigability"@en ;
+    sh:nodeKind sh:IRI ;
+    sh:path era:navigability .
+
+_:n69ad29c8487e41b78526cf15132f74d0b79 rdfs:label "Position on A"@en ;
+    rdfs:isDefinedBy era: ;
+    rdfs:seeAlso <https://rsm-evolution.org/220927_RSM/EARoot/EA2/EA2/EA291.html> ;
+    sh:class <http://www.w3.org/2004/02/skos/core#Concept> ;
+    sh:description "Determines the position of the topological object A in a relation. The allowed values for this property belong to the SKOS Concept Scheme http://data.europa.eu/949/concepts/relation-positions/RelationPositions."@en ;
+    sh:name "Position on A"@en ;
+    sh:nodeKind sh:IRI ;
+    sh:path era:positionOnA .
+
+_:n69ad29c8487e41b78526cf15132f74d0b8 rdfs:label "Position on B"@en ;
+    rdfs:isDefinedBy era: ;
+    rdfs:seeAlso <https://rsm-evolution.org/220927_RSM/EARoot/EA2/EA2/EA291.html> ;
+    sh:class <http://www.w3.org/2004/02/skos/core#Concept> ;
+    sh:description "Determines the position of the topological object B in a relation. The allowed values for this property belong to the SKOS Concept Scheme http://data.europa.eu/949/concepts/relation-positions/RelationPositions."@en ;
+    sh:name "Position on B"@en ;
+    sh:nodeKind sh:IRI ;
+    sh:path era:positionOnB .
+
+_:n69ad29c8487e41b78526cf15132f74d0b80 rdfs:label "Position on A"@en ;
+    rdfs:isDefinedBy era: ;
+    rdfs:seeAlso <https://rsm-evolution.org/220927_RSM/EARoot/EA2/EA2/EA291.html> ;
+    sh:class <http://www.w3.org/2004/02/skos/core#Concept> ;
+    sh:description "Determines the position of the topological object A in a relation. The allowed values for this property belong to the SKOS Concept Scheme http://data.europa.eu/949/concepts/relation-positions/RelationPositions."@en ;
+    sh:name "Position on A"@en ;
+    sh:nodeKind sh:IRI ;
+    sh:path era:positionOnA .
+
+_:n69ad29c8487e41b78526cf15132f74d0b9 rdfs:label "Navigability"@en ;
+    rdfs:isDefinedBy era: ;
+    sh:class <http://www.w3.org/2004/02/skos/core#Concept> ;
+    sh:description "Indicates the navigation possibilities between two related topological objects. The allowed values for this property belong to the SKOS Concept Scheme http://data.europa.eu/949/concepts/navigabilities/Navigabilities."@en ;
+    sh:name "Navigability"@en ;
+    sh:nodeKind sh:IRI ;
+    sh:path era:navigability .
+
+_:n9b5f271e62334f70830fdef36ed56465b22 sh:nodeKind sh:IRI ;
+    sh:path era:canonicalURI .
 

@@ -1,0 +1,20 @@
+@prefix era: <http://data.europa.eu/949/> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+
+<http://mapping.example.com/map_op-platform-not-applicable_000/shape> a sh:NodeShape ;
+    sh:nodeKind sh:IRI ;
+    sh:pattern "http://data.europa.eu/949/functionalInfrastructure/platforms/.*_.*" ;
+    sh:property [ sh:node <http://mapping.example.com/map_index-predicates_000/shape> ;
+            sh:nodeKind sh:IRI ;
+            sh:path era:notApplicable ] .
+
+<http://mapping.example.com/map_op-platform-not-yet-available_000/shape> a sh:NodeShape ;
+    sh:nodeKind sh:IRI ;
+    sh:pattern "http://data.europa.eu/949/functionalInfrastructure/platforms/.*_.*" ;
+    sh:property [ sh:node <http://mapping.example.com/map_index-predicates_000/shape> ;
+            sh:nodeKind sh:IRI ;
+            sh:path era:notYetAvailable ] .
+
+<http://mapping.example.com/map_index-predicates_000/shape> a sh:NodeShape ;
+    sh:nodeKind sh:Literal .
+

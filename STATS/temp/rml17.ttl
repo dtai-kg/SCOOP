@@ -1,0 +1,201 @@
+@prefix era: <http://data.europa.eu/949/> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+
+<http://mapping.example.com/map_net-relations-connectivity-table-1_000/shape> a sh:NodeShape ;
+    sh:nodeKind sh:IRI ;
+    sh:property [ sh:nodeKind sh:IRI ;
+            sh:path era:positionOnB ],
+        [ sh:nodeKind sh:IRI ;
+            sh:path era:navigability ],
+        [ sh:nodeKind sh:IRI ;
+            sh:path era:positionOnB ],
+        [ sh:nodeKind sh:IRI ;
+            sh:path era:navigability ],
+        [ sh:nodeKind sh:IRI ;
+            sh:path era:positionOnA ],
+        [ sh:nodeKind sh:IRI ;
+            sh:path era:elementA ],
+        [ sh:nodeKind sh:IRI ;
+            sh:path era:elementB ],
+        [ sh:nodeKind sh:IRI ;
+            sh:path era:navigability ],
+        [ sh:nodeKind sh:IRI ;
+            sh:path era:positionOnA ],
+        [ sh:nodeKind sh:IRI ;
+            sh:path era:navigability ] ;
+    sh:targetClass era:NetRelation .
+
+<http://mapping.example.com/map_net-relations-connectivity-table-2_000/shape> a sh:NodeShape ;
+    sh:nodeKind sh:IRI ;
+    sh:property [ sh:nodeKind sh:IRI ;
+            sh:path era:elementB ],
+        [ sh:nodeKind sh:IRI ;
+            sh:path era:navigability ],
+        [ sh:nodeKind sh:IRI ;
+            sh:path era:navigability ],
+        [ sh:nodeKind sh:IRI ;
+            sh:path era:positionOnB ],
+        [ sh:nodeKind sh:IRI ;
+            sh:path era:positionOnB ],
+        [ sh:nodeKind sh:IRI ;
+            sh:path era:elementA ],
+        [ sh:nodeKind sh:IRI ;
+            sh:path era:navigability ],
+        [ sh:nodeKind sh:IRI ;
+            sh:path era:positionOnA ],
+        [ sh:nodeKind sh:IRI ;
+            sh:path era:navigability ],
+        [ sh:nodeKind sh:IRI ;
+            sh:path era:positionOnA ] ;
+    sh:targetClass era:NetRelation .
+
+<http://mapping.example.com/map_net-relations-in-out-1_000/shape> a sh:NodeShape ;
+    sh:nodeKind sh:IRI ;
+    sh:pattern "http://data.europa.eu/949/topology/netRelations/.*_.*_.*_.*_.*_.*_.*_.*_.*_.*_.*" ;
+    sh:property [ sh:nodeKind sh:IRI ;
+            sh:path era:navigability ],
+        [ sh:nodeKind sh:IRI ;
+            sh:path era:navigability ],
+        [ sh:nodeKind sh:IRI ;
+            sh:path era:elementB ],
+        [ sh:nodeKind sh:IRI ;
+            sh:path era:positionOnA ],
+        [ sh:nodeKind sh:IRI ;
+            sh:path era:positionOnB ],
+        [ sh:nodeKind sh:IRI ;
+            sh:path era:elementA ],
+        [ sh:nodeKind sh:IRI ;
+            sh:path era:positionOnA ],
+        [ sh:nodeKind sh:IRI ;
+            sh:path era:positionOnB ],
+        [ sh:nodeKind sh:IRI ;
+            sh:path era:navigability ],
+        [ sh:nodeKind sh:IRI ;
+            sh:path era:navigability ] ;
+    sh:targetClass era:NetRelation .
+
+<http://mapping.example.com/map_net-relations-in-out-2_000/shape> a sh:NodeShape ;
+    sh:nodeKind sh:IRI ;
+    sh:pattern "http://data.europa.eu/949/topology/netRelations/.*_.*_.*_.*_.*_.*_.*_.*_.*_.*_.*" ;
+    sh:property [ sh:nodeKind sh:IRI ;
+            sh:path era:navigability ],
+        [ sh:nodeKind sh:IRI ;
+            sh:path era:navigability ],
+        [ sh:nodeKind sh:IRI ;
+            sh:path era:elementA ],
+        [ sh:nodeKind sh:IRI ;
+            sh:path era:elementB ],
+        [ sh:nodeKind sh:IRI ;
+            sh:path era:positionOnB ],
+        [ sh:nodeKind sh:IRI ;
+            sh:path era:positionOnA ],
+        [ sh:nodeKind sh:IRI ;
+            sh:path era:positionOnB ],
+        [ sh:nodeKind sh:IRI ;
+            sh:path era:navigability ],
+        [ sh:nodeKind sh:IRI ;
+            sh:path era:positionOnA ],
+        [ sh:nodeKind sh:IRI ;
+            sh:path era:navigability ] ;
+    sh:targetClass era:NetRelation .
+
+<http://mapping.example.com/map_net-relations-no-in-1_000/shape> a sh:NodeShape ;
+    sh:nodeKind sh:IRI ;
+    sh:pattern "http://data.europa.eu/949/topology/netRelations/.*_.*_.*_.*_.*_.*_.*_.*_.*_.*_.*" ;
+    sh:property [ sh:nodeKind sh:IRI ;
+            sh:path era:positionOnA ],
+        [ sh:nodeKind sh:IRI ;
+            sh:path era:elementB ],
+        [ sh:nodeKind sh:IRI ;
+            sh:path era:navigability ],
+        [ sh:nodeKind sh:IRI ;
+            sh:path era:positionOnB ],
+        [ sh:nodeKind sh:IRI ;
+            sh:path era:navigability ],
+        [ sh:nodeKind sh:IRI ;
+            sh:path era:navigability ],
+        [ sh:nodeKind sh:IRI ;
+            sh:path era:positionOnA ],
+        [ sh:nodeKind sh:IRI ;
+            sh:path era:elementA ],
+        [ sh:nodeKind sh:IRI ;
+            sh:path era:navigability ],
+        [ sh:nodeKind sh:IRI ;
+            sh:path era:positionOnB ] ;
+    sh:targetClass era:NetRelation .
+
+<http://mapping.example.com/map_net-relations-no-in-2_000/shape> a sh:NodeShape ;
+    sh:nodeKind sh:IRI ;
+    sh:pattern "http://data.europa.eu/949/topology/netRelations/.*_.*_.*_.*_.*_.*_.*_.*_.*_.*_.*" ;
+    sh:property [ sh:nodeKind sh:IRI ;
+            sh:path era:positionOnA ],
+        [ sh:nodeKind sh:IRI ;
+            sh:path era:navigability ],
+        [ sh:nodeKind sh:IRI ;
+            sh:path era:navigability ],
+        [ sh:nodeKind sh:IRI ;
+            sh:path era:navigability ],
+        [ sh:nodeKind sh:IRI ;
+            sh:path era:elementB ],
+        [ sh:nodeKind sh:IRI ;
+            sh:path era:positionOnB ],
+        [ sh:nodeKind sh:IRI ;
+            sh:path era:elementA ],
+        [ sh:nodeKind sh:IRI ;
+            sh:path era:navigability ],
+        [ sh:nodeKind sh:IRI ;
+            sh:path era:positionOnB ],
+        [ sh:nodeKind sh:IRI ;
+            sh:path era:positionOnA ] ;
+    sh:targetClass era:NetRelation .
+
+<http://mapping.example.com/map_net-relations-no-out-1_000/shape> a sh:NodeShape ;
+    sh:nodeKind sh:IRI ;
+    sh:pattern "http://data.europa.eu/949/topology/netRelations/.*_.*_.*_.*_.*_.*_.*_.*_.*_.*_.*" ;
+    sh:property [ sh:nodeKind sh:IRI ;
+            sh:path era:elementA ],
+        [ sh:nodeKind sh:IRI ;
+            sh:path era:positionOnB ],
+        [ sh:nodeKind sh:IRI ;
+            sh:path era:elementB ],
+        [ sh:nodeKind sh:IRI ;
+            sh:path era:navigability ],
+        [ sh:nodeKind sh:IRI ;
+            sh:path era:positionOnA ],
+        [ sh:nodeKind sh:IRI ;
+            sh:path era:navigability ],
+        [ sh:nodeKind sh:IRI ;
+            sh:path era:navigability ],
+        [ sh:nodeKind sh:IRI ;
+            sh:path era:positionOnA ],
+        [ sh:nodeKind sh:IRI ;
+            sh:path era:navigability ],
+        [ sh:nodeKind sh:IRI ;
+            sh:path era:positionOnB ] ;
+    sh:targetClass era:NetRelation .
+
+<http://mapping.example.com/map_net-relations-no-out-2_000/shape> a sh:NodeShape ;
+    sh:nodeKind sh:IRI ;
+    sh:pattern "http://data.europa.eu/949/topology/netRelations/.*_.*_.*_.*_.*_.*_.*_.*_.*_.*_.*" ;
+    sh:property [ sh:nodeKind sh:IRI ;
+            sh:path era:positionOnA ],
+        [ sh:nodeKind sh:IRI ;
+            sh:path era:elementA ],
+        [ sh:nodeKind sh:IRI ;
+            sh:path era:navigability ],
+        [ sh:nodeKind sh:IRI ;
+            sh:path era:positionOnA ],
+        [ sh:nodeKind sh:IRI ;
+            sh:path era:navigability ],
+        [ sh:nodeKind sh:IRI ;
+            sh:path era:elementB ],
+        [ sh:nodeKind sh:IRI ;
+            sh:path era:navigability ],
+        [ sh:nodeKind sh:IRI ;
+            sh:path era:positionOnB ],
+        [ sh:nodeKind sh:IRI ;
+            sh:path era:navigability ],
+        [ sh:nodeKind sh:IRI ;
+            sh:path era:positionOnB ] ;
+    sh:targetClass era:NetRelation .
+

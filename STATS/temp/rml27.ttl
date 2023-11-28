@@ -1,0 +1,280 @@
+@prefix era: <http://data.europa.eu/949/> .
+@prefix geosparql: <http://www.opengis.net/ont/geosparql#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix wgs: <http://www.w3.org/2003/01/geo/wgs84_pos#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<http://mapping.example.com/map_compliance-inf-tsi_000/shape> a sh:NodeShape ;
+    sh:nodeKind sh:IRI ;
+    sh:pattern "http://data.europa.eu/949/functionalInfrastructure/tunnels/.*_.*.*_.*.*" ;
+    sh:property [ sh:datatype xsd:boolean ;
+            sh:nodeKind sh:Literal ;
+            sh:path era:complianceInfTsi ],
+        [ sh:datatype xsd:boolean ;
+            sh:nodeKind sh:Literal ;
+            sh:path era:complianceInfTsi ] .
+
+<http://mapping.example.com/map_cross-section-area_000/shape> a sh:NodeShape ;
+    sh:nodeKind sh:IRI ;
+    sh:pattern "http://data.europa.eu/949/functionalInfrastructure/tunnels/.*_.*.*_.*.*" ;
+    sh:property [ sh:datatype xsd:integer ;
+            sh:nodeKind sh:Literal ;
+            sh:path era:crossSectionArea ] .
+
+<http://mapping.example.com/map_demonstration_000/shape> a sh:NodeShape ;
+    sh:nodeKind sh:IRI ;
+    sh:pattern "http://data.europa.eu/949/functionalInfrastructure/tunnels/.*_.*.*_.*.*" ;
+    sh:property [ sh:nodeKind sh:Literal ;
+            sh:path era:demonstrationSRT ] .
+
+<http://mapping.example.com/map_document-reference_000/shape> a sh:NodeShape ;
+    sh:nodeKind sh:IRI ;
+    sh:pattern "http://data.europa.eu/949/functionalInfrastructure/tunnels/.*_.*.*_.*.*" ;
+    sh:property [ sh:nodeKind sh:Literal ;
+            sh:path era:tunnelDocRef ] .
+
+<http://mapping.example.com/map_emergency-plan_000/shape> a sh:NodeShape ;
+    sh:nodeKind sh:IRI ;
+    sh:pattern "http://data.europa.eu/949/functionalInfrastructure/tunnels/.*_.*.*_.*.*" ;
+    sh:property [ sh:datatype xsd:boolean ;
+            sh:nodeKind sh:Literal ;
+            sh:path era:hasEmergencyPlan ],
+        [ sh:datatype xsd:boolean ;
+            sh:nodeKind sh:Literal ;
+            sh:path era:hasEmergencyPlan ] .
+
+<http://mapping.example.com/map_end-location_000/shape> a sh:NodeShape ;
+    sh:nodeKind sh:IRI ;
+    sh:pattern "http://data.europa.eu/949/locations/.*/.*" ;
+    sh:property [ sh:datatype geosparql:wktLiteral ;
+            sh:nodeKind sh:Literal ;
+            sh:path geosparql:asWKT ],
+        [ sh:datatype xsd:double ;
+            sh:nodeKind sh:Literal ;
+            sh:path wgs:lat ],
+        [ sh:datatype xsd:double ;
+            sh:nodeKind sh:Literal ;
+            sh:path wgs:long ] ;
+    sh:targetClass geosparql:Geometry,
+        wgs:Point .
+
+<http://mapping.example.com/map_length_000/shape> a sh:NodeShape ;
+    sh:nodeKind sh:IRI ;
+    sh:pattern "http://data.europa.eu/949/functionalInfrastructure/tunnels/.*_.*.*_.*.*" ;
+    sh:property [ sh:datatype xsd:double ;
+            sh:nodeKind sh:Literal ;
+            sh:path era:length ] .
+
+<http://mapping.example.com/map_op-track-tunnel-reference_000/shape> a sh:NodeShape ;
+    sh:nodeKind sh:IRI ;
+    sh:pattern "http://data.europa.eu/949/functionalInfrastructure/tracks/.*_.*" ;
+    sh:property [ sh:nodeKind sh:IRI ;
+            sh:path era:passesThroughTunnel ] .
+
+<http://mapping.example.com/map_op-track-tunnel_000/shape> a sh:NodeShape ;
+    sh:nodeKind sh:IRI ;
+    sh:pattern "http://data.europa.eu/949/functionalInfrastructure/tunnels/.*_.*_.*" ;
+    sh:property [ sh:nodeKind sh:Literal ;
+            sh:path era:imCode ],
+        [ sh:nodeKind sh:Literal ;
+            sh:path rdfs:label ],
+        [ sh:datatype xsd:date ;
+            sh:nodeKind sh:Literal ;
+            sh:path era:validityEndDate ],
+        [ sh:nodeKind sh:Literal ;
+            sh:path era:tunnelIdentification ],
+        [ sh:node <http://mapping.example.com/map_eu-country_000/shape> ;
+            sh:nodeKind sh:IRI ;
+            sh:path era:inCountry ],
+        [ sh:datatype xsd:date ;
+            sh:nodeKind sh:Literal ;
+            sh:path era:validityStartDate ] ;
+    sh:targetClass era:Tunnel .
+
+<http://mapping.example.com/map_opt-demonstration_000/shape> a sh:NodeShape ;
+    sh:nodeKind sh:IRI ;
+    sh:pattern "http://data.europa.eu/949/functionalInfrastructure/tunnels/.*_.*_.*" ;
+    sh:property [ sh:nodeKind sh:Literal ;
+            sh:path era:demonstrationSRT ] .
+
+<http://mapping.example.com/map_opt-diesel-therm-allowed_000/shape> a sh:NodeShape ;
+    sh:nodeKind sh:IRI ;
+    sh:pattern "http://data.europa.eu/949/functionalInfrastructure/tunnels/.*_.*_.*" ;
+    sh:property [ sh:datatype xsd:boolean ;
+            sh:nodeKind sh:Literal ;
+            sh:path era:dieselThermalAllowed ],
+        [ sh:datatype xsd:boolean ;
+            sh:nodeKind sh:Literal ;
+            sh:path era:dieselThermalAllowed ] .
+
+<http://mapping.example.com/map_opt-emergency-plan_000/shape> a sh:NodeShape ;
+    sh:nodeKind sh:IRI ;
+    sh:pattern "http://data.europa.eu/949/functionalInfrastructure/tunnels/.*_.*_.*" ;
+    sh:property [ sh:datatype xsd:boolean ;
+            sh:nodeKind sh:Literal ;
+            sh:path era:hasEmergencyPlan ],
+        [ sh:datatype xsd:boolean ;
+            sh:nodeKind sh:Literal ;
+            sh:path era:hasEmergencyPlan ] .
+
+<http://mapping.example.com/map_opt-length_000/shape> a sh:NodeShape ;
+    sh:nodeKind sh:IRI ;
+    sh:pattern "http://data.europa.eu/949/functionalInfrastructure/tunnels/.*_.*_.*" ;
+    sh:property [ sh:datatype xsd:double ;
+            sh:nodeKind sh:Literal ;
+            sh:path era:length ] .
+
+<http://mapping.example.com/map_opt-required-national-rolling-stock-fire-category_000/shape> a sh:NodeShape ;
+    sh:nodeKind sh:IRI ;
+    sh:pattern "http://data.europa.eu/949/functionalInfrastructure/tunnels/.*_.*_.*" ;
+    sh:property [ sh:nodeKind sh:Literal ;
+            sh:path era:nationalRollingStockFireCategory ] .
+
+<http://mapping.example.com/map_opt-required-rolling-stock-fire-category_000/shape> a sh:NodeShape ;
+    sh:nodeKind sh:IRI ;
+    sh:pattern "http://data.europa.eu/949/functionalInfrastructure/tunnels/.*_.*_.*" ;
+    sh:property [ sh:nodeKind sh:IRI ;
+            sh:path era:rollingStockFireCategory ] .
+
+<http://mapping.example.com/map_opt-verification_000/shape> a sh:NodeShape ;
+    sh:nodeKind sh:IRI ;
+    sh:pattern "http://data.europa.eu/949/functionalInfrastructure/tunnels/.*_.*_.*" ;
+    sh:property [ sh:nodeKind sh:Literal ;
+            sh:path era:verificationSRT ] .
+
+<http://mapping.example.com/map_required-rolling-stock-fire-category_000/shape> a sh:NodeShape ;
+    sh:nodeKind sh:IRI ;
+    sh:pattern "http://data.europa.eu/949/functionalInfrastructure/tunnels/.*_.*.*_.*.*" ;
+    sh:property [ sh:nodeKind sh:IRI ;
+            sh:path era:rollingStockFireCategory ] .
+
+<http://mapping.example.com/map_siding-demonstration_000/shape> a sh:NodeShape ;
+    sh:nodeKind sh:IRI ;
+    sh:pattern "http://data.europa.eu/949/functionalInfrastructure/tunnels/.*_.*_.*" ;
+    sh:property [ sh:nodeKind sh:Literal ;
+            sh:path era:demonstrationSRT ] .
+
+<http://mapping.example.com/map_siding-emergency-plan_000/shape> a sh:NodeShape ;
+    sh:nodeKind sh:IRI ;
+    sh:pattern "http://data.europa.eu/949/functionalInfrastructure/tunnels/.*_.*_.*" ;
+    sh:property [ sh:datatype xsd:boolean ;
+            sh:nodeKind sh:Literal ;
+            sh:path era:hasEmergencyPlan ],
+        [ sh:datatype xsd:boolean ;
+            sh:nodeKind sh:Literal ;
+            sh:path era:hasEmergencyPlan ] .
+
+<http://mapping.example.com/map_siding-length_000/shape> a sh:NodeShape ;
+    sh:nodeKind sh:IRI ;
+    sh:pattern "http://data.europa.eu/949/functionalInfrastructure/tunnels/.*_.*_.*" ;
+    sh:property [ sh:datatype xsd:double ;
+            sh:nodeKind sh:Literal ;
+            sh:path era:length ] .
+
+<http://mapping.example.com/map_siding-required-national-rolling-stock-fire-category_000/shape> a sh:NodeShape ;
+    sh:nodeKind sh:IRI ;
+    sh:pattern "http://data.europa.eu/949/functionalInfrastructure/tunnels/.*_.*_.*" ;
+    sh:property [ sh:nodeKind sh:Literal ;
+            sh:path era:nationalRollingStockFireCategory ] .
+
+<http://mapping.example.com/map_siding-required-rolling-stock-fire-category_000/shape> a sh:NodeShape ;
+    sh:nodeKind sh:IRI ;
+    sh:pattern "http://data.europa.eu/949/functionalInfrastructure/tunnels/.*_.*_.*" ;
+    sh:property [ sh:nodeKind sh:IRI ;
+            sh:path era:rollingStockFireCategory ] .
+
+<http://mapping.example.com/map_siding-tunnel-reference_000/shape> a sh:NodeShape ;
+    sh:nodeKind sh:IRI ;
+    sh:pattern "http://data.europa.eu/949/functionalInfrastructure/sidings/.*_.*" ;
+    sh:property [ sh:nodeKind sh:IRI ;
+            sh:path era:passesThroughTunnel ] .
+
+<http://mapping.example.com/map_siding-tunnel_000/shape> a sh:NodeShape ;
+    sh:nodeKind sh:IRI ;
+    sh:pattern "http://data.europa.eu/949/functionalInfrastructure/tunnels/.*_.*_.*" ;
+    sh:property [ sh:nodeKind sh:Literal ;
+            sh:path era:imCode ],
+        [ sh:datatype xsd:date ;
+            sh:nodeKind sh:Literal ;
+            sh:path era:validityEndDate ],
+        [ sh:nodeKind sh:Literal ;
+            sh:path era:tunnelIdentification ],
+        [ sh:datatype xsd:date ;
+            sh:nodeKind sh:Literal ;
+            sh:path era:validityStartDate ],
+        [ sh:node <http://mapping.example.com/map_eu-country_000/shape> ;
+            sh:nodeKind sh:IRI ;
+            sh:path era:inCountry ],
+        [ sh:nodeKind sh:Literal ;
+            sh:path rdfs:label ] ;
+    sh:targetClass era:Tunnel .
+
+<http://mapping.example.com/map_siding-verification_000/shape> a sh:NodeShape ;
+    sh:nodeKind sh:IRI ;
+    sh:pattern "http://data.europa.eu/949/functionalInfrastructure/tunnels/.*_.*_.*" ;
+    sh:property [ sh:nodeKind sh:Literal ;
+            sh:path era:verificationSRT ] .
+
+<http://mapping.example.com/map_sol-required-national-rolling-stock-fire-category_000/shape> a sh:NodeShape ;
+    sh:nodeKind sh:IRI ;
+    sh:pattern "http://data.europa.eu/949/functionalInfrastructure/tunnels/.*_.*.*_.*.*" ;
+    sh:property [ sh:nodeKind sh:Literal ;
+            sh:path era:nationalRollingStockFireCategory ] .
+
+<http://mapping.example.com/map_sol-tunnel-reference_000/shape> a sh:NodeShape ;
+    sh:nodeKind sh:IRI ;
+    sh:pattern "http://data.europa.eu/949/topology/netElements/.*_.*_.*_.*" ;
+    sh:property [ sh:nodeKind sh:IRI ;
+            sh:path era:passesThroughTunnel ] .
+
+<http://mapping.example.com/map_sol-tunnel_000/shape> a sh:NodeShape ;
+    sh:nodeKind sh:IRI ;
+    sh:pattern "http://data.europa.eu/949/functionalInfrastructure/tunnels/.*_.*.*_.*.*" ;
+    sh:property [ sh:nodeKind sh:IRI ;
+            sh:path era:netElement ],
+        [ sh:nodeKind sh:Literal ;
+            sh:path era:tunnelIdentification ],
+        [ sh:node <http://mapping.example.com/map_eu-country_000/shape> ;
+            sh:nodeKind sh:IRI ;
+            sh:path era:inCountry ],
+        [ sh:nodeKind sh:IRI ;
+            sh:path era:startLocation ],
+        [ sh:nodeKind sh:Literal ;
+            sh:path era:imCode ],
+        [ sh:nodeKind sh:IRI ;
+            sh:path era:endLocation ],
+        [ sh:nodeKind sh:Literal ;
+            sh:path rdfs:label ],
+        [ sh:datatype xsd:date ;
+            sh:nodeKind sh:Literal ;
+            sh:path era:validityStartDate ],
+        [ sh:datatype xsd:date ;
+            sh:nodeKind sh:Literal ;
+            sh:path era:validityEndDate ] ;
+    sh:targetClass era:Tunnel .
+
+<http://mapping.example.com/map_start-location_000/shape> a sh:NodeShape ;
+    sh:nodeKind sh:IRI ;
+    sh:pattern "http://data.europa.eu/949/locations/.*/.*" ;
+    sh:property [ sh:datatype geosparql:wktLiteral ;
+            sh:nodeKind sh:Literal ;
+            sh:path geosparql:asWKT ],
+        [ sh:datatype xsd:double ;
+            sh:nodeKind sh:Literal ;
+            sh:path wgs:long ],
+        [ sh:datatype xsd:double ;
+            sh:nodeKind sh:Literal ;
+            sh:path wgs:lat ] ;
+    sh:targetClass geosparql:Geometry,
+        wgs:Point .
+
+<http://mapping.example.com/map_verification_000/shape> a sh:NodeShape ;
+    sh:nodeKind sh:IRI ;
+    sh:pattern "http://data.europa.eu/949/functionalInfrastructure/tunnels/.*_.*.*_.*.*" ;
+    sh:property [ sh:nodeKind sh:Literal ;
+            sh:path era:verificationSRT ] .
+
+<http://mapping.example.com/map_eu-country_000/shape> a sh:NodeShape ;
+    sh:nodeKind sh:Literal .
+

@@ -1,0 +1,20 @@
+@prefix era: <http://data.europa.eu/949/> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<http://mapping.example.com/map_french-detection-limitation_000/shape> a sh:NodeShape ;
+    sh:nodeKind sh:IRI ;
+    sh:pattern "http://data.europa.eu/949/functionalInfrastructure/frenchTrainDetectionSystemLimitation/.*_.*_.*_.*_.*" ;
+    sh:property [ sh:nodeKind sh:IRI ;
+            sh:path era:tdsfrenchTrainDetectionSystemLimitation ],
+        [ sh:datatype xsd:boolean ;
+            sh:nodeKind sh:Literal ;
+            sh:path era:frenchTrainDetectionSystemLimitationApplicable ],
+        [ sh:datatype xsd:boolean ;
+            sh:nodeKind sh:Literal ;
+            sh:path era:frenchTrainDetectionSystemLimitationApplicable ],
+        [ sh:nodeKind sh:Literal ;
+            sh:path rdfs:label ] ;
+    sh:targetClass era:FrenchTrainDetectionSystemLimitation .
+

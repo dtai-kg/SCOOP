@@ -63,10 +63,11 @@ class RML:
     def parseTriplesMaps(self, graph: Graph) -> Dict[Identifier, TriplesMap]:
 
         tms = dict()
-        tm_tmclass = {iri for iri, _, _ in graph.triples((None, None, self.TRIPLES_MAP_CLASS))}
-        tm_logical_source = {iri for iri, _, _ in graph.triples((None, self.LOGICAL_SOURCE, None))}
-        tm_logical_table = {iri for iri, _, _ in graph.triples((None, self.LOGICAL_TABLE, None))}
-        tm_iri_set = tm_tmclass | tm_logical_source | tm_logical_table
+        # tm_tmclass = {iri for iri, _, _ in graph.triples((None, None, self.TRIPLES_MAP_CLASS))}
+        # tm_logical_source = {iri for iri, _, _ in graph.triples((None, self.LOGICAL_SOURCE, None))}
+        # tm_logical_table = {iri for iri, _, _ in graph.triples((None, self.LOGICAL_TABLE, None))}
+        # tm_iri_set = tm_tmclass | tm_logical_source | tm_logical_table
+        tm_iri_set = {iri for iri, _, _ in graph.triples((None, None, self.TRIPLES_MAP_CLASS))}
 
         for tm_iri in tm_iri_set:
 

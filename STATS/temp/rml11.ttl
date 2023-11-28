@@ -1,0 +1,160 @@
+@prefix era: <http://data.europa.eu/949/> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<http://mapping.example.com/map_ec-verification_000/shape> a sh:NodeShape ;
+    sh:nodeKind sh:IRI ;
+    sh:pattern "http://data.europa.eu/949/functionalInfrastructure/sidings/.*_.*" ;
+    sh:property [ sh:nodeKind sh:Literal ;
+            sh:path era:verificationINF ] .
+
+<http://mapping.example.com/map_ei-demonstration_000/shape> a sh:NodeShape ;
+    sh:nodeKind sh:IRI ;
+    sh:pattern "http://data.europa.eu/949/functionalInfrastructure/sidings/.*_.*" ;
+    sh:property [ sh:nodeKind sh:Literal ;
+            sh:path era:demonstrationINF ] .
+
+<http://mapping.example.com/map_electric-shore-supply_000/shape> a sh:NodeShape ;
+    sh:nodeKind sh:IRI ;
+    sh:pattern "http://data.europa.eu/949/functionalInfrastructure/sidings/.*_.*" ;
+    sh:property [ sh:datatype xsd:boolean ;
+            sh:nodeKind sh:Literal ;
+            sh:path era:hasElectricShoreSupply ],
+        [ sh:datatype xsd:boolean ;
+            sh:nodeKind sh:Literal ;
+            sh:path era:hasElectricShoreSupply ],
+        [ sh:datatype xsd:boolean ;
+            sh:nodeKind sh:Literal ;
+            sh:path era:hasElectricShoreSupply ] .
+
+<http://mapping.example.com/map_external-cleaning_000/shape> a sh:NodeShape ;
+    sh:nodeKind sh:IRI ;
+    sh:pattern "http://data.europa.eu/949/functionalInfrastructure/sidings/.*_.*" ;
+    sh:property [ sh:datatype xsd:boolean ;
+            sh:nodeKind sh:Literal ;
+            sh:path era:hasExternalCleaning ],
+        [ sh:datatype xsd:boolean ;
+            sh:nodeKind sh:Literal ;
+            sh:path era:hasExternalCleaning ],
+        [ sh:datatype xsd:boolean ;
+            sh:nodeKind sh:Literal ;
+            sh:path era:hasExternalCleaning ] .
+
+<http://mapping.example.com/map_link-siding-to-operational-point_000/shape> a sh:NodeShape ;
+    sh:nodeKind sh:IRI ;
+    sh:pattern "http://data.europa.eu/949/functionalInfrastructure/operationalPoints/.*/.*_.*" ;
+    sh:property [ sh:nodeKind sh:IRI ;
+            sh:path era:siding ] .
+
+<http://mapping.example.com/map_max-standstill-current_000/shape> a sh:NodeShape ;
+    sh:nodeKind sh:IRI ;
+    sh:pattern "http://data.europa.eu/949/functionalInfrastructure/sidings/.*_.*" ;
+    sh:property [ sh:datatype xsd:double ;
+            sh:nodeKind sh:Literal ;
+            sh:path era:maxCurrentStandstillPantograph ] .
+
+<http://mapping.example.com/map_min-radius-horizontal_000/shape> a sh:NodeShape ;
+    sh:nodeKind sh:IRI ;
+    sh:pattern "http://data.europa.eu/949/functionalInfrastructure/sidings/.*_.*" ;
+    sh:property [ sh:datatype xsd:integer ;
+            sh:nodeKind sh:Literal ;
+            sh:path era:minimumHorizontalRadius ] .
+
+<http://mapping.example.com/map_min-radius-vertical_000/shape> a sh:NodeShape ;
+    sh:nodeKind sh:IRI ;
+    sh:pattern "http://data.europa.eu/949/functionalInfrastructure/sidings/.*_.*" ;
+    sh:property [ sh:nodeKind sh:Literal ;
+            sh:path era:MinimumVerticalRadiusHollow ],
+        [ sh:nodeKind sh:Literal ;
+            sh:path era:MinimumVerticalRadiusCrest ] .
+
+<http://mapping.example.com/map_refuelling_000/shape> a sh:NodeShape ;
+    sh:nodeKind sh:IRI ;
+    sh:pattern "http://data.europa.eu/949/functionalInfrastructure/sidings/.*_.*" ;
+    sh:property [ sh:datatype xsd:boolean ;
+            sh:nodeKind sh:Literal ;
+            sh:path era:hasRefuelling ],
+        [ sh:datatype xsd:boolean ;
+            sh:nodeKind sh:Literal ;
+            sh:path era:hasRefuelling ],
+        [ sh:datatype xsd:boolean ;
+            sh:nodeKind sh:Literal ;
+            sh:path era:hasRefuelling ] .
+
+<http://mapping.example.com/map_sand-restocking_000/shape> a sh:NodeShape ;
+    sh:nodeKind sh:IRI ;
+    sh:pattern "http://data.europa.eu/949/functionalInfrastructure/sidings/.*_.*" ;
+    sh:property [ sh:datatype xsd:boolean ;
+            sh:nodeKind sh:Literal ;
+            sh:path era:hasSandRestocking ],
+        [ sh:datatype xsd:boolean ;
+            sh:nodeKind sh:Literal ;
+            sh:path era:hasSandRestocking ],
+        [ sh:datatype xsd:boolean ;
+            sh:nodeKind sh:Literal ;
+            sh:path era:hasSandRestocking ] .
+
+<http://mapping.example.com/map_siding-gradient_000/shape> a sh:NodeShape ;
+    sh:nodeKind sh:IRI ;
+    sh:pattern "http://data.europa.eu/949/functionalInfrastructure/sidings/.*_.*" ;
+    sh:property [ sh:datatype xsd:double ;
+            sh:nodeKind sh:Literal ;
+            sh:path era:gradient ] .
+
+<http://mapping.example.com/map_siding-length_000/shape> a sh:NodeShape ;
+    sh:nodeKind sh:IRI ;
+    sh:pattern "http://data.europa.eu/949/functionalInfrastructure/sidings/.*_.*" ;
+    sh:property [ sh:datatype xsd:double ;
+            sh:nodeKind sh:Literal ;
+            sh:path era:length ] .
+
+<http://mapping.example.com/map_siding_000/shape> a sh:NodeShape ;
+    sh:nodeKind sh:IRI ;
+    sh:pattern "http://data.europa.eu/949/functionalInfrastructure/sidings/.*_.*" ;
+    sh:property [ sh:nodeKind sh:Literal ;
+            sh:path rdfs:label ],
+        [ sh:datatype xsd:date ;
+            sh:nodeKind sh:Literal ;
+            sh:path era:validityEndDate ],
+        [ sh:nodeKind sh:Literal ;
+            sh:path era:imCode ],
+        [ sh:datatype xsd:date ;
+            sh:nodeKind sh:Literal ;
+            sh:path era:validityStartDate ],
+        [ sh:nodeKind sh:Literal ;
+            sh:path era:sidingId ] ;
+    sh:targetClass era:Siding .
+
+<http://mapping.example.com/map_ten-class_000/shape> a sh:NodeShape ;
+    sh:nodeKind sh:IRI ;
+    sh:pattern "http://data.europa.eu/949/functionalInfrastructure/sidings/.*_.*" ;
+    sh:property [ sh:nodeKind sh:IRI ;
+            sh:path era:tenClassification ] .
+
+<http://mapping.example.com/map_toilet-discharge_000/shape> a sh:NodeShape ;
+    sh:nodeKind sh:IRI ;
+    sh:pattern "http://data.europa.eu/949/functionalInfrastructure/sidings/.*_.*" ;
+    sh:property [ sh:datatype xsd:boolean ;
+            sh:nodeKind sh:Literal ;
+            sh:path era:hasToiletDischarge ],
+        [ sh:datatype xsd:boolean ;
+            sh:nodeKind sh:Literal ;
+            sh:path era:hasToiletDischarge ],
+        [ sh:datatype xsd:boolean ;
+            sh:nodeKind sh:Literal ;
+            sh:path era:hasToiletDischarge ] .
+
+<http://mapping.example.com/map_water-restocking_000/shape> a sh:NodeShape ;
+    sh:nodeKind sh:IRI ;
+    sh:pattern "http://data.europa.eu/949/functionalInfrastructure/sidings/.*_.*" ;
+    sh:property [ sh:datatype xsd:boolean ;
+            sh:nodeKind sh:Literal ;
+            sh:path era:hasWaterRestocking ],
+        [ sh:datatype xsd:boolean ;
+            sh:nodeKind sh:Literal ;
+            sh:path era:hasWaterRestocking ],
+        [ sh:datatype xsd:boolean ;
+            sh:nodeKind sh:Literal ;
+            sh:path era:hasWaterRestocking ] .
+

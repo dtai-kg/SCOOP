@@ -9,13 +9,13 @@
     sh:property [ sh:datatype xsd:integer ;
             sh:nodeKind sh:Literal ;
             sh:path era:raisedPantographsSpeed ],
+        [ sh:nodeKind sh:Literal ;
+            sh:path rdfs:label ],
         [ sh:datatype xsd:integer ;
             sh:nodeKind sh:Literal ;
             sh:path era:raisedPantographsNumber ],
         [ sh:datatype xsd:integer ;
             sh:nodeKind sh:Literal ;
-            sh:path era:raisedPantographsDistance ],
-        [ sh:nodeKind sh:Literal ;
-            sh:path rdfs:label ] ;
+            sh:path era:raisedPantographsDistance ] ;
     sh:targetClass era:RaisedPantographsDistanceAndSpeed .
 

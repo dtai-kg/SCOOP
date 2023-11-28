@@ -1,0 +1,1466 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<http://shaclshapes.org/ContactLineSystemShape> rdf:type <http://www.w3.org/ns/shacl#NodeShape> ;
+  <http://www.w3.org/ns/shacl#property> <http://shaclshapes.org/contactLineSystemTypeContactLineSystemShapeProperty> ;
+  <http://www.w3.org/ns/shacl#property> <http://shaclshapes.org/currentLimitationRequiredContactLineSystemShapeProperty> ;
+  <http://www.w3.org/ns/shacl#property> <http://shaclshapes.org/energySupplySystemContactLineSystemShapeProperty> ;
+  <http://www.w3.org/ns/shacl#property> <http://shaclshapes.org/energySupplySystemTSICompliantContactLineSystemShapeProperty> ;
+  <http://www.w3.org/ns/shacl#property> <http://shaclshapes.org/hasRegenerativeBrakeContactLineSystemShapeProperty> ;
+  <http://www.w3.org/ns/shacl#property> <http://shaclshapes.org/instanceTypeContactLineSystemShapeProperty> ;
+  <http://www.w3.org/ns/shacl#property> <http://shaclshapes.org/labelContactLineSystemShapeProperty> ;
+  <http://www.w3.org/ns/shacl#property> <http://shaclshapes.org/maxCurrentStandstillPantographContactLineSystemShapeProperty> ;
+  <http://www.w3.org/ns/shacl#property> <http://shaclshapes.org/maxTrainCurrentContactLineSystemShapeProperty> ;
+  <http://www.w3.org/ns/shacl#property> <http://shaclshapes.org/notApplicableContactLineSystemShapeProperty> ;
+  <http://www.w3.org/ns/shacl#property> <http://shaclshapes.org/notYetAvailableContactLineSystemShapeProperty> ;
+  <http://www.w3.org/ns/shacl#targetClass> <http://data.europa.eu/949/ContactLineSystem> .
+
+<http://shaclshapes.org/ETCSLevelShape> rdf:type <http://www.w3.org/ns/shacl#NodeShape> ;
+  <http://www.w3.org/ns/shacl#property> <http://shaclshapes.org/etcsLevelTypeETCSLevelShapeProperty> ;
+  <http://www.w3.org/ns/shacl#property> <http://shaclshapes.org/instanceTypeETCSLevelShapeProperty> ;
+  <http://www.w3.org/ns/shacl#property> <http://shaclshapes.org/labelETCSLevelShapeProperty> ;
+  <http://www.w3.org/ns/shacl#property> <http://shaclshapes.org/notApplicableETCSLevelShapeProperty> ;
+  <http://www.w3.org/ns/shacl#targetClass> <http://data.europa.eu/949/ETCSLevel> .
+
+<http://shaclshapes.org/FrenchTrainDetectionSystemLimitationShape> rdf:type <http://www.w3.org/ns/shacl#NodeShape> ;
+  <http://www.w3.org/ns/shacl#property> <http://shaclshapes.org/frenchTrainDetectionSystemLimitationApplicableFrenchTrainDetectionSystemLimitationShapeProperty> ;
+  <http://www.w3.org/ns/shacl#property> <http://shaclshapes.org/instanceTypeFrenchTrainDetectionSystemLimitationShapeProperty> ;
+  <http://www.w3.org/ns/shacl#property> <http://shaclshapes.org/labelFrenchTrainDetectionSystemLimitationShapeProperty> ;
+  <http://www.w3.org/ns/shacl#property> <http://shaclshapes.org/tdsfrenchTrainDetectionSystemLimitationFrenchTrainDetectionSystemLimitationShapeProperty> ;
+  <http://www.w3.org/ns/shacl#targetClass> <http://data.europa.eu/949/FrenchTrainDetectionSystemLimitation> .
+
+<http://shaclshapes.org/GeometryShape> rdf:type <http://www.w3.org/ns/shacl#NodeShape> ;
+  <http://www.w3.org/ns/shacl#property> <http://shaclshapes.org/asWKTGeometryShapeProperty> ;
+  <http://www.w3.org/ns/shacl#property> <http://shaclshapes.org/instanceTypeGeometryShapeProperty> ;
+  <http://www.w3.org/ns/shacl#property> <http://shaclshapes.org/latGeometryShapeProperty> ;
+  <http://www.w3.org/ns/shacl#property> <http://shaclshapes.org/longGeometryShapeProperty> ;
+  <http://www.w3.org/ns/shacl#targetClass> <http://www.opengis.net/ont/geosparql#Geometry> .
+
+<http://shaclshapes.org/LineReferenceShape> rdf:type <http://www.w3.org/ns/shacl#NodeShape> ;
+  <http://www.w3.org/ns/shacl#property> <http://shaclshapes.org/instanceTypeLineReferenceShapeProperty> ;
+  <http://www.w3.org/ns/shacl#property> <http://shaclshapes.org/kilometerLineReferenceShapeProperty> ;
+  <http://www.w3.org/ns/shacl#property> <http://shaclshapes.org/labelLineReferenceShapeProperty> ;
+  <http://www.w3.org/ns/shacl#property> <http://shaclshapes.org/lineNationalIdLineReferenceShapeProperty> ;
+  <http://www.w3.org/ns/shacl#targetClass> <http://data.europa.eu/949/LineReference> .
+
+<http://shaclshapes.org/LoadCapabilityShape> rdf:type <http://www.w3.org/ns/shacl#NodeShape> ;
+  <http://www.w3.org/ns/shacl#property> <http://shaclshapes.org/instanceTypeLoadCapabilityShapeProperty> ;
+  <http://www.w3.org/ns/shacl#property> <http://shaclshapes.org/loadCapabilityLineCategoryLoadCapabilityShapeProperty> ;
+  <http://www.w3.org/ns/shacl#property> <http://shaclshapes.org/loadCapabilitySpeedLoadCapabilityShapeProperty> ;
+  <http://www.w3.org/ns/shacl#targetClass> <http://data.europa.eu/949/LoadCapability> .
+
+<http://shaclshapes.org/MinAxleLoadVehicleCategoryShape> rdf:type <http://www.w3.org/ns/shacl#NodeShape> ;
+  <http://www.w3.org/ns/shacl#property> <http://shaclshapes.org/instanceTypeMinAxleLoadVehicleCategoryShapeProperty> ;
+  <http://www.w3.org/ns/shacl#property> <http://shaclshapes.org/minAxleLoadMinAxleLoadVehicleCategoryShapeProperty> ;
+  <http://www.w3.org/ns/shacl#property> <http://shaclshapes.org/minAxleLoadVehicleCategoryMinAxleLoadVehicleCategoryShapeProperty> ;
+  <http://www.w3.org/ns/shacl#targetClass> <http://data.europa.eu/949/MinAxleLoadVehicleCategory> .
+
+<http://shaclshapes.org/NationalRailwayLineShape> rdf:type <http://www.w3.org/ns/shacl#NodeShape> ;
+  <http://www.w3.org/ns/shacl#property> <http://shaclshapes.org/instanceTypeNationalRailwayLineShapeProperty> ;
+  <http://www.w3.org/ns/shacl#targetClass> <http://data.europa.eu/949/NationalRailwayLine> .
+
+<http://shaclshapes.org/NetElementShape> rdf:type <http://www.w3.org/ns/shacl#NodeShape> ;
+  <http://www.w3.org/ns/shacl#property> <http://shaclshapes.org/instanceTypeNetElementShapeProperty> ;
+  <http://www.w3.org/ns/shacl#property> <http://shaclshapes.org/labelNetElementShapeProperty> ;
+  <http://www.w3.org/ns/shacl#targetClass> <http://data.europa.eu/949/NetElement> .
+
+<http://shaclshapes.org/NetRelationShape> rdf:type <http://www.w3.org/ns/shacl#NodeShape> ;
+  <http://www.w3.org/ns/shacl#property> <http://shaclshapes.org/elementANetRelationShapeProperty> ;
+  <http://www.w3.org/ns/shacl#property> <http://shaclshapes.org/elementBNetRelationShapeProperty> ;
+  <http://www.w3.org/ns/shacl#property> <http://shaclshapes.org/instanceTypeNetRelationShapeProperty> ;
+  <http://www.w3.org/ns/shacl#property> <http://shaclshapes.org/navigabilityNetRelationShapeProperty> ;
+  <http://www.w3.org/ns/shacl#property> <http://shaclshapes.org/positionOnANetRelationShapeProperty> ;
+  <http://www.w3.org/ns/shacl#property> <http://shaclshapes.org/positionOnBNetRelationShapeProperty> ;
+  <http://www.w3.org/ns/shacl#targetClass> <http://data.europa.eu/949/NetRelation> .
+
+<http://shaclshapes.org/OperationalPointShape> rdf:type <http://www.w3.org/ns/shacl#NodeShape> ;
+  <http://www.w3.org/ns/shacl#property> <http://shaclshapes.org/canonicalURIOperationalPointShapeProperty> ;
+  <http://www.w3.org/ns/shacl#property> <http://shaclshapes.org/hasAbstractionOperationalPointShapeProperty> ;
+  <http://www.w3.org/ns/shacl#property> <http://shaclshapes.org/hasGeometryOperationalPointShapeProperty> ;
+  <http://www.w3.org/ns/shacl#property> <http://shaclshapes.org/inCountryOperationalPointShapeProperty> ;
+  <http://www.w3.org/ns/shacl#property> <http://shaclshapes.org/instanceTypeOperationalPointShapeProperty> ;
+  <http://www.w3.org/ns/shacl#property> <http://shaclshapes.org/labelOperationalPointShapeProperty> ;
+  <http://www.w3.org/ns/shacl#property> <http://shaclshapes.org/lineReferenceOperationalPointShapeProperty> ;
+  <http://www.w3.org/ns/shacl#property> <http://shaclshapes.org/locationOperationalPointShapeProperty> ;
+  <http://www.w3.org/ns/shacl#property> <http://shaclshapes.org/opNameOperationalPointShapeProperty> ;
+  <http://www.w3.org/ns/shacl#property> <http://shaclshapes.org/opTypeOperationalPointShapeProperty> ;
+  <http://www.w3.org/ns/shacl#property> <http://shaclshapes.org/sidingOperationalPointShapeProperty> ;
+  <http://www.w3.org/ns/shacl#property> <http://shaclshapes.org/tafTAPCodeOperationalPointShapeProperty> ;
+  <http://www.w3.org/ns/shacl#property> <http://shaclshapes.org/trackOperationalPointShapeProperty> ;
+  <http://www.w3.org/ns/shacl#property> <http://shaclshapes.org/uopidOperationalPointShapeProperty> ;
+  <http://www.w3.org/ns/shacl#property> <http://shaclshapes.org/validityEndDateOperationalPointShapeProperty> ;
+  <http://www.w3.org/ns/shacl#property> <http://shaclshapes.org/validityStartDateOperationalPointShapeProperty> ;
+  <http://www.w3.org/ns/shacl#targetClass> <http://data.europa.eu/949/OperationalPoint> .
+
+<http://shaclshapes.org/PhaseInfoShape> rdf:type <http://www.w3.org/ns/shacl#NodeShape> ;
+  <http://www.w3.org/ns/shacl#property> <http://shaclshapes.org/instanceTypePhaseInfoShapeProperty> ;
+  <http://www.w3.org/ns/shacl#property> <http://shaclshapes.org/labelPhaseInfoShapeProperty> ;
+  <http://www.w3.org/ns/shacl#property> <http://shaclshapes.org/phaseInfoKmPhaseInfoShapeProperty> ;
+  <http://www.w3.org/ns/shacl#property> <http://shaclshapes.org/phaseInfoLengthPhaseInfoShapeProperty> ;
+  <http://www.w3.org/ns/shacl#property> <http://shaclshapes.org/phaseInfoPantographLoweredPhaseInfoShapeProperty> ;
+  <http://www.w3.org/ns/shacl#property> <http://shaclshapes.org/phaseInfoSwitchOffBreakerPhaseInfoShapeProperty> ;
+  <http://www.w3.org/ns/shacl#targetClass> <http://data.europa.eu/949/PhaseInfo> .
+
+<http://shaclshapes.org/PlatformShape> rdf:type <http://www.w3.org/ns/shacl#NodeShape> ;
+  <http://www.w3.org/ns/shacl#property> <http://shaclshapes.org/areaBoardingAidPlatformShapeProperty> ;
+  <http://www.w3.org/ns/shacl#property> <http://shaclshapes.org/assistanceStartingTrainPlatformShapeProperty> ;
+  <http://www.w3.org/ns/shacl#property> <http://shaclshapes.org/imCodePlatformShapeProperty> ;
+  <http://www.w3.org/ns/shacl#property> <http://shaclshapes.org/instanceTypePlatformShapeProperty> ;
+  <http://www.w3.org/ns/shacl#property> <http://shaclshapes.org/labelPlatformShapeProperty> ;
+  <http://www.w3.org/ns/shacl#property> <http://shaclshapes.org/lengthPlatformShapeProperty> ;
+  <http://www.w3.org/ns/shacl#property> <http://shaclshapes.org/platformHeightPlatformShapeProperty> ;
+  <http://www.w3.org/ns/shacl#property> <http://shaclshapes.org/platformIdPlatformShapeProperty> ;
+  <http://www.w3.org/ns/shacl#property> <http://shaclshapes.org/tenClassificationPlatformShapeProperty> ;
+  <http://www.w3.org/ns/shacl#property> <http://shaclshapes.org/validityEndDatePlatformShapeProperty> ;
+  <http://www.w3.org/ns/shacl#property> <http://shaclshapes.org/validityStartDatePlatformShapeProperty> ;
+  <http://www.w3.org/ns/shacl#targetClass> <http://data.europa.eu/949/Platform> .
+
+<http://shaclshapes.org/PointShape> rdf:type <http://www.w3.org/ns/shacl#NodeShape> ;
+  <http://www.w3.org/ns/shacl#property> <http://shaclshapes.org/asWKTPointShapeProperty> ;
+  <http://www.w3.org/ns/shacl#property> <http://shaclshapes.org/instanceTypePointShapeProperty> ;
+  <http://www.w3.org/ns/shacl#property> <http://shaclshapes.org/latPointShapeProperty> ;
+  <http://www.w3.org/ns/shacl#property> <http://shaclshapes.org/longPointShapeProperty> ;
+  <http://www.w3.org/ns/shacl#targetClass> <http://www.w3.org/2003/01/geo/wgs84_pos#Point> .
+
+<http://shaclshapes.org/RaisedPantographsDistanceAndSpeedShape> rdf:type <http://www.w3.org/ns/shacl#NodeShape> ;
+  <http://www.w3.org/ns/shacl#property> <http://shaclshapes.org/instanceTypeRaisedPantographsDistanceAndSpeedShapeProperty> ;
+  <http://www.w3.org/ns/shacl#property> <http://shaclshapes.org/labelRaisedPantographsDistanceAndSpeedShapeProperty> ;
+  <http://www.w3.org/ns/shacl#property> <http://shaclshapes.org/raisedPantographsDistanceRaisedPantographsDistanceAndSpeedShapeProperty> ;
+  <http://www.w3.org/ns/shacl#property> <http://shaclshapes.org/raisedPantographsNumberRaisedPantographsDistanceAndSpeedShapeProperty> ;
+  <http://www.w3.org/ns/shacl#property> <http://shaclshapes.org/raisedPantographsSpeedRaisedPantographsDistanceAndSpeedShapeProperty> ;
+  <http://www.w3.org/ns/shacl#targetClass> <http://data.europa.eu/949/RaisedPantographsDistanceAndSpeed> .
+
+<http://shaclshapes.org/SectionOfLineShape> rdf:type <http://www.w3.org/ns/shacl#NodeShape> ;
+  <http://www.w3.org/ns/shacl#property> <http://shaclshapes.org/canonicalURISectionOfLineShapeProperty> ;
+  <http://www.w3.org/ns/shacl#property> <http://shaclshapes.org/hasAbstractionSectionOfLineShapeProperty> ;
+  <http://www.w3.org/ns/shacl#property> <http://shaclshapes.org/hasGeometrySectionOfLineShapeProperty> ;
+  <http://www.w3.org/ns/shacl#property> <http://shaclshapes.org/imCodeSectionOfLineShapeProperty> ;
+  <http://www.w3.org/ns/shacl#property> <http://shaclshapes.org/inCountrySectionOfLineShapeProperty> ;
+  <http://www.w3.org/ns/shacl#property> <http://shaclshapes.org/instanceTypeSectionOfLineShapeProperty> ;
+  <http://www.w3.org/ns/shacl#property> <http://shaclshapes.org/lengthSectionOfLineShapeProperty> ;
+  <http://www.w3.org/ns/shacl#property> <http://shaclshapes.org/lineNationalIdSectionOfLineShapeProperty> ;
+  <http://www.w3.org/ns/shacl#property> <http://shaclshapes.org/opEndSectionOfLineShapeProperty> ;
+  <http://www.w3.org/ns/shacl#property> <http://shaclshapes.org/opStartSectionOfLineShapeProperty> ;
+  <http://www.w3.org/ns/shacl#property> <http://shaclshapes.org/solNatureSectionOfLineShapeProperty> ;
+  <http://www.w3.org/ns/shacl#property> <http://shaclshapes.org/trackSectionOfLineShapeProperty> ;
+  <http://www.w3.org/ns/shacl#property> <http://shaclshapes.org/validityEndDateSectionOfLineShapeProperty> ;
+  <http://www.w3.org/ns/shacl#property> <http://shaclshapes.org/validityStartDateSectionOfLineShapeProperty> ;
+  <http://www.w3.org/ns/shacl#targetClass> <http://data.europa.eu/949/SectionOfLine> .
+
+<http://shaclshapes.org/SidingShape> rdf:type <http://www.w3.org/ns/shacl#NodeShape> ;
+  <http://www.w3.org/ns/shacl#property> <http://shaclshapes.org/hasElectricShoreSupplySidingShapeProperty> ;
+  <http://www.w3.org/ns/shacl#property> <http://shaclshapes.org/hasExternalCleaningSidingShapeProperty> ;
+  <http://www.w3.org/ns/shacl#property> <http://shaclshapes.org/hasRefuellingSidingShapeProperty> ;
+  <http://www.w3.org/ns/shacl#property> <http://shaclshapes.org/hasSandRestockingSidingShapeProperty> ;
+  <http://www.w3.org/ns/shacl#property> <http://shaclshapes.org/hasToiletDischargeSidingShapeProperty> ;
+  <http://www.w3.org/ns/shacl#property> <http://shaclshapes.org/hasWaterRestockingSidingShapeProperty> ;
+  <http://www.w3.org/ns/shacl#property> <http://shaclshapes.org/imCodeSidingShapeProperty> ;
+  <http://www.w3.org/ns/shacl#property> <http://shaclshapes.org/instanceTypeSidingShapeProperty> ;
+  <http://www.w3.org/ns/shacl#property> <http://shaclshapes.org/labelSidingShapeProperty> ;
+  <http://www.w3.org/ns/shacl#property> <http://shaclshapes.org/lengthSidingShapeProperty> ;
+  <http://www.w3.org/ns/shacl#property> <http://shaclshapes.org/notApplicableSidingShapeProperty> ;
+  <http://www.w3.org/ns/shacl#property> <http://shaclshapes.org/notYetAvailableSidingShapeProperty> ;
+  <http://www.w3.org/ns/shacl#property> <http://shaclshapes.org/sidingIdSidingShapeProperty> ;
+  <http://www.w3.org/ns/shacl#property> <http://shaclshapes.org/tenClassificationSidingShapeProperty> ;
+  <http://www.w3.org/ns/shacl#property> <http://shaclshapes.org/validityEndDateSidingShapeProperty> ;
+  <http://www.w3.org/ns/shacl#property> <http://shaclshapes.org/validityStartDateSidingShapeProperty> ;
+  <http://www.w3.org/ns/shacl#targetClass> <http://data.europa.eu/949/Siding> .
+
+<http://shaclshapes.org/SystemSeparationInfoShape> rdf:type <http://www.w3.org/ns/shacl#NodeShape> ;
+  <http://www.w3.org/ns/shacl#property> <http://shaclshapes.org/instanceTypeSystemSeparationInfoShapeProperty> ;
+  <http://www.w3.org/ns/shacl#property> <http://shaclshapes.org/labelSystemSeparationInfoShapeProperty> ;
+  <http://www.w3.org/ns/shacl#property> <http://shaclshapes.org/systemSeparationInfoKmSystemSeparationInfoShapeProperty> ;
+  <http://www.w3.org/ns/shacl#property> <http://shaclshapes.org/systemSeparationInfoLengthSystemSeparationInfoShapeProperty> ;
+  <http://www.w3.org/ns/shacl#property> <http://shaclshapes.org/systemSeparationInfoLoweredPantographSystemSeparationInfoShapeProperty> ;
+  <http://www.w3.org/ns/shacl#property> <http://shaclshapes.org/systemSeparationInfoSwitchOffBreakerSystemSeparationInfoShapeProperty> ;
+  <http://www.w3.org/ns/shacl#targetClass> <http://data.europa.eu/949/SystemSeparationInfo> .
+
+<http://shaclshapes.org/TrackShape> rdf:type <http://www.w3.org/ns/shacl#NodeShape> ;
+  <http://www.w3.org/ns/shacl#property> <http://shaclshapes.org/gaugingProfileTrackShapeProperty> ;
+  <http://www.w3.org/ns/shacl#property> <http://shaclshapes.org/gradientProfileTrackShapeProperty> ;
+  <http://www.w3.org/ns/shacl#property> <http://shaclshapes.org/hasAbstractionTrackShapeProperty> ;
+  <http://www.w3.org/ns/shacl#property> <http://shaclshapes.org/imCodeTrackShapeProperty> ;
+  <http://www.w3.org/ns/shacl#property> <http://shaclshapes.org/instanceTypeTrackShapeProperty> ;
+  <http://www.w3.org/ns/shacl#property> <http://shaclshapes.org/labelTrackShapeProperty> ;
+  <http://www.w3.org/ns/shacl#property> <http://shaclshapes.org/lineCategoryTrackShapeProperty> ;
+  <http://www.w3.org/ns/shacl#property> <http://shaclshapes.org/notApplicableTrackShapeProperty> ;
+  <http://www.w3.org/ns/shacl#property> <http://shaclshapes.org/notYetAvailableTrackShapeProperty> ;
+  <http://www.w3.org/ns/shacl#property> <http://shaclshapes.org/tenClassificationTrackShapeProperty> ;
+  <http://www.w3.org/ns/shacl#property> <http://shaclshapes.org/trackDirectionTrackShapeProperty> ;
+  <http://www.w3.org/ns/shacl#property> <http://shaclshapes.org/trackIdTrackShapeProperty> ;
+  <http://www.w3.org/ns/shacl#property> <http://shaclshapes.org/validityEndDateTrackShapeProperty> ;
+  <http://www.w3.org/ns/shacl#property> <http://shaclshapes.org/validityStartDateTrackShapeProperty> ;
+  <http://www.w3.org/ns/shacl#targetClass> <http://data.europa.eu/949/Track> .
+
+<http://shaclshapes.org/TrainDetectionSystemShape> rdf:type <http://www.w3.org/ns/shacl#NodeShape> ;
+  <http://www.w3.org/ns/shacl#property> <http://shaclshapes.org/flangeLubeRulesTrainDetectionSystemShapeProperty> ;
+  <http://www.w3.org/ns/shacl#property> <http://shaclshapes.org/instanceTypeTrainDetectionSystemShapeProperty> ;
+  <http://www.w3.org/ns/shacl#property> <http://shaclshapes.org/labelTrainDetectionSystemShapeProperty> ;
+  <http://www.w3.org/ns/shacl#property> <http://shaclshapes.org/maxDistEndTrainFirstAxleTrainDetectionSystemShapeProperty> ;
+  <http://www.w3.org/ns/shacl#property> <http://shaclshapes.org/maxFlangeHeightTrainDetectionSystemShapeProperty> ;
+  <http://www.w3.org/ns/shacl#property> <http://shaclshapes.org/minDistConsecutiveAxlesTrainDetectionSystemShapeProperty> ;
+  <http://www.w3.org/ns/shacl#property> <http://shaclshapes.org/minDistFirstLastAxleTrainDetectionSystemShapeProperty> ;
+  <http://www.w3.org/ns/shacl#property> <http://shaclshapes.org/minFlangeHeightTrainDetectionSystemShapeProperty> ;
+  <http://www.w3.org/ns/shacl#property> <http://shaclshapes.org/minFlangeThicknessTrainDetectionSystemShapeProperty> ;
+  <http://www.w3.org/ns/shacl#property> <http://shaclshapes.org/minRimWidthTrainDetectionSystemShapeProperty> ;
+  <http://www.w3.org/ns/shacl#property> <http://shaclshapes.org/minWheelDiameterTrainDetectionSystemShapeProperty> ;
+  <http://www.w3.org/ns/shacl#property> <http://shaclshapes.org/notApplicableTrainDetectionSystemShapeProperty> ;
+  <http://www.w3.org/ns/shacl#property> <http://shaclshapes.org/notYetAvailableTrainDetectionSystemShapeProperty> ;
+  <http://www.w3.org/ns/shacl#property> <http://shaclshapes.org/requiredSandingOverrideTrainDetectionSystemShapeProperty> ;
+  <http://www.w3.org/ns/shacl#property> <http://shaclshapes.org/tdsMinAxleLoadVehicleCategoryTrainDetectionSystemShapeProperty> ;
+  <http://www.w3.org/ns/shacl#property> <http://shaclshapes.org/trainDetectionSystemTypeTrainDetectionSystemShapeProperty> ;
+  <http://www.w3.org/ns/shacl#property> <http://shaclshapes.org/tsiCompliantCompositeBrakeBlocksTrainDetectionSystemShapeProperty> ;
+  <http://www.w3.org/ns/shacl#property> <http://shaclshapes.org/tsiCompliantFerromagneticWheelTrainDetectionSystemShapeProperty> ;
+  <http://www.w3.org/ns/shacl#property> <http://shaclshapes.org/tsiCompliantMaxDistConsecutiveAxlesTrainDetectionSystemShapeProperty> ;
+  <http://www.w3.org/ns/shacl#property> <http://shaclshapes.org/tsiCompliantMaxImpedanceWheelsetTrainDetectionSystemShapeProperty> ;
+  <http://www.w3.org/ns/shacl#property> <http://shaclshapes.org/tsiCompliantMetalFreeSpaceTrainDetectionSystemShapeProperty> ;
+  <http://www.w3.org/ns/shacl#property> <http://shaclshapes.org/tsiCompliantRSTShuntImpedanceTrainDetectionSystemShapeProperty> ;
+  <http://www.w3.org/ns/shacl#property> <http://shaclshapes.org/tsiCompliantShuntDevicesTrainDetectionSystemShapeProperty> ;
+  <http://www.w3.org/ns/shacl#targetClass> <http://data.europa.eu/949/TrainDetectionSystem> .
+
+<http://shaclshapes.org/TunnelShape> rdf:type <http://www.w3.org/ns/shacl#NodeShape> ;
+  <http://www.w3.org/ns/shacl#property> <http://shaclshapes.org/endLocationTunnelShapeProperty> ;
+  <http://www.w3.org/ns/shacl#property> <http://shaclshapes.org/hasEmergencyPlanTunnelShapeProperty> ;
+  <http://www.w3.org/ns/shacl#property> <http://shaclshapes.org/imCodeTunnelShapeProperty> ;
+  <http://www.w3.org/ns/shacl#property> <http://shaclshapes.org/inCountryTunnelShapeProperty> ;
+  <http://www.w3.org/ns/shacl#property> <http://shaclshapes.org/instanceTypeTunnelShapeProperty> ;
+  <http://www.w3.org/ns/shacl#property> <http://shaclshapes.org/labelTunnelShapeProperty> ;
+  <http://www.w3.org/ns/shacl#property> <http://shaclshapes.org/lengthTunnelShapeProperty> ;
+  <http://www.w3.org/ns/shacl#property> <http://shaclshapes.org/netElementTunnelShapeProperty> ;
+  <http://www.w3.org/ns/shacl#property> <http://shaclshapes.org/startLocationTunnelShapeProperty> ;
+  <http://www.w3.org/ns/shacl#property> <http://shaclshapes.org/tunnelIdentificationTunnelShapeProperty> ;
+  <http://www.w3.org/ns/shacl#property> <http://shaclshapes.org/validityEndDateTunnelShapeProperty> ;
+  <http://www.w3.org/ns/shacl#property> <http://shaclshapes.org/validityStartDateTunnelShapeProperty> ;
+  <http://www.w3.org/ns/shacl#targetClass> <http://data.europa.eu/949/Tunnel> .
+
+<http://shaclshapes.org/areaBoardingAidPlatformShapeProperty> rdf:type <http://www.w3.org/ns/shacl#PropertyShape> ;
+  <http://shaclshapes.org/confidence> 2.9799E-1 ;
+  <http://shaclshapes.org/support> "20425"^^xsd:int ;
+  <http://www.w3.org/ns/shacl#NodeKind> <http://www.w3.org/ns/shacl#Literal> ;
+  <http://www.w3.org/ns/shacl#datatype> xsd:integer ;
+  <http://www.w3.org/ns/shacl#path> <http://data.europa.eu/949/areaBoardingAid> .
+
+<http://shaclshapes.org/asWKTGeometryShapeProperty> rdf:type <http://www.w3.org/ns/shacl#PropertyShape> ;
+  <http://shaclshapes.org/confidence> 8.2041E-1 ;
+  <http://shaclshapes.org/support> "68049"^^xsd:int ;
+  <http://www.w3.org/ns/shacl#NodeKind> <http://www.w3.org/ns/shacl#IRI> ;
+  <http://www.w3.org/ns/shacl#class> <%3Chttp://www.opengis.net/ont/geosparql#wktLiteral%3E> ;
+  <http://www.w3.org/ns/shacl#path> <http://www.opengis.net/ont/geosparql#asWKT> .
+
+<http://shaclshapes.org/asWKTPointShapeProperty> rdf:type <http://www.w3.org/ns/shacl#PropertyShape> ;
+  <http://shaclshapes.org/confidence> 8.2041E-1 ;
+  <http://shaclshapes.org/support> "68049"^^xsd:int ;
+  <http://www.w3.org/ns/shacl#NodeKind> <http://www.w3.org/ns/shacl#IRI> ;
+  <http://www.w3.org/ns/shacl#class> <%3Chttp://www.opengis.net/ont/geosparql#wktLiteral%3E> ;
+  <http://www.w3.org/ns/shacl#path> <http://www.opengis.net/ont/geosparql#asWKT> .
+
+<http://shaclshapes.org/assistanceStartingTrainPlatformShapeProperty> rdf:type <http://www.w3.org/ns/shacl#PropertyShape> ;
+  <http://shaclshapes.org/confidence> 4.253E-1 ;
+  <http://shaclshapes.org/support> "29151"^^xsd:int ;
+  <http://www.w3.org/ns/shacl#NodeKind> <http://www.w3.org/ns/shacl#Literal> ;
+  <http://www.w3.org/ns/shacl#datatype> xsd:boolean ;
+  <http://www.w3.org/ns/shacl#path> <http://data.europa.eu/949/assistanceStartingTrain> .
+
+<http://shaclshapes.org/canonicalURIOperationalPointShapeProperty> rdf:type <http://www.w3.org/ns/shacl#PropertyShape> ;
+  <http://shaclshapes.org/confidence> 9.8602E-1 ;
+  <http://shaclshapes.org/support> "60369"^^xsd:int ;
+  <http://www.w3.org/ns/shacl#NodeKind> <http://www.w3.org/ns/shacl#IRI> ;
+  <http://www.w3.org/ns/shacl#minCount> 1 ;
+  <http://www.w3.org/ns/shacl#path> <http://data.europa.eu/949/canonicalURI> .
+
+<http://shaclshapes.org/canonicalURISectionOfLineShapeProperty> rdf:type <http://www.w3.org/ns/shacl#PropertyShape> ;
+  <http://shaclshapes.org/confidence> 1E0 ;
+  <http://shaclshapes.org/support> "59733"^^xsd:int ;
+  <http://www.w3.org/ns/shacl#NodeKind> <http://www.w3.org/ns/shacl#IRI> ;
+  <http://www.w3.org/ns/shacl#minCount> 1 ;
+  <http://www.w3.org/ns/shacl#path> <http://data.europa.eu/949/canonicalURI> .
+
+<http://shaclshapes.org/contactLineSystemTypeContactLineSystemShapeProperty> rdf:type <http://www.w3.org/ns/shacl#PropertyShape> ;
+  <http://shaclshapes.org/confidence> 9.9762E-1 ;
+  <http://shaclshapes.org/support> "83731"^^xsd:int ;
+  <http://www.w3.org/ns/shacl#NodeKind> <http://www.w3.org/ns/shacl#IRI> ;
+  <http://www.w3.org/ns/shacl#minCount> 1 ;
+  <http://www.w3.org/ns/shacl#path> <http://data.europa.eu/949/contactLineSystemType> .
+
+<http://shaclshapes.org/currentLimitationRequiredContactLineSystemShapeProperty> rdf:type <http://www.w3.org/ns/shacl#PropertyShape> ;
+  <http://shaclshapes.org/confidence> 6.7208E-1 ;
+  <http://shaclshapes.org/support> "56408"^^xsd:int ;
+  <http://www.w3.org/ns/shacl#NodeKind> <http://www.w3.org/ns/shacl#Literal> ;
+  <http://www.w3.org/ns/shacl#datatype> xsd:boolean ;
+  <http://www.w3.org/ns/shacl#path> <http://data.europa.eu/949/currentLimitationRequired> .
+
+<http://shaclshapes.org/elementANetRelationShapeProperty> rdf:type <http://www.w3.org/ns/shacl#PropertyShape> ;
+  <http://shaclshapes.org/confidence> 8.9341E-1 ;
+  <http://shaclshapes.org/support> "1152818"^^xsd:int ;
+  <http://www.w3.org/ns/shacl#NodeKind> <http://www.w3.org/ns/shacl#IRI> ;
+  <http://www.w3.org/ns/shacl#class> <http://data.europa.eu/949/NetElement> ;
+  <http://www.w3.org/ns/shacl#node> <http://shaclshapes.org/NetElementShape> ;
+  <http://www.w3.org/ns/shacl#path> <http://data.europa.eu/949/elementA> .
+
+<http://shaclshapes.org/elementBNetRelationShapeProperty> rdf:type <http://www.w3.org/ns/shacl#PropertyShape> ;
+  <http://shaclshapes.org/confidence> 8.9341E-1 ;
+  <http://shaclshapes.org/support> "1152818"^^xsd:int ;
+  <http://www.w3.org/ns/shacl#NodeKind> <http://www.w3.org/ns/shacl#IRI> ;
+  <http://www.w3.org/ns/shacl#class> <http://data.europa.eu/949/NetElement> ;
+  <http://www.w3.org/ns/shacl#node> <http://shaclshapes.org/NetElementShape> ;
+  <http://www.w3.org/ns/shacl#path> <http://data.europa.eu/949/elementB> .
+
+<http://shaclshapes.org/endLocationTunnelShapeProperty> rdf:type <http://www.w3.org/ns/shacl#PropertyShape> ;
+  <http://www.w3.org/ns/shacl#node> <http://shaclshapes.org/GeometryShape> ;
+  <http://www.w3.org/ns/shacl#or> ( [
+    <http://shaclshapes.org/confidence> 5.247E-1 ;
+    <http://shaclshapes.org/support> "7711"^^xsd:int ;
+    <http://www.w3.org/ns/shacl#NodeKind> <http://www.w3.org/ns/shacl#IRI> ;
+    <http://www.w3.org/ns/shacl#class> <http://www.w3.org/2003/01/geo/wgs84_pos#Point> ;
+  ] [
+    <http://shaclshapes.org/confidence> 5.247E-1 ;
+    <http://shaclshapes.org/support> "7711"^^xsd:int ;
+    <http://www.w3.org/ns/shacl#NodeKind> <http://www.w3.org/ns/shacl#IRI> ;
+    <http://www.w3.org/ns/shacl#class> <http://www.opengis.net/ont/geosparql#Geometry> ;
+  ] ) ;
+  <http://www.w3.org/ns/shacl#path> <http://data.europa.eu/949/endLocation> .
+
+<http://shaclshapes.org/energySupplySystemContactLineSystemShapeProperty> rdf:type <http://www.w3.org/ns/shacl#PropertyShape> ;
+  <http://shaclshapes.org/confidence> 7.1562E-1 ;
+  <http://shaclshapes.org/support> "60063"^^xsd:int ;
+  <http://www.w3.org/ns/shacl#NodeKind> <http://www.w3.org/ns/shacl#IRI> ;
+  <http://www.w3.org/ns/shacl#minCount> 1 ;
+  <http://www.w3.org/ns/shacl#path> <http://data.europa.eu/949/energySupplySystem> .
+
+<http://shaclshapes.org/energySupplySystemTSICompliantContactLineSystemShapeProperty> rdf:type <http://www.w3.org/ns/shacl#PropertyShape> ;
+  <http://shaclshapes.org/confidence> 3.4244E-1 ;
+  <http://shaclshapes.org/support> "28741"^^xsd:int ;
+  <http://www.w3.org/ns/shacl#NodeKind> <http://www.w3.org/ns/shacl#Literal> ;
+  <http://www.w3.org/ns/shacl#datatype> xsd:boolean ;
+  <http://www.w3.org/ns/shacl#path> <http://data.europa.eu/949/energySupplySystemTSICompliant> .
+
+<http://shaclshapes.org/etcsLevelTypeETCSLevelShapeProperty> rdf:type <http://www.w3.org/ns/shacl#PropertyShape> ;
+  <http://shaclshapes.org/confidence> 9.9771E-1 ;
+  <http://shaclshapes.org/support> "88943"^^xsd:int ;
+  <http://www.w3.org/ns/shacl#NodeKind> <http://www.w3.org/ns/shacl#IRI> ;
+  <http://www.w3.org/ns/shacl#minCount> 1 ;
+  <http://www.w3.org/ns/shacl#path> <http://data.europa.eu/949/etcsLevelType> .
+
+<http://shaclshapes.org/flangeLubeRulesTrainDetectionSystemShapeProperty> rdf:type <http://www.w3.org/ns/shacl#PropertyShape> ;
+  <http://shaclshapes.org/confidence> 3.7451E-1 ;
+  <http://shaclshapes.org/support> "51000"^^xsd:int ;
+  <http://www.w3.org/ns/shacl#NodeKind> <http://www.w3.org/ns/shacl#Literal> ;
+  <http://www.w3.org/ns/shacl#datatype> xsd:boolean ;
+  <http://www.w3.org/ns/shacl#path> <http://data.europa.eu/949/flangeLubeRules> .
+
+<http://shaclshapes.org/frenchTrainDetectionSystemLimitationApplicableFrenchTrainDetectionSystemLimitationShapeProperty> rdf:type <http://www.w3.org/ns/shacl#PropertyShape> ;
+  <http://shaclshapes.org/confidence> 1E0 ;
+  <http://shaclshapes.org/support> "1827"^^xsd:int ;
+  <http://www.w3.org/ns/shacl#NodeKind> <http://www.w3.org/ns/shacl#Literal> ;
+  <http://www.w3.org/ns/shacl#datatype> xsd:boolean ;
+  <http://www.w3.org/ns/shacl#minCount> 1 ;
+  <http://www.w3.org/ns/shacl#path> <http://data.europa.eu/949/frenchTrainDetectionSystemLimitationApplicable> .
+
+<http://shaclshapes.org/gaugingProfileTrackShapeProperty> rdf:type <http://www.w3.org/ns/shacl#PropertyShape> ;
+  <http://shaclshapes.org/confidence> 4.0289E-1 ;
+  <http://shaclshapes.org/support> "146284"^^xsd:int ;
+  <http://www.w3.org/ns/shacl#NodeKind> <http://www.w3.org/ns/shacl#IRI> ;
+  <http://www.w3.org/ns/shacl#minCount> 1 ;
+  <http://www.w3.org/ns/shacl#path> <http://data.europa.eu/949/gaugingProfile> .
+
+<http://shaclshapes.org/gradientProfileTrackShapeProperty> rdf:type <http://www.w3.org/ns/shacl#PropertyShape> ;
+  <http://shaclshapes.org/confidence> 2.5625E-1 ;
+  <http://shaclshapes.org/support> "93043"^^xsd:int ;
+  <http://www.w3.org/ns/shacl#NodeKind> <http://www.w3.org/ns/shacl#Literal> ;
+  <http://www.w3.org/ns/shacl#datatype> xsd:string ;
+  <http://www.w3.org/ns/shacl#path> <http://data.europa.eu/949/gradientProfile> .
+
+<http://shaclshapes.org/hasAbstractionOperationalPointShapeProperty> rdf:type <http://www.w3.org/ns/shacl#PropertyShape> ;
+  <http://shaclshapes.org/confidence> 9.9291E-1 ;
+  <http://shaclshapes.org/support> "60791"^^xsd:int ;
+  <http://www.w3.org/ns/shacl#NodeKind> <http://www.w3.org/ns/shacl#IRI> ;
+  <http://www.w3.org/ns/shacl#class> <http://data.europa.eu/949/NetElement> ;
+  <http://www.w3.org/ns/shacl#node> <http://shaclshapes.org/NetElementShape> ;
+  <http://www.w3.org/ns/shacl#path> <http://data.europa.eu/949/hasAbstraction> .
+
+<http://shaclshapes.org/hasAbstractionSectionOfLineShapeProperty> rdf:type <http://www.w3.org/ns/shacl#PropertyShape> ;
+  <http://shaclshapes.org/confidence> 1E0 ;
+  <http://shaclshapes.org/support> "59733"^^xsd:int ;
+  <http://www.w3.org/ns/shacl#NodeKind> <http://www.w3.org/ns/shacl#IRI> ;
+  <http://www.w3.org/ns/shacl#class> <http://data.europa.eu/949/NetElement> ;
+  <http://www.w3.org/ns/shacl#minCount> 1 ;
+  <http://www.w3.org/ns/shacl#node> <http://shaclshapes.org/NetElementShape> ;
+  <http://www.w3.org/ns/shacl#path> <http://data.europa.eu/949/hasAbstraction> .
+
+<http://shaclshapes.org/hasAbstractionTrackShapeProperty> rdf:type <http://www.w3.org/ns/shacl#PropertyShape> ;
+  <http://shaclshapes.org/confidence> 2.5625E-1 ;
+  <http://shaclshapes.org/support> "93043"^^xsd:int ;
+  <http://www.w3.org/ns/shacl#NodeKind> <http://www.w3.org/ns/shacl#IRI> ;
+  <http://www.w3.org/ns/shacl#class> <http://data.europa.eu/949/NetElement> ;
+  <http://www.w3.org/ns/shacl#node> <http://shaclshapes.org/NetElementShape> ;
+  <http://www.w3.org/ns/shacl#path> <http://data.europa.eu/949/hasAbstraction> .
+
+<http://shaclshapes.org/hasElectricShoreSupplySidingShapeProperty> rdf:type <http://www.w3.org/ns/shacl#PropertyShape> ;
+  <http://shaclshapes.org/confidence> 8.0173E-1 ;
+  <http://shaclshapes.org/support> "103237"^^xsd:int ;
+  <http://www.w3.org/ns/shacl#NodeKind> <http://www.w3.org/ns/shacl#Literal> ;
+  <http://www.w3.org/ns/shacl#datatype> xsd:boolean ;
+  <http://www.w3.org/ns/shacl#path> <http://data.europa.eu/949/hasElectricShoreSupply> .
+
+<http://shaclshapes.org/hasEmergencyPlanTunnelShapeProperty> rdf:type <http://www.w3.org/ns/shacl#PropertyShape> ;
+  <http://shaclshapes.org/confidence> 5.9431E-1 ;
+  <http://shaclshapes.org/support> "8734"^^xsd:int ;
+  <http://www.w3.org/ns/shacl#NodeKind> <http://www.w3.org/ns/shacl#Literal> ;
+  <http://www.w3.org/ns/shacl#datatype> xsd:boolean ;
+  <http://www.w3.org/ns/shacl#path> <http://data.europa.eu/949/hasEmergencyPlan> .
+
+<http://shaclshapes.org/hasExternalCleaningSidingShapeProperty> rdf:type <http://www.w3.org/ns/shacl#PropertyShape> ;
+  <http://shaclshapes.org/confidence> 9.3982E-1 ;
+  <http://shaclshapes.org/support> "121018"^^xsd:int ;
+  <http://www.w3.org/ns/shacl#NodeKind> <http://www.w3.org/ns/shacl#Literal> ;
+  <http://www.w3.org/ns/shacl#datatype> xsd:boolean ;
+  <http://www.w3.org/ns/shacl#path> <http://data.europa.eu/949/hasExternalCleaning> .
+
+<http://shaclshapes.org/hasGeometryOperationalPointShapeProperty> rdf:type <http://www.w3.org/ns/shacl#PropertyShape> ;
+  <http://www.w3.org/ns/shacl#node> <http://shaclshapes.org/GeometryShape> ;
+  <http://www.w3.org/ns/shacl#or> ( [
+    <http://shaclshapes.org/confidence> 9.9291E-1 ;
+    <http://shaclshapes.org/support> "60791"^^xsd:int ;
+    <http://www.w3.org/ns/shacl#NodeKind> <http://www.w3.org/ns/shacl#IRI> ;
+    <http://www.w3.org/ns/shacl#class> <http://www.w3.org/2003/01/geo/wgs84_pos#Point> ;
+  ] [
+    <http://shaclshapes.org/confidence> 9.9291E-1 ;
+    <http://shaclshapes.org/support> "60791"^^xsd:int ;
+    <http://www.w3.org/ns/shacl#NodeKind> <http://www.w3.org/ns/shacl#IRI> ;
+    <http://www.w3.org/ns/shacl#class> <http://www.opengis.net/ont/geosparql#Geometry> ;
+  ] ) ;
+  <http://www.w3.org/ns/shacl#path> <http://www.opengis.net/ont/geosparql#hasGeometry> .
+
+<http://shaclshapes.org/hasGeometrySectionOfLineShapeProperty> rdf:type <http://www.w3.org/ns/shacl#PropertyShape> ;
+  <http://shaclshapes.org/confidence> 1E0 ;
+  <http://shaclshapes.org/support> "59733"^^xsd:int ;
+  <http://www.w3.org/ns/shacl#NodeKind> <http://www.w3.org/ns/shacl#IRI> ;
+  <http://www.w3.org/ns/shacl#minCount> 1 ;
+  <http://www.w3.org/ns/shacl#path> <http://www.opengis.net/ont/geosparql#hasGeometry> .
+
+<http://shaclshapes.org/hasRefuellingSidingShapeProperty> rdf:type <http://www.w3.org/ns/shacl#PropertyShape> ;
+  <http://shaclshapes.org/confidence> 7.1291E-1 ;
+  <http://shaclshapes.org/support> "91799"^^xsd:int ;
+  <http://www.w3.org/ns/shacl#NodeKind> <http://www.w3.org/ns/shacl#Literal> ;
+  <http://www.w3.org/ns/shacl#datatype> xsd:boolean ;
+  <http://www.w3.org/ns/shacl#path> <http://data.europa.eu/949/hasRefuelling> .
+
+<http://shaclshapes.org/hasRegenerativeBrakeContactLineSystemShapeProperty> rdf:type <http://www.w3.org/ns/shacl#PropertyShape> ;
+  <http://shaclshapes.org/confidence> 7.1742E-1 ;
+  <http://shaclshapes.org/support> "60214"^^xsd:int ;
+  <http://www.w3.org/ns/shacl#NodeKind> <http://www.w3.org/ns/shacl#Literal> ;
+  <http://www.w3.org/ns/shacl#datatype> xsd:boolean ;
+  <http://www.w3.org/ns/shacl#path> <http://data.europa.eu/949/hasRegenerativeBrake> .
+
+<http://shaclshapes.org/hasSandRestockingSidingShapeProperty> rdf:type <http://www.w3.org/ns/shacl#PropertyShape> ;
+  <http://shaclshapes.org/confidence> 8.1359E-1 ;
+  <http://shaclshapes.org/support> "104764"^^xsd:int ;
+  <http://www.w3.org/ns/shacl#NodeKind> <http://www.w3.org/ns/shacl#Literal> ;
+  <http://www.w3.org/ns/shacl#datatype> xsd:boolean ;
+  <http://www.w3.org/ns/shacl#path> <http://data.europa.eu/949/hasSandRestocking> .
+
+<http://shaclshapes.org/hasToiletDischargeSidingShapeProperty> rdf:type <http://www.w3.org/ns/shacl#PropertyShape> ;
+  <http://shaclshapes.org/confidence> 9.3991E-1 ;
+  <http://shaclshapes.org/support> "121029"^^xsd:int ;
+  <http://www.w3.org/ns/shacl#NodeKind> <http://www.w3.org/ns/shacl#Literal> ;
+  <http://www.w3.org/ns/shacl#datatype> xsd:boolean ;
+  <http://www.w3.org/ns/shacl#path> <http://data.europa.eu/949/hasToiletDischarge> .
+
+<http://shaclshapes.org/hasWaterRestockingSidingShapeProperty> rdf:type <http://www.w3.org/ns/shacl#PropertyShape> ;
+  <http://shaclshapes.org/confidence> 8.3879E-1 ;
+  <http://shaclshapes.org/support> "108008"^^xsd:int ;
+  <http://www.w3.org/ns/shacl#NodeKind> <http://www.w3.org/ns/shacl#Literal> ;
+  <http://www.w3.org/ns/shacl#datatype> xsd:boolean ;
+  <http://www.w3.org/ns/shacl#path> <http://data.europa.eu/949/hasWaterRestocking> .
+
+<http://shaclshapes.org/imCodePlatformShapeProperty> rdf:type <http://www.w3.org/ns/shacl#PropertyShape> ;
+  <http://shaclshapes.org/confidence> 7.7276E-1 ;
+  <http://shaclshapes.org/support> "52967"^^xsd:int ;
+  <http://www.w3.org/ns/shacl#NodeKind> <http://www.w3.org/ns/shacl#Literal> ;
+  <http://www.w3.org/ns/shacl#datatype> xsd:string ;
+  <http://www.w3.org/ns/shacl#path> <http://data.europa.eu/949/imCode> .
+
+<http://shaclshapes.org/imCodeSectionOfLineShapeProperty> rdf:type <http://www.w3.org/ns/shacl#PropertyShape> ;
+  <http://shaclshapes.org/confidence> 1E0 ;
+  <http://shaclshapes.org/support> "59733"^^xsd:int ;
+  <http://www.w3.org/ns/shacl#NodeKind> <http://www.w3.org/ns/shacl#Literal> ;
+  <http://www.w3.org/ns/shacl#datatype> xsd:string ;
+  <http://www.w3.org/ns/shacl#minCount> 1 ;
+  <http://www.w3.org/ns/shacl#path> <http://data.europa.eu/949/imCode> .
+
+<http://shaclshapes.org/imCodeSidingShapeProperty> rdf:type <http://www.w3.org/ns/shacl#PropertyShape> ;
+  <http://shaclshapes.org/confidence> 9.9964E-1 ;
+  <http://shaclshapes.org/support> "128721"^^xsd:int ;
+  <http://www.w3.org/ns/shacl#NodeKind> <http://www.w3.org/ns/shacl#Literal> ;
+  <http://www.w3.org/ns/shacl#datatype> xsd:string ;
+  <http://www.w3.org/ns/shacl#path> <http://data.europa.eu/949/imCode> .
+
+<http://shaclshapes.org/imCodeTrackShapeProperty> rdf:type <http://www.w3.org/ns/shacl#PropertyShape> ;
+  <http://shaclshapes.org/confidence> 7.4306E-1 ;
+  <http://shaclshapes.org/support> "269796"^^xsd:int ;
+  <http://www.w3.org/ns/shacl#NodeKind> <http://www.w3.org/ns/shacl#Literal> ;
+  <http://www.w3.org/ns/shacl#datatype> xsd:string ;
+  <http://www.w3.org/ns/shacl#path> <http://data.europa.eu/949/imCode> .
+
+<http://shaclshapes.org/imCodeTunnelShapeProperty> rdf:type <http://www.w3.org/ns/shacl#PropertyShape> ;
+  <http://shaclshapes.org/confidence> 7.7137E-1 ;
+  <http://shaclshapes.org/support> "11336"^^xsd:int ;
+  <http://www.w3.org/ns/shacl#NodeKind> <http://www.w3.org/ns/shacl#Literal> ;
+  <http://www.w3.org/ns/shacl#datatype> xsd:string ;
+  <http://www.w3.org/ns/shacl#path> <http://data.europa.eu/949/imCode> .
+
+<http://shaclshapes.org/inCountryOperationalPointShapeProperty> rdf:type <http://www.w3.org/ns/shacl#PropertyShape> ;
+  <http://shaclshapes.org/confidence> 9.9291E-1 ;
+  <http://shaclshapes.org/support> "60791"^^xsd:int ;
+  <http://www.w3.org/ns/shacl#NodeKind> <http://www.w3.org/ns/shacl#IRI> ;
+  <http://www.w3.org/ns/shacl#minCount> 1 ;
+  <http://www.w3.org/ns/shacl#path> <http://data.europa.eu/949/inCountry> .
+
+<http://shaclshapes.org/inCountrySectionOfLineShapeProperty> rdf:type <http://www.w3.org/ns/shacl#PropertyShape> ;
+  <http://shaclshapes.org/confidence> 1E0 ;
+  <http://shaclshapes.org/support> "59733"^^xsd:int ;
+  <http://www.w3.org/ns/shacl#NodeKind> <http://www.w3.org/ns/shacl#IRI> ;
+  <http://www.w3.org/ns/shacl#minCount> 1 ;
+  <http://www.w3.org/ns/shacl#path> <http://data.europa.eu/949/inCountry> .
+
+<http://shaclshapes.org/inCountryTunnelShapeProperty> rdf:type <http://www.w3.org/ns/shacl#PropertyShape> ;
+  <http://shaclshapes.org/confidence> 7.7137E-1 ;
+  <http://shaclshapes.org/support> "11336"^^xsd:int ;
+  <http://www.w3.org/ns/shacl#NodeKind> <http://www.w3.org/ns/shacl#IRI> ;
+  <http://www.w3.org/ns/shacl#minCount> 1 ;
+  <http://www.w3.org/ns/shacl#path> <http://data.europa.eu/949/inCountry> .
+
+<http://shaclshapes.org/instanceTypeContactLineSystemShapeProperty> rdf:type <http://www.w3.org/ns/shacl#PropertyShape> ;
+  <http://shaclshapes.org/confidence> 9.9762E-1 ;
+  <http://shaclshapes.org/support> "83731"^^xsd:int ;
+  <http://www.w3.org/ns/shacl#in> ( <http://data.europa.eu/949/ContactLineSystem> ) ;
+  <http://www.w3.org/ns/shacl#path> rdf:type .
+
+<http://shaclshapes.org/instanceTypeETCSLevelShapeProperty> rdf:type <http://www.w3.org/ns/shacl#PropertyShape> ;
+  <http://shaclshapes.org/confidence> 9.9771E-1 ;
+  <http://shaclshapes.org/support> "88943"^^xsd:int ;
+  <http://www.w3.org/ns/shacl#in> ( <http://data.europa.eu/949/ETCSLevel> ) ;
+  <http://www.w3.org/ns/shacl#path> rdf:type .
+
+<http://shaclshapes.org/instanceTypeFrenchTrainDetectionSystemLimitationShapeProperty> rdf:type <http://www.w3.org/ns/shacl#PropertyShape> ;
+  <http://shaclshapes.org/confidence> 1E0 ;
+  <http://shaclshapes.org/support> "1827"^^xsd:int ;
+  <http://www.w3.org/ns/shacl#in> ( 
+    <http://data.europa.eu/949/FrenchTrainDetectionSystemLimitation> ) ;
+  <http://www.w3.org/ns/shacl#path> rdf:type .
+
+<http://shaclshapes.org/instanceTypeGeometryShapeProperty> rdf:type <http://www.w3.org/ns/shacl#PropertyShape> ;
+  <http://shaclshapes.org/confidence> 8.2041E-1 ;
+  <http://shaclshapes.org/support> "68049"^^xsd:int ;
+  <http://www.w3.org/ns/shacl#in> ( <http://www.opengis.net/ont/geosparql#Geometry> ) ;
+  <http://www.w3.org/ns/shacl#path> rdf:type .
+
+<http://shaclshapes.org/instanceTypeLineReferenceShapeProperty> rdf:type <http://www.w3.org/ns/shacl#PropertyShape> ;
+  <http://shaclshapes.org/confidence> 8.7237E-1 ;
+  <http://shaclshapes.org/support> "69307"^^xsd:int ;
+  <http://www.w3.org/ns/shacl#in> ( <http://data.europa.eu/949/LineReference> ) ;
+  <http://www.w3.org/ns/shacl#path> rdf:type .
+
+<http://shaclshapes.org/instanceTypeLoadCapabilityShapeProperty> rdf:type <http://www.w3.org/ns/shacl#PropertyShape> ;
+  <http://shaclshapes.org/confidence> 9.9775E-1 ;
+  <http://shaclshapes.org/support> "75038"^^xsd:int ;
+  <http://www.w3.org/ns/shacl#in> ( <http://data.europa.eu/949/LoadCapability> ) ;
+  <http://www.w3.org/ns/shacl#path> rdf:type .
+
+<http://shaclshapes.org/instanceTypeMinAxleLoadVehicleCategoryShapeProperty> rdf:type <http://www.w3.org/ns/shacl#PropertyShape> ;
+  <http://shaclshapes.org/confidence> 4.2231E-1 ;
+  <http://shaclshapes.org/support> "68350"^^xsd:int ;
+  <http://www.w3.org/ns/shacl#in> ( <http://data.europa.eu/949/MinAxleLoadVehicleCategory> ) ;
+  <http://www.w3.org/ns/shacl#path> rdf:type .
+
+<http://shaclshapes.org/instanceTypeNationalRailwayLineShapeProperty> rdf:type <http://www.w3.org/ns/shacl#PropertyShape> ;
+  <http://www.w3.org/ns/shacl#in> ( <http://data.europa.eu/949/NationalRailwayLine> ) ;
+  <http://www.w3.org/ns/shacl#path> rdf:type .
+
+<http://shaclshapes.org/instanceTypeNetElementShapeProperty> rdf:type <http://www.w3.org/ns/shacl#PropertyShape> ;
+  <http://shaclshapes.org/confidence> 9.0449E-1 ;
+  <http://shaclshapes.org/support> "722892"^^xsd:int ;
+  <http://www.w3.org/ns/shacl#in> ( <http://data.europa.eu/949/NetElement> ) ;
+  <http://www.w3.org/ns/shacl#path> rdf:type .
+
+<http://shaclshapes.org/instanceTypeNetRelationShapeProperty> rdf:type <http://www.w3.org/ns/shacl#PropertyShape> ;
+  <http://shaclshapes.org/confidence> 8.9341E-1 ;
+  <http://shaclshapes.org/support> "1152818"^^xsd:int ;
+  <http://www.w3.org/ns/shacl#in> ( <http://data.europa.eu/949/NetRelation> ) ;
+  <http://www.w3.org/ns/shacl#path> rdf:type .
+
+<http://shaclshapes.org/instanceTypeOperationalPointShapeProperty> rdf:type <http://www.w3.org/ns/shacl#PropertyShape> ;
+  <http://shaclshapes.org/confidence> 9.9659E-1 ;
+  <http://shaclshapes.org/support> "61016"^^xsd:int ;
+  <http://www.w3.org/ns/shacl#in> ( <http://data.europa.eu/949/OperationalPoint> ) ;
+  <http://www.w3.org/ns/shacl#path> rdf:type .
+
+<http://shaclshapes.org/instanceTypePhaseInfoShapeProperty> rdf:type <http://www.w3.org/ns/shacl#PropertyShape> ;
+  <http://shaclshapes.org/confidence> 1E0 ;
+  <http://shaclshapes.org/support> "1690"^^xsd:int ;
+  <http://www.w3.org/ns/shacl#in> ( <http://data.europa.eu/949/PhaseInfo> ) ;
+  <http://www.w3.org/ns/shacl#path> rdf:type .
+
+<http://shaclshapes.org/instanceTypePlatformShapeProperty> rdf:type <http://www.w3.org/ns/shacl#PropertyShape> ;
+  <http://shaclshapes.org/confidence> 7.7276E-1 ;
+  <http://shaclshapes.org/support> "52967"^^xsd:int ;
+  <http://www.w3.org/ns/shacl#in> ( <http://data.europa.eu/949/Platform> ) ;
+  <http://www.w3.org/ns/shacl#path> rdf:type .
+
+<http://shaclshapes.org/instanceTypePointShapeProperty> rdf:type <http://www.w3.org/ns/shacl#PropertyShape> ;
+  <http://shaclshapes.org/confidence> 8.2041E-1 ;
+  <http://shaclshapes.org/support> "68049"^^xsd:int ;
+  <http://www.w3.org/ns/shacl#in> ( <http://www.w3.org/2003/01/geo/wgs84_pos#Point> ) ;
+  <http://www.w3.org/ns/shacl#path> rdf:type .
+
+<http://shaclshapes.org/instanceTypeRaisedPantographsDistanceAndSpeedShapeProperty> rdf:type <http://www.w3.org/ns/shacl#PropertyShape> ;
+  <http://shaclshapes.org/confidence> 1E0 ;
+  <http://shaclshapes.org/support> "49408"^^xsd:int ;
+  <http://www.w3.org/ns/shacl#in> ( <http://data.europa.eu/949/RaisedPantographsDistanceAndSpeed> ) ;
+  <http://www.w3.org/ns/shacl#path> rdf:type .
+
+<http://shaclshapes.org/instanceTypeSectionOfLineShapeProperty> rdf:type <http://www.w3.org/ns/shacl#PropertyShape> ;
+  <http://shaclshapes.org/confidence> 1E0 ;
+  <http://shaclshapes.org/support> "59733"^^xsd:int ;
+  <http://www.w3.org/ns/shacl#in> ( <http://data.europa.eu/949/SectionOfLine> ) ;
+  <http://www.w3.org/ns/shacl#path> rdf:type .
+
+<http://shaclshapes.org/instanceTypeSidingShapeProperty> rdf:type <http://www.w3.org/ns/shacl#PropertyShape> ;
+  <http://shaclshapes.org/confidence> 9.9964E-1 ;
+  <http://shaclshapes.org/support> "128721"^^xsd:int ;
+  <http://www.w3.org/ns/shacl#in> ( <http://data.europa.eu/949/Siding> ) ;
+  <http://www.w3.org/ns/shacl#path> rdf:type .
+
+<http://shaclshapes.org/instanceTypeSystemSeparationInfoShapeProperty> rdf:type <http://www.w3.org/ns/shacl#PropertyShape> ;
+  <http://shaclshapes.org/confidence> 1E0 ;
+  <http://shaclshapes.org/support> "498"^^xsd:int ;
+  <http://www.w3.org/ns/shacl#in> ( <http://data.europa.eu/949/SystemSeparationInfo> ) ;
+  <http://www.w3.org/ns/shacl#path> rdf:type .
+
+<http://shaclshapes.org/instanceTypeTrackShapeProperty> rdf:type <http://www.w3.org/ns/shacl#PropertyShape> ;
+  <http://shaclshapes.org/confidence> 9.9931E-1 ;
+  <http://shaclshapes.org/support> "362839"^^xsd:int ;
+  <http://www.w3.org/ns/shacl#in> ( <http://data.europa.eu/949/Track> ) ;
+  <http://www.w3.org/ns/shacl#path> rdf:type .
+
+<http://shaclshapes.org/instanceTypeTrainDetectionSystemShapeProperty> rdf:type <http://www.w3.org/ns/shacl#PropertyShape> ;
+  <http://shaclshapes.org/confidence> 9.9831E-1 ;
+  <http://shaclshapes.org/support> "135948"^^xsd:int ;
+  <http://www.w3.org/ns/shacl#in> ( <http://data.europa.eu/949/TrainDetectionSystem> ) ;
+  <http://www.w3.org/ns/shacl#path> rdf:type .
+
+<http://shaclshapes.org/instanceTypeTunnelShapeProperty> rdf:type <http://www.w3.org/ns/shacl#PropertyShape> ;
+  <http://shaclshapes.org/confidence> 7.7137E-1 ;
+  <http://shaclshapes.org/support> "11336"^^xsd:int ;
+  <http://www.w3.org/ns/shacl#in> ( <http://data.europa.eu/949/Tunnel> ) ;
+  <http://www.w3.org/ns/shacl#path> rdf:type .
+
+<http://shaclshapes.org/kilometerLineReferenceShapeProperty> rdf:type <http://www.w3.org/ns/shacl#PropertyShape> ;
+  <http://shaclshapes.org/confidence> 8.7237E-1 ;
+  <http://shaclshapes.org/support> "69307"^^xsd:int ;
+  <http://www.w3.org/ns/shacl#NodeKind> <http://www.w3.org/ns/shacl#Literal> ;
+  <http://www.w3.org/ns/shacl#datatype> xsd:double ;
+  <http://www.w3.org/ns/shacl#path> <http://data.europa.eu/949/kilometer> .
+
+<http://shaclshapes.org/labelContactLineSystemShapeProperty> rdf:type <http://www.w3.org/ns/shacl#PropertyShape> ;
+  <http://shaclshapes.org/confidence> 9.9762E-1 ;
+  <http://shaclshapes.org/support> "83731"^^xsd:int ;
+  <http://www.w3.org/ns/shacl#NodeKind> <http://www.w3.org/ns/shacl#Literal> ;
+  <http://www.w3.org/ns/shacl#datatype> xsd:string ;
+  <http://www.w3.org/ns/shacl#path> rdfs:label .
+
+<http://shaclshapes.org/labelETCSLevelShapeProperty> rdf:type <http://www.w3.org/ns/shacl#PropertyShape> ;
+  <http://shaclshapes.org/confidence> 9.9771E-1 ;
+  <http://shaclshapes.org/support> "88943"^^xsd:int ;
+  <http://www.w3.org/ns/shacl#NodeKind> <http://www.w3.org/ns/shacl#Literal> ;
+  <http://www.w3.org/ns/shacl#datatype> xsd:string ;
+  <http://www.w3.org/ns/shacl#path> rdfs:label .
+
+<http://shaclshapes.org/labelFrenchTrainDetectionSystemLimitationShapeProperty> rdf:type <http://www.w3.org/ns/shacl#PropertyShape> ;
+  <http://shaclshapes.org/confidence> 1E0 ;
+  <http://shaclshapes.org/support> "1827"^^xsd:int ;
+  <http://www.w3.org/ns/shacl#NodeKind> <http://www.w3.org/ns/shacl#Literal> ;
+  <http://www.w3.org/ns/shacl#datatype> xsd:string ;
+  <http://www.w3.org/ns/shacl#minCount> 1 ;
+  <http://www.w3.org/ns/shacl#path> rdfs:label .
+
+<http://shaclshapes.org/labelLineReferenceShapeProperty> rdf:type <http://www.w3.org/ns/shacl#PropertyShape> ;
+  <http://shaclshapes.org/confidence> 8.7237E-1 ;
+  <http://shaclshapes.org/support> "69307"^^xsd:int ;
+  <http://www.w3.org/ns/shacl#NodeKind> <http://www.w3.org/ns/shacl#Literal> ;
+  <http://www.w3.org/ns/shacl#datatype> xsd:string ;
+  <http://www.w3.org/ns/shacl#path> rdfs:label .
+
+<http://shaclshapes.org/labelNetElementShapeProperty> rdf:type <http://www.w3.org/ns/shacl#PropertyShape> ;
+  <http://shaclshapes.org/confidence> 9.0436E-1 ;
+  <http://shaclshapes.org/support> "722790"^^xsd:int ;
+  <http://www.w3.org/ns/shacl#NodeKind> <http://www.w3.org/ns/shacl#Literal> ;
+  <http://www.w3.org/ns/shacl#datatype> xsd:string ;
+  <http://www.w3.org/ns/shacl#path> rdfs:label .
+
+<http://shaclshapes.org/labelOperationalPointShapeProperty> rdf:type <http://www.w3.org/ns/shacl#PropertyShape> ;
+  <http://shaclshapes.org/confidence> 9.925E-1 ;
+  <http://shaclshapes.org/support> "60766"^^xsd:int ;
+  <http://www.w3.org/ns/shacl#NodeKind> <http://www.w3.org/ns/shacl#Literal> ;
+  <http://www.w3.org/ns/shacl#datatype> xsd:string ;
+  <http://www.w3.org/ns/shacl#path> rdfs:label .
+
+<http://shaclshapes.org/labelPhaseInfoShapeProperty> rdf:type <http://www.w3.org/ns/shacl#PropertyShape> ;
+  <http://shaclshapes.org/confidence> 1E0 ;
+  <http://shaclshapes.org/support> "1690"^^xsd:int ;
+  <http://www.w3.org/ns/shacl#NodeKind> <http://www.w3.org/ns/shacl#Literal> ;
+  <http://www.w3.org/ns/shacl#datatype> xsd:string ;
+  <http://www.w3.org/ns/shacl#minCount> 1 ;
+  <http://www.w3.org/ns/shacl#path> rdfs:label .
+
+<http://shaclshapes.org/labelPlatformShapeProperty> rdf:type <http://www.w3.org/ns/shacl#PropertyShape> ;
+  <http://shaclshapes.org/confidence> 6.9063E-1 ;
+  <http://shaclshapes.org/support> "47338"^^xsd:int ;
+  <http://www.w3.org/ns/shacl#NodeKind> <http://www.w3.org/ns/shacl#Literal> ;
+  <http://www.w3.org/ns/shacl#datatype> xsd:string ;
+  <http://www.w3.org/ns/shacl#path> rdfs:label .
+
+<http://shaclshapes.org/labelRaisedPantographsDistanceAndSpeedShapeProperty> rdf:type <http://www.w3.org/ns/shacl#PropertyShape> ;
+  <http://shaclshapes.org/confidence> 1E0 ;
+  <http://shaclshapes.org/support> "49408"^^xsd:int ;
+  <http://www.w3.org/ns/shacl#NodeKind> <http://www.w3.org/ns/shacl#Literal> ;
+  <http://www.w3.org/ns/shacl#datatype> xsd:string ;
+  <http://www.w3.org/ns/shacl#minCount> 1 ;
+  <http://www.w3.org/ns/shacl#path> rdfs:label .
+
+<http://shaclshapes.org/labelSidingShapeProperty> rdf:type <http://www.w3.org/ns/shacl#PropertyShape> ;
+  <http://shaclshapes.org/confidence> 9.9963E-1 ;
+  <http://shaclshapes.org/support> "128720"^^xsd:int ;
+  <http://www.w3.org/ns/shacl#NodeKind> <http://www.w3.org/ns/shacl#Literal> ;
+  <http://www.w3.org/ns/shacl#datatype> xsd:string ;
+  <http://www.w3.org/ns/shacl#path> rdfs:label .
+
+<http://shaclshapes.org/labelSystemSeparationInfoShapeProperty> rdf:type <http://www.w3.org/ns/shacl#PropertyShape> ;
+  <http://shaclshapes.org/confidence> 1E0 ;
+  <http://shaclshapes.org/support> "498"^^xsd:int ;
+  <http://www.w3.org/ns/shacl#NodeKind> <http://www.w3.org/ns/shacl#Literal> ;
+  <http://www.w3.org/ns/shacl#datatype> xsd:string ;
+  <http://www.w3.org/ns/shacl#minCount> 1 ;
+  <http://www.w3.org/ns/shacl#path> rdfs:label .
+
+<http://shaclshapes.org/labelTrackShapeProperty> rdf:type <http://www.w3.org/ns/shacl#PropertyShape> ;
+  <http://shaclshapes.org/confidence> 9.9923E-1 ;
+  <http://shaclshapes.org/support> "362809"^^xsd:int ;
+  <http://www.w3.org/ns/shacl#NodeKind> <http://www.w3.org/ns/shacl#Literal> ;
+  <http://www.w3.org/ns/shacl#datatype> xsd:string ;
+  <http://www.w3.org/ns/shacl#path> rdfs:label .
+
+<http://shaclshapes.org/labelTrainDetectionSystemShapeProperty> rdf:type <http://www.w3.org/ns/shacl#PropertyShape> ;
+  <http://shaclshapes.org/confidence> 9.9831E-1 ;
+  <http://shaclshapes.org/support> "135948"^^xsd:int ;
+  <http://www.w3.org/ns/shacl#NodeKind> <http://www.w3.org/ns/shacl#Literal> ;
+  <http://www.w3.org/ns/shacl#datatype> xsd:string ;
+  <http://www.w3.org/ns/shacl#path> rdfs:label .
+
+<http://shaclshapes.org/labelTunnelShapeProperty> rdf:type <http://www.w3.org/ns/shacl#PropertyShape> ;
+  <http://shaclshapes.org/confidence> 7.7137E-1 ;
+  <http://shaclshapes.org/support> "11336"^^xsd:int ;
+  <http://www.w3.org/ns/shacl#NodeKind> <http://www.w3.org/ns/shacl#Literal> ;
+  <http://www.w3.org/ns/shacl#datatype> xsd:string ;
+  <http://www.w3.org/ns/shacl#path> rdfs:label .
+
+<http://shaclshapes.org/latGeometryShapeProperty> rdf:type <http://www.w3.org/ns/shacl#PropertyShape> ;
+  <http://shaclshapes.org/confidence> 8.2041E-1 ;
+  <http://shaclshapes.org/support> "68049"^^xsd:int ;
+  <http://www.w3.org/ns/shacl#NodeKind> <http://www.w3.org/ns/shacl#Literal> ;
+  <http://www.w3.org/ns/shacl#datatype> xsd:double ;
+  <http://www.w3.org/ns/shacl#path> <http://www.w3.org/2003/01/geo/wgs84_pos#lat> .
+
+<http://shaclshapes.org/latPointShapeProperty> rdf:type <http://www.w3.org/ns/shacl#PropertyShape> ;
+  <http://shaclshapes.org/confidence> 8.2041E-1 ;
+  <http://shaclshapes.org/support> "68049"^^xsd:int ;
+  <http://www.w3.org/ns/shacl#NodeKind> <http://www.w3.org/ns/shacl#Literal> ;
+  <http://www.w3.org/ns/shacl#datatype> xsd:double ;
+  <http://www.w3.org/ns/shacl#path> <http://www.w3.org/2003/01/geo/wgs84_pos#lat> .
+
+<http://shaclshapes.org/lengthPlatformShapeProperty> rdf:type <http://www.w3.org/ns/shacl#PropertyShape> ;
+  <http://shaclshapes.org/confidence> 6.5645E-1 ;
+  <http://shaclshapes.org/support> "44995"^^xsd:int ;
+  <http://www.w3.org/ns/shacl#NodeKind> <http://www.w3.org/ns/shacl#Literal> ;
+  <http://www.w3.org/ns/shacl#datatype> xsd:double ;
+  <http://www.w3.org/ns/shacl#path> <http://data.europa.eu/949/length> .
+
+<http://shaclshapes.org/lengthSectionOfLineShapeProperty> rdf:type <http://www.w3.org/ns/shacl#PropertyShape> ;
+  <http://shaclshapes.org/confidence> 1E0 ;
+  <http://shaclshapes.org/support> "59733"^^xsd:int ;
+  <http://www.w3.org/ns/shacl#NodeKind> <http://www.w3.org/ns/shacl#Literal> ;
+  <http://www.w3.org/ns/shacl#datatype> xsd:double ;
+  <http://www.w3.org/ns/shacl#minCount> 1 ;
+  <http://www.w3.org/ns/shacl#path> <http://data.europa.eu/949/length> .
+
+<http://shaclshapes.org/lengthSidingShapeProperty> rdf:type <http://www.w3.org/ns/shacl#PropertyShape> ;
+  <http://shaclshapes.org/confidence> 6.8325E-1 ;
+  <http://shaclshapes.org/support> "87980"^^xsd:int ;
+  <http://www.w3.org/ns/shacl#NodeKind> <http://www.w3.org/ns/shacl#Literal> ;
+  <http://www.w3.org/ns/shacl#datatype> xsd:double ;
+  <http://www.w3.org/ns/shacl#path> <http://data.europa.eu/949/length> .
+
+<http://shaclshapes.org/lengthTunnelShapeProperty> rdf:type <http://www.w3.org/ns/shacl#PropertyShape> ;
+  <http://shaclshapes.org/confidence> 6.8835E-1 ;
+  <http://shaclshapes.org/support> "10116"^^xsd:int ;
+  <http://www.w3.org/ns/shacl#NodeKind> <http://www.w3.org/ns/shacl#Literal> ;
+  <http://www.w3.org/ns/shacl#datatype> xsd:double ;
+  <http://www.w3.org/ns/shacl#path> <http://data.europa.eu/949/length> .
+
+<http://shaclshapes.org/lineCategoryTrackShapeProperty> rdf:type <http://www.w3.org/ns/shacl#PropertyShape> ;
+  <http://shaclshapes.org/confidence> 6.0806E-1 ;
+  <http://shaclshapes.org/support> "220778"^^xsd:int ;
+  <http://www.w3.org/ns/shacl#NodeKind> <http://www.w3.org/ns/shacl#IRI> ;
+  <http://www.w3.org/ns/shacl#minCount> 1 ;
+  <http://www.w3.org/ns/shacl#path> <http://data.europa.eu/949/lineCategory> .
+
+<http://shaclshapes.org/lineNationalIdLineReferenceShapeProperty> rdf:type <http://www.w3.org/ns/shacl#PropertyShape> ;
+  <http://shaclshapes.org/confidence> 8.5059E-1 ;
+  <http://shaclshapes.org/support> "67577"^^xsd:int ;
+  <http://www.w3.org/ns/shacl#NodeKind> <http://www.w3.org/ns/shacl#IRI> ;
+  <http://www.w3.org/ns/shacl#class> <http://data.europa.eu/949/NationalRailwayLine> ;
+  <http://www.w3.org/ns/shacl#node> <http://shaclshapes.org/NationalRailwayLineShape> ;
+  <http://www.w3.org/ns/shacl#path> <http://data.europa.eu/949/lineNationalId> .
+
+<http://shaclshapes.org/lineNationalIdSectionOfLineShapeProperty> rdf:type <http://www.w3.org/ns/shacl#PropertyShape> ;
+  <http://shaclshapes.org/confidence> 1E0 ;
+  <http://shaclshapes.org/support> "59733"^^xsd:int ;
+  <http://www.w3.org/ns/shacl#NodeKind> <http://www.w3.org/ns/shacl#IRI> ;
+  <http://www.w3.org/ns/shacl#class> <http://data.europa.eu/949/NationalRailwayLine> ;
+  <http://www.w3.org/ns/shacl#minCount> 1 ;
+  <http://www.w3.org/ns/shacl#node> <http://shaclshapes.org/NationalRailwayLineShape> ;
+  <http://www.w3.org/ns/shacl#path> <http://data.europa.eu/949/lineNationalId> .
+
+<http://shaclshapes.org/lineReferenceOperationalPointShapeProperty> rdf:type <http://www.w3.org/ns/shacl#PropertyShape> ;
+  <http://shaclshapes.org/confidence> 9.8602E-1 ;
+  <http://shaclshapes.org/support> "60369"^^xsd:int ;
+  <http://www.w3.org/ns/shacl#NodeKind> <http://www.w3.org/ns/shacl#IRI> ;
+  <http://www.w3.org/ns/shacl#class> <http://data.europa.eu/949/LineReference> ;
+  <http://www.w3.org/ns/shacl#node> <http://shaclshapes.org/LineReferenceShape> ;
+  <http://www.w3.org/ns/shacl#path> <http://data.europa.eu/949/lineReference> .
+
+<http://shaclshapes.org/loadCapabilityLineCategoryLoadCapabilityShapeProperty> rdf:type <http://www.w3.org/ns/shacl#PropertyShape> ;
+  <http://shaclshapes.org/confidence> 9.9775E-1 ;
+  <http://shaclshapes.org/support> "75038"^^xsd:int ;
+  <http://www.w3.org/ns/shacl#NodeKind> <http://www.w3.org/ns/shacl#IRI> ;
+  <http://www.w3.org/ns/shacl#minCount> 1 ;
+  <http://www.w3.org/ns/shacl#path> <http://data.europa.eu/949/loadCapabilityLineCategory> .
+
+<http://shaclshapes.org/loadCapabilitySpeedLoadCapabilityShapeProperty> rdf:type <http://www.w3.org/ns/shacl#PropertyShape> ;
+  <http://shaclshapes.org/confidence> 9.9775E-1 ;
+  <http://shaclshapes.org/support> "75038"^^xsd:int ;
+  <http://www.w3.org/ns/shacl#NodeKind> <http://www.w3.org/ns/shacl#Literal> ;
+  <http://www.w3.org/ns/shacl#datatype> xsd:integer ;
+  <http://www.w3.org/ns/shacl#path> <http://data.europa.eu/949/loadCapabilitySpeed> .
+
+<http://shaclshapes.org/locationOperationalPointShapeProperty> rdf:type <http://www.w3.org/ns/shacl#PropertyShape> ;
+  <http://www.w3.org/ns/shacl#node> <http://shaclshapes.org/GeometryShape> ;
+  <http://www.w3.org/ns/shacl#or> ( [
+    <http://shaclshapes.org/confidence> 9.9291E-1 ;
+    <http://shaclshapes.org/support> "60791"^^xsd:int ;
+    <http://www.w3.org/ns/shacl#NodeKind> <http://www.w3.org/ns/shacl#IRI> ;
+    <http://www.w3.org/ns/shacl#class> <http://www.w3.org/2003/01/geo/wgs84_pos#Point> ;
+  ] [
+    <http://shaclshapes.org/confidence> 9.9291E-1 ;
+    <http://shaclshapes.org/support> "60791"^^xsd:int ;
+    <http://www.w3.org/ns/shacl#NodeKind> <http://www.w3.org/ns/shacl#IRI> ;
+    <http://www.w3.org/ns/shacl#class> <http://www.opengis.net/ont/geosparql#Geometry> ;
+  ] ) ;
+  <http://www.w3.org/ns/shacl#path> <http://www.w3.org/2003/01/geo/wgs84_pos#location> .
+
+<http://shaclshapes.org/longGeometryShapeProperty> rdf:type <http://www.w3.org/ns/shacl#PropertyShape> ;
+  <http://shaclshapes.org/confidence> 8.2041E-1 ;
+  <http://shaclshapes.org/support> "68049"^^xsd:int ;
+  <http://www.w3.org/ns/shacl#NodeKind> <http://www.w3.org/ns/shacl#Literal> ;
+  <http://www.w3.org/ns/shacl#datatype> xsd:double ;
+  <http://www.w3.org/ns/shacl#path> <http://www.w3.org/2003/01/geo/wgs84_pos#long> .
+
+<http://shaclshapes.org/longPointShapeProperty> rdf:type <http://www.w3.org/ns/shacl#PropertyShape> ;
+  <http://shaclshapes.org/confidence> 8.2041E-1 ;
+  <http://shaclshapes.org/support> "68049"^^xsd:int ;
+  <http://www.w3.org/ns/shacl#NodeKind> <http://www.w3.org/ns/shacl#Literal> ;
+  <http://www.w3.org/ns/shacl#datatype> xsd:double ;
+  <http://www.w3.org/ns/shacl#path> <http://www.w3.org/2003/01/geo/wgs84_pos#long> .
+
+<http://shaclshapes.org/maxCurrentStandstillPantographContactLineSystemShapeProperty> rdf:type <http://www.w3.org/ns/shacl#PropertyShape> ;
+  <http://shaclshapes.org/confidence> 2.6711E-1 ;
+  <http://shaclshapes.org/support> "22419"^^xsd:int ;
+  <http://www.w3.org/ns/shacl#NodeKind> <http://www.w3.org/ns/shacl#Literal> ;
+  <http://www.w3.org/ns/shacl#datatype> xsd:double ;
+  <http://www.w3.org/ns/shacl#path> <http://data.europa.eu/949/maxCurrentStandstillPantograph> .
+
+<http://shaclshapes.org/maxDistEndTrainFirstAxleTrainDetectionSystemShapeProperty> rdf:type <http://www.w3.org/ns/shacl#PropertyShape> ;
+  <http://shaclshapes.org/confidence> 4.7458E-1 ;
+  <http://shaclshapes.org/support> "64628"^^xsd:int ;
+  <http://www.w3.org/ns/shacl#NodeKind> <http://www.w3.org/ns/shacl#Literal> ;
+  <http://www.w3.org/ns/shacl#datatype> xsd:integer ;
+  <http://www.w3.org/ns/shacl#path> <http://data.europa.eu/949/maxDistEndTrainFirstAxle> .
+
+<http://shaclshapes.org/maxFlangeHeightTrainDetectionSystemShapeProperty> rdf:type <http://www.w3.org/ns/shacl#PropertyShape> ;
+  <http://shaclshapes.org/confidence> 3.3659E-1 ;
+  <http://shaclshapes.org/support> "45836"^^xsd:int ;
+  <http://www.w3.org/ns/shacl#NodeKind> <http://www.w3.org/ns/shacl#Literal> ;
+  <http://www.w3.org/ns/shacl#datatype> xsd:double ;
+  <http://www.w3.org/ns/shacl#path> <http://data.europa.eu/949/maxFlangeHeight> .
+
+<http://shaclshapes.org/maxTrainCurrentContactLineSystemShapeProperty> rdf:type <http://www.w3.org/ns/shacl#PropertyShape> ;
+  <http://shaclshapes.org/confidence> 6.1988E-1 ;
+  <http://shaclshapes.org/support> "52027"^^xsd:int ;
+  <http://www.w3.org/ns/shacl#NodeKind> <http://www.w3.org/ns/shacl#Literal> ;
+  <http://www.w3.org/ns/shacl#datatype> xsd:integer ;
+  <http://www.w3.org/ns/shacl#path> <http://data.europa.eu/949/maxTrainCurrent> .
+
+<http://shaclshapes.org/minAxleLoadMinAxleLoadVehicleCategoryShapeProperty> rdf:type <http://www.w3.org/ns/shacl#PropertyShape> ;
+  <http://shaclshapes.org/confidence> 4.2231E-1 ;
+  <http://shaclshapes.org/support> "68350"^^xsd:int ;
+  <http://www.w3.org/ns/shacl#NodeKind> <http://www.w3.org/ns/shacl#Literal> ;
+  <http://www.w3.org/ns/shacl#datatype> xsd:double ;
+  <http://www.w3.org/ns/shacl#path> <http://data.europa.eu/949/minAxleLoad> .
+
+<http://shaclshapes.org/minAxleLoadVehicleCategoryMinAxleLoadVehicleCategoryShapeProperty> rdf:type <http://www.w3.org/ns/shacl#PropertyShape> ;
+  <http://shaclshapes.org/confidence> 4.2231E-1 ;
+  <http://shaclshapes.org/support> "68350"^^xsd:int ;
+  <http://www.w3.org/ns/shacl#NodeKind> <http://www.w3.org/ns/shacl#IRI> ;
+  <http://www.w3.org/ns/shacl#minCount> 1 ;
+  <http://www.w3.org/ns/shacl#path> <http://data.europa.eu/949/minAxleLoadVehicleCategory> .
+
+<http://shaclshapes.org/minDistConsecutiveAxlesTrainDetectionSystemShapeProperty> rdf:type <http://www.w3.org/ns/shacl#PropertyShape> ;
+  <http://shaclshapes.org/confidence> 3.5426E-1 ;
+  <http://shaclshapes.org/support> "48242"^^xsd:int ;
+  <http://www.w3.org/ns/shacl#NodeKind> <http://www.w3.org/ns/shacl#Literal> ;
+  <http://www.w3.org/ns/shacl#datatype> xsd:integer ;
+  <http://www.w3.org/ns/shacl#path> <http://data.europa.eu/949/minDistConsecutiveAxles> .
+
+<http://shaclshapes.org/minDistFirstLastAxleTrainDetectionSystemShapeProperty> rdf:type <http://www.w3.org/ns/shacl#PropertyShape> ;
+  <http://shaclshapes.org/confidence> 3.6217E-1 ;
+  <http://shaclshapes.org/support> "49319"^^xsd:int ;
+  <http://www.w3.org/ns/shacl#NodeKind> <http://www.w3.org/ns/shacl#Literal> ;
+  <http://www.w3.org/ns/shacl#datatype> xsd:integer ;
+  <http://www.w3.org/ns/shacl#path> <http://data.europa.eu/949/minDistFirstLastAxle> .
+
+<http://shaclshapes.org/minFlangeHeightTrainDetectionSystemShapeProperty> rdf:type <http://www.w3.org/ns/shacl#PropertyShape> ;
+  <http://shaclshapes.org/confidence> 3.3663E-1 ;
+  <http://shaclshapes.org/support> "45842"^^xsd:int ;
+  <http://www.w3.org/ns/shacl#NodeKind> <http://www.w3.org/ns/shacl#Literal> ;
+  <http://www.w3.org/ns/shacl#datatype> xsd:double ;
+  <http://www.w3.org/ns/shacl#path> <http://data.europa.eu/949/minFlangeHeight> .
+
+<http://shaclshapes.org/minFlangeThicknessTrainDetectionSystemShapeProperty> rdf:type <http://www.w3.org/ns/shacl#PropertyShape> ;
+  <http://shaclshapes.org/confidence> 3.3663E-1 ;
+  <http://shaclshapes.org/support> "45842"^^xsd:int ;
+  <http://www.w3.org/ns/shacl#NodeKind> <http://www.w3.org/ns/shacl#Literal> ;
+  <http://www.w3.org/ns/shacl#datatype> xsd:double ;
+  <http://www.w3.org/ns/shacl#path> <http://data.europa.eu/949/minFlangeThickness> .
+
+<http://shaclshapes.org/minRimWidthTrainDetectionSystemShapeProperty> rdf:type <http://www.w3.org/ns/shacl#PropertyShape> ;
+  <http://shaclshapes.org/confidence> 3.3525E-1 ;
+  <http://shaclshapes.org/support> "45653"^^xsd:int ;
+  <http://www.w3.org/ns/shacl#NodeKind> <http://www.w3.org/ns/shacl#Literal> ;
+  <http://www.w3.org/ns/shacl#datatype> xsd:integer ;
+  <http://www.w3.org/ns/shacl#path> <http://data.europa.eu/949/minRimWidth> .
+
+<http://shaclshapes.org/minWheelDiameterTrainDetectionSystemShapeProperty> rdf:type <http://www.w3.org/ns/shacl#PropertyShape> ;
+  <http://shaclshapes.org/confidence> 3.3659E-1 ;
+  <http://shaclshapes.org/support> "45836"^^xsd:int ;
+  <http://www.w3.org/ns/shacl#NodeKind> <http://www.w3.org/ns/shacl#Literal> ;
+  <http://www.w3.org/ns/shacl#datatype> xsd:integer ;
+  <http://www.w3.org/ns/shacl#path> <http://data.europa.eu/949/minWheelDiameter> .
+
+<http://shaclshapes.org/navigabilityNetRelationShapeProperty> rdf:type <http://www.w3.org/ns/shacl#PropertyShape> ;
+  <http://shaclshapes.org/confidence> 8.0102E-1 ;
+  <http://shaclshapes.org/support> "1033600"^^xsd:int ;
+  <http://www.w3.org/ns/shacl#NodeKind> <http://www.w3.org/ns/shacl#IRI> ;
+  <http://www.w3.org/ns/shacl#minCount> 1 ;
+  <http://www.w3.org/ns/shacl#path> <http://data.europa.eu/949/navigability> .
+
+<http://shaclshapes.org/netElementTunnelShapeProperty> rdf:type <http://www.w3.org/ns/shacl#PropertyShape> ;
+  <http://shaclshapes.org/confidence> 5.247E-1 ;
+  <http://shaclshapes.org/support> "7711"^^xsd:int ;
+  <http://www.w3.org/ns/shacl#NodeKind> <http://www.w3.org/ns/shacl#IRI> ;
+  <http://www.w3.org/ns/shacl#class> <http://data.europa.eu/949/NetElement> ;
+  <http://www.w3.org/ns/shacl#node> <http://shaclshapes.org/NetElementShape> ;
+  <http://www.w3.org/ns/shacl#path> <http://data.europa.eu/949/netElement> .
+
+<http://shaclshapes.org/notApplicableContactLineSystemShapeProperty> rdf:type <http://www.w3.org/ns/shacl#PropertyShape> ;
+  <http://shaclshapes.org/confidence> 7.3093E-1 ;
+  <http://shaclshapes.org/support> "61348"^^xsd:int ;
+  <http://www.w3.org/ns/shacl#NodeKind> <http://www.w3.org/ns/shacl#IRI> ;
+  <http://www.w3.org/ns/shacl#minCount> 1 ;
+  <http://www.w3.org/ns/shacl#path> <http://data.europa.eu/949/notApplicable> .
+
+<http://shaclshapes.org/notApplicableETCSLevelShapeProperty> rdf:type <http://www.w3.org/ns/shacl#PropertyShape> ;
+  <http://shaclshapes.org/confidence> 7.8128E-1 ;
+  <http://shaclshapes.org/support> "69649"^^xsd:int ;
+  <http://www.w3.org/ns/shacl#NodeKind> <http://www.w3.org/ns/shacl#IRI> ;
+  <http://www.w3.org/ns/shacl#minCount> 1 ;
+  <http://www.w3.org/ns/shacl#path> <http://data.europa.eu/949/notApplicable> .
+
+<http://shaclshapes.org/notApplicableSidingShapeProperty> rdf:type <http://www.w3.org/ns/shacl#PropertyShape> ;
+  <http://shaclshapes.org/confidence> 7.8659E-1 ;
+  <http://shaclshapes.org/support> "101287"^^xsd:int ;
+  <http://www.w3.org/ns/shacl#NodeKind> <http://www.w3.org/ns/shacl#IRI> ;
+  <http://www.w3.org/ns/shacl#minCount> 1 ;
+  <http://www.w3.org/ns/shacl#path> <http://data.europa.eu/949/notApplicable> .
+
+<http://shaclshapes.org/notApplicableTrackShapeProperty> rdf:type <http://www.w3.org/ns/shacl#PropertyShape> ;
+  <http://shaclshapes.org/confidence> 9.1816E-1 ;
+  <http://shaclshapes.org/support> "333373"^^xsd:int ;
+  <http://www.w3.org/ns/shacl#NodeKind> <http://www.w3.org/ns/shacl#IRI> ;
+  <http://www.w3.org/ns/shacl#minCount> 1 ;
+  <http://www.w3.org/ns/shacl#path> <http://data.europa.eu/949/notApplicable> .
+
+<http://shaclshapes.org/notApplicableTrainDetectionSystemShapeProperty> rdf:type <http://www.w3.org/ns/shacl#PropertyShape> ;
+  <http://shaclshapes.org/confidence> 9.3926E-1 ;
+  <http://shaclshapes.org/support> "127907"^^xsd:int ;
+  <http://www.w3.org/ns/shacl#NodeKind> <http://www.w3.org/ns/shacl#IRI> ;
+  <http://www.w3.org/ns/shacl#minCount> 1 ;
+  <http://www.w3.org/ns/shacl#path> <http://data.europa.eu/949/notApplicable> .
+
+<http://shaclshapes.org/notYetAvailableContactLineSystemShapeProperty> rdf:type <http://www.w3.org/ns/shacl#PropertyShape> ;
+  <http://shaclshapes.org/confidence> 5.0387E-1 ;
+  <http://shaclshapes.org/support> "42290"^^xsd:int ;
+  <http://www.w3.org/ns/shacl#NodeKind> <http://www.w3.org/ns/shacl#IRI> ;
+  <http://www.w3.org/ns/shacl#minCount> 1 ;
+  <http://www.w3.org/ns/shacl#path> <http://data.europa.eu/949/notYetAvailable> .
+
+<http://shaclshapes.org/notYetAvailableSidingShapeProperty> rdf:type <http://www.w3.org/ns/shacl#PropertyShape> ;
+  <http://shaclshapes.org/confidence> 5.9914E-1 ;
+  <http://shaclshapes.org/support> "77150"^^xsd:int ;
+  <http://www.w3.org/ns/shacl#NodeKind> <http://www.w3.org/ns/shacl#IRI> ;
+  <http://www.w3.org/ns/shacl#minCount> 1 ;
+  <http://www.w3.org/ns/shacl#path> <http://data.europa.eu/949/notYetAvailable> .
+
+<http://shaclshapes.org/notYetAvailableTrackShapeProperty> rdf:type <http://www.w3.org/ns/shacl#PropertyShape> ;
+  <http://shaclshapes.org/confidence> 8.6693E-1 ;
+  <http://shaclshapes.org/support> "314773"^^xsd:int ;
+  <http://www.w3.org/ns/shacl#NodeKind> <http://www.w3.org/ns/shacl#IRI> ;
+  <http://www.w3.org/ns/shacl#minCount> 1 ;
+  <http://www.w3.org/ns/shacl#path> <http://data.europa.eu/949/notYetAvailable> .
+
+<http://shaclshapes.org/notYetAvailableTrainDetectionSystemShapeProperty> rdf:type <http://www.w3.org/ns/shacl#PropertyShape> ;
+  <http://shaclshapes.org/confidence> 4.1427E-1 ;
+  <http://shaclshapes.org/support> "56414"^^xsd:int ;
+  <http://www.w3.org/ns/shacl#NodeKind> <http://www.w3.org/ns/shacl#IRI> ;
+  <http://www.w3.org/ns/shacl#minCount> 1 ;
+  <http://www.w3.org/ns/shacl#path> <http://data.europa.eu/949/notYetAvailable> .
+
+<http://shaclshapes.org/opEndSectionOfLineShapeProperty> rdf:type <http://www.w3.org/ns/shacl#PropertyShape> ;
+  <http://shaclshapes.org/confidence> 9.9498E-1 ;
+  <http://shaclshapes.org/support> "59433"^^xsd:int ;
+  <http://www.w3.org/ns/shacl#NodeKind> <http://www.w3.org/ns/shacl#IRI> ;
+  <http://www.w3.org/ns/shacl#class> <http://data.europa.eu/949/OperationalPoint> ;
+  <http://www.w3.org/ns/shacl#node> <http://shaclshapes.org/OperationalPointShape> ;
+  <http://www.w3.org/ns/shacl#path> <http://data.europa.eu/949/opEnd> .
+
+<http://shaclshapes.org/opNameOperationalPointShapeProperty> rdf:type <http://www.w3.org/ns/shacl#PropertyShape> ;
+  <http://shaclshapes.org/confidence> 9.925E-1 ;
+  <http://shaclshapes.org/support> "60766"^^xsd:int ;
+  <http://www.w3.org/ns/shacl#NodeKind> <http://www.w3.org/ns/shacl#Literal> ;
+  <http://www.w3.org/ns/shacl#datatype> xsd:string ;
+  <http://www.w3.org/ns/shacl#path> <http://data.europa.eu/949/opName> .
+
+<http://shaclshapes.org/opStartSectionOfLineShapeProperty> rdf:type <http://www.w3.org/ns/shacl#PropertyShape> ;
+  <http://shaclshapes.org/confidence> 9.9843E-1 ;
+  <http://shaclshapes.org/support> "59639"^^xsd:int ;
+  <http://www.w3.org/ns/shacl#NodeKind> <http://www.w3.org/ns/shacl#IRI> ;
+  <http://www.w3.org/ns/shacl#class> <http://data.europa.eu/949/OperationalPoint> ;
+  <http://www.w3.org/ns/shacl#node> <http://shaclshapes.org/OperationalPointShape> ;
+  <http://www.w3.org/ns/shacl#path> <http://data.europa.eu/949/opStart> .
+
+<http://shaclshapes.org/opTypeOperationalPointShapeProperty> rdf:type <http://www.w3.org/ns/shacl#PropertyShape> ;
+  <http://shaclshapes.org/confidence> 9.9659E-1 ;
+  <http://shaclshapes.org/support> "61016"^^xsd:int ;
+  <http://www.w3.org/ns/shacl#NodeKind> <http://www.w3.org/ns/shacl#IRI> ;
+  <http://www.w3.org/ns/shacl#minCount> 1 ;
+  <http://www.w3.org/ns/shacl#path> <http://data.europa.eu/949/opType> .
+
+<http://shaclshapes.org/phaseInfoKmPhaseInfoShapeProperty> rdf:type <http://www.w3.org/ns/shacl#PropertyShape> ;
+  <http://shaclshapes.org/confidence> 1E0 ;
+  <http://shaclshapes.org/support> "1690"^^xsd:int ;
+  <http://www.w3.org/ns/shacl#NodeKind> <http://www.w3.org/ns/shacl#Literal> ;
+  <http://www.w3.org/ns/shacl#datatype> xsd:double ;
+  <http://www.w3.org/ns/shacl#minCount> 1 ;
+  <http://www.w3.org/ns/shacl#path> <http://data.europa.eu/949/phaseInfoKm> .
+
+<http://shaclshapes.org/phaseInfoLengthPhaseInfoShapeProperty> rdf:type <http://www.w3.org/ns/shacl#PropertyShape> ;
+  <http://shaclshapes.org/confidence> 1E0 ;
+  <http://shaclshapes.org/support> "1690"^^xsd:int ;
+  <http://www.w3.org/ns/shacl#NodeKind> <http://www.w3.org/ns/shacl#Literal> ;
+  <http://www.w3.org/ns/shacl#datatype> xsd:integer ;
+  <http://www.w3.org/ns/shacl#minCount> 1 ;
+  <http://www.w3.org/ns/shacl#path> <http://data.europa.eu/949/phaseInfoLength> .
+
+<http://shaclshapes.org/phaseInfoPantographLoweredPhaseInfoShapeProperty> rdf:type <http://www.w3.org/ns/shacl#PropertyShape> ;
+  <http://shaclshapes.org/confidence> 9.4083E-1 ;
+  <http://shaclshapes.org/support> "1590"^^xsd:int ;
+  <http://www.w3.org/ns/shacl#NodeKind> <http://www.w3.org/ns/shacl#Literal> ;
+  <http://www.w3.org/ns/shacl#datatype> xsd:boolean ;
+  <http://www.w3.org/ns/shacl#path> <http://data.europa.eu/949/phaseInfoPantographLowered> .
+
+<http://shaclshapes.org/phaseInfoSwitchOffBreakerPhaseInfoShapeProperty> rdf:type <http://www.w3.org/ns/shacl#PropertyShape> ;
+  <http://shaclshapes.org/confidence> 9.4083E-1 ;
+  <http://shaclshapes.org/support> "1590"^^xsd:int ;
+  <http://www.w3.org/ns/shacl#NodeKind> <http://www.w3.org/ns/shacl#Literal> ;
+  <http://www.w3.org/ns/shacl#datatype> xsd:boolean ;
+  <http://www.w3.org/ns/shacl#path> <http://data.europa.eu/949/phaseInfoSwitchOffBreaker> .
+
+<http://shaclshapes.org/platformHeightPlatformShapeProperty> rdf:type <http://www.w3.org/ns/shacl#PropertyShape> ;
+  <http://shaclshapes.org/confidence> 6.369E-1 ;
+  <http://shaclshapes.org/support> "43655"^^xsd:int ;
+  <http://www.w3.org/ns/shacl#NodeKind> <http://www.w3.org/ns/shacl#IRI> ;
+  <http://www.w3.org/ns/shacl#minCount> 1 ;
+  <http://www.w3.org/ns/shacl#path> <http://data.europa.eu/949/platformHeight> .
+
+<http://shaclshapes.org/platformIdPlatformShapeProperty> rdf:type <http://www.w3.org/ns/shacl#PropertyShape> ;
+  <http://shaclshapes.org/confidence> 6.9063E-1 ;
+  <http://shaclshapes.org/support> "47338"^^xsd:int ;
+  <http://www.w3.org/ns/shacl#NodeKind> <http://www.w3.org/ns/shacl#Literal> ;
+  <http://www.w3.org/ns/shacl#datatype> xsd:string ;
+  <http://www.w3.org/ns/shacl#path> <http://data.europa.eu/949/platformId> .
+
+<http://shaclshapes.org/positionOnANetRelationShapeProperty> rdf:type <http://www.w3.org/ns/shacl#PropertyShape> ;
+  <http://shaclshapes.org/confidence> 8.0102E-1 ;
+  <http://shaclshapes.org/support> "1033600"^^xsd:int ;
+  <http://www.w3.org/ns/shacl#NodeKind> <http://www.w3.org/ns/shacl#IRI> ;
+  <http://www.w3.org/ns/shacl#minCount> 1 ;
+  <http://www.w3.org/ns/shacl#path> <http://data.europa.eu/949/positionOnA> .
+
+<http://shaclshapes.org/positionOnBNetRelationShapeProperty> rdf:type <http://www.w3.org/ns/shacl#PropertyShape> ;
+  <http://shaclshapes.org/confidence> 8.0102E-1 ;
+  <http://shaclshapes.org/support> "1033600"^^xsd:int ;
+  <http://www.w3.org/ns/shacl#NodeKind> <http://www.w3.org/ns/shacl#IRI> ;
+  <http://www.w3.org/ns/shacl#minCount> 1 ;
+  <http://www.w3.org/ns/shacl#path> <http://data.europa.eu/949/positionOnB> .
+
+<http://shaclshapes.org/raisedPantographsDistanceRaisedPantographsDistanceAndSpeedShapeProperty> rdf:type <http://www.w3.org/ns/shacl#PropertyShape> ;
+  <http://shaclshapes.org/confidence> 1E0 ;
+  <http://shaclshapes.org/support> "49408"^^xsd:int ;
+  <http://www.w3.org/ns/shacl#NodeKind> <http://www.w3.org/ns/shacl#Literal> ;
+  <http://www.w3.org/ns/shacl#datatype> xsd:integer ;
+  <http://www.w3.org/ns/shacl#minCount> 1 ;
+  <http://www.w3.org/ns/shacl#path> <http://data.europa.eu/949/raisedPantographsDistance> .
+
+<http://shaclshapes.org/raisedPantographsNumberRaisedPantographsDistanceAndSpeedShapeProperty> rdf:type <http://www.w3.org/ns/shacl#PropertyShape> ;
+  <http://shaclshapes.org/confidence> 1E0 ;
+  <http://shaclshapes.org/support> "49408"^^xsd:int ;
+  <http://www.w3.org/ns/shacl#NodeKind> <http://www.w3.org/ns/shacl#Literal> ;
+  <http://www.w3.org/ns/shacl#datatype> xsd:integer ;
+  <http://www.w3.org/ns/shacl#minCount> 1 ;
+  <http://www.w3.org/ns/shacl#path> <http://data.europa.eu/949/raisedPantographsNumber> .
+
+<http://shaclshapes.org/raisedPantographsSpeedRaisedPantographsDistanceAndSpeedShapeProperty> rdf:type <http://www.w3.org/ns/shacl#PropertyShape> ;
+  <http://shaclshapes.org/confidence> 1E0 ;
+  <http://shaclshapes.org/support> "49408"^^xsd:int ;
+  <http://www.w3.org/ns/shacl#NodeKind> <http://www.w3.org/ns/shacl#Literal> ;
+  <http://www.w3.org/ns/shacl#datatype> xsd:integer ;
+  <http://www.w3.org/ns/shacl#minCount> 1 ;
+  <http://www.w3.org/ns/shacl#path> <http://data.europa.eu/949/raisedPantographsSpeed> .
+
+<http://shaclshapes.org/requiredSandingOverrideTrainDetectionSystemShapeProperty> rdf:type <http://www.w3.org/ns/shacl#PropertyShape> ;
+  <http://shaclshapes.org/confidence> 3.6974E-1 ;
+  <http://shaclshapes.org/support> "50351"^^xsd:int ;
+  <http://www.w3.org/ns/shacl#NodeKind> <http://www.w3.org/ns/shacl#Literal> ;
+  <http://www.w3.org/ns/shacl#datatype> xsd:boolean ;
+  <http://www.w3.org/ns/shacl#path> <http://data.europa.eu/949/requiredSandingOverride> .
+
+<http://shaclshapes.org/sidingIdSidingShapeProperty> rdf:type <http://www.w3.org/ns/shacl#PropertyShape> ;
+  <http://shaclshapes.org/confidence> 9.9963E-1 ;
+  <http://shaclshapes.org/support> "128720"^^xsd:int ;
+  <http://www.w3.org/ns/shacl#NodeKind> <http://www.w3.org/ns/shacl#Literal> ;
+  <http://www.w3.org/ns/shacl#datatype> xsd:string ;
+  <http://www.w3.org/ns/shacl#path> <http://data.europa.eu/949/sidingId> .
+
+<http://shaclshapes.org/sidingOperationalPointShapeProperty> rdf:type <http://www.w3.org/ns/shacl#PropertyShape> ;
+  <http://shaclshapes.org/confidence> 2.7131E-1 ;
+  <http://shaclshapes.org/support> "16611"^^xsd:int ;
+  <http://www.w3.org/ns/shacl#NodeKind> <http://www.w3.org/ns/shacl#IRI> ;
+  <http://www.w3.org/ns/shacl#class> <http://data.europa.eu/949/Siding> ;
+  <http://www.w3.org/ns/shacl#node> <http://shaclshapes.org/SidingShape> ;
+  <http://www.w3.org/ns/shacl#path> <http://data.europa.eu/949/siding> .
+
+<http://shaclshapes.org/solNatureSectionOfLineShapeProperty> rdf:type <http://www.w3.org/ns/shacl#PropertyShape> ;
+  <http://shaclshapes.org/confidence> 1E0 ;
+  <http://shaclshapes.org/support> "59733"^^xsd:int ;
+  <http://www.w3.org/ns/shacl#NodeKind> <http://www.w3.org/ns/shacl#IRI> ;
+  <http://www.w3.org/ns/shacl#minCount> 1 ;
+  <http://www.w3.org/ns/shacl#path> <http://data.europa.eu/949/solNature> .
+
+<http://shaclshapes.org/startLocationTunnelShapeProperty> rdf:type <http://www.w3.org/ns/shacl#PropertyShape> ;
+  <http://www.w3.org/ns/shacl#node> <http://shaclshapes.org/GeometryShape> ;
+  <http://www.w3.org/ns/shacl#or> ( [
+    <http://shaclshapes.org/confidence> 5.247E-1 ;
+    <http://shaclshapes.org/support> "7711"^^xsd:int ;
+    <http://www.w3.org/ns/shacl#NodeKind> <http://www.w3.org/ns/shacl#IRI> ;
+    <http://www.w3.org/ns/shacl#class> <http://www.w3.org/2003/01/geo/wgs84_pos#Point> ;
+  ] [
+    <http://shaclshapes.org/confidence> 5.247E-1 ;
+    <http://shaclshapes.org/support> "7711"^^xsd:int ;
+    <http://www.w3.org/ns/shacl#NodeKind> <http://www.w3.org/ns/shacl#IRI> ;
+    <http://www.w3.org/ns/shacl#class> <http://www.opengis.net/ont/geosparql#Geometry> ;
+  ] ) ;
+  <http://www.w3.org/ns/shacl#path> <http://data.europa.eu/949/startLocation> .
+
+<http://shaclshapes.org/systemSeparationInfoKmSystemSeparationInfoShapeProperty> rdf:type <http://www.w3.org/ns/shacl#PropertyShape> ;
+  <http://shaclshapes.org/confidence> 1E0 ;
+  <http://shaclshapes.org/support> "498"^^xsd:int ;
+  <http://www.w3.org/ns/shacl#NodeKind> <http://www.w3.org/ns/shacl#Literal> ;
+  <http://www.w3.org/ns/shacl#datatype> xsd:boolean ;
+  <http://www.w3.org/ns/shacl#minCount> 1 ;
+  <http://www.w3.org/ns/shacl#path> <http://data.europa.eu/949/systemSeparationInfoKm> .
+
+<http://shaclshapes.org/systemSeparationInfoLengthSystemSeparationInfoShapeProperty> rdf:type <http://www.w3.org/ns/shacl#PropertyShape> ;
+  <http://shaclshapes.org/confidence> 1E0 ;
+  <http://shaclshapes.org/support> "498"^^xsd:int ;
+  <http://www.w3.org/ns/shacl#NodeKind> <http://www.w3.org/ns/shacl#Literal> ;
+  <http://www.w3.org/ns/shacl#datatype> xsd:integer ;
+  <http://www.w3.org/ns/shacl#minCount> 1 ;
+  <http://www.w3.org/ns/shacl#path> <http://data.europa.eu/949/systemSeparationInfoLength> .
+
+<http://shaclshapes.org/systemSeparationInfoLoweredPantographSystemSeparationInfoShapeProperty> rdf:type <http://www.w3.org/ns/shacl#PropertyShape> ;
+  <http://shaclshapes.org/confidence> 1E0 ;
+  <http://shaclshapes.org/support> "498"^^xsd:int ;
+  <http://www.w3.org/ns/shacl#NodeKind> <http://www.w3.org/ns/shacl#Literal> ;
+  <http://www.w3.org/ns/shacl#datatype> xsd:boolean ;
+  <http://www.w3.org/ns/shacl#minCount> 1 ;
+  <http://www.w3.org/ns/shacl#path> <http://data.europa.eu/949/systemSeparationInfoLoweredPantograph> .
+
+<http://shaclshapes.org/systemSeparationInfoSwitchOffBreakerSystemSeparationInfoShapeProperty> rdf:type <http://www.w3.org/ns/shacl#PropertyShape> ;
+  <http://shaclshapes.org/confidence> 1E0 ;
+  <http://shaclshapes.org/support> "498"^^xsd:int ;
+  <http://www.w3.org/ns/shacl#NodeKind> <http://www.w3.org/ns/shacl#Literal> ;
+  <http://www.w3.org/ns/shacl#datatype> xsd:boolean ;
+  <http://www.w3.org/ns/shacl#minCount> 1 ;
+  <http://www.w3.org/ns/shacl#path> <http://data.europa.eu/949/systemSeparationInfoSwitchOffBreaker> .
+
+<http://shaclshapes.org/tafTAPCodeOperationalPointShapeProperty> rdf:type <http://www.w3.org/ns/shacl#PropertyShape> ;
+  <http://shaclshapes.org/confidence> 7.6196E-1 ;
+  <http://shaclshapes.org/support> "46651"^^xsd:int ;
+  <http://www.w3.org/ns/shacl#NodeKind> <http://www.w3.org/ns/shacl#Literal> ;
+  <http://www.w3.org/ns/shacl#datatype> xsd:string ;
+  <http://www.w3.org/ns/shacl#path> <http://data.europa.eu/949/tafTAPCode> .
+
+<http://shaclshapes.org/tdsMinAxleLoadVehicleCategoryTrainDetectionSystemShapeProperty> rdf:type <http://www.w3.org/ns/shacl#PropertyShape> ;
+  <http://shaclshapes.org/confidence> 5.0192E-1 ;
+  <http://shaclshapes.org/support> "68350"^^xsd:int ;
+  <http://www.w3.org/ns/shacl#NodeKind> <http://www.w3.org/ns/shacl#IRI> ;
+  <http://www.w3.org/ns/shacl#class> <http://data.europa.eu/949/MinAxleLoadVehicleCategory> ;
+  <http://www.w3.org/ns/shacl#node> <http://shaclshapes.org/MinAxleLoadVehicleCategoryShape> ;
+  <http://www.w3.org/ns/shacl#path> <http://data.europa.eu/949/tdsMinAxleLoadVehicleCategory> .
+
+<http://shaclshapes.org/tdsfrenchTrainDetectionSystemLimitationFrenchTrainDetectionSystemLimitationShapeProperty> rdf:type <http://www.w3.org/ns/shacl#PropertyShape> ;
+  <http://shaclshapes.org/confidence> 1E0 ;
+  <http://shaclshapes.org/support> "1827"^^xsd:int ;
+  <http://www.w3.org/ns/shacl#NodeKind> <http://www.w3.org/ns/shacl#IRI> ;
+  <http://www.w3.org/ns/shacl#minCount> 1 ;
+  <http://www.w3.org/ns/shacl#path> <http://data.europa.eu/949/tdsfrenchTrainDetectionSystemLimitation> .
+
+<http://shaclshapes.org/tenClassificationPlatformShapeProperty> rdf:type <http://www.w3.org/ns/shacl#PropertyShape> ;
+  <http://shaclshapes.org/confidence> 4.3205E-1 ;
+  <http://shaclshapes.org/support> "29614"^^xsd:int ;
+  <http://www.w3.org/ns/shacl#NodeKind> <http://www.w3.org/ns/shacl#IRI> ;
+  <http://www.w3.org/ns/shacl#minCount> 1 ;
+  <http://www.w3.org/ns/shacl#path> <http://data.europa.eu/949/tenClassification> .
+
+<http://shaclshapes.org/tenClassificationSidingShapeProperty> rdf:type <http://www.w3.org/ns/shacl#PropertyShape> ;
+  <http://shaclshapes.org/confidence> 6.6232E-1 ;
+  <http://shaclshapes.org/support> "85285"^^xsd:int ;
+  <http://www.w3.org/ns/shacl#NodeKind> <http://www.w3.org/ns/shacl#IRI> ;
+  <http://www.w3.org/ns/shacl#minCount> 1 ;
+  <http://www.w3.org/ns/shacl#path> <http://data.europa.eu/949/tenClassification> .
+
+<http://shaclshapes.org/tenClassificationTrackShapeProperty> rdf:type <http://www.w3.org/ns/shacl#PropertyShape> ;
+  <http://shaclshapes.org/confidence> 8.9227E-1 ;
+  <http://shaclshapes.org/support> "323972"^^xsd:int ;
+  <http://www.w3.org/ns/shacl#NodeKind> <http://www.w3.org/ns/shacl#IRI> ;
+  <http://www.w3.org/ns/shacl#minCount> 1 ;
+  <http://www.w3.org/ns/shacl#path> <http://data.europa.eu/949/tenClassification> .
+
+<http://shaclshapes.org/trackDirectionTrackShapeProperty> rdf:type <http://www.w3.org/ns/shacl#PropertyShape> ;
+  <http://shaclshapes.org/confidence> 2.5625E-1 ;
+  <http://shaclshapes.org/support> "93043"^^xsd:int ;
+  <http://www.w3.org/ns/shacl#NodeKind> <http://www.w3.org/ns/shacl#IRI> ;
+  <http://www.w3.org/ns/shacl#minCount> 1 ;
+  <http://www.w3.org/ns/shacl#path> <http://data.europa.eu/949/trackDirection> .
+
+<http://shaclshapes.org/trackIdTrackShapeProperty> rdf:type <http://www.w3.org/ns/shacl#PropertyShape> ;
+  <http://shaclshapes.org/confidence> 9.9923E-1 ;
+  <http://shaclshapes.org/support> "362809"^^xsd:int ;
+  <http://www.w3.org/ns/shacl#NodeKind> <http://www.w3.org/ns/shacl#Literal> ;
+  <http://www.w3.org/ns/shacl#datatype> xsd:string ;
+  <http://www.w3.org/ns/shacl#path> <http://data.europa.eu/949/trackId> .
+
+<http://shaclshapes.org/trackOperationalPointShapeProperty> rdf:type <http://www.w3.org/ns/shacl#PropertyShape> ;
+  <http://shaclshapes.org/confidence> 7.1634E-1 ;
+  <http://shaclshapes.org/support> "43858"^^xsd:int ;
+  <http://www.w3.org/ns/shacl#NodeKind> <http://www.w3.org/ns/shacl#IRI> ;
+  <http://www.w3.org/ns/shacl#class> <http://data.europa.eu/949/Track> ;
+  <http://www.w3.org/ns/shacl#node> <http://shaclshapes.org/TrackShape> ;
+  <http://www.w3.org/ns/shacl#path> <http://data.europa.eu/949/track> .
+
+<http://shaclshapes.org/trackSectionOfLineShapeProperty> rdf:type <http://www.w3.org/ns/shacl#PropertyShape> ;
+  <http://shaclshapes.org/confidence> 1E0 ;
+  <http://shaclshapes.org/support> "59733"^^xsd:int ;
+  <http://www.w3.org/ns/shacl#NodeKind> <http://www.w3.org/ns/shacl#IRI> ;
+  <http://www.w3.org/ns/shacl#class> <http://data.europa.eu/949/Track> ;
+  <http://www.w3.org/ns/shacl#minCount> 1 ;
+  <http://www.w3.org/ns/shacl#node> <http://shaclshapes.org/TrackShape> ;
+  <http://www.w3.org/ns/shacl#path> <http://data.europa.eu/949/track> .
+
+<http://shaclshapes.org/trainDetectionSystemTypeTrainDetectionSystemShapeProperty> rdf:type <http://www.w3.org/ns/shacl#PropertyShape> ;
+  <http://shaclshapes.org/confidence> 9.9831E-1 ;
+  <http://shaclshapes.org/support> "135948"^^xsd:int ;
+  <http://www.w3.org/ns/shacl#NodeKind> <http://www.w3.org/ns/shacl#IRI> ;
+  <http://www.w3.org/ns/shacl#minCount> 1 ;
+  <http://www.w3.org/ns/shacl#path> <http://data.europa.eu/949/trainDetectionSystemType> .
+
+<http://shaclshapes.org/tsiCompliantCompositeBrakeBlocksTrainDetectionSystemShapeProperty> rdf:type <http://www.w3.org/ns/shacl#PropertyShape> ;
+  <http://shaclshapes.org/confidence> 3.5557E-1 ;
+  <http://shaclshapes.org/support> "48421"^^xsd:int ;
+  <http://www.w3.org/ns/shacl#NodeKind> <http://www.w3.org/ns/shacl#IRI> ;
+  <http://www.w3.org/ns/shacl#minCount> 1 ;
+  <http://www.w3.org/ns/shacl#path> <http://data.europa.eu/949/tsiCompliantCompositeBrakeBlocks> .
+
+<http://shaclshapes.org/tsiCompliantFerromagneticWheelTrainDetectionSystemShapeProperty> rdf:type <http://www.w3.org/ns/shacl#PropertyShape> ;
+  <http://shaclshapes.org/confidence> 3.5464E-1 ;
+  <http://shaclshapes.org/support> "48294"^^xsd:int ;
+  <http://www.w3.org/ns/shacl#NodeKind> <http://www.w3.org/ns/shacl#IRI> ;
+  <http://www.w3.org/ns/shacl#minCount> 1 ;
+  <http://www.w3.org/ns/shacl#path> <http://data.europa.eu/949/tsiCompliantFerromagneticWheel> .
+
+<http://shaclshapes.org/tsiCompliantMaxDistConsecutiveAxlesTrainDetectionSystemShapeProperty> rdf:type <http://www.w3.org/ns/shacl#PropertyShape> ;
+  <http://shaclshapes.org/confidence> 5.2822E-1 ;
+  <http://shaclshapes.org/support> "71932"^^xsd:int ;
+  <http://www.w3.org/ns/shacl#NodeKind> <http://www.w3.org/ns/shacl#IRI> ;
+  <http://www.w3.org/ns/shacl#minCount> 1 ;
+  <http://www.w3.org/ns/shacl#path> <http://data.europa.eu/949/tsiCompliantMaxDistConsecutiveAxles> .
+
+<http://shaclshapes.org/tsiCompliantMaxImpedanceWheelsetTrainDetectionSystemShapeProperty> rdf:type <http://www.w3.org/ns/shacl#PropertyShape> ;
+  <http://shaclshapes.org/confidence> 3.6796E-1 ;
+  <http://shaclshapes.org/support> "50108"^^xsd:int ;
+  <http://www.w3.org/ns/shacl#NodeKind> <http://www.w3.org/ns/shacl#IRI> ;
+  <http://www.w3.org/ns/shacl#minCount> 1 ;
+  <http://www.w3.org/ns/shacl#path> <http://data.europa.eu/949/tsiCompliantMaxImpedanceWheelset> .
+
+<http://shaclshapes.org/tsiCompliantMetalFreeSpaceTrainDetectionSystemShapeProperty> rdf:type <http://www.w3.org/ns/shacl#PropertyShape> ;
+  <http://shaclshapes.org/confidence> 2.7643E-1 ;
+  <http://shaclshapes.org/support> "37644"^^xsd:int ;
+  <http://www.w3.org/ns/shacl#NodeKind> <http://www.w3.org/ns/shacl#IRI> ;
+  <http://www.w3.org/ns/shacl#minCount> 1 ;
+  <http://www.w3.org/ns/shacl#path> <http://data.europa.eu/949/tsiCompliantMetalFreeSpace> .
+
+<http://shaclshapes.org/tsiCompliantRSTShuntImpedanceTrainDetectionSystemShapeProperty> rdf:type <http://www.w3.org/ns/shacl#PropertyShape> ;
+  <http://shaclshapes.org/confidence> 3.3105E-1 ;
+  <http://shaclshapes.org/support> "45082"^^xsd:int ;
+  <http://www.w3.org/ns/shacl#NodeKind> <http://www.w3.org/ns/shacl#IRI> ;
+  <http://www.w3.org/ns/shacl#minCount> 1 ;
+  <http://www.w3.org/ns/shacl#path> <http://data.europa.eu/949/tsiCompliantRSTShuntImpedance> .
+
+<http://shaclshapes.org/tsiCompliantShuntDevicesTrainDetectionSystemShapeProperty> rdf:type <http://www.w3.org/ns/shacl#PropertyShape> ;
+  <http://shaclshapes.org/confidence> 3.5557E-1 ;
+  <http://shaclshapes.org/support> "48421"^^xsd:int ;
+  <http://www.w3.org/ns/shacl#NodeKind> <http://www.w3.org/ns/shacl#IRI> ;
+  <http://www.w3.org/ns/shacl#minCount> 1 ;
+  <http://www.w3.org/ns/shacl#path> <http://data.europa.eu/949/tsiCompliantShuntDevices> .
+
+<http://shaclshapes.org/tunnelIdentificationTunnelShapeProperty> rdf:type <http://www.w3.org/ns/shacl#PropertyShape> ;
+  <http://shaclshapes.org/confidence> 7.7137E-1 ;
+  <http://shaclshapes.org/support> "11336"^^xsd:int ;
+  <http://www.w3.org/ns/shacl#NodeKind> <http://www.w3.org/ns/shacl#Literal> ;
+  <http://www.w3.org/ns/shacl#datatype> xsd:string ;
+  <http://www.w3.org/ns/shacl#path> <http://data.europa.eu/949/tunnelIdentification> .
+
+<http://shaclshapes.org/uopidOperationalPointShapeProperty> rdf:type <http://www.w3.org/ns/shacl#PropertyShape> ;
+  <http://shaclshapes.org/confidence> 9.9659E-1 ;
+  <http://shaclshapes.org/support> "61016"^^xsd:int ;
+  <http://www.w3.org/ns/shacl#NodeKind> <http://www.w3.org/ns/shacl#Literal> ;
+  <http://www.w3.org/ns/shacl#datatype> xsd:string ;
+  <http://www.w3.org/ns/shacl#path> <http://data.europa.eu/949/uopid> .
+
+<http://shaclshapes.org/validityEndDateOperationalPointShapeProperty> rdf:type <http://www.w3.org/ns/shacl#PropertyShape> ;
+  <http://shaclshapes.org/confidence> 9.9291E-1 ;
+  <http://shaclshapes.org/support> "60791"^^xsd:int ;
+  <http://www.w3.org/ns/shacl#NodeKind> <http://www.w3.org/ns/shacl#Literal> ;
+  <http://www.w3.org/ns/shacl#datatype> xsd:date ;
+  <http://www.w3.org/ns/shacl#path> <http://data.europa.eu/949/validityEndDate> .
+
+<http://shaclshapes.org/validityEndDatePlatformShapeProperty> rdf:type <http://www.w3.org/ns/shacl#PropertyShape> ;
+  <http://shaclshapes.org/confidence> 7.7276E-1 ;
+  <http://shaclshapes.org/support> "52967"^^xsd:int ;
+  <http://www.w3.org/ns/shacl#NodeKind> <http://www.w3.org/ns/shacl#Literal> ;
+  <http://www.w3.org/ns/shacl#datatype> xsd:date ;
+  <http://www.w3.org/ns/shacl#path> <http://data.europa.eu/949/validityEndDate> .
+
+<http://shaclshapes.org/validityEndDateSectionOfLineShapeProperty> rdf:type <http://www.w3.org/ns/shacl#PropertyShape> ;
+  <http://shaclshapes.org/confidence> 1E0 ;
+  <http://shaclshapes.org/support> "59733"^^xsd:int ;
+  <http://www.w3.org/ns/shacl#NodeKind> <http://www.w3.org/ns/shacl#Literal> ;
+  <http://www.w3.org/ns/shacl#datatype> xsd:date ;
+  <http://www.w3.org/ns/shacl#minCount> 1 ;
+  <http://www.w3.org/ns/shacl#path> <http://data.europa.eu/949/validityEndDate> .
+
+<http://shaclshapes.org/validityEndDateSidingShapeProperty> rdf:type <http://www.w3.org/ns/shacl#PropertyShape> ;
+  <http://shaclshapes.org/confidence> 9.9964E-1 ;
+  <http://shaclshapes.org/support> "128721"^^xsd:int ;
+  <http://www.w3.org/ns/shacl#NodeKind> <http://www.w3.org/ns/shacl#Literal> ;
+  <http://www.w3.org/ns/shacl#datatype> xsd:date ;
+  <http://www.w3.org/ns/shacl#path> <http://data.europa.eu/949/validityEndDate> .
+
+<http://shaclshapes.org/validityEndDateTrackShapeProperty> rdf:type <http://www.w3.org/ns/shacl#PropertyShape> ;
+  <http://shaclshapes.org/confidence> 9.9931E-1 ;
+  <http://shaclshapes.org/support> "362839"^^xsd:int ;
+  <http://www.w3.org/ns/shacl#NodeKind> <http://www.w3.org/ns/shacl#Literal> ;
+  <http://www.w3.org/ns/shacl#datatype> xsd:date ;
+  <http://www.w3.org/ns/shacl#path> <http://data.europa.eu/949/validityEndDate> .
+
+<http://shaclshapes.org/validityEndDateTunnelShapeProperty> rdf:type <http://www.w3.org/ns/shacl#PropertyShape> ;
+  <http://shaclshapes.org/confidence> 7.7137E-1 ;
+  <http://shaclshapes.org/support> "11336"^^xsd:int ;
+  <http://www.w3.org/ns/shacl#NodeKind> <http://www.w3.org/ns/shacl#Literal> ;
+  <http://www.w3.org/ns/shacl#datatype> xsd:date ;
+  <http://www.w3.org/ns/shacl#path> <http://data.europa.eu/949/validityEndDate> .
+
+<http://shaclshapes.org/validityStartDateOperationalPointShapeProperty> rdf:type <http://www.w3.org/ns/shacl#PropertyShape> ;
+  <http://shaclshapes.org/confidence> 9.9291E-1 ;
+  <http://shaclshapes.org/support> "60791"^^xsd:int ;
+  <http://www.w3.org/ns/shacl#NodeKind> <http://www.w3.org/ns/shacl#Literal> ;
+  <http://www.w3.org/ns/shacl#datatype> xsd:date ;
+  <http://www.w3.org/ns/shacl#path> <http://data.europa.eu/949/validityStartDate> .
+
+<http://shaclshapes.org/validityStartDatePlatformShapeProperty> rdf:type <http://www.w3.org/ns/shacl#PropertyShape> ;
+  <http://shaclshapes.org/confidence> 7.7276E-1 ;
+  <http://shaclshapes.org/support> "52967"^^xsd:int ;
+  <http://www.w3.org/ns/shacl#NodeKind> <http://www.w3.org/ns/shacl#Literal> ;
+  <http://www.w3.org/ns/shacl#datatype> xsd:date ;
+  <http://www.w3.org/ns/shacl#path> <http://data.europa.eu/949/validityStartDate> .
+
+<http://shaclshapes.org/validityStartDateSectionOfLineShapeProperty> rdf:type <http://www.w3.org/ns/shacl#PropertyShape> ;
+  <http://shaclshapes.org/confidence> 1E0 ;
+  <http://shaclshapes.org/support> "59733"^^xsd:int ;
+  <http://www.w3.org/ns/shacl#NodeKind> <http://www.w3.org/ns/shacl#Literal> ;
+  <http://www.w3.org/ns/shacl#datatype> xsd:date ;
+  <http://www.w3.org/ns/shacl#minCount> 1 ;
+  <http://www.w3.org/ns/shacl#path> <http://data.europa.eu/949/validityStartDate> .
+
+<http://shaclshapes.org/validityStartDateSidingShapeProperty> rdf:type <http://www.w3.org/ns/shacl#PropertyShape> ;
+  <http://shaclshapes.org/confidence> 9.9964E-1 ;
+  <http://shaclshapes.org/support> "128721"^^xsd:int ;
+  <http://www.w3.org/ns/shacl#NodeKind> <http://www.w3.org/ns/shacl#Literal> ;
+  <http://www.w3.org/ns/shacl#datatype> xsd:date ;
+  <http://www.w3.org/ns/shacl#path> <http://data.europa.eu/949/validityStartDate> .
+
+<http://shaclshapes.org/validityStartDateTrackShapeProperty> rdf:type <http://www.w3.org/ns/shacl#PropertyShape> ;
+  <http://shaclshapes.org/confidence> 9.9931E-1 ;
+  <http://shaclshapes.org/support> "362839"^^xsd:int ;
+  <http://www.w3.org/ns/shacl#NodeKind> <http://www.w3.org/ns/shacl#Literal> ;
+  <http://www.w3.org/ns/shacl#datatype> xsd:date ;
+  <http://www.w3.org/ns/shacl#path> <http://data.europa.eu/949/validityStartDate> .
+
+<http://shaclshapes.org/validityStartDateTunnelShapeProperty> rdf:type <http://www.w3.org/ns/shacl#PropertyShape> ;
+  <http://shaclshapes.org/confidence> 7.7137E-1 ;
+  <http://shaclshapes.org/support> "11336"^^xsd:int ;
+  <http://www.w3.org/ns/shacl#NodeKind> <http://www.w3.org/ns/shacl#Literal> ;
+  <http://www.w3.org/ns/shacl#datatype> xsd:date ;
+  <http://www.w3.org/ns/shacl#path> <http://data.europa.eu/949/validityStartDate> .
+
+

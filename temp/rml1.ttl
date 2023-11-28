@@ -1,0 +1,19 @@
+@prefix era: <http://data.europa.eu/949/> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+
+<http://mapping.example.com/map_etcs-baseline_000/shape> a sh:NodeShape ;
+    sh:nodeKind sh:IRI ;
+    sh:pattern "http://data.europa.eu/949/functionalInfrastructure/etcsLevels/.*_.*_.*_.*_.*" ;
+    sh:property [ sh:nodeKind sh:IRI ;
+            sh:path era:etcsBaseline ] .
+
+<http://mapping.example.com/map_etcs-level_000/shape> a sh:NodeShape ;
+    sh:nodeKind sh:IRI ;
+    sh:pattern "http://data.europa.eu/949/functionalInfrastructure/etcsLevels/.*_.*_.*_.*_.*" ;
+    sh:property [ sh:nodeKind sh:Literal ;
+            sh:path rdfs:label ],
+        [ sh:nodeKind sh:IRI ;
+            sh:path era:etcsLevelType ] ;
+    sh:targetClass era:ETCSLevel .
+

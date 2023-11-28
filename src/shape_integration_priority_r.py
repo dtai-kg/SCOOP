@@ -49,10 +49,11 @@ class ShapeIntegrationPriorityR():
                 identifiers_add =  list(target_add[(target, target_value)].keys())
                 
                 for identifier_current in identifiers_current:
-                    constraints_current = self.getConstraints(self.SHACL, identifier_current, NodeShapes_current)
+                    # constraints_current = self.getConstraints(self.SHACL, identifier_current, NodeShapes_current)
                     path_current = target_current[(target, target_value)][identifier_current]
                     # print("identifier_current: ", identifier_current)                   
                     for identifier_add in identifiers_add:
+                        constraints_current = self.getConstraints(self.SHACL, identifier_current, NodeShapes_current)
                         constraints_add = self.getConstraints(shape_add, identifier_add, NodeShapes_add)
                         # Add constraints in the shape that has target declaration
                         for constraint_add, constraint_add_value in constraints_add.items():
@@ -72,10 +73,8 @@ class ShapeIntegrationPriorityR():
                             identifiers_path_add =  path_add[(path, path_value)]
 
                             for identifier_path_current in identifiers_path_current:
-                                constraints_current = self.getConstraints(self.SHACL, identifier_path_current, NodeShapes_current)
-                                
                                 for identifier_path_add in identifiers_path_add:
-                                    
+                                    constraints_current = self.getConstraints(self.SHACL, identifier_path_current, NodeShapes_current)
                                     constraints_add = self.getConstraints(shape_add, identifier_path_add, NodeShapes_add)
                                     # Add constraints in the shape that has property path
                                     for constraint_add, constraint_add_value in constraints_add.items():

@@ -1,0 +1,97 @@
+@prefix era: <http://data.europa.eu/949/> .
+@prefix geosparql: <http://www.opengis.net/ont/geosparql#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix wgs: <http://www.w3.org/2003/01/geo/wgs84_pos#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<http://mapping.example.com/map_gauge-changeover_000/shape> a sh:NodeShape ;
+    sh:nodeKind sh:IRI ;
+    sh:pattern "http://data.europa.eu/949/functionalInfrastructure/operationalPoints/.*/.*_.*" ;
+    sh:property [ sh:nodeKind sh:Literal ;
+            sh:path era:opTypeGaugeChangeover ] .
+
+<http://mapping.example.com/map_line-reference_000/shape> a sh:NodeShape ;
+    sh:nodeKind sh:IRI ;
+    sh:pattern "http://data.europa.eu/949/functionalInfrastructure/lineReferences/.*_.*" ;
+    sh:property [ sh:datatype xsd:double ;
+            sh:nodeKind sh:Literal ;
+            sh:path era:kilometer ],
+        [ sh:nodeKind sh:IRI ;
+            sh:path era:lineNationalId ],
+        [ sh:nodeKind sh:Literal ;
+            sh:path rdfs:label ] ;
+    sh:targetClass era:LineReference .
+
+<http://mapping.example.com/map_local-rules-doc_000/shape> a sh:NodeShape ;
+    sh:nodeKind sh:IRI ;
+    sh:pattern "http://data.europa.eu/949/functionalInfrastructure/operationalPoints/.*/.*_.*" ;
+    sh:property [ sh:nodeKind sh:Literal ;
+            sh:path era:localRulesOrRestrictionsDoc ] .
+
+<http://mapping.example.com/map_local-rules_000/shape> a sh:NodeShape ;
+    sh:nodeKind sh:IRI ;
+    sh:pattern "http://data.europa.eu/949/functionalInfrastructure/operationalPoints/.*/.*_.*" ;
+    sh:property [ sh:datatype xsd:boolean ;
+            sh:nodeKind sh:Literal ;
+            sh:path era:localRulesOrRestrictions ],
+        [ sh:datatype xsd:boolean ;
+            sh:nodeKind sh:Literal ;
+            sh:path era:localRulesOrRestrictions ] .
+
+<http://mapping.example.com/map_location_000/shape> a sh:NodeShape ;
+    sh:nodeKind sh:IRI ;
+    sh:pattern "http://data.europa.eu/949/locations/.*/.*" ;
+    sh:property [ sh:datatype xsd:double ;
+            sh:nodeKind sh:Literal ;
+            sh:path wgs:long ],
+        [ sh:datatype xsd:double ;
+            sh:nodeKind sh:Literal ;
+            sh:path wgs:lat ],
+        [ sh:datatype geosparql:wktLiteral ;
+            sh:nodeKind sh:Literal ;
+            sh:path geosparql:asWKT ] ;
+    sh:targetClass geosparql:Geometry,
+        wgs:Point .
+
+<http://mapping.example.com/map_op-line-reference_000/shape> a sh:NodeShape ;
+    sh:nodeKind sh:IRI ;
+    sh:pattern "http://data.europa.eu/949/functionalInfrastructure/operationalPoints/.*/.*_.*" ;
+    sh:property [ sh:nodeKind sh:IRI ;
+            sh:path era:lineReference ] .
+
+<http://mapping.example.com/map_operational-point_000/shape> a sh:NodeShape ;
+    sh:nodeKind sh:IRI ;
+    sh:pattern "http://data.europa.eu/949/functionalInfrastructure/operationalPoints/.*/.*_.*" ;
+    sh:property [ sh:nodeKind sh:IRI ;
+            sh:path era:opType ],
+        [ sh:nodeKind sh:Literal ;
+            sh:path era:tafTAPCode ],
+        [ sh:nodeKind sh:IRI ;
+            sh:path wgs:location ],
+        [ sh:nodeKind sh:IRI ;
+            sh:path era:canonicalURI ],
+        [ sh:nodeKind sh:Literal ;
+            sh:path era:uopid ],
+        [ sh:nodeKind sh:Literal ;
+            sh:path rdfs:label ],
+        [ sh:datatype xsd:date ;
+            sh:nodeKind sh:Literal ;
+            sh:path era:validityEndDate ],
+        [ sh:nodeKind sh:Literal ;
+            sh:path era:opName ],
+        [ sh:node <http://mapping.example.com/map_eu-country_000/shape> ;
+            sh:nodeKind sh:IRI ;
+            sh:path era:inCountry ],
+        [ sh:nodeKind sh:IRI ;
+            sh:path geosparql:hasGeometry ],
+        [ sh:nodeKind sh:IRI ;
+            sh:path era:hasAbstraction ],
+        [ sh:datatype xsd:date ;
+            sh:nodeKind sh:Literal ;
+            sh:path era:validityStartDate ] ;
+    sh:targetClass era:OperationalPoint .
+
+<http://mapping.example.com/map_eu-country_000/shape> a sh:NodeShape ;
+    sh:nodeKind sh:Literal .
+

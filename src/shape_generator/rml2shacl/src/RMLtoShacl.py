@@ -124,7 +124,6 @@ class RMLtoSHACL:
         Transform the given SubjectMap into the corresponding SHACL shapes and 
         store them in the self.SHACL's rdflib graph. 
         """
-
         po_dict = subjectmap.po_dict
 
         # Start of class and targetNode shacl mapping
@@ -204,7 +203,7 @@ class RMLtoSHACL:
         self.helpAddTriples(shacl_graph, sh_property,
                             self.shaclNS.path, pm.po_dict.get(self.RML.CONSTANT))
 
-    def writeShapeToFile(self, file_name, shape_dir="shapes/"):
+    def writeShapeToFile(self):
         for prefix, ns in self.RML.graph.namespaces():
             self.SHACL.graph.bind(prefix, ns)
             # @base is used for <> in the RML ttl graph
@@ -212,21 +211,13 @@ class RMLtoSHACL:
         self.SHACL.graph.bind(
             'rdfs', 'http://www.w3.org/1999/02/22-rdf-syntax-ns#')
 
-        # parent_folder = os.path.dirname(file_name)
-        
-        # Path(f"%s%s" % (shape_dir, parent_folder)).mkdir(
-        #     parents=True, exist_ok=True)
+        print('Saved SHACL shapes in ',self.shacl_path)
 
-        # filenNameShape = "%s%s" % (shape_dir, file_name)
+        self.SHACL.graph.serialize(destination=self.shacl_path, format='turtle')
 
-        filenNameShape = self.shacl_path
-        print('Saved SHACL shapes in ',filenNameShape)
+        return self.shacl_path
 
-        self.SHACL.graph.serialize(destination=filenNameShape, format='turtle')
-
-        return filenNameShape
-
-    def evaluate_file(self, rml_mapping_file, shacl_path):
+    def evaluate_file(self, rml_mapping_file, shacl_path, write=True):
         self.RML.parseFile(rml_mapping_file)
         self.shacl_path = shacl_path
 
@@ -236,8 +227,8 @@ class RMLtoSHACL:
             for pom in triples_map.poms:
                 self.transformPOM(subject_shape_node, pom, self.SHACL.graph)
 
-        outputfileName = f"{rml_mapping_file}-output-shape.ttl"
-        self.writeShapeToFile(outputfileName)
+        if write:
+            self.writeShapeToFile()
 
         validation_shape_graph = rdflib.Graph()
         validation_shape_graph.parse("shacl-shacl.ttl", format="turtle")
@@ -249,6 +240,6 @@ class RMLtoSHACL:
         logging.debug("=" * 100)
         logging.debug(self.SHACL.results_text)
 
-        return None
+        return self.SHACL.graph
 
 

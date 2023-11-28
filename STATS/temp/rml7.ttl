@@ -60,18 +60,18 @@
 <http://mapping.example.com/map_op-track_000/shape> a sh:NodeShape ;
     sh:nodeKind sh:IRI ;
     sh:pattern "http://data.europa.eu/949/functionalInfrastructure/tracks/.*_.*" ;
-    sh:property [ sh:datatype xsd:date ;
-            sh:nodeKind sh:Literal ;
-            sh:path era:validityStartDate ],
-        [ sh:nodeKind sh:Literal ;
-            sh:path era:imCode ],
-        [ sh:nodeKind sh:Literal ;
+    sh:property [ sh:nodeKind sh:Literal ;
             sh:path rdfs:label ],
-        [ sh:nodeKind sh:Literal ;
-            sh:path era:trackId ],
         [ sh:datatype xsd:date ;
             sh:nodeKind sh:Literal ;
-            sh:path era:validityEndDate ] ;
+            sh:path era:validityEndDate ],
+        [ sh:nodeKind sh:Literal ;
+            sh:path era:trackId ],
+        [ sh:nodeKind sh:Literal ;
+            sh:path era:imCode ],
+        [ sh:datatype xsd:date ;
+            sh:nodeKind sh:Literal ;
+            sh:path era:validityStartDate ] ;
     sh:targetClass era:Track .
 
 <http://mapping.example.com/map_ten-class_000/shape> a sh:NodeShape ;

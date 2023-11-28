@@ -25,7 +25,7 @@ class ShapeIntegrationAll():
         """
         Integrating a set of shapes into a single shape
         """
-        for shape_add in self.shapes:
+        for shape_add, shape_name in self.shapes:
 
             NodeShapes_current, _ = self.getNodeShapes(self.SHACL)
             NodeShapes_add, shape_add = self.getNodeShapes(shape_add, replace=True)
@@ -49,10 +49,11 @@ class ShapeIntegrationAll():
                 identifiers_add =  list(target_add[(target, target_value)].keys())
                 
                 for identifier_current in identifiers_current:
-                    constraints_current = self.getConstraints(self.SHACL, identifier_current, NodeShapes_current)
+                    # constraints_current = self.getConstraints(self.SHACL, identifier_current, NodeShapes_current)
                     path_current = target_current[(target, target_value)][identifier_current]
                     # print("identifier_current: ", identifier_current)                   
                     for identifier_add in identifiers_add:
+                        constraints_current = self.getConstraints(self.SHACL, identifier_current, NodeShapes_current)
                         constraints_add = self.getConstraints(shape_add, identifier_add, NodeShapes_add)
                         # Add constraints in the shape that has target declaration
                         for constraint_add, constraint_add_value in constraints_add.items():
@@ -71,11 +72,9 @@ class ShapeIntegrationAll():
                             identifiers_path_current =  path_current[(path, path_value)]
                             identifiers_path_add =  path_add[(path, path_value)]
 
-                            for identifier_path_current in identifiers_path_current:
-                                constraints_current = self.getConstraints(self.SHACL, identifier_path_current, NodeShapes_current)
-                                
+                            for identifier_path_current in identifiers_path_current:           
                                 for identifier_path_add in identifiers_path_add:
-                                    
+                                    constraints_current = self.getConstraints(self.SHACL, identifier_path_current, NodeShapes_current)
                                     constraints_add = self.getConstraints(shape_add, identifier_path_add, NodeShapes_add)
                                     # Add constraints in the shape that has property path
                                     for constraint_add, constraint_add_value in constraints_add.items():
@@ -162,9 +161,31 @@ class ShapeIntegrationAll():
             if p == self.shaclNS.node:
                 if s not in NodeShapes:
                     constraints[p] = o
-            elif (p not in [self.rdfSyntax.type, self.shaclNS["property"]]) and (p not in self.targetDeclarationNS) and (p not in self.propertyPathNS):
+            elif (p not in [self.rdfSyntax.type, self.shaclNS["property"]]) and (p not in self.targetDeclarationNS) and (p not in self.propertyPathNS) and (p != self.shaclNS["or"]):
                 constraints[p] = o
+            elif p == self.shaclNS["or"]:
+                or_constraints = {}
+                next_n = o
+                while next_n != self.rdfSyntax.nil:
+                    first_n = shape.value(next_n, self.rdfSyntax.first)
+                    for s1, p1, o1 in shape.triples((first_n, None, None)):
+                        l = or_constraints.get(p1,[])
+                        l.append(o1)
+                        or_constraints[p1] = l
+                    next_n = shape.value(next_n, self.rdfSyntax.rest)
+
+                constraints[p] = {o:or_constraints}
+                
         return constraints
+
+    def remove_graph(self, old_subjects):
+        for s,p,o in self.SHACL:
+            if s in old_subjects:
+                self.SHACL.remove((s,p,o))
+                if isinstance(o,BNode):
+                    self.remove_graph([o])
+            elif o in old_subjects:
+                self.SHACL.remove((s,p,o))
 
     def addConstraints(self, shape_add, identifier_path_current, constraints_current, constraint_add, constraint_add_value):
         self.conflictChecking(shape_add, identifier_path_current, constraints_current, constraint_add, constraint_add_value)
@@ -174,11 +195,21 @@ class ShapeIntegrationAll():
         # Check if the constraint that is going to be added is conflict with the current constraints
         # Wrong: Conflict checking: checking whether the added constraint (already exsit) will cause the conform result to violation
         # Conflict checking: 
+        bn0, bn1, bn_rdflist = BNode(), BNode(), BNode()
+        or_add = False
+        if constraints_current.get(self.shaclNS["or"], None) != None:
+            or_node = list(constraints_current[self.shaclNS["or"]].keys())[0]
+            or_constraints = constraints_current[self.shaclNS["or"]][or_node]
+        else:
+            or_node = None
+            or_constraints = {}
+
         if constraint_add == self.shaclNS["class"]:
             self.SHACL.add((identifier_path_current, constraint_add, constraint_add_value))
         
         elif constraint_add == self.shaclNS.nodeKind:
-            if constraints_current.get(self.shaclNS.nodeKind, None) == None:
+            
+            if (constraints_current.get(self.shaclNS.nodeKind, None) == None) and (or_constraints.get(self.shaclNS.nodeKind, []) == []):
                 # If there is no nodeKind in previous shape, need to check datatype also
                 if constraint_add_value == self.shaclNS.Literal:
                     self.SHACL.add((identifier_path_current, constraint_add, constraint_add_value))
@@ -187,30 +218,64 @@ class ShapeIntegrationAll():
                         self.SHACL.add((identifier_path_current, constraint_add, constraint_add_value))
                     else:
                         return None
-            elif constraints_current.get(self.shaclNS.nodeKind) == constraint_add_value:
+            elif (constraint_add_value == constraints_current.get(self.shaclNS.nodeKind)) or (constraint_add_value in or_constraints.get(self.shaclNS.nodeKind, [])):
                 return None
-            elif (constraints_current.get(self.shaclNS.nodeKind) == self.shaclNS.IRI) and ((constraint_add_value == self.shaclNS.BlankNodeOrIRI) or (constraint_add_value == self.shaclNS.IRIOrLiteral)):
-                # TODO: discuss whether to add a more soft constraint, I prefer the strict option since we are expect to find more violations
-                pass
+            elif or_node != None and (or_constraints.get(self.shaclNS.nodeKind, [])!=[]):
+                self.SHACL.remove((identifier_path_current, self.shaclNS["or"], or_node))
+                self.SHACL.add((bn0, self.shaclNS["or"], or_node))
+                self.SHACL.add((bn1, constraint_add, constraint_add_value))
+                self.SHACL.add((identifier_path_current, self.shaclNS["or"], bn_rdflist))
+                self.transformList(bn_rdflist, [bn0, bn1])                
+            else:  
+                self.SHACL.add((bn0, constraint_add, constraints_current.get(constraint_add)))
+                self.SHACL.add((bn1, constraint_add, constraint_add_value))
+                self.SHACL.remove((identifier_path_current, constraint_add, constraints_current.get(constraint_add)))
+                self.SHACL.add((identifier_path_current, self.shaclNS["or"], bn_rdflist))
+                self.transformList(bn_rdflist, [bn0, bn1])
         
         elif constraint_add == self.shaclNS.datatype:
-            if constraints_current.get(self.shaclNS.datatype, None) == None:
-                if constraints_current.get(self.shaclNS.nodeKind, None) == None:
+            if constraints_current.get(self.shaclNS.datatype, None) == None and (or_constraints.get(self.shaclNS.datatype, []) == []):
+                if constraints_current.get(self.shaclNS.nodeKind, None) == None and (or_constraints.get(self.shaclNS.nodeKind, []) == []):
                     self.SHACL.add((identifier_path_current, constraint_add, constraint_add_value))
-                elif "Literal" in str(constraints_current.get(self.shaclNS.nodeKind)):
+                elif "Literal" in str(constraints_current.get(self.shaclNS.nodeKind)) or ("Literal" in str(or_constraints.get(self.shaclNS.nodeKind, []))):
                     self.SHACL.add((identifier_path_current, constraint_add, constraint_add_value))
-                else:
-                    return None
+                elif constraints_current.get(self.shaclNS.nodeKind) != None:    
+                    self.SHACL.add((bn0, self.shaclNS.nodeKind, constraints_current.get(self.shaclNS.nodeKind)))
+                    self.SHACL.add((bn1, self.shaclNS.datatype, constraint_add_value))
+                    self.SHACL.remove((identifier_path_current, self.shaclNS.nodeKind, constraints_current.get(self.shaclNS.nodeKind)))
+                    self.SHACL.add((identifier_path_current, self.shaclNS["or"], bn_rdflist))
+                    self.transformList(bn_rdflist, [bn0, bn1])
+                elif or_constraints.get(self.shaclNS.nodeKind, []) != []:
+                    self.SHACL.remove((identifier_path_current, self.shaclNS["or"], or_node))
+                    self.SHACL.add((bn0, self.shaclNS["or"], or_node))
+                    self.SHACL.add((bn1, self.shaclNS.datatype, constraint_add_value))
+                    self.SHACL.add((identifier_path_current, self.shaclNS["or"], bn_rdflist))
+                    self.transformList(bn_rdflist, [bn0, bn1]) 
+
+            elif or_node != None and or_constraints.get(self.shaclNS.datatype, []) != []:
+                self.SHACL.remove((identifier_path_current, self.shaclNS["or"], or_node))
+                self.SHACL.add((bn0, self.shaclNS["or"], or_node))
+                self.SHACL.add((bn1, self.shaclNS.datatype, constraint_add_value))
+                self.SHACL.add((identifier_path_current, self.shaclNS["or"], bn_rdflist))
+                self.transformList(bn_rdflist, [bn0, bn1])                
             else:
-                pass # TODO: Possible use sh:or to add more soft constraints
-            
+                self.SHACL.add((bn0, self.shaclNS.datatype, constraints_current.get(self.shaclNS.datatype)))
+                self.SHACL.add((bn1, self.shaclNS.datatype, constraint_add_value))
+                self.SHACL.remove((identifier_path_current, self.shaclNS.datatype, constraints_current.get(self.shaclNS.datatype)))
+                self.SHACL.add((identifier_path_current, self.shaclNS["or"], bn_rdflist))
+                self.transformList(bn_rdflist, [bn0, bn1])
+
         elif constraint_add == self.shaclNS.minCount:
             if constraints_current.get(self.shaclNS.minCount, None) == None:
                 if constraints_current.get(self.shaclNS.maxCount, None) == None:
                     self.SHACL.add((identifier_path_current, constraint_add, constraint_add_value))
                 elif constraint_add_value <= constraints_current.get(self.shaclNS.maxCount):
                     self.SHACL.add((identifier_path_current, constraint_add, constraint_add_value))
+                else:
+                    pass
+                    #self.SHACL.remove((identifier_path_current, self.shaclNS.maxCount, constraints_current.get(self.shaclNS.maxCount)))
             else:
+                #self.SHACL.remove((identifier_path_current, constraint_add, constraints_current.get(constraint_add)))
                 pass # TODO Discuss whether to add a more soft constraint?
 
         elif constraint_add == self.shaclNS.maxCount:
@@ -219,70 +284,400 @@ class ShapeIntegrationAll():
                     self.SHACL.add((identifier_path_current, constraint_add, constraint_add_value))
                 elif constraint_add_value >= constraints_current.get(self.shaclNS.minCount):
                     self.SHACL.add((identifier_path_current, constraint_add, constraint_add_value))
+                else:
+                    pass
+                    #self.SHACL.remove((identifier_path_current, self.shaclNS.minCount, constraints_current.get(self.shaclNS.minCount)))
             else:
+                #self.SHACL.remove((identifier_path_current, constraint_add, constraints_current.get(constraint_add)))
                 pass # TODO Discuss whether to add a more soft constraint?
+            
+            
+        # elif constraint_add == self.shaclNS.minCount:
+        #     if constraints_current.get(self.shaclNS.minCount, None) == None:
+        #         if constraint_add_value in or_constraints.get(self.shaclNS.minCount, []):
+        #             return None
+        #         if constraints_current.get(self.shaclNS.maxCount, None) == None:
+        #             self.SHACL.add((identifier_path_current, constraint_add, constraint_add_value))
+        #         elif constraint_add_value <= constraints_current.get(self.shaclNS.maxCount):
+        #             self.SHACL.add((identifier_path_current, constraint_add, constraint_add_value))
+        #         else:
+        #             self.SHACL.add((bn0, self.shaclNS.maxCount, constraints_current.get(self.shaclNS.maxCount)))
+        #             self.SHACL.add((bn1, constraint_add, constraint_add_value))
+        #             self.SHACL.remove((identifier_path_current, self.shaclNS.maxCount, constraints_current.get(self.shaclNS.maxCount)))
+        #             self.SHACL.add((identifier_path_current, self.shaclNS["or"], bn_rdflist))
+        #             self.transformList(bn_rdflist, [bn0, bn1])
+        #     else:
+        #         if constraints_current.get(self.shaclNS.minCount) <= constraint_add_value:
+        #             return None
+        #         else:
+        #             self.SHACL.remove((identifier_path_current, constraint_add, constraints_current.get(constraint_add)))
+        #             self.SHACL.add((identifier_path_current, constraint_add, constraint_add_value))    
+
+        # elif constraint_add == self.shaclNS.maxCount:
+        #     if constraints_current.get(self.shaclNS.maxCount, None) == None:
+        #         if constraint_add_value in or_constraints.get(self.shaclNS.maxCount, []):
+        #             return None
+        #         if constraints_current.get(self.shaclNS.minCount, None) == None:
+        #             self.SHACL.add((identifier_path_current, constraint_add, constraint_add_value))
+        #         elif constraint_add_value >= constraints_current.get(self.shaclNS.minCount):
+        #             self.SHACL.add((identifier_path_current, constraint_add, constraint_add_value))
+        #         else:
+        #             self.SHACL.add((bn0, self.shaclNS.minCount, constraints_current.get(self.shaclNS.minCount)))
+        #             self.SHACL.add((bn1, constraint_add, constraint_add_value))
+        #             self.SHACL.remove((identifier_path_current, self.shaclNS.minCount, constraints_current.get(self.shaclNS.minCount)))
+        #             self.SHACL.add((identifier_path_current, self.shaclNS["or"], bn_rdflist))
+        #             self.transformList(bn_rdflist, [bn0, bn1])  
+        #     else:
+        #         if constraints_current.get(self.shaclNS.maxCount) >= constraint_add_value:
+        #             return None
+        #         else:
+        #             self.SHACL.remove((identifier_path_current, constraint_add, constraints_current.get(constraint_add)))
+        #             self.SHACL.add((identifier_path_current, constraint_add, constraint_add_value))
+                
+            
 
         elif constraint_add == self.shaclNS.minExclusive:
             if constraints_current.get(self.shaclNS.minExclusive, None) != None:
-                pass
-            elif (constraints_current.get(self.shaclNS.nodeKind, None) == None) or "Literal" in str(constraints_current.get(self.shaclNS.nodeKind, None)):
-                if (constraints_current.get(self.shaclNS.maxExclusive, None) == None or constraint_add_value < constraints_current.get(self.shaclNS.maxExclusive, None)) and (constraints_current.get(self.shaclNS.maxInclusive, None) == None or constraint_add_value < constraints_current.get(self.shaclNS.maxInclusive, None)):
-                    if "string" not in str(constraints_current.get(self.shaclNS.datatype, None)):
-                        self.SHACL.add((identifier_path_current, constraint_add, constraint_add_value))
+                if constraint_add_value in or_constraints.get(self.shaclNS.minExclusive, []):
+                    return None
+                else:
+                    if ((constraints_current.get(self.shaclNS.nodeKind, None) == None) or "Literal" in str(constraints_current.get(self.shaclNS.nodeKind, None))):
+                        if (or_constraints.get(self.shaclNS.nodeKind, []) == []) or (self.shaclNS.Literal in or_constraints.get(self.shaclNS.nodeKind, [])) or (self.shaclNS.IRIOrLiteral in or_constraints.get(self.shaclNS.nodeKind, [])) or (self.shaclNS.BlankNodeOrLiteral in or_constraints.get(self.shaclNS.nodeKind, [])):
+                            if (constraints_current.get(self.shaclNS.maxExclusive, None) == None or constraint_add_value < constraints_current.get(self.shaclNS.maxExclusive, None)) and (constraints_current.get(self.shaclNS.maxInclusive, None) == None or constraint_add_value < constraints_current.get(self.shaclNS.maxInclusive, None)):
+                                if (or_constraints.get(self.shaclNS.maxExclusive, []) == []) or (constraint_add_value < or_constraints.get(self.shaclNS.maxExclusive, [])) and (or_constraints.get(self.shaclNS.maxInclusive, []) == []) or (constraint_add_value < or_constraints.get(self.shaclNS.maxInclusive, [])):
+                                    if "string" not in str(constraints_current.get(self.shaclNS.datatype, None)):
+                                        if "string" not in " ".join(or_constraints.get(self.shaclNS.datatype, [])):
+                                            self.SHACL.add((identifier_path_current, constraint_add, constraint_add_value))
+                                            return None
+                                        else:
+                                            or_add = True
+                                else:
+                                    or_add = True
+                        else:
+                            or_add = True
+                if or_add == True:
+                    self.SHACL.remove((identifier_path_current, self.shaclNS["or"], or_node))
+                    self.SHACL.add((bn0, self.shaclNS["or"], or_node))
+                    self.SHACL.add((bn1, constraint_add, constraint_add_value))
+                    self.SHACL.add((identifier_path_current, self.shaclNS["or"], bn_rdflist))
+                    self.transformList(bn_rdflist, [bn0, bn1])
+                    return None
+                else:
+                    for c in [self.shaclNS.nodeKind, self.shaclNS.minExclusive, self.shaclNS.maxExclusive, self.shaclNS.datatype]:
+                        if constraints_current.get(c, None) != None:
+                            self.SHACL.add((bn0,c, constraints_current.get(c, None)))  
+                            self.SHACL.remove((identifier_path_current, c, constraints_current.get(c, None)))    
+                    self.SHACL.add((bn1, constraint_add, constraint_add_value))
+                    
+                    self.SHACL.add((identifier_path_current, self.shaclNS["or"], bn_rdflist))
+                    self.transformList(bn_rdflist, [bn0, bn1])                       
+
+            elif or_node != None and or_constraints.get(self.shaclNS.minExclusive, []) != []:
+                self.SHACL.remove((identifier_path_current, self.shaclNS["or"], or_node))
+                self.SHACL.add((bn0, self.shaclNS["or"], or_node))
+                self.SHACL.add((bn1, constraint_add, constraint_add_value))
+                self.SHACL.add((identifier_path_current, self.shaclNS["or"], bn_rdflist))
+                self.transformList(bn_rdflist, [bn0, bn1])
+
+            else:
+
+                self.SHACL.add((bn0, constraint_add, constraints_current.get(constraint_add)))
+                self.SHACL.add((bn1, constraint_add, constraint_add_value))
+                self.SHACL.remove((identifier_path_current, constraint_add, constraints_current.get(constraint_add)))
+                self.SHACL.add((identifier_path_current, self.shaclNS["or"], bn_rdflist))
+                self.transformList(bn_rdflist, [bn0, bn1])                   
+
+            
+            if or_node != None and or_add == True:
+                self.SHACL.remove((identifier_path_current, self.shaclNS["or"], or_node))
+                self.SHACL.add((bn0, self.shaclNS["or"], or_node))
+                self.SHACL.add((bn1, constraint_add, constraint_add_value))
+                self.SHACL.add((identifier_path_current, self.shaclNS["or"], bn_rdflist))
+                self.transformList(bn_rdflist, [bn0, bn1])                
+            else:
+                self.SHACL.add((bn0, constraint_add, constraints_current.get(constraint_add)))
+                self.SHACL.add((bn1, constraint_add, constraint_add_value))
+                self.SHACL.remove((identifier_path_current, constraint_add, constraints_current.get(constraint_add)))
+                self.SHACL.add((identifier_path_current, self.shaclNS["or"], bn_rdflist))
+                self.transformList(bn_rdflist, [bn0, bn1])            
                 
         elif constraint_add == self.shaclNS.maxExclusive:
-            if constraints_current.get(self.shaclNS.maxExclusive, None) != None:
-                pass
-            elif (constraints_current.get(self.shaclNS.nodeKind, None) == None) or "Literal" in str(constraints_current.get(self.shaclNS.nodeKind, None)):
-                if (constraints_current.get(self.shaclNS.minExclusive, None) == None or constraint_add_value > constraints_current.get(self.shaclNS.minExclusive, None)) and (constraints_current.get(self.shaclNS.minInclusive, None) == None or constraint_add_value > constraints_current.get(self.shaclNS.minInclusive, None)):
-                    if "string" not in str(constraints_current.get(self.shaclNS.datatype, None)):
-                        self.SHACL.add((identifier_path_current, constraint_add, constraint_add_value))
+            if constraints_current.get(self.shaclNS.maxExclusive, None) == None:
+                if constraint_add_value in or_constraints.get(self.shaclNS.minExclusive, []):
+                    return None
+                else:
+                    if (constraints_current.get(self.shaclNS.nodeKind, None) == None) or "Literal" in str(constraints_current.get(self.shaclNS.nodeKind, None)):
+                        if (or_constraints.get(self.shaclNS.nodeKind, []) == []) or (self.shaclNS.Literal in or_constraints.get(self.shaclNS.nodeKind, [])) or (self.shaclNS.IRIOrLiteral in or_constraints.get(self.shaclNS.nodeKind, [])) or (self.shaclNS.BlankNodeOrLiteral in or_constraints.get(self.shaclNS.nodeKind, [])):
+                            if (constraints_current.get(self.shaclNS.minExclusive, None) == None or constraint_add_value > constraints_current.get(self.shaclNS.minExclusive, None)) and (constraints_current.get(self.shaclNS.minInclusive, None) == None or constraint_add_value > constraints_current.get(self.shaclNS.minInclusive, None)):
+                                if (or_constraints.get(self.shaclNS.minExclusive, []) == []) or (constraint_add_value > or_constraints.get(self.shaclNS.minExclusive, [])) and (or_constraints.get(self.shaclNS.minInclusive, []) == []) or (constraint_add_value > or_constraints.get(self.shaclNS.minInclusive, [])):
+                                    if "string" not in str(constraints_current.get(self.shaclNS.datatype, None)):
+                                        if "string" not in " ".join(or_constraints.get(self.shaclNS.datatype, [])):
+                                            self.SHACL.add((identifier_path_current, constraint_add, constraint_add_value))
+                                            return None
+                                        else:
+                                            or_add = True
+                                else:
+                                    or_add = True
+                        else:
+                            or_add = True
+                if or_add == True:
+                    self.SHACL.remove((identifier_path_current, self.shaclNS["or"], or_node))
+                    self.SHACL.add((bn0, self.shaclNS["or"], or_node))
+                    self.SHACL.add((bn1, constraint_add, constraint_add_value))
+                    self.SHACL.add((identifier_path_current, self.shaclNS["or"], bn_rdflist))
+                    self.transformList(bn_rdflist, [bn0, bn1])
+                    return None
+                else:
+                    for c in [self.shaclNS.nodeKind, self.shaclNS.minExclusive, self.shaclNS.minInclusive, self.shaclNS.datatype]:
+                        if constraints_current.get(c, None) != None:
+                            self.SHACL.add((bn0, c, constraints_current.get(c, None))) 
+                            self.SHACL.remove((identifier_path_current, c, constraints_current.get(c, None)))    
+                    self.SHACL.add((bn1, constraint_add, constraint_add_value))
+                    
+                    self.SHACL.add((identifier_path_current, self.shaclNS["or"], bn_rdflist))
+                    self.transformList(bn_rdflist, [bn0, bn1])
+                    return None
+
+            elif or_node != None and or_constraints.get(self.shaclNS.maxExclusive, []) != []:
+                self.SHACL.remove((identifier_path_current, self.shaclNS["or"], or_node))
+                self.SHACL.add((bn0, self.shaclNS["or"], or_node))
+                self.SHACL.add((bn1, constraint_add, constraint_add_value))
+                self.SHACL.add((identifier_path_current, self.shaclNS["or"], bn_rdflist))
+                self.transformList(bn_rdflist, [bn0, bn1])
+            
+            else:
+                self.SHACL.add((bn0, constraint_add, constraints_current.get(constraint_add)))
+                self.SHACL.add((bn1, constraint_add, constraint_add_value))
+                self.SHACL.remove((identifier_path_current, constraint_add, constraints_current.get(constraint_add)))
+                self.SHACL.add((identifier_path_current, self.shaclNS["or"], bn_rdflist))
+                self.transformList(bn_rdflist, [bn0, bn1])
+
 
         elif constraint_add == self.shaclNS.minInclusive:
-            if constraints_current.get(self.shaclNS.minInclusive, None) != None:
-                pass
-            elif (constraints_current.get(self.shaclNS.nodeKind, None) == None) or "Literal" in str(constraints_current.get(self.shaclNS.nodeKind, None)):
-                if (constraints_current.get(self.shaclNS.maxExclusive, None) == None or constraint_add_value < constraints_current.get(self.shaclNS.maxExclusive, None)) and (constraints_current.get(self.shaclNS.maxInclusive, None) == None or constraint_add_value <= constraints_current.get(self.shaclNS.maxInclusive, None)):
-                    if "string" not in str(constraints_current.get(self.shaclNS.datatype, None)):
-                        self.SHACL.add((identifier_path_current, constraint_add, constraint_add_value))
+            if constraints_current.get(self.shaclNS.minInclusive, None) == None:
+                if constraint_add_value in or_constraints.get(self.shaclNS.minExclusive, []):
+                    return None
+                else:
+                    if constraint_add_value not in or_constraints.get(self.shaclNS.minInclusive, []):
+                        if (constraints_current.get(self.shaclNS.nodeKind, None) == None) or "Literal" in str(constraints_current.get(self.shaclNS.nodeKind, None)):
+                            if (or_constraints.get(self.shaclNS.nodeKind, []) == []) or (self.shaclNS.Literal in or_constraints.get(self.shaclNS.nodeKind, [])) or (self.shaclNS.IRIOrLiteral in or_constraints.get(self.shaclNS.nodeKind, [])) or (self.shaclNS.BlankNodeOrLiteral in or_constraints.get(self.shaclNS.nodeKind, [])):
+                                if (constraints_current.get(self.shaclNS.maxExclusive, None) == None or constraint_add_value < constraints_current.get(self.shaclNS.maxExclusive, None)) and (constraints_current.get(self.shaclNS.maxInclusive, None) == None or constraint_add_value <= constraints_current.get(self.shaclNS.maxInclusive, None)):
+                                    if (or_constraints.get(self.shaclNS.maxExclusive, []) == []) or (constraint_add_value < or_constraints.get(self.shaclNS.maxExclusive, [])) and (or_constraints.get(self.shaclNS.maxInclusive, []) == []) or (constraint_add_value <= or_constraints.get(self.shaclNS.maxInclusive, [])):
+                                        if "string" not in str(constraints_current.get(self.shaclNS.datatype, None)):
+                                            if "string" not in " ".join(or_constraints.get(self.shaclNS.datatype, [])):
+                                                self.SHACL.add((identifier_path_current, constraint_add, constraint_add_value))
+                                                return None
+                                            else:
+                                                or_add = True
+                                    else:
+                                        or_add = True
+                            else:
+                                or_add = True
+                    else:
+                        return None
+
+                if or_add == True:
+                    self.SHACL.remove((identifier_path_current, self.shaclNS["or"], or_node))
+                    self.SHACL.add((bn0, self.shaclNS["or"], or_node))
+                    self.SHACL.add((bn1, constraint_add, constraint_add_value))
+                    self.SHACL.add((identifier_path_current, self.shaclNS["or"], bn_rdflist))
+                    self.transformList(bn_rdflist, [bn0, bn1])
+                    return None
+                else:
+                    for c in [self.shaclNS.nodeKind, self.shaclNS.maxExclusive, self.shaclNS.maxInclusive, self.shaclNS.datatype]:
+                        if constraints_current.get(c, None) != None:
+                            self.SHACL.add((bn0,c, constraints_current.get(c, None)))   
+                            self.SHACL.remove((identifier_path_current, c, constraints_current.get(c, None)))   
+
+                    self.SHACL.add((bn1, constraint_add, constraint_add_value))
+                    
+                    self.SHACL.add((identifier_path_current, self.shaclNS["or"], bn_rdflist))
+                    self.transformList(bn_rdflist, [bn0, bn1])
+                    return None
+            
+            elif or_node != None and or_constraints.get(self.shaclNS.minInclusive, []) != []:
+                self.SHACL.remove((identifier_path_current, self.shaclNS["or"], or_node))
+                self.SHACL.add((bn0, self.shaclNS["or"], or_node))
+                self.SHACL.add((bn1, constraint_add, constraint_add_value))
+                self.SHACL.add((identifier_path_current, self.shaclNS["or"], bn_rdflist))
+                self.transformList(bn_rdflist, [bn0, bn1])
+            else:
+                self.SHACL.add((bn0, constraint_add, constraints_current.get(constraint_add)))
+                self.SHACL.add((bn1, constraint_add, constraint_add_value))
+                self.SHACL.remove((identifier_path_current, constraint_add, constraints_current.get(constraint_add)))
+                self.SHACL.add((identifier_path_current, self.shaclNS["or"], bn_rdflist))
+                self.transformList(bn_rdflist, [bn0, bn1])
 
         elif constraint_add == self.shaclNS.maxInclusive:
-            if constraints_current.get(self.shaclNS.maxInclusive, None) != None:
-                pass
-            elif (constraints_current.get(self.shaclNS.nodeKind, None) == None) or "Literal" in str(constraints_current.get(self.shaclNS.nodeKind, None)):
-                if (constraints_current.get(self.shaclNS.minExclusive, None) == None or constraint_add_value > constraints_current.get(self.shaclNS.minExclusive, None)) and (constraints_current.get(self.shaclNS.minInclusive, None) == None or constraint_add_value >= constraints_current.get(self.shaclNS.minInclusive, None)):
-                    if "string" not in str(constraints_current.get(self.shaclNS.datatype, None)):
-                        self.SHACL.add((identifier_path_current, constraint_add, constraint_add_value))
+            if constraints_current.get(self.shaclNS.maxInclusive, None) == None:          
+                if constraint_add_value in or_constraints.get(self.shaclNS.minExclusive, []):
+                    return None
+                else:
+                    if (constraints_current.get(self.shaclNS.nodeKind, None) == None) or "Literal" in str(constraints_current.get(self.shaclNS.nodeKind, None)):
+                        if (or_constraints.get(self.shaclNS.nodeKind, []) == []) or (self.shaclNS.Literal in or_constraints.get(self.shaclNS.nodeKind, [])) or (self.shaclNS.IRIOrLiteral in or_constraints.get(self.shaclNS.nodeKind, [])) or (self.shaclNS.BlankNodeOrLiteral in or_constraints.get(self.shaclNS.nodeKind, [])):
+                            if (constraints_current.get(self.shaclNS.minExclusive, None) == None or constraint_add_value > constraints_current.get(self.shaclNS.minExclusive, None)) and (constraints_current.get(self.shaclNS.minInclusive, None) == None or constraint_add_value >= constraints_current.get(self.shaclNS.minInclusive, None)):
+                                if (or_constraints.get(self.shaclNS.minExclusive, []) == []) or (constraint_add_value > or_constraints.get(self.shaclNS.minExclusive, [])) and (or_constraints.get(self.shaclNS.minInclusive, []) == []) or (constraint_add_value >= or_constraints.get(self.shaclNS.minInclusive, [])):
+                                    if "string" not in str(constraints_current.get(self.shaclNS.datatype, None)):
+                                        if "string" not in " ".join(or_constraints.get(self.shaclNS.datatype, [])):
+                                            self.SHACL.add((identifier_path_current, constraint_add, constraint_add_value))
+                                            return None
+                                        else:
+                                            or_add = True
+                                else:
+                                    or_add = True
+                        else:
+                            or_add = True
+                if or_add == True:
+                    self.SHACL.remove((identifier_path_current, self.shaclNS["or"], or_node))
+                    self.SHACL.add((bn0, self.shaclNS["or"], or_node))
+                    self.SHACL.add((bn1, constraint_add, constraint_add_value))
+                    self.SHACL.add((identifier_path_current, self.shaclNS["or"], bn_rdflist))
+                    self.transformList(bn_rdflist, [bn0, bn1])
+                    return None
+                else:
+                    for c in [self.shaclNS.nodeKind, self.shaclNS.minExclusive, self.shaclNS.minInclusive, self.shaclNS.datatype]:
+                        if constraints_current.get(c, None) != None:
+                            self.SHACL.add((bn0, c, constraints_current.get(c, None)))     
+                            self.SHACL.remove((identifier_path_current, c, constraints_current.get(c, None))) 
+                    self.SHACL.add((bn1, constraint_add, constraint_add_value))
+                    
+                    self.SHACL.add((identifier_path_current, self.shaclNS["or"], bn_rdflist))
+                    self.transformList(bn_rdflist, [bn0, bn1])
+                    return None
+            elif or_node != None and or_constraints.get(self.shaclNS.maxInclusive, []) != []:
+                self.SHACL.remove((identifier_path_current, self.shaclNS["or"], or_node))
+                self.SHACL.add((bn0, self.shaclNS["or"], or_node))
+                self.SHACL.add((bn1, constraint_add, constraint_add_value))
+                self.SHACL.add((identifier_path_current, self.shaclNS["or"], bn_rdflist))
+                self.transformList(bn_rdflist, [bn0, bn1])
+            else:
+                self.SHACL.add((bn0, constraint_add, constraints_current.get(constraint_add)))
+                self.SHACL.add((bn1, constraint_add, constraint_add_value))
+                self.SHACL.remove((identifier_path_current, constraint_add, constraints_current.get(constraint_add)))
+                self.SHACL.add((identifier_path_current, self.shaclNS["or"], bn_rdflist))
+                self.transformList(bn_rdflist, [bn0, bn1])
 
         elif constraint_add == self.shaclNS.minLength:
-            if constraints_current.get(self.shaclNS.minLength, None) != None:
-                pass
+            if constraints_current.get(self.shaclNS.minLength, None) == None:
+                if or_constraints.get(self.shaclNS.minLength, None) == None:
+                    if constraints_current.get(self.shaclNS.maxLength, None) == None:
+                        self.SHACL.add((identifier_path_current, constraint_add, constraint_add_value))
+                        return None
+                    elif constraint_add_value <= constraints_current.get(self.shaclNS.maxLength):
+                        self.SHACL.add((identifier_path_current, constraint_add, constraint_add_value))
+                        return None
+                    else:
+                        self.SHACL.add((bn0, self.shaclNS.maxLength, constraints_current.get(self.shaclNS.maxLength)))
+                        self.SHACL.add((bn1, constraint_add, constraint_add_value))
+                        self.SHACL.remove((identifier_path_current, self.shaclNS.maxLength, constraints_current.get(self.shaclNS.maxLength)))
+                        self.SHACL.add((identifier_path_current, self.shaclNS["or"], bn_rdflist))
+                        self.transformList(bn_rdflist, [bn0, bn1])
+
+                    if or_constraints.get(self.shaclNS.maxLength, None) != None:
+                        if constraint_add_value <= or_constraints.get(self.shaclNS.maxLength):
+                            return None
+                        else:
+                            self.SHACL.remove((identifier_path_current, self.shaclNS["or"], or_node))
+                            self.SHACL.add((bn0, self.shaclNS["or"], or_node))
+                            self.SHACL.add((bn1, constraint_add, constraint_add_value))
+                            self.SHACL.add((identifier_path_current, self.shaclNS["or"], bn_rdflist))
+                            self.transformList(bn_rdflist, [bn0, bn1])
+                            return None
+                elif constraint_add_value in or_constraints.get(self.shaclNS.minLength):
+                    return None
+            
+            elif constraint_add_value == constraints_current.get(self.shaclNS.minLength):
+                return None
+
             else:
-                if constraints_current.get(self.shaclNS.maxLength, None) == None:
-                    self.SHACL.add((identifier_path_current, constraint_add, constraint_add_value))
-                elif constraint_add_value <= constraints_current.get(self.shaclNS.maxLength):
-                    self.SHACL.add((identifier_path_current, constraint_add, constraint_add_value))
+                self.SHACL.add((bn0, constraint_add, constraints_current.get(constraint_add)))
+                self.SHACL.add((bn1, constraint_add, constraint_add_value))
+                self.SHACL.remove((identifier_path_current, constraint_add, constraints_current.get(constraint_add)))
+                self.SHACL.add((identifier_path_current, self.shaclNS["or"], bn_rdflist))
+                self.transformList(bn_rdflist, [bn0, bn1])               
             
         elif constraint_add == self.shaclNS.maxLength:
-            if constraints_current.get(self.shaclNS.maxLength, None) != None:
-                pass
+            if constraints_current.get(self.shaclNS.maxLength, None) == None:
+                if or_constraints.get(self.shaclNS.maxLength, None) == None:
+                    if constraints_current.get(self.shaclNS.minLength, None) == None:
+                        self.SHACL.add((identifier_path_current, constraint_add, constraint_add_value))
+                        return None
+                    elif constraint_add_value >= constraints_current.get(self.shaclNS.minLength):
+                        self.SHACL.add((identifier_path_current, constraint_add, constraint_add_value))
+                        return None
+                    else:
+                        self.SHACL.add((bn0, self.shaclNS.minLength, constraints_current.get(self.shaclNS.minLength)))
+                        self.SHACL.add((bn1, constraint_add, constraint_add_value))
+                        self.SHACL.remove((identifier_path_current, self.shaclNS.minLength, constraints_current.get(self.shaclNS.minLength)))
+                        self.SHACL.add((identifier_path_current, self.shaclNS["or"], bn_rdflist))
+                        self.transformList(bn_rdflist, [bn0, bn1])
+                    if or_constraints.get(self.shaclNS.minLength, None) != None:
+                        if constraint_add_value >= or_constraints.get(self.shaclNS.minLength):
+                            return None
+                        else:
+                            self.SHACL.remove((identifier_path_current, self.shaclNS["or"], or_node))
+                            self.SHACL.add((bn0, self.shaclNS["or"], or_node))
+                            self.SHACL.add((bn1, constraint_add, constraint_add_value))
+                            self.SHACL.add((identifier_path_current, self.shaclNS["or"], bn_rdflist))
+                            self.transformList(bn_rdflist, [bn0, bn1])
+                            return None
+                elif constraint_add_value in or_constraints.get(self.shaclNS.maxLength):
+                    return None
+                else:
+                    self.SHACL.remove((identifier_path_current, self.shaclNS["or"], or_node))
+                    self.SHACL.add((bn0, self.shaclNS["or"], or_node))
+                    self.SHACL.add((bn1, constraint_add, constraint_add_value))
+                    self.SHACL.add((identifier_path_current, self.shaclNS["or"], bn_rdflist))
+                    self.transformList(bn_rdflist, [bn0, bn1])
+                    return None                    
+
+            elif constraint_add_value == constraints_current.get(self.shaclNS.maxLength):
+                return None
+
             else:
-                if constraints_current.get(self.shaclNS.minLength, None) == None:
-                    self.SHACL.add((identifier_path_current, constraint_add, constraint_add_value))
-                elif constraint_add_value >= constraints_current.get(self.shaclNS.minLength):
-                    self.SHACL.add((identifier_path_current, constraint_add, constraint_add_value))
-            
+                self.SHACL.add((bn0, constraint_add, constraints_current.get(constraint_add)))
+                self.SHACL.add((bn1, constraint_add, constraint_add_value))
+                self.SHACL.remove((identifier_path_current, constraint_add, constraints_current.get(constraint_add)))
+                self.SHACL.add((identifier_path_current, self.shaclNS["or"], bn_rdflist))
+                self.transformList(bn_rdflist, [bn0, bn1])
+
         elif constraint_add == self.shaclNS.pattern:
-            if constraints_current.get(self.shaclNS.pattern, None) != None:
-                pass
-            else:
+            if constraints_current.get(self.shaclNS.pattern, None) == None:
+                if constraint_add_value in or_constraints.get(self.shaclNS.pattern, []):
+                    return None
                 self.SHACL.add((identifier_path_current, constraint_add, constraint_add_value))
+            
+            elif or_constraints.get(self.shaclNS.pattern, []) != []:
+                self.SHACL.remove((identifier_path_current, self.shaclNS["or"], or_node))
+                self.SHACL.add((bn0, self.shaclNS["or"], or_node))
+                self.SHACL.add((bn1, constraint_add, constraint_add_value))
+                self.SHACL.add((identifier_path_current, self.shaclNS["or"], bn_rdflist))
+                self.transformList(bn_rdflist, [bn0, bn1])
+            else:
+                self.SHACL.add((bn0, constraint_add, constraints_current.get(constraint_add)))
+                self.SHACL.add((bn1, constraint_add, constraint_add_value))
+                self.SHACL.remove((identifier_path_current, constraint_add, constraints_current.get(constraint_add)))
+                self.SHACL.add((identifier_path_current, self.shaclNS["or"], bn_rdflist))
+                self.transformList(bn_rdflist, [bn0, bn1])
+
         
         elif constraint_add == self.shaclNS.flags:
-            if constraints_current.get(self.shaclNS.flags, None) != None:
-                pass
-            else:
+            if constraints_current.get(self.shaclNS.flags, None) == None:
+                if constraint_add_value in or_constraints.get(self.shaclNS.flags, []):
+                    return None
                 self.SHACL.add((identifier_path_current, constraint_add, constraint_add_value))
+            elif or_constraints.get(self.shaclNS.flags, []) != []:
+                self.SHACL.remove((identifier_path_current, self.shaclNS["or"], or_node))
+                self.SHACL.add((bn0, self.shaclNS["or"], or_node))
+                self.SHACL.add((bn1, constraint_add, constraint_add_value))
+                self.SHACL.add((identifier_path_current, self.shaclNS["or"], bn_rdflist))
+                self.transformList(bn_rdflist, [bn0, bn1])
+            else:
+                self.SHACL.add((bn0, constraint_add, constraints_current.get(constraint_add)))
+                self.SHACL.add((bn1, constraint_add, constraint_add_value))
+                self.SHACL.remove((identifier_path_current, constraint_add, constraints_current.get(constraint_add)))
+                self.SHACL.add((identifier_path_current, self.shaclNS["or"], bn_rdflist))
+                self.transformList(bn_rdflist, [bn0, bn1])
 
         elif constraint_add == self.shaclNS.languageIn:
             _, languageIn_add = self.findList(shape_add, constraint_add_value, [])
@@ -303,10 +698,10 @@ class ShapeIntegrationAll():
             self.transformList(node_current, languageIn_merge)
 
         elif constraint_add == self.shaclNS.uniqueLang:
-            if constraints_current.get(self.shaclNS.uniqueLang, None) != None:
-                pass
-            else:
+            if constraints_current.get(self.shaclNS.uniqueLang, None) == None:
                 self.SHACL.add((identifier_path_current, constraint_add, constraint_add_value))
+            else:
+                self.SHACL.remove((identifier_path_current, constraint_add, constraints_current.get(constraint_add)))
 
         elif constraint_add == self.shaclNS.equals:
             self.SHACL.add((identifier_path_current, constraint_add, constraint_add_value))
@@ -437,3 +832,14 @@ class ShapeIntegrationAll():
             print(r[2])
         self.SHACL.serialize(destination=self.output, format='turtle')
         print("Saved final file in ", self.output)
+
+if __name__ == "__main__":
+
+    files = ["shaclA.ttl","shaclB.ttl"]
+    shapes_graph = []
+    for file in files:
+        g = Graph().parse(file, format='turtle')
+        shapes_graph.append((g,"test"))
+        
+    shIn = ShapeIntegrationAll(shapes_graph, "test.ttl")
+    shIn.integration()

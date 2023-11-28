@@ -20,34 +20,34 @@
 <http://mapping.example.com/map_sections-of-line_000/shape> a sh:NodeShape ;
     sh:nodeKind sh:IRI ;
     sh:pattern "http://data.europa.eu/949/functionalInfrastructure/sectionsOfLine/.*_.*_.*/.*_.*" ;
-    sh:property [ sh:nodeKind sh:IRI ;
-            sh:path era:hasAbstraction ],
-        [ sh:datatype xsd:date ;
+    sh:property [ sh:datatype xsd:date ;
             sh:nodeKind sh:Literal ;
             sh:path era:validityEndDate ],
-        [ sh:nodeKind sh:IRI ;
-            sh:path geosparql:hasGeometry ],
-        [ sh:node <http://mapping.example.com/map_eu-country_000/shape> ;
-            sh:nodeKind sh:IRI ;
-            sh:path era:inCountry ],
-        [ sh:nodeKind sh:IRI ;
-            sh:path era:lineNationalId ],
+        [ sh:datatype xsd:date ;
+            sh:nodeKind sh:Literal ;
+            sh:path era:validityStartDate ],
         [ sh:node <http://mapping.example.com/map_link-sol-to-operational-point_000/shape> ;
             sh:nodeKind sh:IRI ;
             sh:path era:opStart ],
         [ sh:node <http://mapping.example.com/map_link-sol-to-operational-point_000/shape> ;
             sh:nodeKind sh:IRI ;
             sh:path era:opEnd ],
-        [ sh:datatype xsd:double ;
-            sh:nodeKind sh:Literal ;
-            sh:path era:length ],
+        [ sh:nodeKind sh:IRI ;
+            sh:path geosparql:hasGeometry ],
+        [ sh:nodeKind sh:IRI ;
+            sh:path era:hasAbstraction ],
+        [ sh:nodeKind sh:IRI ;
+            sh:path era:lineNationalId ],
+        [ sh:node <http://mapping.example.com/map_eu-country_000/shape> ;
+            sh:nodeKind sh:IRI ;
+            sh:path era:inCountry ],
         [ sh:nodeKind sh:IRI ;
             sh:path era:solNature ],
         [ sh:nodeKind sh:IRI ;
             sh:path era:canonicalURI ],
-        [ sh:datatype xsd:date ;
+        [ sh:datatype xsd:double ;
             sh:nodeKind sh:Literal ;
-            sh:path era:validityStartDate ],
+            sh:path era:length ],
         [ sh:nodeKind sh:Literal ;
             sh:path era:imCode ] ;
     sh:targetClass era:SectionOfLine .

@@ -1,0 +1,21 @@
+@prefix era: <http://data.europa.eu/949/> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<http://mapping.example.com/map_raised-pantograph-distance-speed_000/shape> a sh:NodeShape ;
+    sh:nodeKind sh:IRI ;
+    sh:pattern "http://data.europa.eu/949/functionalInfrastructure/raisedPantographsDistanceAndSpeed/.*_.*_.*_.*_.*" ;
+    sh:property [ sh:datatype xsd:integer ;
+            sh:nodeKind sh:Literal ;
+            sh:path era:raisedPantographsNumber ],
+        [ sh:datatype xsd:integer ;
+            sh:nodeKind sh:Literal ;
+            sh:path era:raisedPantographsDistance ],
+        [ sh:datatype xsd:integer ;
+            sh:nodeKind sh:Literal ;
+            sh:path era:raisedPantographsSpeed ],
+        [ sh:nodeKind sh:Literal ;
+            sh:path rdfs:label ] ;
+    sh:targetClass era:RaisedPantographsDistanceAndSpeed .
+

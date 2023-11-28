@@ -5,10 +5,10 @@
 <http://mapping.example.com/map_operational-point_000/shape> a sh:NodeShape ;
     sh:nodeKind sh:IRI ;
     sh:pattern "http://data.europa.eu/949/topology/netElements/.*" ;
-    sh:property [ sh:nodeKind sh:IRI ;
-            sh:path era:hasImplementation ],
-        [ sh:nodeKind sh:Literal ;
-            sh:path rdfs:label ] ;
+    sh:property [ sh:nodeKind sh:Literal ;
+            sh:path rdfs:label ],
+        [ sh:nodeKind sh:IRI ;
+            sh:path era:hasImplementation ] ;
     sh:targetClass era:NetElement .
 
 <http://mapping.example.com/map_sections-of-line_000/shape> a sh:NodeShape ;

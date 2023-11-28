@@ -86,7 +86,8 @@ class STATS:
         self.f.write(f"{len(self.VT)}/{len(self.valueTypeConstraints)}, {len(self.CD)}/{len(self.cardinalityConstraints)}, {len(self.VR)}/{len(self.valueRangeConstraints)}, {len(self.SR)}/{len(self.stringBasedConstraints)}, {len(self.PP)}/{len(self.propertyPairConstraints)}, {len(self.LG)}/{len(self.logicalConstraints)}, {len(self.SA)}/{len(self.shapeBasedConstriants)}, {len(self.OT)}/{len(self.otherConstraints)}\n")
         self.f.write(f"{len(self.VT)}, {len(self.CD)}, {len(self.VR)}, {len(self.SR)}, {len(self.PP)}, {len(self.LG)}, {len(self.SA)}, {len(self.OT)}\n")
         #print(f"Predicted has {len(self.predicted_class)} classes and {len(self.predicted_property)} properties")
-    
+
+
     def get_differ(self):
         # get difference classes and properties
         self.f.write(f"Classes in ground truth but not in predicted: {self.ground_truth_class.difference(self.predicted_class)}\n")
@@ -111,11 +112,15 @@ class STATS:
         # print(f"Precision for classes: {len(self.ground_truth_class.intersection(self.predicted_class))/len(self.predicted_class)}")
         # print(f"Precision for properties: {len(self.ground_truth_property.intersection(self.predicted_property))/len(self.predicted_property)}")
 
-    def cal_accuracy(self):
-        self.f.write(f"Accuracy for classes: {len(self.ground_truth_class.intersection(self.predicted_class))/len(self.ground_truth_class.union(self.predicted_class))}\n")
-        self.f.write(f"Accuracy for properties: {len(self.ground_truth_property.intersection(self.predicted_property))/len(self.ground_truth_property.union(self.predicted_property))}\n")
-        # print(f"Accuracy for classes: {len(self.ground_truth_class.intersection(self.predicted_class))/len(self.ground_truth_class.union(self.predicted_class))}")
-        # print(f"Accuracy for properties: {len(self.ground_truth_property.intersection(self.predicted_property))/len(self.ground_truth_property.union(self.predicted_property))}")
+    # def cal_accuracy(self):
+    #     self.f.write(f"Accuracy for classes: {len(self.ground_truth_class.intersection(self.predicted_class))/len(self.ground_truth_class.union(self.predicted_class))}\n")
+    #     self.f.write(f"Accuracy for properties: {len(self.ground_truth_property.intersection(self.predicted_property))/len(self.ground_truth_property.union(self.predicted_property))}\n")
+    #     # print(f"Accuracy for classes: {len(self.ground_truth_class.intersection(self.predicted_class))/len(self.ground_truth_class.union(self.predicted_class))}")
+    #     # print(f"Accuracy for properties: {len(self.ground_truth_property.intersection(self.predicted_property))/len(self.ground_truth_property.union(self.predicted_property))}")
+
+    def cal_F1score(self):
+        self.f.write(f"F1 score for classes: {2*len(self.ground_truth_class.intersection(self.predicted_class))/(len(self.ground_truth_class)+len(self.predicted_class))}\n")
+        self.f.write(f"F1 score for properties: {2*len(self.ground_truth_property.intersection(self.predicted_property))/(len(self.ground_truth_property)+len(self.predicted_property))}\n")
 
     def writeName(self, name):
         self.f.write(f"================Start calculating {name}\n")
@@ -175,7 +180,7 @@ class STATS:
 if __name__ == "__main__":
 
     stats = STATS("STATS/log.txt")
-    stats.getGroundTruth("STATS/UK.classes.txt", "STATS/UK.properties.txt")
+    stats.getGroundTruth("STATS/FR.classes.txt", "STATS/FR.properties.txt")
 
     shacl_list = os.listdir("STATS")
     for shacl_file in shacl_list:
@@ -186,8 +191,10 @@ if __name__ == "__main__":
             stats.getPredicted([os.path.join("STATS", shacl_file)])
             stats.cal_recall()
             stats.cal_precision()
-            stats.cal_accuracy()
+            #stats.cal_accuracy()
+            stats.cal_F1score()
             stats.get_differ()
+            
             stats.clean()
 
     
@@ -196,8 +203,10 @@ if __name__ == "__main__":
     stats.getPredicted(["STATS/temp/owl0.ttl"])
     stats.cal_recall()
     stats.cal_precision()
-    stats.cal_accuracy()
+   # stats.cal_accuracy()
+    stats.cal_F1score()
     stats.get_differ()
+    
     stats.clean()
 
     
@@ -206,8 +215,10 @@ if __name__ == "__main__":
     stats.getPredicted(["STATS/temp/xsd0.ttl"])
     stats.cal_recall()
     stats.cal_precision()
-    stats.cal_accuracy()
+    #stats.cal_accuracy()
+    stats.cal_F1score()
     stats.get_differ()
+    
     stats.clean()
 
     shacl_list = os.listdir("STATS/temp")
@@ -221,8 +232,10 @@ if __name__ == "__main__":
     stats.getPredicted(rml_list)
     stats.cal_recall()
     stats.cal_precision()
-    stats.cal_accuracy()
+    stats.cal_F1score()
+    #stats.cal_accuracy()
     stats.get_differ()
+    
     stats.clean()
 
     stats.closeF()

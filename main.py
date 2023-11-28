@@ -8,6 +8,7 @@ from rdflib import Graph
 from pyshacl import validate
 from src.shape_integration_priority import ShapeIntegrationPriority
 from src.shape_integration_priority_r import ShapeIntegrationPriorityR
+from src.shape_integration_all import ShapeIntegrationAll
 from src.shape_adjustment_single import ShapeAdjustment
 
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
@@ -85,11 +86,6 @@ def integrate_shapes(shapes, output_file, mode):
         print("Start reading shape :", shape)
         try:
             g = Graph().parse(shape, format='turtle')
-            # r = validate(g, shacl_graph=validation_shape_graph, ont_graph=None,
-            #                 inference='rdfs', abort_on_first=False, meta_shacl=False, debug=False)
-            # if not r[0]:
-            #     print(r[2])
-            #     sys.exit(1)
         except:
             print('Error reading shape :', shape)
 
@@ -110,6 +106,13 @@ def integrate_shapes(shapes, output_file, mode):
         shIn.integration()
         print('Shape integration took %s seconds', time.time() - start_time)
         print("Saved final file in ", output_file)
+    elif mode == 'all':
+        print("Start integrating shapes with all")
+        start_time = time.time()
+        shIn = ShapeIntegrationAll(shapes_graph, output_file)
+        shIn.integration()
+        print('Shape integration took %s seconds', time.time() - start_time)
+        print("Saved final file in ", output_file)
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description='Shape Integration')
@@ -118,6 +121,7 @@ if __name__ == "__main__":
     parser.add_argument('--rml', '-r', type=str, nargs='+', help='Path to folder or rml files to be translated')
     parser.add_argument('--ontology', '-owl', type=str, nargs='+', help='Path to folder or owl files to be translated')
     parser.add_argument('--xsd', '-x', type=str, nargs='+', help='Path to folder or xsd file to be translated')
+    parser.add_argument('--xsd_rml', '-xr', type=str, nargs='+', help='Path to folder or rml file for post-adjustment of XSD-driven shape')
     parser.add_argument('--output', '-o', type=str, help='Output file', default='shape_integration.ttl')
     args = parser.parse_args()
 
@@ -127,6 +131,7 @@ if __name__ == "__main__":
     total_start_time = time.time()
     print("Start translating shapes")
     shapes = []
+
     for p in args.priority:
         if p == 'rml' and args.rml:
             print("Start translating rml")
@@ -160,8 +165,16 @@ if __name__ == "__main__":
                     xsd_files.extend([os.path.join(xsd, f) for f in os.listdir(xsd) if f.endswith('.xsd') or f.endswith('.xml')])
                 else:
                     xsd_files.append(xsd)
-            if args.rml:
-                xsd_shacl_files = extract_shape_xsd(xsd_files, rml_files)
+     
+            if args.xsd_rml:
+                print("Start translating rml for post-adjustment of XSD-driven shape")
+                xsd_rml_files = []
+                for rml in args.xsd_rml:
+                    if os.path.isdir(rml):
+                        xsd_rml_files.extend([os.path.join(rml, f) for f in os.listdir(rml) if f.endswith('.ttl') or f.endswith('.rml')])
+                    else:
+                        xsd_rml_files.append(rml)
+                xsd_shacl_files = extract_shape_xsd(xsd_files, xsd_rml_files)
             else:
                 xsd_shacl_files = extract_shape_xsd(xsd_files)
             shapes.extend(xsd_shacl_files)

@@ -14,8 +14,8 @@
     sh:nodeKind sh:IRI ;
     sh:pattern "http://data.europa.eu/949/topology/netRelations/.*_.*_.*_.*" ;
     sh:property [ sh:nodeKind sh:IRI ;
-            sh:path era:elementA ],
+            sh:path era:elementB ],
         [ sh:nodeKind sh:IRI ;
-            sh:path era:elementB ] ;
+            sh:path era:elementA ] ;
     sh:targetClass era:NetRelation .
 
