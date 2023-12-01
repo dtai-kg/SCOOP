@@ -11,8 +11,6 @@ We incorporate [RML2SHACL](https://github.com/RMLio/RML2SHACL), [Astrea](https:/
 ## Command Line Use
 For command line use:
 
-To translate RML/Ontology/XSD to SHACL shapes and integrate the all shapes to one shape (the default priority is rml>ontology>xsd):
-
 ```
 $ python main.py --mode [priority/priorityR/all] --parallel [True/False] --mappings [PATH_TO_RML/PATH_TO_RML_FOLDER] --ontology [PATH_TO_ONTOLOGY/PATH_TO_ONTOLOGY_FOLDER] --xsd [PATH_TO_XSD/PATH_TO_XSD_FOLDER] -xsd [PATH_TO_ADJUSTMENT_XSD/PATH_TO_ADJUSTMENT_RML_FOLDER] --priority PRIORITY1 PRIORITY2 PRIORITY3 -o OUT_PUT_PATH
 ```
