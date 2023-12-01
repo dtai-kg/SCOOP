@@ -1,59 +1,38 @@
-# Shapes-Integration
-Integrating SHACL shapes derived from diverse source (e.g., RML, OWL, XSD, CSVW, Json Schema)
+# SCOOP
 
-## Usage
+**SCOOP** is a framework that exploits all artifacts associated with the construction of an RDF graph, i.e. data schemas, ontologies, and mapping rules, and integrates the SHACL shapes extracted from each artifact into a unified shapes graph.
+
+We implemented **SCOOP-All**, **SCOOP-Prior**, and **SCOOP-Prior-R**. 
+
+We incorporate RML2SHACL, Astrea, and XSD2SHACL.
+
+## Installation
+
+## Command Line Use
+For command line use:
 
 To translate RML/Ontology/XSD to SHACL shapes and integrate the all shapes to one shape (the default priority is rml>ontology>xsd):
 
 ```
-$ python main.py -r PATH_TO_RML/PATH_TO_RML_FOLDER -o PATH_TO_ONTOLOGY/PATH_TO_ONTOLOGY_FOLDER -x PATH_TO_XSD/PATH_TO_XSD_FOLDER -p PRIORITY1 PRIORITY2 PRIORITY3 -o OUT_PUT_PATH
+$ python main.py --mode [priority/priorityR/all] --parallel [True/False] --mappings [PATH_TO_RML/PATH_TO_RML_FOLDER] --ontology [PATH_TO_ONTOLOGY/PATH_TO_ONTOLOGY_FOLDER] --xsd [PATH_TO_XSD/PATH_TO_XSD_FOLDER] -xsd [PATH_TO_ADJUSTMENT_XSD/PATH_TO_ADJUSTMENT_RML_FOLDER] --priority PRIORITY1 PRIORITY2 PRIORITY3 -o OUT_PUT_PATH
 ```
 
 For example:
 
 ```
-$ python main.py -r usecases/RINF/mappings/ -x usecases/RINF/schema/
+$ python main.py --mode all --parallel True --mappings usecases/RINF/mappings/ --xsd usecases/RINF/schema/ -xr usecases/RINF/mappings/ --ontology usecases/RINF/ontology/ontology.ttl -o integrated_shapes_all_rml_owl_xsd.ttl 
 ```
 
-## Conflict Checking 
-The added constraints can not cause the original shape to become unsatisfiable
+Where
+ - `--mode` is 
+ - `--parallel` is 
+ - `--mappings` is 
+ - `--xsd` is 
+ - `--ontology` is 
+ - `-xr` is
+ - `-o` is
 
-Confirmed constraint list: 
+Full CLI Usage options:
+```
 
-- [X] class
-- [X] nodeKind
-- [X] datatype
-- [X] minCount 
-- [X] maxCount
-- [X] minExclusive
-- [X] maxExclusive
-- [X] minInclusive
-- [X] maxInclusive
-- [X] minLength
-- [X] maxLength
-- [X] pattern
-- [X] flags
-- [X] languageIn
-- [X] uniqueLang
-- [X] equals
-- [X] disjoint
-- [X] lessThan
-- [X] lessThanOrEquals 
-- [X] not
-- [X] and 
-- [X] or
-- [X] xone
-- [X] node 
-- [X] hasValue
-- [X] in
-
-## RML2SHACL and XSD2SHACL
-
-- [ ] Some mapping sm has the same template but does not in one mapping ... thus target will has pronlem
-
-## OWL2SHACL
-
-- [ ] nodeKind 
-- [ ] or
-- [ ] minCount
-- [ ] axCount
+```
