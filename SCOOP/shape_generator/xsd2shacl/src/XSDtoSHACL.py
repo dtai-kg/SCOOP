@@ -162,14 +162,20 @@ class XSDtoSHACL:
         """A function to translate XSD element with simple type and attribute to SHACL property shape"""
         element_name = xsd_element.get("name")
 
-        subject = self.NS[f'PropertyShape/{element_name}']
+        if "attribute" in xsd_element.tag:
+            subject = self.NS[f'PropertyShape/@{element_name}']
+        else:
+            subject = self.NS[f'PropertyShape/{element_name}']
 
         if self.shapes != []:
             if "NodeShape" in str(self.shapes[-1]):
                 pre_subject_path = self.shapes[-1].split("NodeShape/")[1]
             elif "PropertyShape" in str(self.shapes[-1]):
                 pre_subject_path = self.shapes[-1].split("PropertyShape/")[1]
-            subject = self.NS[f'PropertyShape/{pre_subject_path}/{element_name}']
+            if "attribute" in xsd_element.tag:
+                subject = self.NS[f'PropertyShape/{pre_subject_path}/@{element_name}']
+            else:
+                subject = self.NS[f'PropertyShape/{pre_subject_path}/{element_name}']
             if subject not in self.choiceShapes:
                 self.SHACL.add((self.shapes[-1],self.shaclNS.property,subject))
         

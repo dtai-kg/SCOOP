@@ -236,7 +236,8 @@ class ShapeAdjustment:
                     m = re.search(self.XPathFunction[function], matches[i])
                     if m:
                         matches[i] = m.group(1)
-        matches = [self.iterator+"/"+i.replace("@","") for i in matches]
+        # matches = [self.iterator+"/"+i.replace("@","") for i in matches]
+        matches = [self.iterator+"/"+i for i in matches]
   
         return [matches]
 
@@ -259,7 +260,8 @@ class ShapeAdjustment:
                 if m:
                     reference = m.group(1)
         reference = re.sub(r'\[.*?\]', '', reference)
-        return [[self.iterator+"/"+reference.replace("@","")]]
+        # return [[self.iterator+"/"+reference.replace("@","")]]
+        return [[self.iterator+"/"+reference]]
 
     def parseTemplate_json(self, template):
         """
@@ -605,7 +607,6 @@ class ShapeAdjustment:
             self.adjust_sm(self.rml_parsed[triples_map_identifier]["sm"]["path"], self.rml_parsed[triples_map_identifier]["sm"]["classes"], self.rml_parsed[triples_map_identifier]["sm"]["shared_key"])
             self.adjust_pom(self.rml_parsed[triples_map_identifier]["pom"])
             self.findNS = []
-        
         self.clear_graph()
         self.reassign_identifier()
         self.adjusted_graph+=self.initial_graph

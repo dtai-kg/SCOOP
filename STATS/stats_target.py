@@ -1,6 +1,7 @@
 import rdflib
 from rdflib import Graph, URIRef, Literal, BNode, Namespace, RDF
 import os
+import sys
 
 def getClassProperty(graph):
     shaclNS = Namespace('http://www.w3.org/ns/shacl#')
