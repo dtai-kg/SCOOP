@@ -3,17 +3,6 @@ from rdflib import Graph, URIRef, Literal, BNode, Namespace, RDF
 import os
 import sys
 
-def getClassProperty(graph):
-    shaclNS = Namespace('http://www.w3.org/ns/shacl#')
-    class_set = set()
-    property_set = set()
-    for _, _, o in graph.triples((None, shaclNS.targetClass, None)):
-        class_set.add(o)
-    for _, _, o in graph.triples((None, shaclNS.path, None)):
-        if o != RDF.type:
-            property_set.add(o)
-    return len(class_set), (property_set)
-
 class STATS:
     def __init__(self, output_file):
         self.shaclNS = Namespace('http://www.w3.org/ns/shacl#')
@@ -64,8 +53,6 @@ class STATS:
         
         self.f.write(f"Ground Truth has {len(self.ground_truth_class)} classes and {len(self.ground_truth_property)} properties\n")
 
-        #print(f"Ground Truth has {len(self.ground_truth_class)} classes and {len(self.ground_truth_property)} properties")
-
     def getPredicted(self, shacl_files):
         self.predicted_class, self.predicted_property = set(), set()
         for shacl_file in shacl_files:
@@ -109,8 +96,6 @@ class STATS:
         
         self.f.write(f"VT: {self.VT}\n, CD: {self.CD}\n, VR: {self.VR}\n, SR: {self.SR}\n, PP: {self.PP}\n, LG: {self.LG}\n, SA: {self.SA}\n, OT: {self.OT}\n")
         
-        #print(f"Predicted has {len(self.predicted_class)} classes and {len(self.predicted_property)} properties")
-
 
     def get_differ(self):
         # get difference classes and properties
@@ -126,21 +111,10 @@ class STATS:
         self.f.write(f"Recall for properties: {len(self.ground_truth_property.intersection(self.predicted_property))/len(self.ground_truth_property)}\n")
 
 
-        # print(f"Recall for classes: {len(self.ground_truth_class.intersection(self.predicted_class))/len(self.ground_truth_class)}")
-        # print(f"Recall for properties: {len(self.ground_truth_property.intersection(self.predicted_property))/len(self.ground_truth_property)}")
-
     def cal_precision(self):
         self.f.write(f"Precision for classes: {len(self.ground_truth_class.intersection(self.predicted_class))/len(self.predicted_class)}\n")
         self.f.write(f"Precision for properties: {len(self.ground_truth_property.intersection(self.predicted_property))/len(self.predicted_property)}\n")
 
-        # print(f"Precision for classes: {len(self.ground_truth_class.intersection(self.predicted_class))/len(self.predicted_class)}")
-        # print(f"Precision for properties: {len(self.ground_truth_property.intersection(self.predicted_property))/len(self.predicted_property)}")
-
-    # def cal_accuracy(self):
-    #     self.f.write(f"Accuracy for classes: {len(self.ground_truth_class.intersection(self.predicted_class))/len(self.ground_truth_class.union(self.predicted_class))}\n")
-    #     self.f.write(f"Accuracy for properties: {len(self.ground_truth_property.intersection(self.predicted_property))/len(self.ground_truth_property.union(self.predicted_property))}\n")
-    #     # print(f"Accuracy for classes: {len(self.ground_truth_class.intersection(self.predicted_class))/len(self.ground_truth_class.union(self.predicted_class))}")
-    #     # print(f"Accuracy for properties: {len(self.ground_truth_property.intersection(self.predicted_property))/len(self.ground_truth_property.union(self.predicted_property))}")
 
     def cal_F1score(self):
         self.f.write(f"F1 score for classes: {2*len(self.ground_truth_class.intersection(self.predicted_class))/(len(self.ground_truth_class)+len(self.predicted_class))}\n")
@@ -194,11 +168,6 @@ class STATS:
         print(f"Graph2 has {len(differ_properties)} more properties than Graph1")
         for p in differ_properties:
             print("\t",str(p).split("/")[-1])
-
-# print(f"Shape {} has {} Node Shape and {} Property Shape")
-# print(f"Shape {} has {} more classes that shape {}")
-# print(f"Shape {} has {} more properties that shape {}")
-# print(f"Shape {} covers constriants {}")
 
 
 if __name__ == "__main__":
@@ -264,43 +233,3 @@ if __name__ == "__main__":
 
     stats.closeF()
     
-
-    # shacl_file = "STATS/UK_QSE_0.25_100_10_20_SHACL.ttl"
-    # stats = STATS()
-    # stats.getGroundTruth("STATS/UK.classes.txt", "STATS/UK.properties.txt")
-    # stats.getPredicted([shacl_file])
-    # print("Start calculating", shacl_file)
-    # stats.cal_recall()
-    # stats.cal_precision()
-    # stats.cal_accuracy()
-
-
-
-    # # Graph1 = "STATS/integration_rml_xsd.ttl"
-    # Graph1 = "STATS/integration_rml_xsd_owl.ttl"
-    # Graph2 = "STATS/temp/owl0.ttl"
-    # #Graph2 = "STATS/all_countries_combined_QSE_0.1_100_SHACL.ttl"
-    # print(f"Graph1: {Graph1}")
-    # print(f"Graph2: {Graph2}")
-
-    # stats = STATS(Graph1, Graph2)
-    # stats.basicStats()
-    # stats.commenStats()
-
-    # print("Start STATS for RML2SHACL")
-    # g = Graph()
-    # rml_list_path = "STATS/temp"
-    # rml_list = os.listdir(rml_list_path)
-    # rml_list = [os.path.join(rml_list_path, rml) for rml in rml_list if rml.endswith(".ttl")]
-    # for file in rml_list:
-    #     if "rml" in file:
-    #         g.parse(file, format="turtle")
-    # getClassProperty(g)
-
-    # print("Start STATS for Astrea")
-    # g = Graph().parse("STATS/temp/owl0.ttl")
-    # getClassProperty(g)
-
-    # print("Start STATS for Adjusted XSD2SHACL")
-    # g = Graph().parse("STATS/temp/xsd0.ttl")
-    # getClassProperty(g)

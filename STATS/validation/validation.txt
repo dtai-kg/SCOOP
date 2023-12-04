@@ -1,38 +1,38 @@
-==========integrationAll_rml_owl.ttl.MT.validation.ttl
+==========SCOOP_All_rml_owl.ttl.MT.validation.ttl
 http://www.w3.org/ns/shacl#ClassConstraintComponent 864
 All errors: 864
-==========integrationAll_rml_xsd.ttl.MT.validation.ttl
+==========SCOOP_All_rml_xsd.ttl.MT.validation.ttl
 http://www.w3.org/ns/shacl#MinCountConstraintComponent 738
 All errors: 0
-==========integrationAll_rml_xsd_owl.ttl.MT.validation.ttl
+==========SCOOP_All_rml_owl_xsd.ttl.MT.validation.ttl
 http://www.w3.org/ns/shacl#ClassConstraintComponent 864
 http://www.w3.org/ns/shacl#MinCountConstraintComponent 738
 All errors: 864
-==========integrationAll_xsd_owl.ttl.MT.validation.ttl
+==========SCOOP_All_owl_xsd.ttl.MT.validation.ttl
 http://www.w3.org/ns/shacl#ClassConstraintComponent 864
 http://www.w3.org/ns/shacl#MinCountConstraintComponent 738
 http://www.w3.org/ns/shacl#NodeKindConstraintComponent 108
 All errors: 972
-==========integrationR_rml_owl.ttl.MT.validation.ttl
+==========SCOOP_Prior_R_rml_owl.ttl.MT.validation.ttl
 http://www.w3.org/ns/shacl#ClassConstraintComponent 864
 All errors: 864
-==========integrationR_rml_xsd.ttl.MT.validation.ttl
+==========SCOOP_Prior_R_rml_xsd.ttl.MT.validation.ttl
 http://www.w3.org/ns/shacl#MaxLengthConstraintComponent 216
 http://www.w3.org/ns/shacl#MinCountConstraintComponent 738
 All errors: 216
-==========integrationR_rml_xsd_owl.ttl.MT.validation.ttl
+==========SCOOP_Prior_R_rml_owl_xsd.ttl.MT.validation.ttl
 http://www.w3.org/ns/shacl#ClassConstraintComponent 864
 http://www.w3.org/ns/shacl#MinCountConstraintComponent 738
 http://www.w3.org/ns/shacl#MaxLengthConstraintComponent 216
 All errors: 972
-==========integration_rml_owl.ttl.MT.validation.ttl
+==========SCOOP_Prior_rml_owl.ttl.MT.validation.ttl
 http://www.w3.org/ns/shacl#ClassConstraintComponent 864
 All errors: 864
-==========integration_rml_xsd.ttl.MT.validation.ttl
+==========SCOOP_Prior_rml_xsd.ttl.MT.validation.ttl
 http://www.w3.org/ns/shacl#MinCountConstraintComponent 738
 http://www.w3.org/ns/shacl#MaxLengthConstraintComponent 216
 All errors: 216
-==========integration_rml_xsd_owl.ttl.MT.validation.ttl
+==========SCOOP_Prior_rml_owl_xsd.ttl.MT.validation.ttl
 http://www.w3.org/ns/shacl#ClassConstraintComponent 864
 http://www.w3.org/ns/shacl#MinCountConstraintComponent 738
 http://www.w3.org/ns/shacl#MaxLengthConstraintComponent 216

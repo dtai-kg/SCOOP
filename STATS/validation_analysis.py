@@ -52,14 +52,3 @@ for validation_file in os.listdir("STATS/validation/temp"):
         
 
 
-
-# validation_shape_graph = Graph().parse("shacl-shacl.ttl", format="turtle")
-# #sg = rdflib.Graph().parse("STATS/all_countries_combined_QSE_0.1_100_SHACL.ttl", format="ttl")
-# r = validate(sg, shacl_graph=validation_shape_graph, ont_graph=None,
-#                 inference='rdfs', abort_on_first=False, meta_shacl=False, debug=False)
-# if not r[0]:
-#     print(r[2])
-#     sys.exit(1)
-# else:
-#     print("Conforms\n " + str(r[0]))
-
