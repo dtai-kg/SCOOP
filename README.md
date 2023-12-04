@@ -24,14 +24,14 @@ For command line use:
 
 ```
 $ python main.py --mode priority/priorityR/all --priority source1 source2 source3 --parallel true/false -m PATH_TO_RML/PATH_TO_RML_FOLDER -o PATH_TO_ONTOLOGY/PATH_TO_ONTOLOGY_FOLDER 
--x PATH_TO_XSD/PATH_TO_XSD_FOLDER -xsd PATH_TO_ADJUSTMENT_XSD/PATH_TO_ADJUSTMENT_RML_FOLDER 
+-x PATH_TO_XSD/PATH_TO_XSD_FOLDER -xr PATH_TO_ADJUSTMENT_XSD/PATH_TO_ADJUSTMENT_RML_FOLDER 
 -ot OUT_PUT_PATH
 ```
 
 For example:
 
 ```
-$ python main.py --mode all --parallel True -m usecases/RINF/mappings/ -o usecases/RINF/ontology/ontology.ttl- x usecases/RINF/schema/ -xr usecases/RINF/mappings/
+$ python main.py --mode all --parallel True -m usecases/RINF/mappings/ -o usecases/RINF/ontology/ontology.ttl -x usecases/RINF/schema/ -xr usecases/RINF/mappings/
 -ot SCOOP_all_rml_owl_xsd.ttl 
 ```
 
