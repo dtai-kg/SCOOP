@@ -32,7 +32,7 @@ For example:
 
 ```
 $ python main.py --mode all --parallel True -m usecases/RINF/mappings/ -o usecases/RINF/ontology/ontology.ttl- x usecases/RINF/schema/ -xr usecases/RINF/mappings/
--ot integrated_shapes_all_rml_owl_xsd.ttl 
+-ot SCOOP_all_rml_owl_xsd.ttl 
 ```
 
 Where:
