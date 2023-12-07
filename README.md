@@ -1,5 +1,8 @@
 # SCOOP
 
+[![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
+[![DOI](https://zenodo.org/badge/726014963.svg)](https://zenodo.org/doi/10.5281/zenodo.10280345)
+
 **SCOOP** is a framework that exploits all artifacts associated with the construction of an RDF graph, i.e. data schemas, ontologies, and mapping rules, and integrates the SHACL shapes extracted from each artifact into a unified shapes graph.
 
 We implemented **SCOOP-All**, **SCOOP-Prior**, and **SCOOP-Prior-R**. 
