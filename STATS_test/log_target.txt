@@ -1,0 +1,148 @@
+Ground Truth has 21 classes and 223 properties
+================Start calculating FR_FULL.ttl
+Recall for classes: 1.0
+Recall for properties: 1.0
+Precision for classes: 1.0
+Precision for properties: 1.0
+F1 score for classes: 1.0
+F1 score for properties: 1.0
+================Start calculating FR_QSE_0.25_100_100_5000_SHACL.ttl
+Recall for classes: 1.0
+Recall for properties: 0.43946188340807174
+Precision for classes: 1.0
+Precision for properties: 1.0
+F1 score for classes: 1.0
+F1 score for properties: 0.6105919003115264
+================Start calculating FR_QSE_0.25_100_10_20_SHACL.ttl
+Recall for classes: 1.0
+Recall for properties: 0.43946188340807174
+Precision for classes: 1.0
+Precision for properties: 1.0
+F1 score for classes: 1.0
+F1 score for properties: 0.6105919003115264
+================Start calculating FR_QSE_0.25_100_50_5000_SHACL.ttl
+Recall for classes: 1.0
+Recall for properties: 0.43946188340807174
+Precision for classes: 1.0
+Precision for properties: 1.0
+F1 score for classes: 1.0
+F1 score for properties: 0.6105919003115264
+================Start calculating FR_QSE_0.25_100_50_500_SHACL.ttl
+Recall for classes: 1.0
+Recall for properties: 0.43946188340807174
+Precision for classes: 1.0
+Precision for properties: 1.0
+F1 score for classes: 1.0
+F1 score for properties: 0.6105919003115264
+================Start calculating FR_QSE_0.25_100_SHACL.ttl
+Recall for classes: 1.0
+Recall for properties: 0.43946188340807174
+Precision for classes: 1.0
+Precision for properties: 1.0
+F1 score for classes: 1.0
+F1 score for properties: 0.6105919003115264
+================Start calculating SCOOP_All_rml_owl.ttl
+Recall for classes: 1.0
+Recall for properties: 0.9820627802690582
+Precision for classes: 0.44680851063829785
+Precision for properties: 0.44969199178644764
+F1 score for classes: 0.6176470588235294
+F1 score for properties: 0.6169014084507042
+================Start calculating SCOOP_All_rml_owl_xsd.ttl
+Recall for classes: 1.0
+Recall for properties: 1.0
+Precision for classes: 0.44680851063829785
+Precision for properties: 0.45417515274949083
+F1 score for classes: 0.6176470588235294
+F1 score for properties: 0.6246498599439776
+================Start calculating SCOOP_All_rml_xsd.ttl
+Recall for classes: 1.0
+Recall for properties: 1.0
+Precision for classes: 1.0
+Precision for properties: 0.9823788546255506
+F1 score for classes: 1.0
+F1 score for properties: 0.9911111111111112
+================Start calculating SCOOP_All_xsd_owl.ttl
+Recall for classes: 1.0
+Recall for properties: 1.0
+Precision for classes: 0.44680851063829785
+Precision for properties: 0.45417515274949083
+F1 score for classes: 0.6176470588235294
+F1 score for properties: 0.6246498599439776
+================Start calculating SCOOP_Prior_rml_owl.ttl
+Recall for classes: 1.0
+Recall for properties: 0.9820627802690582
+Precision for classes: 0.44680851063829785
+Precision for properties: 0.44969199178644764
+F1 score for classes: 0.6176470588235294
+F1 score for properties: 0.6169014084507042
+================Start calculating SCOOP_Prior_rml_owl_xsd.ttl
+Recall for classes: 1.0
+Recall for properties: 1.0
+Precision for classes: 0.44680851063829785
+Precision for properties: 0.45417515274949083
+F1 score for classes: 0.6176470588235294
+F1 score for properties: 0.6246498599439776
+================Start calculating SCOOP_Prior_rml_xsd.ttl
+Recall for classes: 1.0
+Recall for properties: 1.0
+Precision for classes: 1.0
+Precision for properties: 0.9823788546255506
+F1 score for classes: 1.0
+F1 score for properties: 0.9911111111111112
+================Start calculating SCOOP_Prior_R_owl_xsd.ttl
+Recall for classes: 1.0
+Recall for properties: 1.0
+Precision for classes: 0.44680851063829785
+Precision for properties: 0.45417515274949083
+F1 score for classes: 0.6176470588235294
+F1 score for properties: 0.6246498599439776
+================Start calculating SCOOP_Prior_R_rml_owl.ttl
+Recall for classes: 1.0
+Recall for properties: 0.2600896860986547
+Precision for classes: 1.0
+Precision for properties: 1.0
+F1 score for classes: 1.0
+F1 score for properties: 0.4128113879003559
+================Start calculating SCOOP_Prior_R_rml_owl_xsd.ttl
+Recall for classes: 1.0
+Recall for properties: 1.0
+Precision for classes: 1.0
+Precision for properties: 0.982388546255506
+F1 score for classes: 1.0
+F1 score for properties: 0.9911111111111112
+================Start calculating SCOOP_Prior_R_rml_xsd.ttl
+Recall for classes: 1.0
+Recall for properties: 1.0
+Precision for classes: 1.0
+Precision for properties: 0.9823788546255506
+F1 score for classes: 1.0
+F1 score for properties: 0.9911111111111112
+================Start calculating SCOOP_Prior_xsd_owl.ttl
+Recall for classes: 1.0
+Recall for properties: 1.0
+Precision for classes: 0.44680851063829785
+Precision for properties: 0.45417515274949083
+F1 score for classes: 0.6176470588235294
+F1 score for properties: 0.6246498599439776
+================Start calculating STATS/temp/owl0.ttl
+Recall for classes: 1.0
+Recall for properties: 0.9372197309417041
+Precision for classes: 0.44680851063829785
+Precision for properties: 0.4381551362683438
+F1 score for classes: 0.6176470588235294
+F1 score for properties: 0.5971428571428572
+================Start calculating STATS/temp/xsd0.ttl
+Recall for classes: 1.0
+Recall for properties: 1.0
+Precision for classes: 1.0
+Precision for properties: 0.9823788546255506
+F1 score for classes: 1.0
+F1 score for properties: 0.9911111111111112
+================Start calculating RML_LIST
+Recall for classes: 1.0
+Recall for properties: 0.2600896860986547
+Precision for classes: 1.0
+Precision for properties: 1.0
+F1 score for classes: 1.0
+F1 score for properties: 0.4128113879003559

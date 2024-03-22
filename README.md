@@ -70,3 +70,14 @@ optional arguments:
                         Path to folder or rml file for post-adjustment of XSD-driven shape
   -ot --output          Output file (default: shape_integration.ttl)
 ```
+
+## Cite 
+
+To cite our work:
+
+  @inproceedings{duan2024scoop,
+    author = {Duan, Xuemin and Chaves-Fraga, David and Derom, Olivier and Dimou, Anastasia},
+    title = {{SCOOP all the Constraints’ Flavours for your Knowledge Graph}},
+    year = {2024},
+    booktitle = {Proceedings of the 21\textsuperscript{th} Extended Semantic Web Conference (ESWC)},
+    }
