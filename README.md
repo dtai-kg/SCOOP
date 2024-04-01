@@ -75,9 +75,9 @@ optional arguments:
 
 To cite our work:
 
-  @inproceedings{duan2024scoop,
-    author = {Duan, Xuemin and Chaves-Fraga, David and Derom, Olivier and Dimou, Anastasia},
-    title = {{SCOOP all the Constraints’ Flavours for your Knowledge Graph}},
-    year = {2024},
-    booktitle = {Proceedings of the 21\textsuperscript{th} Extended Semantic Web Conference (ESWC)},
-    }
+    @inproceedings{duan2024scoop,
+        author = {Duan, Xuemin and Chaves-Fraga, David and Derom, Olivier and Dimou, Anastasia},
+        title = {{SCOOP all the Constraints’ Flavours for your Knowledge Graph}},
+        year = {2024},
+        booktitle = {Proceedings of the 21\textsuperscript{th} Extended Semantic Web Conference (ESWC)},
+        }
