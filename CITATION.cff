@@ -1,0 +1,20 @@
+cff-version: 1.2.0
+title: "SCOOP"
+license: Apache-2.0
+authors:
+  - family-names: Duan
+    given-names: Xuemin
+preferred-citation:
+  authors:
+    - family-names: Duan
+      given-names: Xuemin
+    - family-names: Chaves-Fraga
+      given-names: David
+    - family-names: Derom
+      given-names: Olivier
+    - family-names: Dimou
+      given-names: Anastasia
+  title: "SCOOP all the Constraints’ Flavours for your Knowledge Graph
+  type: conference-paper
+  collection-title: "Proceedings of the 21\textsuperscript{th} Extended Semantic Web Conference (ESWC)"
+  year: 2024
