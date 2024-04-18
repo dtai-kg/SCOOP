@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SCOOP: Shape Integration Framework</title>
+    <link rel="stylesheet" href="styles.css">
+    
+  <!-- Bootstrap CSS -->
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+
+
+</head>
+<body>
+    <!-- Navbar section -->
+    <header class="header_wrapper">
+        <nav class="navbar navbar-expand-lg">
+            <div class="container">
+                <a class="navbar-brand mx-auto" href="./index.html">
+                    <!-- <h0><b>SCOOP</b> all the Constraints’ Flavours for your Knowledge Graph</h0> -->
+                    <h0><b>SCOOP</b></h0>
+                </a>
+            </div>
+        </nav>
+    </header>
+    <main>
+        <section id="summary">
+            <h1>SCOOP all the Constraints’ Flavours for your Knowledge Graph</h1>
+            <!-- <h1>SCOOP</h1> -->
+            <p>
+                Creating SHACL shapes for the validation of RDF graphs is a non-trivial endeavor.
+                Current shapes extraction systems often overlook the constraints imposed by individual artifacts, although RDF graphs are often constructed by applying ontology terms to heterogeneous data.
+                Only a few systems extract SHACL shapes from either the data schema or the ontology, leading, in either case, to limited or incomplete constraints.
+            </p> 
+            <p>
+                Thus, we propose <a href="https://github.com/dtai-kg/SCOOP"><b>SCOOP</b></a>, a framework that exploits all artifacts associated with
+                the construction of an RDF graph: data <b>SC</b>hemas, <b>O</b>nt<b>O</b>logies, and ma<b>P</b>pings.
+                SCOOP integrates the <a href="https://www.w3.org/TR/shacl/"><b>SHACL</b></a> shapes extracted from each artifact into a unified shapes graph.
+            </p>
+            <p>
+                This website provides descriptions and resources related to SCOOP. To cite this work, see <a href="#publications">Publications</a>.
+            </p>
+            
+        </section>
+
+        <section id="scoop">
+            <hr>
+            <h2>SCOOP</h2>
+            
+            <img src="imgs/scoop_framework.svg"/>
+            <p>
+                SCOOP comprises three modules: 
+                (i) <b>post-adjustment</b> to align schema-driven shapes with the target RDF graph; 
+                (ii) <b>equivalences identification</b> to align shapes from diverse sources, and (iii) integration
+                and <b>inconsistencies resolution</b> to prevent unsatisfiable shapes.
+            </p>
+            <h3>SCOOP Source Code</h3>
+            <p>The code and usage instructions for SCOOP are available online on the GitHub repository. </p>
+            <p>Access: <a href="https://github.com/dtai-kg/SCOOP"><b>https://github.com/dtai-kg/SCOOP</b></a></p>
+            <h3>SCOOP-UI Demo</h3>
+            <p>The SCOOP UI allows user to extract SHACL shapes in just one click. </p>
+            <p>Access: <a href="https://demos.citius.usc.es/scoop/"><b>https://demos.citius.usc.es/scoop/</b></a></p>
+            <p>Demo video: <a href="https://demos.citius.usc.es/scoop/video"><b>https://demos.citius.usc.es/scoop/video</b></a></p>
+        </section>
+
+        <section id="tools">
+            <hr>
+            <h2>Tools</h2>
+            <p>
+                <a href="https://github.com/dtai-kg/SCOOP"><b>SCOOP</b></a> is as an open-source system which incorporates 
+                <a href="https://github.com/RMLio/RML2SHACL"><b>RML2SHACL</b></a>, 
+                <a href="https://github.com/oeg-upm/astrea"><b>Astrea</b></a>, and 
+                <a href="https://github.com/dtai-kg/XSD2SHACL"><b>XSD2SHACL</b></a> to integrate shapes from mappings in 
+                <a href="https://rml.io/specs/rml/"><b>RML</b></a>, ontologies in <a href="http://www.w3.org/TR/owl2-syntax/"><b>OWL</b></a>, and raw data schemas in <a href="https://www.w3.org/TR/xmlschema11-1/"><b>XSD</b></a>.
+            </p>
+            <h3> RML2SHACL </h3>
+            <p>RML2SHACL is a tool to generate SHACL shapes from RML mapping files for RDF graphs validation.</p>
+            <p>Access:  <a href="https://github.com/RMLio/RML2SHACL"><b>https://github.com/RMLio/RML2SHACL</b></a>
+            <h3> Astrea </h3>
+            <p>Astrea is a tool to generate SHACL shapes from one or more given OWL ontologies.</p>
+            <p>Access:  <a href="https://github.com/oeg-upm/astrea"><b>https://github.com/oeg-upm/astrea</b></a>
+            <h3> XSD2SHACL </h3>
+            <p>XSD2SHACL is a tool to generate SHACL shapes from XML Schema Definition files.</p>
+            <p>Access:  <a href="https://github.com/dtai-kg/XSD2SHACL"><b>https://github.com/dtai-kg/XSD2SHACL</b></a>
+        </section>
+        
+        <section id="usecases">
+            <hr>
+            <h2>Use Cases</h2>
+            <p> SCOOP is evaluated on the real-world use case <a href="https://www.rinf-ch.ch/"><b>RINF</b></a>, the railway infrastructure register published by each
+                country, containing the infrastructure parameters applied to the railway system. RINF includes:</p>
+            <h3>XML raw data</h3>
+            <p>XML raw data from 30 countries.</p>
+            <h3>RML files</h3>
+            <p>28 RML files.</p>
+            <p>Access: The mapping rules will be publicly available soon by ERA <a href="https://www.era.europa.eu/"><b>https://www.era.europa.eu/</b></a>.
+            <h3>XSD files</h3>
+            <p>Access: <a href="https://www.era.europa.eu/domains/registers/rinf_en"><b>https://www.era.europa.eu/domains/registers/rinf_en</b></a></p> 
+            <h3>Ontologies files</h3>
+            <p>Access: <a href="https://github.com/Interoperable-data/ERA_vocabulary"><b>https://github.com/Interoperable-data/ERA_vocabulary</b></a></p> 
+            <h3>SHACL shapes</h3>
+            <p>Access: <a href="https://zenodo.org/records/7775344"><b>https://zenodo.org/records/7775344</b></a></p>
+        </section>
+
+        <section id="publications">
+            <hr>
+            <h2>Publications</h2>
+            <p>Xuemin Duan, David Chaves-Fraga, Olivier Derom, and Anastasia Dimou. 2024. <b>SCOOP all the Constraints’ Flavours for your Knowledge Graph</b>. Proceedings of the 21th Extended Semantic Web Conference (ESWC)</p>
+            <p>Xuemin Duan, David Chaves-Fraga, and Anastasia Dimou. 2023. <b>XSD2SHACL: Capturing RDF Constraints from XML Schema</b>. In Knowledge Capture Conference 2023 (K-CAP '23), December 05--07, 2023, Pensacola, FL, USA. ACM, New York, NY, USA 9 Pages. https://doi.org/10.1145/3587259.3627565</p>
+            <p>Xuemin Duan, David Chaves-Fraga, and Anastasia Dimou. 2024. <b>SCOOP-UI: SHACL Shape Extraction in Just a Click!</b>. Proceedings of the 21th Extended Semantic Web Conference (ESWC)</p>
+        </section>
+
+    </main>
+    <footer>
+        <p>&copy; 2024 . All rights reserved.</p>
+    </footer>
+    <script src="script.js"></script>
+</body>
+</html>
