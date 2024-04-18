@@ -76,9 +76,10 @@ h3 {
 p {
     font-family: Georgia, serif;
     font-size: 1.1rem;
-    color: var(--text-black);
+    color: black;
     line-height: 1.625rem;
 }
+
 
 image {
     width: 100%;
