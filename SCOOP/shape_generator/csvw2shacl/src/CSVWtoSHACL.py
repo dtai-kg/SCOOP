@@ -174,11 +174,11 @@ class CSVWtoSHACL:
                         # Add path with default namespace and title to property shape
                         # obj = column.get("name", column.get("titles"))
                         obj = column.get("titles")
-                        if isinstance(obj, str):
+                        if isinstance(obj, str) or isinstance(obj, list):
                             self.SHACL.add((psSubject, self.shaclNS["path"], self.create_namespace(obj)))
                         else:
                             #self.logger.warning(f"Column name or titles is not a string: {obj} in csvw file {self.csvw_file}")
-                            self.logger.warning(f"Column name or titles is not a string: {obj} in csvw file {self.csvw_file}")
+                            self.logger.warning(f"Column titles is not a string or list: {obj} in csvw file {self.csvw_file}")
                             return None
                     self.SHACL.add((psSubject, RDF.type, self.shaclNS.PropertyShape))
                     # if column.get("aboutUrl"):
@@ -197,11 +197,11 @@ class CSVWtoSHACL:
             # Add new property shape 
             # obj = column.get("name", column.get("titles", column.get("propertyUrl")))
             obj = column.get("titles")
-            if isinstance(obj, str):
+            if isinstance(obj, str) or isinstance(obj, list):
                 psSubject = self.create_namespace(obj,"ps")
             else:
                 #self.logger.warning(f"Column name or titles or propertyUrl is not a string: {obj} in csvw file {self.csvw_file}")
-                self.logger.warning(f"Column name or titles or propertyUrl is not a string: {obj} in csvw file {self.csvw_file}")
+                self.logger.warning(f"Column titles or propertyUrl is not a string or list: {obj} in csvw file {self.csvw_file}")
                 return None
 
             self.SHACL.add((psSubject, RDF.type, self.shaclNS.PropertyShape))
@@ -217,11 +217,11 @@ class CSVWtoSHACL:
                 # Add path with default namespace and title to property shape
                 # obj = column.get("name", column.get("titles"))
                 obj = column.get("titles")
-                if isinstance(obj, str):
+                if isinstance(obj, str) or isinstance(obj, list):
                     self.SHACL.add((psSubject, self.shaclNS["path"], self.create_namespace(obj)))
                 else:
                     #self.logger.warning(f"Column name or titles is not a string: {obj} in csvw file {self.csvw_file}")
-                    self.logger.warning(f"Column name or titles is not a string: {obj} in csvw file {self.csvw_file}")
+                    self.logger.warning(f"Column titles is not a string or list: {obj} in csvw file {self.csvw_file}")
                     return None
             self.SHACL.add((psSubject, RDF.type, self.shaclNS.PropertyShape))
 
@@ -341,7 +341,7 @@ class CSVWtoSHACL:
         if isinstance(s, list):
             # If titles object is list
             # s = "/".join(s)
-            s = "_".join(s)
+            s = "/".join(s)
         if shape_type == "ns":
             # return self.NS[f'NodeShape/{quote(s, safe='/:#')}']
             if re.match(r'https?://', str(s)) or re.match(r'http?://', str(s)):

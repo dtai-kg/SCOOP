@@ -4,7 +4,8 @@
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
 <http://example.com/tree-ops.csv##gid-%7BGID%7D/NodeShape> a sh:NodeShape ;
-    sh:property <http://example.com/tree-ops.csv#PropertyShape/Inventory%20Date>,
+    sh:property <http://example.com/tree-ops.csv#PropertyShape/GID/Generic%20Identifier>,
+        <http://example.com/tree-ops.csv#PropertyShape/Inventory%20Date>,
         <http://example.com/tree-ops.csv#PropertyShape/On%20Street>,
         <http://example.com/tree-ops.csv#PropertyShape/Species>,
         <http://example.com/tree-ops.csv#PropertyShape/Trim%20Cycle> ;
@@ -14,6 +15,13 @@
             sh:select """ SELECT ?this WHERE {
                     ?this ?p ?o .
                     FILTER REGEX(STR(?this), '#gid-.+') .} """ ] .
+
+<http://example.com/tree-ops.csv#PropertyShape/GID/Generic%20Identifier> a sh:PropertyShape ;
+    dc1:description "An identifier for the operation on a tree." ;
+    sh:datatype xsd:string ;
+    sh:minCount 1 ;
+    sh:name "GID" ;
+    sh:path <tree-ops.csv#GID/Generic%20Identifier> .
 
 <http://example.com/tree-ops.csv#PropertyShape/Inventory%20Date> a sh:PropertyShape ;
     dc1:description "The date of the operation that was performed." ;

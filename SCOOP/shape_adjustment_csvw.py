@@ -359,13 +359,23 @@ class ShapeAdjustment:
                 identifier_list.append(str(s))
 
         for identifier in identifier_list:
-            if "PropertyShape" in identifier:
+
+            if str(identifier).endswith("NodeShape") or str(identifier).endswith("PropertyShape"):
+                csv_file_name = str(identifier).split("#")[0].split("http://example.com/")[1]
+                self.shape_path[identifier] = [csv_file_name]
+                continue
+
+            if "#PropertyShape" in identifier:
                 csv_file_name = identifier.split("#PropertyShape")[0].split("http://example.com/")[1]
-                column_name = unquote(identifier.split("#PropertyShape")[-1])
-            elif "NodeShape" in identifier:
+                column_name = unquote(identifier.split("#PropertyShape/")[-1])
+            elif "#NodeShape" in identifier:
                 csv_file_name = identifier.split("#NodeShape")[0].split("http://example.com/")[1]
-                column_name = unquote(identifier.split("#NodeShape")[-1])
-            self.shape_path[identifier] = [csv_file_name+column_name]
+                column_name = unquote(identifier.split("#NodeShape/")[-1])
+            if "/" in column_name:
+                column_name = column_name.split("/")
+                self.shape_path[identifier] = [csv_file_name+"/"+i for i in column_name]
+            else:
+                self.shape_path[identifier] = [csv_file_name+"/"+column_name]
 
     # def getPath(self, identifier, complex_type_list):
     #     identifier = str(identifier)
