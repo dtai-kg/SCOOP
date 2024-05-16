@@ -1,0 +1,41 @@
+@prefix dc1: <http://purl.org/dc/terms/> .
+@prefix file: <tree-ops.csv#> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<http://example.com/tree-ops.csv##gid-%7BGID%7D/NodeShape> a sh:NodeShape ;
+    sh:property <http://example.com/tree-ops.csv#PropertyShape/Inventory%20Date>,
+        <http://example.com/tree-ops.csv#PropertyShape/On%20Street>,
+        <http://example.com/tree-ops.csv#PropertyShape/Species>,
+        <http://example.com/tree-ops.csv#PropertyShape/Trim%20Cycle> ;
+    sh:sparql [ a sh:SPARQLTarget ;
+            sh:declare [ sh:namespace file: ;
+                    sh:prefix "file" ] ;
+            sh:select """ SELECT ?this WHERE {
+                    ?this ?p ?o .
+                    FILTER REGEX(STR(?this), '#gid-.+') .} """ ] .
+
+<http://example.com/tree-ops.csv#PropertyShape/Inventory%20Date> a sh:PropertyShape ;
+    dc1:description "The date of the operation that was performed." ;
+    sh:datatype xsd:date ;
+    sh:name "inventory_date" ;
+    sh:path file:Inventory%20Date .
+
+<http://example.com/tree-ops.csv#PropertyShape/On%20Street> a sh:PropertyShape ;
+    dc1:description "The street that the tree is on." ;
+    sh:datatype xsd:string ;
+    sh:name "on_street" ;
+    sh:path file:On%20Street .
+
+<http://example.com/tree-ops.csv#PropertyShape/Species> a sh:PropertyShape ;
+    dc1:description "The species of the tree." ;
+    sh:datatype xsd:string ;
+    sh:name "species" ;
+    sh:path file:Species .
+
+<http://example.com/tree-ops.csv#PropertyShape/Trim%20Cycle> a sh:PropertyShape ;
+    dc1:description "The operation performed on the tree." ;
+    sh:datatype xsd:string ;
+    sh:name "trim_cycle" ;
+    sh:path file:Trim%20Cycle .
+

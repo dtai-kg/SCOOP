@@ -1,10 +1,10 @@
 import json
 from rdflib import Graph, Namespace, Literal, URIRef, RDF, BNode
 from .utils import json_load
+import os
 
 SHACL = Namespace("http://www.w3.org/ns/shacl#")
-predefined_datatype = json_load("src/vocabulary/xmlschema11_2.json")
-
+predefined_datatype = json_load(os.path.join(os.path.dirname(__file__),"vocabulary/xmlschema11_2.json"))
 
 def transConstraints(g,sub,k,v,logger):
     base = None

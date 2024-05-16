@@ -1,0 +1,42 @@
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<http://example.com/NodeShape/GID> a sh:NodeShape ;
+    sh:nodeKind sh:IRI ;
+    sh:property <http://example.com/PropertyShape/GID8077>,
+        <http://example.com/tree-ops.csv#PropertyShape/Inventory%20Date>,
+        <http://example.com/tree-ops.csv#PropertyShape/On%20Street>,
+        <http://example.com/tree-ops.csv#PropertyShape/Species>,
+        <http://example.com/tree-ops.csv#PropertyShape/Trim%20Cycle> ;
+    sh:targetClass <http://vocab.org/transit/terms/GID> .
+
+<http://example.com/PropertyShape/GID8077> a sh:PropertyShape ;
+    sh:datatype xsd:string ;
+    sh:path <http://vocab.org/transit/terms/GID> ;
+    sh:targetObjectsOf <http://vocab.org/transit/terms/GID> .
+
+<http://example.com/tree-ops.csv#PropertyShape/Inventory%20Date> a sh:PropertyShape ;
+    dcterms:description "The date of the operation that was performed." ;
+    sh:datatype xsd:date ;
+    sh:name "inventory_date" ;
+    sh:path <http://www.w3.org/2003/01/geo/wgs84_pos#inventory_date> .
+
+<http://example.com/tree-ops.csv#PropertyShape/On%20Street> a sh:PropertyShape ;
+    dcterms:description "The street that the tree is on." ;
+    sh:datatype xsd:string ;
+    sh:name "on_street" ;
+    sh:path <http://www.w3.org/2003/01/geo/wgs84_pos#onstreet> .
+
+<http://example.com/tree-ops.csv#PropertyShape/Species> a sh:PropertyShape ;
+    dcterms:description "The species of the tree." ;
+    sh:datatype xsd:string ;
+    sh:name "species" ;
+    sh:path <http://www.w3.org/2003/01/geo/wgs84_pos#Species> .
+
+<http://example.com/tree-ops.csv#PropertyShape/Trim%20Cycle> a sh:PropertyShape ;
+    dcterms:description "The operation performed on the tree." ;
+    sh:datatype xsd:string ;
+    sh:name "trim_cycle" ;
+    sh:path <http://www.w3.org/2003/01/geo/wgs84_pos#trim_cycle> .
+
