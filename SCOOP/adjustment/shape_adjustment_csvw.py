@@ -1,5 +1,5 @@
-# Shape adjustment script that can be used to individually adjust the shape derived from XSD based on RML
-# Input: RML graph, XSD-driven SHACL graph
+# Shape adjustment script that can be used to individually adjust the shape derived from CSVW based on RML
+# Input: RML graph, CSVW-driven SHACL graph
 # Output: Adjusted SHACL graph
 
 from rdflib import Graph, URIRef, Literal, Namespace, BNode
@@ -11,8 +11,9 @@ import os
 import sys
 import random
 import time
+from urllib.parse import unquote
 
-class ShapeAdjustment:
+class ShapeAdjustment_CSVW:
     def __init__(self, source_type):
         self.shaclNS = Namespace('http://www.w3.org/ns/shacl#')
         self.rdfSyntax = Namespace('http://www.w3.org/1999/02/22-rdf-syntax-ns#')
@@ -38,8 +39,7 @@ class ShapeAdjustment:
         self.OBJECT = self.r2rmlNS.object
         self.PARENTTM = self.rmlNS.parentTriplesMap
 
-        #self.XPathFunction = ["string","codepoints-to-string","string-to-codepoints","codepoint-equal","compare","concat","string-join","substring","string-length","normalize-space","normalize-unicode","upper-case","lower-case","translate","escape-uri","contains","starts-with","ends-with","substring-before","substring-after","matches","replace","tokenize"]
-        
+         
         self.source_type = source_type
         self.adjusted_graph = Graph()
         self.adjusted_identifier = []
@@ -68,10 +68,15 @@ class ShapeAdjustment:
                 self.iterator = ""
             else:
                 self.iterator = iterator
+
+            #fake iterator to distinguish the csv file
+            if self.source_type == "csv":
+                self.file_name = source+"/"
+
             self.rml_parsed[triples_map_identifier] = {'source': source, 'reference_formulation': reference_formulation, 'iterator': iterator}
             
             subject_map_identifier = self.rml_graph.value(triples_map_identifier, self.SUBJECT_MAP)
-            path, classes,template_length, shared_key = self.getSubjectMap(subject_map_identifier)
+            path, classes, template_length, shared_key = self.getSubjectMap(subject_map_identifier)
             self.rml_parsed[triples_map_identifier]['sm'] = {'path': path, 'classes': classes, 'template_length': template_length, 'shared_key': shared_key}
             
             pom_list = []
@@ -83,11 +88,13 @@ class ShapeAdjustment:
                 else:
                     pom_list.append({'property': pom_property, 'path': pom_object_path, 'datatype': pom_object_datatype, 'parent': pom_object_parent, 'template_length': pom_object_template_length, 'constant': constant, 'termType': termType})
             self.rml_parsed[triples_map_identifier]['pom'] = pom_list
+        # print(self.rml_parsed)
 
     def parseRawDataSchemaShape(self, initial_graph: Graph):
         self.initial_graph = initial_graph
         self.shape_path = {}
         getattr(self, f"parse_{self.source_type}", None)()
+        # print(self.shape_path)
 
     def getSource(self, source_identifier):
         """
@@ -130,6 +137,8 @@ class ShapeAdjustment:
                 shared_key = self.clean_shared_key(str(o))
             elif s == subject_map_identifier and p == self.CLASS:
                 classes.append(o)
+        if self.source_type == 'csv':
+            path = self.file_name[:-1]
         return path, classes, template_length, shared_key
 
     def clean_shared_key(self, shared_key):
@@ -205,15 +214,14 @@ class ShapeAdjustment:
         """
         pattern = r'\{([^}]+)\}'
         matches = re.findall(pattern, template)
-        matches = [self.iterator+"/" + i for i in matches]
-
+        matches = [self.file_name+i for i in matches]
         return [matches]
 
     def parseReference_csv(self, reference):
         """
         A function to parse the reference in a triples map and return path list
         """
-        pass
+        return [[self.file_name+str(reference)]]
     
     def parseTemplate_xml(self, template):
         """
@@ -280,7 +288,13 @@ class ShapeAdjustment:
         A function to parse XSD to return the identifier of shape and corresponding XPath
         """
         complex_type_list = self.getComplexType()
-        self.getShapePath(complex_type_list)
+        self.getShapePath_xml(complex_type_list)
+
+    def parse_csv(self):
+        """
+        A function to parse CSVW Shape to return the identifier of shape and corresponding XPath
+        """
+        self.getShapePath_csv()
         
     def getComplexType(self):
         """
@@ -292,7 +306,7 @@ class ShapeAdjustment:
                 complex_type_list.append(str(o).split("http://example.com/NodeShape/")[-1])
         return list(set(complex_type_list))
 
-    def getShapePath(self, complex_type_list):
+    def getShapePath_xml(self, complex_type_list):
         gdfs = GrapDFS()
 
         for s, p, o in self.initial_graph.triples((None, self.shaclNS.property, None)):
@@ -338,17 +352,41 @@ class ShapeAdjustment:
                     result = '/'+result
                 self.shape_path[identifier][p] = result
 
+    def getShapePath_csv(self):
+        identifier_list = []
+        for s, p, o in self.initial_graph:
+            if p == RDF.type and (o == self.shaclNS.NodeShape or o == self.shaclNS.PropertyShape):
+                identifier_list.append(str(s))
 
-    def getPath(self, identifier, complex_type_list):
-        identifier = str(identifier)
-        if "NodeShape" in identifier:
-            p = identifier.split("http://example.com/NodeShape/")[-1].split("/")
-            p = [i for i in p if i not in complex_type_list]
-            return "/".join(p)
-        elif "PropertyShape" in identifier:
-            p = identifier.split("http://example.com/PropertyShape/")[-1].split("/")
-            p = [i for i in p if i not in complex_type_list]
-            return "/".join(p)
+        for identifier in identifier_list:
+
+            if str(identifier).endswith("NodeShape") or str(identifier).endswith("PropertyShape"):
+                csv_file_name = str(identifier).split("#")[0].split("http://example.com/")[1]
+                self.shape_path[identifier] = [csv_file_name]
+                continue
+
+            if "#PropertyShape" in identifier:
+                csv_file_name = identifier.split("#PropertyShape")[0].split("http://example.com/")[1]
+                column_name = unquote(identifier.split("#PropertyShape/")[-1])
+            elif "#NodeShape" in identifier:
+                csv_file_name = identifier.split("#NodeShape")[0].split("http://example.com/")[1]
+                column_name = unquote(identifier.split("#NodeShape/")[-1])
+            if "/" in column_name:
+                column_name = column_name.split("/")
+                self.shape_path[identifier] = [csv_file_name+"/"+i for i in column_name]
+            else:
+                self.shape_path[identifier] = [csv_file_name+"/"+column_name]
+
+    # def getPath(self, identifier, complex_type_list):
+    #     identifier = str(identifier)
+    #     if "NodeShape" in identifier:
+    #         p = identifier.split("http://example.com/NodeShape/")[-1].split("/")
+    #         p = [i for i in p if i not in complex_type_list]
+    #         return "/".join(p)
+    #     elif "PropertyShape" in identifier:
+    #         p = identifier.split("http://example.com/PropertyShape/")[-1].split("/")
+    #         p = [i for i in p if i not in complex_type_list]
+    #         return "/".join(p)
     
     def adjust_sm(self, sm_path, sm_classes, shared_key):
         """
@@ -607,6 +645,7 @@ class ShapeAdjustment:
             self.adjust_sm(self.rml_parsed[triples_map_identifier]["sm"]["path"], self.rml_parsed[triples_map_identifier]["sm"]["classes"], self.rml_parsed[triples_map_identifier]["sm"]["shared_key"])
             self.adjust_pom(self.rml_parsed[triples_map_identifier]["pom"])
             self.findNS = []
+        # print(self.initial_graph.serialize(format='turtle'))
         self.clear_graph()
         self.reassign_identifier()
         self.adjusted_graph+=self.initial_graph

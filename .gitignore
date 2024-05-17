@@ -2,3 +2,5 @@ __pycache__
 test/
 adjustment_test/
 astrea_test/
+dev-test/
+temp/
