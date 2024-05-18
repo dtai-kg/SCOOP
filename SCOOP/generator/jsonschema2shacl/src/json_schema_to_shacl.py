@@ -1,10 +1,11 @@
 import argparse
 from rdflib import Graph, Namespace, Literal
 # from pyshacl import validate
-from file_parser import parse_json_schema
-from constants import BUILD_IN_TYPES, FORMAT_TYPES
-from utils import is_simple_complex, check_if_object_has_properties_or_restrictions
+from .file_parser import parse_json_schema
+from .constants import BUILD_IN_TYPES, FORMAT_TYPES
+from .utils import is_simple_complex, check_if_object_has_properties_or_restrictions
 
+#CHANGED: RETURN NAME LIST
 
 class JsonSchemaToShacl:
     """
@@ -24,6 +25,7 @@ class JsonSchemaToShacl:
         # self.type_list = built_in_types()
         self.shacl = Graph()
         self.shapes = []
+        self.names = []
 
     def trans_element_simple(self, entry_name, entry, pre_subject=None) -> None:
         """A function to translate elements of SimpleType inside a ComplexType"""
@@ -334,6 +336,7 @@ class JsonSchemaToShacl:
     def trans_complex(self, element: dict) -> None:
         """A function to translate ComplexType elements"""
         element_name = element.get("name")
+        self.names.append(element_name)
         subject = self.ns[f'NodeShape/{element_name}']
 
         if self.shapes:

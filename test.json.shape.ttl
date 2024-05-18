@@ -1,0 +1,40 @@
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<http://example.com/NodeShape/persona> a sh:NodeShape ;
+    sh:name "persona" ;
+    sh:property <http://example.com/PropertyShape/address>,
+        <http://example.com/PropertyShape/birthday>,
+        <http://example.com/PropertyShape/first_name> ;
+    sh:targetClass <http://example.com/persona> .
+
+<http://example.com/NodeShape/address> a sh:NodeShape ;
+    sh:name "address" ;
+    sh:property <http://example.com/PropertyShape/city>,
+        <http://example.com/PropertyShape/street_address> .
+
+<http://example.com/PropertyShape/address> a sh:PropertyShape ;
+    sh:node <http://example.com/NodeShape/address> ;
+    sh:path <http://example.com/address> .
+
+<http://example.com/PropertyShape/birthday> a sh:PropertyShape ;
+    sh:datatype xsd:date,
+        xsd:string ;
+    sh:name "birthday" ;
+    sh:path <http://example.com/birthday> .
+
+<http://example.com/PropertyShape/city> a sh:PropertyShape ;
+    sh:datatype xsd:string ;
+    sh:name "city" ;
+    sh:path <http://example.com/city> .
+
+<http://example.com/PropertyShape/first_name> a sh:PropertyShape ;
+    sh:datatype xsd:string ;
+    sh:name "first_name" ;
+    sh:path <http://example.com/first_name> .
+
+<http://example.com/PropertyShape/street_address> a sh:PropertyShape ;
+    sh:datatype xsd:string ;
+    sh:name "street_address" ;
+    sh:path <http://example.com/street_address> .
+

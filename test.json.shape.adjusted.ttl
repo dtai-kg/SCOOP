@@ -1,0 +1,34 @@
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<http://example.com/NodeShape/persona> a sh:NodeShape ;
+    sh:name "persona" ;
+    sh:property <http://example.com/PropertyShape/address>,
+        <http://example.com/PropertyShape/first_name> ;
+    sh:targetClass <http://schema.org/Person> .
+
+<http://example.com/NodeShape/address> a sh:NodeShape ;
+    sh:name "address" ;
+    sh:property <http://example.com/PropertyShape/city>,
+        <http://example.com/PropertyShape/street_address> ;
+    sh:targetClass <http://schema.org/Address> .
+
+<http://example.com/PropertyShape/address> a sh:PropertyShape ;
+    sh:node <http://example.com/NodeShape/address> ;
+    sh:path <http://schema.org/address> .
+
+<http://example.com/PropertyShape/city> a sh:PropertyShape ;
+    sh:datatype xsd:string ;
+    sh:name "city" ;
+    sh:path <http://www.w3.org/2003/01/geo/wgs84_pos#city> .
+
+<http://example.com/PropertyShape/first_name> a sh:PropertyShape ;
+    sh:datatype xsd:string ;
+    sh:name "first_name" ;
+    sh:path <http://schema.org/firstName> .
+
+<http://example.com/PropertyShape/street_address> a sh:PropertyShape ;
+    sh:datatype xsd:string ;
+    sh:name "street_address" ;
+    sh:path <http://www.w3.org/2003/01/geo/wgs84_pos#streetAddress> .
+

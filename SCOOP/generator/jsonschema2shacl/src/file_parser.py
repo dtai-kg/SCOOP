@@ -1,7 +1,7 @@
 import json
 
 
-def parse_json_schema(file_path: str) -> dict | None:
+def parse_json_schema(file_path):
     try:
         with open(file_path, 'r', encoding='utf-8') as file:
             schema = json.load(file)
