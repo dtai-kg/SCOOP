@@ -171,12 +171,15 @@ class ShapeIntegrationPriority():
         # Wrong: Conflict checking: checking whether the added constraint (already exsit) will cause the conform result to violation
         # Conflict checking: 
         if constraint_add == self.shaclNS["class"]:
-            self.SHACL.add((identifier_path_current, constraint_add, constraint_add_value))
+            if constraints_current.get(self.shaclNS.nodeKind, None) != self.shaclNS.Literal:
+                self.SHACL.add((identifier_path_current, constraint_add, constraint_add_value))
         
         elif constraint_add == self.shaclNS.nodeKind:
             if constraints_current.get(self.shaclNS.nodeKind, None) == None:
                 # If there is no nodeKind in previous shape, need to check datatype also
                 if constraint_add_value == self.shaclNS.Literal:
+                    if constraints_current.get(self.shaclNS["class"], None) != None:
+                        self.SHACL.remove((identifier_path_current, self.shaclNS["class"], None))
                     self.SHACL.add((identifier_path_current, constraint_add, constraint_add_value))
                 elif ("IRI" in str(constraint_add_value)) or ("BlankNode" in str(constraint_add_value)):
                     if constraints_current.get(self.shaclNS.datatype, None) == None:
