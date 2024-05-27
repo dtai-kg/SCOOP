@@ -36,10 +36,8 @@ def translateFromFile(ontology, output_file="output.ttl"):
 def translateByJar(ontology, output_file="output.ttl"):
 
     print("Start translating ontology to SHACL shape by JAR", ontology)
-
-    AstreaKG = f"{os.path.dirname(os.path.dirname(__file__))}/shape_generator/owl2shacl/src/Astrea-KG.ttl"
-    astreajarpath = f"{os.path.dirname(os.path.dirname(__file__))}/shape_generator/owl2shacl/src/Astrea2SHACL.jar"
-    ontology = f"{os.path.dirname(os.path.dirname(__file__))}/shape_generator/{ontology}"
+    AstreaKG = os.path.join(os.path.dirname(os.path.dirname(__file__)),"src","Astrea-KG.ttl")
+    astreajarpath = os.path.join(os.path.dirname(os.path.dirname(__file__)),"src","Astrea2SHACL.jar")
 
     subprocesscommand = ['java', '-jar', astreajarpath, AstreaKG, ontology]
     result = subprocess.check_output(subprocesscommand, stderr=subprocess.STDOUT, text=True)

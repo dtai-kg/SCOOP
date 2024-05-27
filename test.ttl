@@ -1,0 +1,49 @@
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<https://astrea.linkeddata.es/shapes#1bf73c785192acb4b267dfce36f62484> rdfs:label "student id" ;
+    sh:datatype xsd:integer ;
+    sh:name "student id" ;
+    sh:nodeKind sh:Literal ;
+    sh:pattern "[\\-+]?[0-9]+" .
+
+<https://astrea.linkeddata.es/shapes#562464662d7d08075a34bb60ded25dd9> a sh:NodeShape ;
+    rdfs:label "Student" ;
+    sh:name "Student" ;
+    sh:nodeKind sh:IRI ;
+    sh:property <https://astrea.linkeddata.es/shapes#1955ea8d168279d74e08eb918d008b42>,
+        <https://astrea.linkeddata.es/shapes#44597f59eb337e45767b8d594a020b96>,
+        <https://astrea.linkeddata.es/shapes#e4c140d3b8d67578dafc102653a52745> ;
+    sh:targetClass <http://example.org/student#Student> .
+
+<https://astrea.linkeddata.es/shapes#93ee22139c45bd5b0d9e0347db23776b> rdfs:label "student phone number" ;
+    sh:datatype xsd:string ;
+    sh:name "student phone number" ;
+    sh:nodeKind sh:Literal ;
+    sh:pattern ".*" .
+
+<https://astrea.linkeddata.es/shapes#ac016759994f099bbb2162232dedebe4> rdfs:label "student name" ;
+    sh:datatype xsd:string ;
+    sh:name "student name" ;
+    sh:nodeKind sh:Literal ;
+    sh:pattern ".*" .
+
+<https://astrea.linkeddata.es/shapes#1955ea8d168279d74e08eb918d008b42> a sh:PropertyShape ;
+    sh:maxCount 1 ;
+    sh:minCount 1 ;
+    sh:nodeKind sh:IRIOrLiteral ;
+    sh:path <http://example.org/student#name> .
+
+<https://astrea.linkeddata.es/shapes#44597f59eb337e45767b8d594a020b96> a sh:PropertyShape ;
+    sh:maxCount 1 ;
+    sh:minCount 1 ;
+    sh:nodeKind sh:IRIOrLiteral ;
+    sh:path <http://example.org/student#phoneNumber> .
+
+<https://astrea.linkeddata.es/shapes#e4c140d3b8d67578dafc102653a52745> a sh:PropertyShape ;
+    sh:maxCount 1 ;
+    sh:minCount 1 ;
+    sh:nodeKind sh:IRIOrLiteral ;
+    sh:path <http://example.org/student#id> .
+
