@@ -175,7 +175,7 @@ def extract_preliminary_shapes(args):
             owl_files = []
             for owl in args.ontology:
                 if os.path.isdir(owl):
-                    owl_files.extend([os.path.join(owl, f) for f in os.listdir(owl) if f.endswith('.owl') or f.endswith('.ttl') or f.endswith('.rdf')])
+                    owl_files.extend([os.path.join(owl, f) for f in os.listdir(owl) if f.endswith('.owl') or f.endswith('.ttl') or f.endswith('.rdf') or f.endswith('.nt') or f.endswith('.nq') or f.endswith('.trig') or f.endswith('.trix') or f.endswith('.jsonld') or f.endswith('.rdfa') or f.endswith('.rj')])
                 else:
                     owl_files.append(owl)
             owl_shacl_files = extract_shape_ontology(owl_files)

@@ -36,20 +36,20 @@ def translateFromFile(ontology, output_file="output.ttl"):
 def translateByJar(ontology, output_file="output.ttl"):
 
     print("Start translating ontology to SHACL shape by JAR", ontology)
+    script_dir = os.path.dirname(os.path.abspath(__file__))
 
-    AstreaKG = f"{os.path.dirname(os.path.dirname(__file__))}/shape_generator/owl2shacl/src/Astrea-KG.ttl"
-    astreajarpath = f"{os.path.dirname(os.path.dirname(__file__))}/shape_generator/owl2shacl/src/Astrea2SHACL.jar"
-    ontology = f"{os.path.dirname(os.path.dirname(__file__))}/shape_generator/{ontology}"
-
+    AstreaKG = os.path.join(script_dir, "..", "..", "owl2shacl", "src", "Astrea-KG.ttl")
+    astreajarpath = os.path.join(script_dir, "..", "..", "owl2shacl", "src", "Astrea2SHACL.jar")
+    if not os.path.isabs(ontology):
+        ontology = os.path.join(script_dir, "..", "..", "..", "..", ontology)
+    
     subprocesscommand = ['java', '-jar', astreajarpath, AstreaKG, ontology]
     result = subprocess.check_output(subprocesscommand, stderr=subprocess.STDOUT, text=True)
-    graphs = result.split('Astrea2SHACLGraphDelimiter\n')
-    for item in graphs:
-        if item != "":
-            graph = rdflib.Graph()
-            graph.parse(data=item, format="turtle")
-            graph = correctSHACL(graph)
-            graph.serialize(destination=output_file, format='turtle')
+
+    graph = rdflib.Graph()
+    graph.parse(data=result, format="turtle")
+    graph = correctSHACL(graph)
+    graph.serialize(destination=output_file, format='turtle')
 
     print("Saved SHACL shape to ", output_file)
 
