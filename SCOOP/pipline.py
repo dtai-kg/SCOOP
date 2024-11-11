@@ -163,7 +163,7 @@ def extract_preliminary_shapes(args):
             rml_files = []
             for rml in args.mappings:
                 if os.path.isdir(rml):
-                    rml_files.extend([os.path.join(rml, f) for f in os.listdir(rml) if f.endswith('.ttl')])
+                    rml_files.extend([os.path.join(rml, f) for f in os.listdir(rml)])
                 else:
                     rml_files.append(rml)
             rml_shacl_files = extract_shape_rml(rml_files)
@@ -175,7 +175,7 @@ def extract_preliminary_shapes(args):
             owl_files = []
             for owl in args.ontology:
                 if os.path.isdir(owl):
-                    owl_files.extend([os.path.join(owl, f) for f in os.listdir(owl) if f.endswith('.owl') or f.endswith('.ttl') or f.endswith('.rdf') or f.endswith('.nt') or f.endswith('.nq') or f.endswith('.trig') or f.endswith('.trix') or f.endswith('.jsonld') or f.endswith('.rdfa') or f.endswith('.rj')])
+                    owl_files.extend([os.path.join(owl, f) for f in os.listdir(owl)])
                 else:
                     owl_files.append(owl)
             owl_shacl_files = extract_shape_ontology(owl_files)
@@ -187,7 +187,7 @@ def extract_preliminary_shapes(args):
             xsd_files = []
             for xsd in args.xsd:
                 if os.path.isdir(xsd):
-                    xsd_files.extend([os.path.join(xsd, f) for f in os.listdir(xsd) if f.endswith('.xsd') or f.endswith('.xml')])
+                    xsd_files.extend([os.path.join(xsd, f) for f in os.listdir(xsd)])
                 else:
                     xsd_files.append(xsd)
      
@@ -196,7 +196,7 @@ def extract_preliminary_shapes(args):
                 xsd_rml_files = []
                 for rml in args.xsd_rml:
                     if os.path.isdir(rml):
-                        xsd_rml_files.extend([os.path.join(rml, f) for f in os.listdir(rml) if f.endswith('.ttl') or f.endswith('.rml')])
+                        xsd_rml_files.extend([os.path.join(rml, f) for f in os.listdir(rml)])
                     else:
                         xsd_rml_files.append(rml)
                 xsd_shacl_files = extract_shape_xsd(xsd_files, xsd_rml_files)
@@ -219,7 +219,7 @@ def extract_preliminary_shapes(args):
                 csvw_rml_files = []
                 for rml in args.csvw_rml:
                     if os.path.isdir(csvw):
-                        csvw_rml_files.extend([os.path.join(rml, f) for f in os.listdir(rml) if f.endswith('.ttl') or f.endswith('.rml')])
+                        csvw_rml_files.extend([os.path.join(rml, f) for f in os.listdir(rml)])
                     else:
                         csvw_rml_files.append(rml)
                 csvw_shacl_files = extract_shape_csvw(csvw_files, csvw_rml_files)
@@ -259,7 +259,7 @@ def extract_preliminary_shapes_parallel(args):
     if args.mappings:      
         for rml in args.mappings:
             if os.path.isdir(rml):
-                rml_files.extend([os.path.join(rml, f) for f in os.listdir(rml) if f.endswith('.ttl')])
+                rml_files.extend([os.path.join(rml, f) for f in os.listdir(rml)])
             else:
                 rml_files.append(rml)
         shapes.append([('rml', rml_files)])
@@ -267,7 +267,7 @@ def extract_preliminary_shapes_parallel(args):
     if args.ontology:
         for owl in args.ontology:
             if os.path.isdir(owl):
-                owl_files.extend([os.path.join(owl, f) for f in os.listdir(owl) if f.endswith('.owl') or f.endswith('.ttl') or f.endswith('.rdf')])
+                owl_files.extend([os.path.join(owl, f) for f in os.listdir(owl)])
             else:
                 owl_files.append(owl)
         shapes.append([('ontology', owl_files)])
@@ -275,13 +275,13 @@ def extract_preliminary_shapes_parallel(args):
     if args.xsd:
         for xsd in args.xsd:
             if os.path.isdir(xsd):
-                xsd_files.extend([os.path.join(xsd, f) for f in os.listdir(xsd) if f.endswith('.xsd') or f.endswith('.xml')])
+                xsd_files.extend([os.path.join(xsd, f) for f in os.listdir(xsd)])
             else:
                 xsd_files.append(xsd)
         if args.xsd_rml:
             for rml in args.xsd_rml:
                 if os.path.isdir(rml):
-                    xsd_rml_files.extend([os.path.join(rml, f) for f in os.listdir(rml) if f.endswith('.ttl') or f.endswith('.rml')])
+                    xsd_rml_files.extend([os.path.join(rml, f) for f in os.listdir(rml)])
                 else:
                     xsd_rml_files.append(rml)
         shapes.append([('xsd', (xsd_files, xsd_rml_files))])
@@ -295,7 +295,7 @@ def extract_preliminary_shapes_parallel(args):
         if args.csvw_rml:
             for rml in args.csvw_rml:
                 if os.path.isdir(rml):
-                    csvw_rml_files.extend([os.path.join(rml, f) for f in os.listdir(rml) if f.endswith('.ttl') or f.endswith('.rml')])
+                    csvw_rml_files.extend([os.path.join(rml, f) for f in os.listdir(rml)])
                 else:
                     csvw_rml_files.append(rml)
         shapes.append([('csvw', (csvw_files, csvw_rml_files))])
